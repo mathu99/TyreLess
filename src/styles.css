@@ -4,6 +4,49 @@
     src:    url("/assets/BryantMediumRegular.otf") format("opentype"),
             url("/assets/BryantMediumRegular.ttf") format("truetype")
 }
+
+
+/*
+  Dropdown
+*/
+
+.dd-t-custom{
+  color:black;
+  background-color: white;
+  min-height: 40pt;
+  margin:5pt;
+}
+
+.dd-col{
+  height: 35pt;
+  padding:0;
+}
+.dd-left{
+  padding:5pt;
+  font-size:10pt;
+  vertical-align: middle;
+}
+.dd-right{
+  line-height:35pt;
+  font-size:20pt;
+  vertical-align: middle;
+}
+.dd-caret{
+  padding-right:5pt;
+  text-align: center;
+  line-height: 35pt;
+  color:rgb(107,172,70);
+}
+.dd-t-custom::after{
+  /* border-top: .5em solid rgb(107,172,70);
+    border-right: .4em solid transparent;
+    border-bottom: 0;
+    border-left: .4em solid transparent;
+    margin-left: .155em;
+    vertical-align: .055em; */
+    display:none;
+}
+
 .custom{
     font-weight: 600;
     font-family: "BryantMediumRegular", sans-serif !important;
@@ -108,8 +151,6 @@ html{
   }
   
   .hero .get-it .btn{
-    margin-left:10px;
-    margin-bottom:10px;
     text-shadow:none;
   }
     
@@ -131,7 +172,7 @@ html{
     color:#fff;
   }
 
-  .link>span:hover{
+  .link>span:hover, .linkSelected{
       border-bottom: 1.5pt solid;
       cursor:pointer;
   }
@@ -155,7 +196,7 @@ html{
   section.information{
     padding:15pt;
     line-height: 15pt;
-    background-color: grey;
+    background-color: darkgray;
     color:white;
   }
   section.information>p{

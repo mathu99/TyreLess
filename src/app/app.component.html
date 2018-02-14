@@ -8,23 +8,24 @@
         <br>
         <br>
         <div class="row text-left">
-          <div class="col-2"></div>
-          <div class="col-8" style="margin:0 auto">
+          <div class="col-2">
+          </div>
+          <div class="col-8">
             <div class="row">
-              <div class="col-3 link">
-                <span>
+              <div class="col-3 link" (click)="update('selected','car')">
+                <span [ngClass]="{linkSelected : data.selected == 'car'}">
                   <i class="fa fa-car"></i> CAR</span>
               </div>
-              <div class="col-3 link">
-                <span>
+              <div class="col-3 link" (click)="update('selected','suv')">
+                <span [ngClass]="{linkSelected : data.selected == 'suv'}">
                   <i class="fa fa-car"></i> SUV &amp; 4X4</span>
               </div>
-              <div class="col-3 link">
-                <span>
+              <div class="col-3 link" (click)="update('selected','bike')">
+                <span [ngClass]="{linkSelected : data.selected == 'bike'}">
                   <i class="fa fa-motorcycle"></i> BIKE</span>
               </div>
-              <div class="col-3 link">
-                <span>
+              <div class="col-3 link" (click)="update('selected','commercial')">
+                <span [ngClass]="{linkSelected : data.selected == 'commercial'}">
                   <i class="fa fa-truck"></i> COMMERCIAL</span>
               </div>
             </div>
@@ -32,10 +33,145 @@
           <div class="col-2"></div>
         </div>
         <br>
+        <div class="row text-left">
+          <div class="col-6">
+            <div class="row">
+              <div class="col-3 dd-col">
+                  <div class="btn-group w-100">
+                      <button class="btn w-100 btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="row">
+                          <div class="col-5 dd-col dd-left">
+                            Tyre<br>
+                            Width
+                          </div>
+                          <div class="col-5 dd-col dd-right">{{data.width}}</div>
+                          <div class="col-2 dd-col dd-caret">
+                              <i class="fa fa-caret-down"></i>
+                          </div>
+                        </div>
+                      </button>
+                      <div class="dropdown-menu">
+                          <button class="dropdown-item" type="button" *ngFor="let width of properties.tyreWidths" (click)="update('width', width)">
+                              {{ width }}
+                          </button>
+                      </div>
+                    </div>
+              </div>
+              <div class="col-3 dd-col">
+                  <div class="btn-group w-100">
+                      <button class="btn w-100 btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <div class="row">
+                              <div class="col-5 dd-col dd-left">
+                                Tyre<br>
+                                Profile
+                              </div>
+                              <div class="col-5 dd-col dd-right">{{ data.profile }}</div>
+                              <div class="col-2 dd-col dd-caret">
+                                  <i class="fa fa-caret-down"></i>
+                              </div>
+                            </div>
+                      </button>
+                      <div class="dropdown-menu">
+                          <button class="dropdown-item" type="button" *ngFor="let profile of properties.tyreProfiles" (click)="update('profile', profile)">
+                              {{ profile }}
+                          </button>
+                      </div>
+                    </div>
+              </div>
+              <div class="col-3 dd-col">
+                  <div class="btn-group w-100">
+                      <button class="btn w-100 btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <div class="row">
+                              <div class="col-5 dd-col dd-left">
+                                Wheel<br>
+                                Size
+                              </div>
+                              <div class="col-5 dd-col dd-right">{{ data.size }}</div>
+                              <div class="col-2 dd-col dd-caret">
+                                  <i class="fa fa-caret-down"></i>
+                              </div>
+                            </div>
+                      </button>
+                      <div class="dropdown-menu">
+                          <button class="dropdown-item" type="button" *ngFor="let size of properties.tyreSizes" (click)="update('size', size)">
+                              {{ size }}
+                          </button>
+                      </div>
+                    </div>
+              </div>
+              <div class="col-3 dd-col">
+                  <div class="btn-group w-100">
+                      <button class="btn w-100 btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <div class="row">
+                              <div class="col-5 dd-col dd-left">
+                                <div style="line-height:25pt">Quantity</div>
+                              </div>
+                              <div class="col-5 dd-col dd-right">{{ data.quantity }}</div>
+                              <div class="col-2 dd-col dd-caret">
+                                  <i class="fa fa-caret-down"></i>
+                              </div>
+                            </div>
+                      </button>
+                      <div class="dropdown-menu">
+                          <button class="dropdown-item" type="button" *ngFor="let quantity of properties.quantities" (click)="update('quantity', quantity)">
+                              {{ quantity }}
+                          </button>
+                      </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="row">
+                <div class="col-6 dd-col">
+                    <div class="btn-group w-100">
+                        <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="row">
+                                <div class="col-3 dd-col dd-left">
+                                  <div style="line-height:25pt">Brand</div>
+                                </div>
+                                <div class="col-7 dd-col dd-right">{{ data.brand }}</div>
+                                <div class="col-2 dd-col dd-caret">
+                                    <i class="fa fa-caret-down"></i>
+                                </div>
+                              </div>
+                        </button>
+                        <div class="w-100 dropdown-menu">
+                            <button class="dropdown-item" type="button" *ngFor="let brand of properties.brands" (click)="update('brand', brand)">
+                                {{ brand }}
+                            </button>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-6 dd-col">
+                    <div class="btn-group w-100">
+                        <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="row">
+                                <div class="col-3 dd-col dd-left">
+                                  <div style="line-height:25pt">Location</div>
+                                </div>
+                                <div class="col-7 dd-col dd-right">{{ data.location }}</div>
+                                <div class="col-2 dd-col dd-caret">
+                                    <i class="fa fa-caret-down"></i>
+                                </div>
+                              </div>
+                        </button>
+                        <div class="w-100 dropdown-menu">
+                            <button class="dropdown-item" type="button" *ngFor="let location of properties.locations" (click)="update('location', location)">
+                                {{ location }}
+                            </button>
+                        </div>
+                      </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
         <div class="row">
           <div class="col-5"></div>
           <div class="col-2 text-center">
-            <button class="btn btn-success w-100 p-2" type="button">SEARCH</button>
+            <button class="btn btn-success w-100 p-3" type="button">SEARCH</button>
           </div>
           <div class="col-5"></div>
         </div>
@@ -111,7 +247,7 @@
 <footer class="site-footer">
   <div class="container">
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-6 custom">
         <h5>TyreLess © 2018</h5>
       </div>
       <div class="col-sm-6 social-icons">
