@@ -8,6 +8,10 @@ import { AboutComponent } from './about/about.component';
 import { AppComponent } from './app.component';
 import { ContactUsComponent } from './contact/contactUs.component';
 import { HomeComponent } from './home/home.component';
+import { HowItWorksComponent } from './howItWorks/howItWorks.component';
+import { OurOfferingComponent } from './ourOffering/ourOffering.component';
+import { SearchComponent } from './search/search.component';
+import { TyreCareComponent } from './tyreCare/tyreCare.component';
 
 
 @NgModule({
@@ -21,6 +25,11 @@ import { HomeComponent } from './home/home.component';
     AppComponent,    
     HomeComponent,
     ContactUsComponent,
+    HomeComponent,
+    HowItWorksComponent,
+    OurOfferingComponent,
+    SearchComponent,
+    TyreCareComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
