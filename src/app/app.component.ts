@@ -21,10 +21,10 @@ export class AppComponent {
       '1','2','3','4'
     ],
     brands: [
-      'Dunlop','Goodyear','Michelin','Pirelli','Firestone','Hankook','Toyo'
+      'Any','Dunlop','Goodyear','Michelin','Pirelli','Firestone','Hankook','Toyo'
     ],
     locations: [
-      'Cape Town','Durban','JHB','Pretoria'
+      'Any','Cape Town','Durban','Johannesburg','Pretoria'
     ],
   };
   data = {
