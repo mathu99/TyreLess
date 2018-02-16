@@ -221,6 +221,19 @@
     display:none;
 }
 
+.header-section{
+  margin:0 auto;
+  margin-top:70px;
+}
+
+body{
+  background-color: rgb(247,247,247);
+}
+
+.page-card-deck{
+  margin-bottom:70pt;
+}
+
 .custom{
     font-weight: 600;
     font-family: "BryantMediumRegular", sans-serif !important;
@@ -255,11 +268,16 @@ h1{
     font-size:56pt;
 }
 
+h2{
+  font-size:40pt;
+}
+
 html{
     background-color: rgb(247,247,247);
 }
 
 .jumbotron{
+    background-color: rgb(247,247,247);
     margin-bottom: 0 !important;
 }
   
@@ -306,6 +324,14 @@ html{
     background: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%,rgba(255,255,255,0.9) 100%), url('/assets/checkered-flag.jpg') repeat 0 0;
   }
 
+  #ourOfferingImg>div{
+    display: block;
+    position: relative;
+    /* background-size: cover; */
+    border:none;
+    background: url('/assets/ourOffering.jpg') repeat 0 0;
+  }
+
   @media (min-width:992px) {
     .hero .get-it{
       text-align:right;
@@ -316,6 +342,7 @@ html{
   
   @media (max-width:992px) {
     .hero .get-it{
+      margin-top:50px;
         width: 100%;
       text-align:center;
     }
@@ -325,6 +352,10 @@ html{
     .hero .phone-preview{
       text-align:center;
     }
+    #ourOfferingImg{
+      display: none;
+    }
+
   }
   
   .hero .get-it h1, .hero .get-it p{
