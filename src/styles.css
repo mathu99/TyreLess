@@ -354,7 +354,7 @@ html{
   }
 
   .link>span:hover, .linkSelected{
-      border-bottom: 1.5pt solid rgb(107,172,70);;
+      border-bottom: 1.5pt solid rgb(107,172,70);
       cursor:pointer;
   }
 
@@ -401,11 +401,41 @@ html{
     padding:20px 0;
     text-align:center;
   }
+
+  .nav-logo-left{
+    margin-left:50pt;
+    color:black;
+    font-size:24pt;
+  }
+  .nav-logo-right{
+    color:rgb(107,172,70);
+    font-size:18pt;
+  }
+
+  .navbar{
+    box-shadow:1px 1px 1px rgba(0,0,0,0.3);
+    background-color: white;
+  }
   
+  .ml-auto{
+    text-align: right;
+    margin-right:20pt;
+  }
   @media (min-width:768px) {
     .site-footer h5{
       text-align:left;
     }
+  }
+
+  .nav-right{
+    font-weight: 500;
+    margin-left:50pt;
+    vertical-align: middle;
+    line-height: 28pt;
+  }
+
+  .text-success{
+    color:rgb(107,172,70) !important;
   }
   
   .site-footer h5{

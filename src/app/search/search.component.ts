@@ -4,4 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-search',
   templateUrl: './search.component.html',
 })
-export class SearchComponent { }
+export class SearchComponent {collapsed = true;
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
+  } }

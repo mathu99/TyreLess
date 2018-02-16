@@ -4,4 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-contact-us',
   templateUrl: './contactUs.component.html',
 })
-export class ContactUsComponent {}
+export class ContactUsComponent {
+  collapsed = true;
+     toggleCollapsed(): void {
+       this.collapsed = !this.collapsed;
+     }
+}

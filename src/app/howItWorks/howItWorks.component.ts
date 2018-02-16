@@ -4,4 +4,9 @@ import { Component } from '@angular/core';
   selector: 'app-how-it-works',
   templateUrl: './howItWorks.component.html',
 })
-export class HowItWorksComponent { }
+export class HowItWorksComponent { 
+  collapsed = true;
+     toggleCollapsed(): void {
+       this.collapsed = !this.collapsed;
+     }
+}
