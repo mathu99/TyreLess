@@ -2,22 +2,22 @@
   <router-outlet></router-outlet>
 </div>
 <footer class="site-footer">
-    <div class="container">
-      <div class="row text-left">
-        <div class="col-sm-6 custom">
-          <h6>Facile Technologies Pty Ltd © 2018</h6>
-        </div>
-        <div class="col-sm-6 social-icons" *ngIf="router.url != '/contactUs'">
-          <a href="#">
-            <i class="fa fa-facebook"></i>
-          </a>
-          <a href="#">
-            <i class="fa fa-google-plus"></i>
-          </a>
-          <a href="#">
-            <i class="fa fa-linkedin"></i>
-          </a>
-        </div>
+  <div class="container">
+    <div class="row text-left">
+      <div class="col-sm-6 custom">
+        <h6>Facile Technologies Pty Ltd © 2018</h6>
+      </div>
+      <div class="col-sm-6 social-icons" *ngIf="router.url != '/contactUs'">
+        <a href="http://www.facebook.com" target="_blank" ngbTooltip="Connect on Facebook">
+          <i class="fa fa-facebook"></i>
+        </a>
+        <a href="http://www.googleplus.com" target="_blank" ngbTooltip="Connect on Google Plus">
+          <i class="fa fa-google-plus"></i>
+        </a>
+        <a href="http://www.linkedin.com" target="_blank" ngbTooltip="Connect on LinkedIn">
+          <i class="fa fa-linkedin"></i>
+        </a>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>

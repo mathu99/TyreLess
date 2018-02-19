@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { EmailValidator } from '@angular/forms';
-import { debug } from 'util';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-contact-us',
@@ -13,8 +13,12 @@ export class ContactUsComponent {
     subject: '',
     message: '',
   };
+  closeResult: string;
+  collapsed:boolean = true;
 
-  collapsed = true;
+  @ViewChild('content') private content;
+  constructor(private modalService: NgbModal) { }
+
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
   }
@@ -26,5 +30,14 @@ export class ContactUsComponent {
       subject: '',
       message: '',
     };
+    this.open(this.content);
   };
+
+  open(content) {
+    this.modalService.open(content).result.then((result) => {
+
+    }, (reason) => {
+
+    });
+  }
 }

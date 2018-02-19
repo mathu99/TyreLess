@@ -27,11 +27,12 @@
     </div>
 </div>
 
-<div class="container hide-from-mobile">
+<div class="container">
     <div class="card-deck">
         <div class="card card-transparent">
             <div class="card-body">
-                <h5>Our Purpose</h5>
+                <h5 class="custom">Our Purpose</h5>
+                <br>
                 <img src="../../assets/Our Purpose.jpeg" class="w-100 rounded" />
                 <br>
                 <br> TyreLess.co.za is the preeminent site to find the best tyre deals in South Africa. Shopping for tyres has
@@ -45,7 +46,7 @@
         </div>
         <div class="card card-transparent">
             <div class="card-body">
-                <h5>Contact Us</h5>
+                <h5 class="custom">Contact Us</h5>
                 <br>
                 <form name="contactUsForm" #contactUsForm="ngForm">
                     <div class="row">
@@ -53,7 +54,8 @@
                             <label for="contactUsName">Name:</label>
                         </div>
                         <div class="col-8">
-                            <input type="text" id="contactUsName" name="contactUsName" class="form-control" [(ngModel)]="data.name" placeholder="Your Name" required/>
+                            <input type="text" id="contactUsName" name="contactUsName" class="form-control" [(ngModel)]="data.name" placeholder="Your Name"
+                                required/>
                         </div>
                     </div>
                     <br>
@@ -62,7 +64,8 @@
                             <label for="contactUsEmail">Email:</label>
                         </div>
                         <div class="col-8">
-                            <input for="contactUsEmail" name="contactUsEmail" type="email" class="form-control" placeholder="name@example.com" [email]="true" [(ngModel)]="data.email" required/>
+                            <input for="contactUsEmail" name="contactUsEmail" type="email" class="form-control" placeholder="name@example.com" [email]="true"
+                                [(ngModel)]="data.email" required/>
                         </div>
                     </div>
                     <br>
@@ -71,7 +74,8 @@
                             <label for="contactUsSubject">Subject:</label>
                         </div>
                         <div class="col-8">
-                            <input id="contactUsSubject" name="contactUsSubject" type="text" class="form-control" placeholder="Subject" [(ngModel)]="data.subject" required />
+                            <input id="contactUsSubject" name="contactUsSubject" type="text" class="form-control" placeholder="Subject" [(ngModel)]="data.subject"
+                                required />
                         </div>
                     </div>
                     <br>
@@ -80,41 +84,58 @@
                             <label for="contactUsMessage">Message:</label>
                         </div>
                         <div class="col-8">
-                            <textarea id="contactUsMessage" name="contactUsMessage" class="form-control" placeholder="Message" rows="4" [(ngModel)]="data.message" required></textarea>
+                            <textarea id="contactUsMessage" name="contactUsMessage" class="form-control" placeholder="Message" rows="4" [(ngModel)]="data.message"
+                                required></textarea>
                         </div>
                     </div>
                     <br>
                     <div class="row">
-                            <div class="col-4 text-right">
-                            </div>
-                            <div class="col-8">
-                                <button class="btn btn-success w-100" type="submit" (click)="submitContact()" [disabled]="!contactUsForm.form.valid">Submit</button>
-                            </div>
+                        <div class="col-4 text-right">
                         </div>
+                        <div class="col-8">
+                            <button class="btn btn-success w-100" type="submit" (click)="submitContact()" [disabled]="!contactUsForm.form.valid">Submit</button>
+                        </div>
+                    </div>
                 </form>
+                <br> By Email:
                 <br>
-                By Email:<br>
-                <a href="mailto:engage@tyreless.co.za"><b>engage@tyreless.co.za</b></a><br>
+                <a href="mailto:engage@tyreless.co.za">
+                    <b>engage@tyreless.co.za</b>
+                </a>
+                <br>
                 <br>
                 <b>Become a TyreLess Partner Retailer</b>
+                <ng-template #content let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                        <h4 class="modal-title custom">Feedback received</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Thanks for reaching out to us. We will be in touch shortly.
+                                <br><br>-Tyreless Team
+                        </p>
+                    </div>
+                </ng-template>
             </div>
         </div>
         <div class="card card-transparent">
             <div class="card-body">
-                <h5>Follow Us</h5>
+                <h5 class="custom">Follow Us</h5>
                 <br>
                 <img src="../../assets/Follow Us.jpeg" class="w-100 rounded" />
                 <br>
                 <br>
                 <br>
                 <div class="social-icons text-center">
-                    <a href="#" class="contact-facebook" ngbTooltip="Connect on Facebook">
+                    <a href="http://www.facebook.com" target="_blank" class="contact-facebook" ngbTooltip="Connect on Facebook">
                         <i class="fa fa-facebook"></i>
                     </a>
-                    <a href="#" class="contact-google" ngbTooltip="Connect on Google Plus">
+                    <a href="http://www.googleplus.com" target="_blank" class="contact-google" ngbTooltip="Connect on Google Plus">
                         <i class="fa fa-google-plus"></i>
                     </a>
-                    <a href="#" class="contact-linkedin" ngbTooltip="Connect on LinkedIn">
+                    <a href="http://www.linkedin.com" target="_blank" class="contact-linkedin" ngbTooltip="Connect on LinkedIn">
                         <i class="fa fa-linkedin"></i>
                     </a>
                 </div>
