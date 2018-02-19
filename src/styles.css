@@ -190,10 +190,15 @@
 */
 
 .dd-t-custom{
+  cursor: pointer;
   color:black;
   background-color: white;
   min-height: 40pt;
   margin:5pt;
+}
+
+.btn, .dropdown-item{
+  cursor: pointer;
 }
 
 .dd-col{
@@ -550,6 +555,13 @@ html{
   }
 
   @media (max-width:768px) {
+    .nav-logo-left{
+      margin-left: 0pt;
+    }
+    .page-card-deck{
+      margin-bottom:10pt;
+    }
+    
     #ourOfferingImg, .hide-from-mobile{
       display: none !important;
     }
