@@ -18,19 +18,23 @@
             <div class="row">
               <div class="col-3 link" (click)="update('selected','car')">
                 <span [ngClass]="{linkSelected : data.selected == 'car'}">
-                  <i class="fa fa-car"></i> CAR</span>
+                  <img src="../../assets/Car.png" class="vehicle-icon"/>CAR
+                  </span>
               </div>
               <div class="col-3 link" (click)="update('selected','suv')">
                 <span [ngClass]="{linkSelected : data.selected == 'suv'}">
-                  <i class="fa fa-car"></i> SUV &amp; 4X4</span>
+                    <img src="../../assets/4x4_SUV.png" class="vehicle-icon"/>4x4 / SUV
+                  </span>
               </div>
               <div class="col-3 link" (click)="update('selected','bike')">
                 <span [ngClass]="{linkSelected : data.selected == 'bike'}">
-                  <i class="fa fa-motorcycle"></i> BIKE</span>
+                    <img src="../../assets/Bike.png" class="vehicle-icon"/>BIKE
+                  </span>
               </div>
               <div class="col-3 link" (click)="update('selected','commercial')">
                 <span [ngClass]="{linkSelected : data.selected == 'commercial'}">
-                  <i class="fa fa-truck"></i> COMMERCIAL</span>
+                    <img src="../../assets/Commercial.png" class="vehicle-icon"/>COMMERCIAL
+                  </span>
               </div>
             </div>
           </div>

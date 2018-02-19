@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @font-face {
+  font-family: "VarelaRound";
+  src:  url("/assets/VarelaRound-Regular.ttf") format("truetype")
+}
+
+@font-face {
     font-family: "BryantMediumRegular";
     src:    url("/assets/BryantMediumRegular.otf") format("opentype"),
             url("/assets/BryantMediumRegular.ttf") format("truetype")
@@ -221,6 +226,11 @@
     display:none;
 }
 
+.vehicle-icon{
+  max-width: 25pt;
+  margin-right: 5pt;
+}
+
 .header-section{
   margin:0 auto;
   margin-top:70px;
@@ -236,7 +246,7 @@ body{
 
 .custom{
     font-weight: 600;
-    font-family: "BryantMediumRegular", sans-serif !important;
+    font-family: "VarelaRound", "BryantMediumRegular", sans-serif !important;
 }
 .circle-links{
     margin-top:50pt;
@@ -329,7 +339,7 @@ html{
     position: relative;
     /* background-size: cover; */
     border:none;
-    background: url('/assets/ourOffering.jpg') repeat 0 0;
+    background: url('/assets/Our Offering.jpeg') repeat 0 0;
   }
 
   @media (min-width:992px) {
