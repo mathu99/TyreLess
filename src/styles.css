@@ -241,7 +241,7 @@ body{
 }
 
 .page-card-deck{
-  margin-bottom:70pt;
+  margin-bottom:50pt;
 }
 
 .custom{
@@ -345,14 +345,21 @@ html{
   #howItWorks{
     display: block;
       position: relative;
-      /* background-size: cover; */
       border:none;
       min-height:200pt;
       background: url('/assets/How It Works.jpeg') repeat 0 0;
   }
 
+  #tyreCare{
+    display: block;
+      position: relative;
+      border:none;
+      min-height:200pt;
+      background: url('/assets/Tyre Care.jpg') repeat 0 0;
+  }
+
   .card-transparent{
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.8);
   }
 
   .search-select-save{
@@ -361,6 +368,7 @@ html{
   }
 
   .search-select-save-sm{
+    padding:5pt;
     max-width:60pt;
   }
     
@@ -434,7 +442,6 @@ html{
   }
   
   .site-footer{
-    background-color: rgb(247,247,247);
     padding:20px 0;
     text-align:center;
   }
@@ -475,11 +482,11 @@ html{
     font-size:20px;
   }
   
-  .site-footer .social-icons a:hover{
+.social-icons a:hover{
     opacity:1;
   }
   
-  .site-footer .social-icons a{
+.social-icons a{
     display:inline-block;
     width:32px;
     border:none;
@@ -492,6 +499,32 @@ html{
     height:32px;
     opacity:0.8;
     line-height:32px;
+  }
+
+  .contact-facebook{
+    background-color:rgb(85,115,166) !important;
+  }
+
+  .contact-linkedin{
+    background-color:rgb(58,136,174) !important;
+  }
+
+  .contact-google{
+    background-color:rgb(213,63,41) !important;
+  }
+
+  .ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid rgb(107,172,70); /* green */
+  }
+  
+  .ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
+  }
+
+  .btn-success.disabled, .btn-success:disabled {
+    color: #fff;
+    background-color: rgb(107,172,70) !important;
+    border-color: rgb(107,172,70) !important;
   }
 
   @media (min-width:992px) {
@@ -529,7 +562,7 @@ html{
   }
   
   @media (min-width:768px) {
-    .showOnMobile{
+    .show-on-mobile{
       display: none;
     }
     .site-footer .social-icons{

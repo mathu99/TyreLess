@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { routes } from './app.routes';
 import { AboutComponent } from './about/about.component';
@@ -17,6 +18,7 @@ import { TyreCareComponent } from './tyreCare/tyreCare.component';
 @NgModule({
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
   ],

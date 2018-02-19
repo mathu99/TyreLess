@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
-    title = 'app';
   properties = {
     wheelSizes: [
       '16', '17', '18', '19'

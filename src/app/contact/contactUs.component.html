@@ -1,14 +1,124 @@
 <nav id="mainNavbar" class="navbar navbar-light navbar-fixed-top navbar-expand-lg custom fixed-top">
     <a class="navbar-brand" [routerLink]="['/']">
-        <span class="nav-logo-left">TyreLess</span><span class="nav-logo-right">.co.za</span>
+        <span class="nav-logo-left">TyreLess</span>
+        <span class="nav-logo-right">.co.za</span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapsed()">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div id="navbarSupportedContent" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}" class="nav-right">
-            <a class="navbar-brand ml-auto" [routerLink]="['/contactUs']">
-                <span class="nav-right-text text-success">CONTACT US</span>
-            </a>
+        <a class="navbar-brand ml-auto" [routerLink]="['/contactUs']">
+            <span class="nav-right-text text-success">CONTACT US</span>
+        </a>
     </div>
 </nav>
+
+<div class="jumbotron custom header-section">
+    <div class="container">
+        <div class="row">
+            <div class="get-it w-100">
+                <h2 class="text-center">
+                    <b>About Us</b>
+                </h2>
+                <h4 class="text-center">Search and compare tyres deal from hundreds of tyre retailers and fitment centres</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container hide-from-mobile">
+    <div class="card-deck">
+        <div class="card card-transparent">
+            <div class="card-body">
+                <h5>Our Purpose</h5>
+                <img src="../../assets/Our Purpose.jpeg" class="w-100 rounded" />
+                <br>
+                <br> TyreLess.co.za is the preeminent site to find the best tyre deals in South Africa. Shopping for tyres has
+                never been easier.
+                <br>
+                <br> We are a team who are passionate about making your life a little easier. We believe that finding the best
+                tyre deals should be a tire less task.
+                <br>
+                <br> Our mission is to get you on track to save time and money on all your future tyre purchases.
+            </div>
+        </div>
+        <div class="card card-transparent">
+            <div class="card-body">
+                <h5>Contact Us</h5>
+                <br>
+                <form name="contactUsForm" #contactUsForm="ngForm">
+                    <div class="row">
+                        <div class="col-4 text-right">
+                            <label for="contactUsName">Name:</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" id="contactUsName" name="contactUsName" class="form-control" [(ngModel)]="data.name" placeholder="Your Name" required/>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-4 text-right">
+                            <label for="contactUsEmail">Email:</label>
+                        </div>
+                        <div class="col-8">
+                            <input for="contactUsEmail" name="contactUsEmail" type="email" class="form-control" placeholder="name@example.com" [email]="true" [(ngModel)]="data.email" required/>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-4 text-right">
+                            <label for="contactUsSubject">Subject:</label>
+                        </div>
+                        <div class="col-8">
+                            <input id="contactUsSubject" name="contactUsSubject" type="text" class="form-control" placeholder="Subject" [(ngModel)]="data.subject" required />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-4 text-right">
+                            <label for="contactUsMessage">Message:</label>
+                        </div>
+                        <div class="col-8">
+                            <textarea id="contactUsMessage" name="contactUsMessage" class="form-control" placeholder="Message" rows="4" [(ngModel)]="data.message" required></textarea>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                            <div class="col-4 text-right">
+                            </div>
+                            <div class="col-8">
+                                <button class="btn btn-success w-100" type="submit" (click)="submitContact()" [disabled]="!contactUsForm.form.valid">Submit</button>
+                            </div>
+                        </div>
+                </form>
+                <br>
+                By Email:<br>
+                <a href="mailto:engage@tyreless.co.za"><b>engage@tyreless.co.za</b></a><br>
+                <br>
+                <b>Become a TyreLess Partner Retailer</b>
+            </div>
+        </div>
+        <div class="card card-transparent">
+            <div class="card-body">
+                <h5>Follow Us</h5>
+                <br>
+                <img src="../../assets/Follow Us.jpeg" class="w-100 rounded" />
+                <br>
+                <br>
+                <br>
+                <div class="social-icons text-center">
+                    <a href="#" class="contact-facebook" ngbTooltip="Connect on Facebook">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="#" class="contact-google" ngbTooltip="Connect on Google Plus">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                    <a href="#" class="contact-linkedin" ngbTooltip="Connect on LinkedIn">
+                        <i class="fa fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
