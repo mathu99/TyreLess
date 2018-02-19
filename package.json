@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "pree2e": "webdriver-manager update",
-    "start": "http-server",
+    "start": "ng serve --port 4201",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
