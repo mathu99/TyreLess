@@ -206,13 +206,13 @@
                 <br>
                 <div>
                     <div class="checkbox checkbox-success float-left">
-                        <input id="wheelAlignment" type="checkbox">
+                        <input id="wheelAlignmentSm" type="checkbox" [checked]="data.wheelAlignmentChecked" (change)="data.wheelAlignmentChecked = !data.wheelAlignmentChecked">
                         <label for="wheelAlignment">
                             Wheel Alignment
                         </label>
                     </div>
                     <div class="checkbox checkbox-success float-left">
-                        <input id="wheelBalancing" type="checkbox">
+                        <input id="wheelBalancingSm" type="checkbox" [checked]="data.wheelBalancingChecked" (change)="data.wheelBalancingChecked = !data.wheelBalancingChecked">
                         <label for="wheelBalancing">
                             Wheel Balancing
                         </label>
@@ -223,7 +223,7 @@
                 <div class="row">
                     <div class="col-5"></div>
                     <div class="col-2 text-center">
-                        <button [routerLink]="['/search']" class="btn btn-success w-100 p-3" type="button">SEARCH</button>
+                        <button [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location, wheelAlignment: data.wheelAlignmentChecked, wheelBalancing: data.wheelBalancingChecked  }" class="btn btn-success w-100 p-3" type="button">SEARCH</button>
                     </div>
                     <div class="col-5"></div>
                 </div>
@@ -405,16 +405,16 @@
         <div class="row text-left">
             <div class="col-6">
                 <div class="checkbox checkbox-success float-left">
-                    <input id="wheelAlignmentSm" type="checkbox">
-                    <label for="wheelAlignmentSm">
+                    <input id="wheelAlignment" type="checkbox" [checked]="data.wheelAlignmentChecked" (change)="data.wheelAlignmentChecked = !data.wheelAlignmentChecked">
+                    <label for="wheelAlignment">
                         Wheel Alignment
                     </label>
                 </div>
             </div>
             <div class="col-6">
                 <div class="checkbox checkbox-success float-left">
-                    <input id="wheelBalancingSm" type="checkbox">
-                    <label for="wheelBalancingSm">
+                    <input id="wheelBalancing" type="checkbox" [checked]="data.wheelBalancingChecked" (change)="data.wheelBalancingChecked = !data.wheelBalancingChecked">
+                    <label for="wheelBalancing">
                         Wheel Balancing
                     </label>
                 </div>

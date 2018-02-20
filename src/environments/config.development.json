@@ -1,0 +1,39 @@
+{
+    "properties": {
+        "wheelSizes": [
+            "16",
+            "17",
+            "18",
+            "19"
+        ],
+        "tyreProfiles": [
+            "30",
+            "40",
+            "55"
+        ],
+        "tyreWidths": [
+            "195",
+            "245",
+            "255"
+        ],
+        "quantities": [
+            "1",
+            "2",
+            "3",
+            "4"
+        ],
+        "brands": [
+            "Any",
+            "Bridgestone",
+            "Continental",
+            "Dunlop",
+            "Goodyear",
+            "Pirelli",
+            "Yokohama"
+        ],
+        "locations": [
+            "Any",
+            "Gauteng"
+        ]
+    }
+}

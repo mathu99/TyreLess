@@ -1,14 +1,146 @@
 <nav id="mainNavbar" class="navbar navbar-light navbar-fixed-top navbar-expand-lg custom fixed-top">
-        <a class="navbar-brand" [routerLink]="['/']">
-            <span class="nav-logo-left">TyreLess</span><span class="nav-logo-right">.co.za</span>
+    <a class="navbar-brand" [routerLink]="['/']">
+        <span class="nav-logo-left">TyreLess</span>
+        <span class="nav-logo-right">.co.za</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapsed()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="navbarSupportedContent" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}" class="nav-right">
+        <a class="navbar-brand ml-auto" [routerLink]="['/contactUs']">
+            <span class="nav-right-text text-success">CONTACT US</span>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapsed()">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="navbarSupportedContent" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}" class="nav-right">
-                <a class="navbar-brand ml-auto" [routerLink]="['/contactUs']">
-                    <span class="nav-right-text text-success">CONTACT US</span>
-                </a>
+    </div>
+</nav>
+<br>
+<br>
+<br>
+<div class="jumbotron custom header-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-2 dd-col">
+                <div class="btn-group w-100">
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <div class="dd-left">
+                            Vehicle Type
+                        </div>
+                        <span class="dd-col dd-right">{{ data.selected }}</span>
+                        <i class="dd-caret fa fa-caret-down"></i>
+                    </button>
+                    <div class="w-100 dropdown-menu">
+                        <button class="dropdown-item" type="button" *ngFor="let width of properties.tyreWidths" (click)="update('width', width)">
+                            {{ width }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1 dd-col">
+                <div class="btn-group w-100">
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <div class="dd-left">
+                            Tyre Width
+                        </div>
+                        <span class="dd-col dd-right">{{ data.width }}</span>
+                        <i class="dd-caret fa fa-caret-down"></i>
+                    </button>
+                    <div class="w-100 dropdown-menu">
+                        <button class="dropdown-item" type="button" *ngFor="let width of properties.tyreWidths" (click)="update('width', width)">
+                            {{ width }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1 dd-col">
+                <div class="btn-group w-100">
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <div class="dd-left">
+                            Tyre Profile
+                        </div>
+                        <span class="dd-col dd-right">{{ data.profile }}</span>
+                        <i class="dd-caret fa fa-caret-down"></i>
+                    </button>
+                    <div class="w-100 dropdown-menu">
+                        <button class="dropdown-item" type="button" *ngFor="let profile of properties.tyreProfiles" (click)="update('profile', profile)">
+                            {{ profile }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1 dd-col">
+                <div class="btn-group w-100">
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <div class="dd-left">
+                            Wheel Size
+                        </div>
+                        <span class="dd-col dd-right">{{ data.size }}</span>
+                        <i class="dd-caret fa fa-caret-down"></i>
+                    </button>
+                    <div class="w-100 dropdown-menu">
+                        <button class="dropdown-item" type="button" *ngFor="let size of properties.wheelSizes" (click)="update('size', size)">
+                            {{ size }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1 dd-col">
+                <div class="btn-group w-100">
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <div class="dd-left">
+                            Quantity
+                        </div>
+                        <span class="dd-col dd-right">{{ data.quantity }}</span>
+                        <i class="dd-caret fa fa-caret-down"></i>
+                    </button>
+                    <div class="w-100 dropdown-menu">
+                        <button class="dropdown-item" type="button" *ngFor="let quantity of properties.quantities" (click)="update('quantity', quantity)">
+                            {{ quantity }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 dd-col">
+                <div class="btn-group w-100">
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <div class="dd-left">
+                            Brand
+                        </div>
+                        <span class="dd-col dd-right">{{ data.brand }}</span>
+                        <i class="dd-caret fa fa-caret-down"></i>
+                    </button>
+                    <div class="w-100 dropdown-menu">
+                        <button class="dropdown-item" type="button" *ngFor="let width of properties.tyreWidths" (click)="update('width', width)">
+                            {{ width }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 dd-col">
+                <div class="btn-group w-100">
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <div class="dd-left">
+                            Location
+                        </div>
+                        <span class="dd-col dd-right">{{ data.location }}</span>
+                        <i class="dd-caret fa fa-caret-down"></i>
+                    </button>
+                    <div class="w-100 dropdown-menu">
+                        <button class="dropdown-item" type="button" *ngFor="let width of properties.tyreWidths" (click)="update('width', width)">
+                            {{ width }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 dd-col">
+                <button class="btn btn-success w-100 h-100 p-3" type="button">MODIFY SEARCH</button>
+            </div>
         </div>
-    </nav>
+    </div>
+</div>

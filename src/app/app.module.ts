@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { routes } from './app.routes';
 import { AboutComponent } from './about/about.component';
@@ -19,6 +20,7 @@ import { TyreCareComponent } from './tyreCare/tyreCare.component';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
   ],

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-home',
@@ -33,6 +34,8 @@ export class HomeComponent {
     brand: this.properties.brands[0],
     location: this.properties.locations[0],
     selected: 'car',
+    wheelAlignmentChecked: false,
+    wheelBalancingChecked: false,
   };
   collapsed = true;
 
@@ -40,6 +43,11 @@ export class HomeComponent {
     this.collapsed = !this.collapsed;
   }
 
+  constructor(private http: Http) {
+    this.http.get('environments/config.development.json').subscribe(res => {
+      this.properties = res.json().properties;
+    });
+  }
 
   update = (property, value) => {
     this.data[property] = value;
