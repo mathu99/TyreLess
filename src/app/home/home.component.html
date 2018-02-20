@@ -1,269 +1,474 @@
+<nav id="mainNavbar" class="show-on-mobile navbar w-100 navbar-light navbar-fixed-top navbar-expand-lg custom fixed-top">
+    <a class="navbar-brand" [routerLink]="['/']">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapsed()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="navbarSupportedContent" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}" class="nav-right text-right">
+        <a class="navbar-brand" [routerLink]="['/ourOffering']">
+            <span class="nav-right-text text-success">Our Offering</span>
+        </a>
+        <br>
+        <a class="navbar-brand" [routerLink]="['/howItWorks']">
+            <span class="nav-right-text text-success">How it Works</span>
+        </a>
+        <br>
+        <a class="navbar-brand" [routerLink]="['/tyreCare']">
+            <span class="nav-right-text text-success">Tyre Care</span>
+        </a>
+    </div>
+</nav>
 
 <div class="jumbotron hero custom">
-  <div class="container">
-      <div class="text-right">
-          <h5><a [routerLink]="['/contactUs']">CONTACT US</a></h5>
+    <div class="container hide-from-mobile">
+        <div class="text-right">
+            <h5>
+                <a [routerLink]="['/contactUs']">CONTACT US</a>
+            </h5>
         </div>
-    <div class="row">
-      <div class="get-it">
-        <h1 class="text-center">TyreLess<span class="txt-green">.co.za</span>
-        </h1>
-        <h4 class="text-center">Search - Select - Save</h4>
-        <br>
-        <br>
-        <div class="row text-left">
-          <div class="col-2">
-          </div>
-          <div class="col-8">
-            <div class="row">
-              <div class="col-3 link" (click)="update('selected','car')">
-                <span [ngClass]="{linkSelected : data.selected == 'car'}">
-                  <img src="../../assets/Car.png" class="vehicle-icon"/>CAR
-                  </span>
-              </div>
-              <div class="col-3 link" (click)="update('selected','suv')">
-                <span [ngClass]="{linkSelected : data.selected == 'suv'}">
-                    <img src="../../assets/4x4_SUV.png" class="vehicle-icon"/>4x4 / SUV
-                  </span>
-              </div>
-              <div class="col-3 link" (click)="update('selected','bike')">
-                <span [ngClass]="{linkSelected : data.selected == 'bike'}">
-                    <img src="../../assets/Bike.png" class="vehicle-icon"/>BIKE
-                  </span>
-              </div>
-              <div class="col-3 link" (click)="update('selected','commercial')">
-                <span [ngClass]="{linkSelected : data.selected == 'commercial'}">
-                    <img src="../../assets/Commercial.png" class="vehicle-icon"/>COMMERCIAL
-                  </span>
-              </div>
-            </div>
-          </div>
-          <div class="col-2"></div>
-        </div>
-        <br>
-        <div class="row text-left">
-          <div class="col-6">
-            <div class="row">
-              <div class="col-3 dd-col">
-                  <div class="btn-group w-100">
-                      <button class="btn w-100 btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="row">
+            <div class="get-it">
+                <h1 class="text-center">TyreLess<span class="txt-green">.co.za</span></h1>
+                <h4 class="text-center">Search - Select - Save</h4>
+                <br>
+                <br>
+                <div class="row text-left">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-8">
                         <div class="row">
-                          <div class="col-5 dd-col dd-left">
-                            Tyre<br>
-                            Width
-                          </div>
-                          <div class="col-5 dd-col dd-right">{{data.width}}</div>
-                          <div class="col-2 dd-col dd-caret">
-                              <i class="fa fa-caret-down"></i>
-                          </div>
+                            <div class="col-3 link" (click)="update('selected','car')">
+                                <span [ngClass]="{linkSelected : data.selected == 'car'}">
+                                    <img src="../../assets/Car.png" class="vehicle-icon" />CAR
+                                </span>
+                            </div>
+                            <div class="col-3 link" (click)="update('selected','suv')">
+                                <span [ngClass]="{linkSelected : data.selected == 'suv'}">
+                                    <img src="../../assets/4x4_SUV.png" class="vehicle-icon" />4x4 / SUV
+                                </span>
+                            </div>
+                            <div class="col-3 link" (click)="update('selected','bike')">
+                                <span [ngClass]="{linkSelected : data.selected == 'bike'}">
+                                    <img src="../../assets/Bike.png" class="vehicle-icon" />BIKE
+                                </span>
+                            </div>
+                            <div class="col-3 link" (click)="update('selected','commercial')">
+                                <span [ngClass]="{linkSelected : data.selected == 'commercial'}">
+                                    <img src="../../assets/Commercial.png" class="vehicle-icon" />COMMERCIAL
+                                </span>
+                            </div>
                         </div>
-                      </button>
-                      <div class="dropdown-menu">
-                          <button class="dropdown-item" type="button" *ngFor="let width of properties.tyreWidths" (click)="update('width', width)">
-                              {{ width }}
-                          </button>
-                      </div>
                     </div>
-              </div>
-              <div class="col-3 dd-col">
-                  <div class="btn-group w-100">
-                      <button class="btn w-100 btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <div class="row">
-                              <div class="col-5 dd-col dd-left">
-                                Tyre<br>
-                                Profile
-                              </div>
-                              <div class="col-5 dd-col dd-right">{{ data.profile }}</div>
-                              <div class="col-2 dd-col dd-caret">
-                                  <i class="fa fa-caret-down"></i>
-                              </div>
-                            </div>
-                      </button>
-                      <div class="dropdown-menu">
-                          <button class="dropdown-item" type="button" *ngFor="let profile of properties.tyreProfiles" (click)="update('profile', profile)">
-                              {{ profile }}
-                          </button>
-                      </div>
-                    </div>
-              </div>
-              <div class="col-3 dd-col">
-                  <div class="btn-group w-100">
-                      <button class="btn w-100 btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <div class="row">
-                              <div class="col-5 dd-col dd-left">
-                                Wheel<br>
-                                Size
-                              </div>
-                              <div class="col-5 dd-col dd-right">{{ data.size }}</div>
-                              <div class="col-2 dd-col dd-caret">
-                                  <i class="fa fa-caret-down"></i>
-                              </div>
-                            </div>
-                      </button>
-                      <div class="dropdown-menu">
-                          <button class="dropdown-item" type="button" *ngFor="let size of properties.wheelSizes" (click)="update('size', size)">
-                              {{ size }}
-                          </button>
-                      </div>
-                    </div>
-              </div>
-              <div class="col-3 dd-col">
-                  <div class="btn-group w-100">
-                      <button class="btn w-100 btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <div class="row">
-                              <div class="col-5 dd-col dd-left">
-                                <div style="line-height:25pt">Quantity</div>
-                              </div>
-                              <div class="col-5 dd-col dd-right">{{ data.quantity }}</div>
-                              <div class="col-2 dd-col dd-caret">
-                                  <i class="fa fa-caret-down"></i>
-                              </div>
-                            </div>
-                      </button>
-                      <div class="dropdown-menu">
-                          <button class="dropdown-item" type="button" *ngFor="let quantity of properties.quantities" (click)="update('quantity', quantity)">
-                              {{ quantity }}
-                          </button>
-                      </div>
-                    </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="row">
-                <div class="col-6 dd-col">
-                    <div class="btn-group w-100">
-                        <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div class="row">
-                                <div class="col-3 dd-col dd-left">
-                                  <div style="line-height:25pt">Brand</div>
-                                </div>
-                                <div class="col-7 dd-col dd-right">{{ data.brand }}</div>
-                                <div class="col-2 dd-col dd-caret">
-                                    <i class="fa fa-caret-down"></i>
-                                </div>
-                              </div>
-                        </button>
-                        <div class="w-100 dropdown-menu">
-                            <button class="dropdown-item" type="button" *ngFor="let brand of properties.brands" (click)="update('brand', brand)">
-                                {{ brand }}
-                            </button>
-                        </div>
-                      </div>
+                    <div class="col-2"></div>
                 </div>
-                <div class="col-6 dd-col">
-                    <div class="btn-group w-100">
-                        <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div class="row">
-                                <div class="col-3 dd-col dd-left">
-                                  <div style="line-height:25pt">Location</div>
+                <br>
+                <div class="row text-left">
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-3 dd-col">
+                                <div class="btn-group w-100">
+                                    <button class="btn w-100 btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <div class="row">
+                                            <div class="col-5 dd-col dd-left">
+                                                Tyre
+                                                <br> Width
+                                            </div>
+                                            <div class="col-5 dd-col dd-right">{{data.width}}</div>
+                                            <div class="col-2 dd-col dd-caret">
+                                                <i class="fa fa-caret-down"></i>
+                                            </div>
+                                        </div>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <button class="dropdown-item" type="button" *ngFor="let width of properties.tyreWidths" (click)="update('width', width)">
+                                            {{ width }}
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="col-7 dd-col dd-right">{{ data.location }}</div>
-                                <div class="col-2 dd-col dd-caret">
-                                    <i class="fa fa-caret-down"></i>
+                            </div>
+                            <div class="col-3 dd-col">
+                                <div class="btn-group w-100">
+                                    <button class="btn w-100 btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <div class="row">
+                                            <div class="col-5 dd-col dd-left">
+                                                Tyre
+                                                <br> Profile
+                                            </div>
+                                            <div class="col-5 dd-col dd-right">{{ data.profile }}</div>
+                                            <div class="col-2 dd-col dd-caret">
+                                                <i class="fa fa-caret-down"></i>
+                                            </div>
+                                        </div>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <button class="dropdown-item" type="button" *ngFor="let profile of properties.tyreProfiles" (click)="update('profile', profile)">
+                                            {{ profile }}
+                                        </button>
+                                    </div>
                                 </div>
-                              </div>
-                        </button>
-                        <div class="w-100 dropdown-menu">
-                            <button class="dropdown-item" type="button" *ngFor="let location of properties.locations" (click)="update('location', location)">
-                                {{ location }}
-                            </button>
+                            </div>
+                            <div class="col-3 dd-col">
+                                <div class="btn-group w-100">
+                                    <button class="btn w-100 btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <div class="row">
+                                            <div class="col-5 dd-col dd-left">
+                                                Wheel
+                                                <br> Size
+                                            </div>
+                                            <div class="col-5 dd-col dd-right">{{ data.size }}</div>
+                                            <div class="col-2 dd-col dd-caret">
+                                                <i class="fa fa-caret-down"></i>
+                                            </div>
+                                        </div>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <button class="dropdown-item" type="button" *ngFor="let size of properties.wheelSizes" (click)="update('size', size)">
+                                            {{ size }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 dd-col">
+                                <div class="btn-group w-100">
+                                    <button class="btn w-100 btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <div class="row">
+                                            <div class="col-5 dd-col dd-left">
+                                                <div style="line-height:25pt">Quantity</div>
+                                            </div>
+                                            <div class="col-5 dd-col dd-right">{{ data.quantity }}</div>
+                                            <div class="col-2 dd-col dd-caret">
+                                                <i class="fa fa-caret-down"></i>
+                                            </div>
+                                        </div>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <button class="dropdown-item" type="button" *ngFor="let quantity of properties.quantities" (click)="update('quantity', quantity)">
+                                            {{ quantity }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-6 dd-col">
+                                <div class="btn-group w-100">
+                                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <div class="row">
+                                            <div class="col-3 dd-col dd-left">
+                                                <div style="line-height:25pt">Brand</div>
+                                            </div>
+                                            <div class="col-7 dd-col dd-right">{{ data.brand }}</div>
+                                            <div class="col-2 dd-col dd-caret">
+                                                <i class="fa fa-caret-down"></i>
+                                            </div>
+                                        </div>
+                                    </button>
+                                    <div class="w-100 dropdown-menu">
+                                        <button class="dropdown-item" type="button" *ngFor="let brand of properties.brands" (click)="update('brand', brand)">
+                                            {{ brand }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 dd-col">
+                                <div class="btn-group w-100">
+                                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <div class="row">
+                                            <div class="col-3 dd-col dd-left">
+                                                <div style="line-height:25pt">Location</div>
+                                            </div>
+                                            <div class="col-7 dd-col dd-right">{{ data.location }}</div>
+                                            <div class="col-2 dd-col dd-caret">
+                                                <i class="fa fa-caret-down"></i>
+                                            </div>
+                                        </div>
+                                    </button>
+                                    <div class="w-100 dropdown-menu">
+                                        <button class="dropdown-item" type="button" *ngFor="let location of properties.locations" (click)="update('location', location)">
+                                            {{ location }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div>
+                    <div class="checkbox checkbox-success float-left">
+                        <input id="wheelAlignment" type="checkbox">
+                        <label for="wheelAlignment">
+                            Wheel Alignment
+                        </label>
+                    </div>
+                    <div class="checkbox checkbox-success float-left">
+                        <input id="wheelBalancing" type="checkbox">
+                        <label for="wheelBalancing">
+                            Wheel Balancing
+                        </label>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-5"></div>
+                    <div class="col-2 text-center">
+                        <button [routerLink]="['/search']" class="btn btn-success w-100 p-3" type="button">SEARCH</button>
+                    </div>
+                    <div class="col-5"></div>
+                </div>
+                <div class="row circle-links">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-3">
+                                <button [routerLink]="['/ourOffering']" class="btn btn-secondary round-btn" type="button">Our
+                                    <br>Offering</button>
+                            </div>
+                            <div class="col-3">
+                                <button [routerLink]="['/howItWorks']" class="btn btn-secondary round-btn" type="button">How it
+                                    <br>Works</button>
+                            </div>
+                            <div class="col-3">
+                                <button [routerLink]="['/tyreCare']" class="btn btn-secondary round-btn" type="button">Tyre
+                                    <br>Care</button>
+                            </div>
+                            <div class="col-3">
+                                <button [routerLink]="['/contactUs']" class="btn btn-secondary round-btn" type="button">About
+                                    <br>Us</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
                 </div>
             </div>
-          </div>
         </div>
-        <br>
-        <br>
-        <div>
-          	<div class="checkbox checkbox-success float-left">
-                <input id="wheelAlignment" type="checkbox">
-                <label for="wheelAlignment">
-                    Wheel Alignment
-                </label>
-            </div>
-            <div class="checkbox checkbox-success float-left">
-                <input id="wheelBalancing" type="checkbox">
-                <label for="wheelBalancing">
-                    Wheel Balancing
-                </label>
+    </div>
+
+    <div class="show-on-mobile container">
+        <div class="row">
+            <div class="get-it text-center">
+                <h2>
+                    <b>TyreLess<span class="txt-green">.co.za</span></b>
+                </h2>
+                <h4>Search - Select - Save</h4>
             </div>
         </div>
-        <br>
         <br>
         <div class="row">
-          <div class="col-5"></div>
-          <div class="col-2 text-center">
-            <button [routerLink]="['/search']" class="btn btn-success w-100 p-3" type="button">SEARCH</button>
-          </div>
-          <div class="col-5"></div>
-        </div>
-        <div class="row circle-links">
-            <div class="col-2"></div>
-            <div class="col-8">
-              <div class="row">
-                <div class="col-3">
-                    <button [routerLink]="['/ourOffering']" class="btn btn-secondary round-btn" type="button">Our<br>Offering</button>
-                </div>
-                <div class="col-3">
-                    <button [routerLink]="['/howItWorks']" class="btn btn-secondary round-btn" type="button">How it<br>Works</button>
-                </div>
-                <div class="col-3">
-                    <button [routerLink]="['/tyreCare']" class="btn btn-secondary round-btn" type="button">Tyre<br>Care</button>
-                </div>
-                <div class="col-3">
-                    <button [routerLink]="['/contactUs']" class="btn btn-secondary round-btn" type="button">About<br>Us</button>
-                </div>
-              </div>
+            <div class="col-3 link" (click)="update('selected','car')">
+                <img src="../../assets/Car.png" class="vehicle-icon" />
+
+                <span [ngClass]="{linkSelected : data.selected == 'car'}">
+                    <br> CAR
+                </span>
             </div>
-            <div class="col-2"></div>
+            <div class="col-3 link" (click)="update('selected','suv')">
+                <img src="../../assets/4x4_SUV.png" class="vehicle-icon" />
+                <br>
+                <span [ngClass]="{linkSelected : data.selected == 'suv'}">
+                    4x4 / SUV
+                </span>
+            </div>
+            <div class="col-3 link" (click)="update('selected','bike')">
+                <img src="../../assets/Bike.png" class="vehicle-icon" />
+                <br>
+                <span [ngClass]="{linkSelected : data.selected == 'bike'}">
+                    BIKE
+                </span>
+            </div>
+            <div class="col-3 link" (click)="update('selected','commercial')">
+                <img src="../../assets/Commercial.png" class="vehicle-icon" />
+                <br>
+                <span [ngClass]="{linkSelected : data.selected == 'commercial'}">
+                    COMMERCIAL
+                </span>
+            </div>
         </div>
-      </div>
+        <br>
+        <div class="row">
+            <div class="col-3 dd-col">
+                <div class="btn-group w-100">
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <div class="dd-left">
+                            Tyre Width
+                        </div>
+                        <span class="dd-col dd-right">{{ data.width }}</span>
+                        <i class="dd-caret fa fa-caret-down"></i>
+                    </button>
+                    <div class="w-100 dropdown-menu">
+                        <button class="dropdown-item" type="button" *ngFor="let width of properties.tyreWidths" (click)="update('width', width)">
+                            {{ width }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 dd-col">
+                <div class="btn-group w-100">
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <div class="dd-left">
+                            Tyre Profile
+                        </div>
+                        <span class="dd-col dd-right">{{ data.profile }}</span>
+                        <i class="dd-caret fa fa-caret-down"></i>
+                    </button>
+                    <div class="w-100 dropdown-menu">
+                        <button class="dropdown-item" type="button" *ngFor="let profile of properties.tyreProfiles" (click)="update('profile', profile)">
+                            {{ profile }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 dd-col">
+                <div class="btn-group w-100">
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <div class="dd-left">
+                            Wheel Size
+                        </div>
+                        <span class="dd-col dd-right">{{ data.size }}</span>
+                        <i class="dd-caret fa fa-caret-down"></i>
+                    </button>
+                    <div class="w-100 dropdown-menu">
+                        <button class="dropdown-item" type="button" *ngFor="let size of properties.wheelSizes" (click)="update('size', size)">
+                            {{ size }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 dd-col">
+                <div class="btn-group w-100">
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <div class="dd-left">
+                            Quantity
+                        </div>
+                        <span class="dd-col dd-right">{{ data.quantity }}</span>
+                        <i class="dd-caret fa fa-caret-down"></i>
+                    </button>
+                    <div class="w-100 dropdown-menu">
+                        <button class="dropdown-item" type="button" *ngFor="let quantity of properties.quantities" (click)="update('quantity', quantity)">
+                            {{ quantity }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 dd-col">
+                <div class="btn-group w-100">
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <div class="dd-left">
+                            Brand
+                        </div>
+                        <span class="dd-col dd-right">{{ data.brand }}</span>
+                        <i class="dd-caret fa fa-caret-down"></i>
+                    </button>
+                    <div class="w-100 dropdown-menu">
+                        <button class="dropdown-item" type="button" *ngFor="let brand of properties.brands" (click)="update('brand', brand)">
+                            {{ brand }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 dd-col">
+                <div class="btn-group w-100">
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <div class="dd-left">
+                            Location
+                        </div>
+                        <span class="dd-col dd-right">{{ data.location }}</span>
+                        <i class="dd-caret fa fa-caret-down"></i>
+                    </button>
+                    <div class="w-100 dropdown-menu">
+                        <button class="dropdown-item" type="button" *ngFor="let location of properties.locations" (click)="update('location', location)">
+                            {{ location }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-left">
+            <div class="col-6">
+                <div class="checkbox checkbox-success float-left">
+                    <input id="wheelAlignmentSm" type="checkbox">
+                    <label for="wheelAlignmentSm">
+                        Wheel Alignment
+                    </label>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="checkbox checkbox-success float-left">
+                    <input id="wheelBalancingSm" type="checkbox">
+                    <label for="wheelBalancingSm">
+                        Wheel Balancing
+                    </label>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12 text-center">
+                <button [routerLink]="['/search']" class="btn btn-success w-100 p-3" type="button">SEARCH</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
-<section class="brands">
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <div class="row">
-        <div class="col-2">
-          <span class="helper">
-          </span>
-          <img src="../assets/brand1.jpg" class="brand-img" />
+<section class="brands hide-from-mobile">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-2">
+                    <span class="helper">
+                    </span>
+                    <img src="../assets/brand1.jpg" class="brand-img" />
+                </div>
+                <div class="col-2">
+                    <span class="helper">
+                    </span>
+                    <img src="../assets/brand2.jpg" class="brand-img" />
+                </div>
+                <div class="col-2">
+                    <span class="helper">
+                    </span>
+                    <img src="../assets/brand3.png" class="brand-img" />
+                </div>
+                <div class="col-2">
+                    <span class="helper">
+                    </span>
+                    <img src="../assets/brand4.jpg" class="brand-img" />
+                </div>
+                <div class="col-2">
+                    <span class="helper">
+                    </span>
+                    <img src="../assets/brand5.jpg" class="brand-img" />
+                </div>
+                <div class="col-2">
+                    <span class="helper">
+                    </span>
+                    <img src="../assets/brand6.jpg" class="brand-img" />
+                </div>
+            </div>
         </div>
-        <div class="col-2">
-          <span class="helper">
-          </span>
-          <img src="../assets/brand2.jpg" class="brand-img" />
-        </div>
-        <div class="col-2">
-          <span class="helper">
-          </span>
-          <img src="../assets/brand3.png" class="brand-img" />
-        </div>
-        <div class="col-2">
-          <span class="helper">
-          </span>
-          <img src="../assets/brand4.jpg" class="brand-img" />
-        </div>
-        <div class="col-2">
-            <span class="helper">
-              </span>
-              <img src="../assets/brand5.jpg" class="brand-img" />
-        </div>
-        <div class="col-2">
-            <span class="helper">
-              </span>
-              <img src="../assets/brand6.jpg" class="brand-img" />
-        </div>
-      </div>
+        <div class="col-2"></div>
     </div>
-    <div class="col-2"></div>
-  </div>
 </section>
 <section class="information">
     <p class="text-center">Search the best deals from hundreds of Partners countrywide</p>
-  </section>
+</section>

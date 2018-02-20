@@ -202,12 +202,12 @@
 }
 
 .dd-col{
-  height: 35pt;
+  min-height: 35pt;
   padding:0;
 }
 .dd-left{
   padding:5pt;
-  font-size:10pt;
+  font-size:9pt;
   vertical-align: middle;
 }
 .dd-right{
@@ -239,6 +239,10 @@
 .header-section{
   margin:0 auto;
   margin-top:70px;
+}
+
+.brands{
+  background-color: white;
 }
 
 body{
@@ -324,6 +328,13 @@ html{
     border-color: rgb(81, 153, 40);
 }
 
+li::before {
+  color: rgb(107,172,70); /* or whatever color you prefer */
+}
+
+li::before {
+  color: rgb(107,172,70);
+}
 
   .hero{
     display: block;
@@ -555,6 +566,51 @@ html{
   }
 
   @media (max-width:768px) {
+
+    .checkbox-success{
+      font-size:10pt;
+    }
+
+    .dd-left{
+      padding:0pt;
+    }
+
+    section.information{
+      font-size:10pt;
+    }
+
+    .dd-right {
+      line-height: 20pt;
+      font-size: 15pt;
+      vertical-align: middle;
+  }
+
+  .dd-t-custom {
+    margin:1pt;
+  }
+
+  .dd-caret {
+    padding-left: 5pt;
+    line-height: 20pt;
+}
+
+  .dd-col {
+      padding: 1pt;
+  }
+    .vehicle-icon{
+      margin: 0pt;
+    }
+    .link{
+      text-align: center;
+      padding: 0pt;
+      font-size: 8pt;
+    }
+    h2{
+      font-size: 40pt;
+    }
+    .txt-green{
+      font-size:32pt;
+  }
     .nav-logo-left{
       margin-left: 0pt;
     }

@@ -34,6 +34,12 @@ export class HomeComponent {
     location: this.properties.locations[0],
     selected: 'car',
   };
+  collapsed = true;
+
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
+  }
+
 
   update = (property, value) => {
     this.data[property] = value;
