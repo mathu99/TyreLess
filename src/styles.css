@@ -239,6 +239,10 @@
   margin-right: 5pt;
 }
 
+.search-icon{
+  max-height: 100pt;
+}
+
 .header-section{
   margin:0 auto;
   margin-top:70px;
@@ -254,6 +258,21 @@ body{
 
 .page-card-deck{
   margin-bottom:50pt;
+}
+
+.card-header{
+  padding:5pt;
+  text-align: center;
+  background-color:darkgray;
+  color:white;
+}
+
+.filter-body{
+  padding:5pt;
+}
+
+.filter-row{
+  margin-bottom:5pt;
 }
 
 .extras-col {

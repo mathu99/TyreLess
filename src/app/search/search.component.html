@@ -16,7 +16,7 @@
 <br>
 <br>
 <br>
-<div class="jumbotron custom header-section" *ngIf="data">
+<div class="custom header-section">
     <div class="container">
         <div class="row">
             <div class="col-2 dd-col">
@@ -164,5 +164,121 @@
             </div>
             <div class="col-3"></div>
         </div>
+    </div>
+</div>
+<br>
+<div class="results-and-filters container custom">
+    <div class="row" *ngIf="!properties.results">
+        <div class="col-12">
+            <div *ngIf="!properties.loading" class="text-center">
+                    <br><br>
+                    <img src="../../assets/no_results.png" class="search-icon" />
+                    <br>
+                    <br>
+                    <h5>No Results Found</h5>
+                    <h6>Please refine your search</h6>
+            </div>
+            <div *ngIf="properties.loading" class="text-center">
+                        <br><br>
+                        <img src="../../assets/loading.gif" class="search-icon" />
+                        <br><br>
+                        <h5>Searching</h5>
+                        <h6>Please wait...</h6>
+                        <br><br>
+                </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="properties.results">
+        <div class="col-4">
+            <div class="row">
+                <div class="col-6"></div>
+                <div class="col-6 text-right">
+                    <a href="" (click)="resetFilter()">Reset Filter</a>
+                </div>
+            </div>
+            <div class="row filter-row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            Price
+                        </div>
+                        <div class="card-body filter-body">
+                            Fancy Slider here
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row filter-row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            Type
+                        </div>
+                        <div class="card-body filter-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="checkbox checkbox-success float-left">
+                                        <input id="typeRegular" type="checkbox" [checked]="data.typeRegular" (change)="data.typeRegular = !data.typeRegular">
+                                        <label for="typeRegular">
+                                            Regular
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="checkbox checkbox-success float-left">
+                                        <input id="typeRunFlat" type="checkbox" [checked]="data.typeRunFlat" (change)="data.typeRunFlat = !data.typeRunFlat">
+                                        <label for="typeRunFlat">
+                                            Run Flat
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row filter-row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            Retailer
+                        </div>
+                        <div class="card-body filter-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="checkbox checkbox-success float-left">
+                                        <input id="typeRegular" type="checkbox" [checked]="data.typeRegular" (change)="data.typeRegular = !data.typeRegular">
+                                        <label for="typeRegular">
+                                            Regular
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="checkbox checkbox-success float-left">
+                                        <input id="typeRunFlat" type="checkbox" [checked]="data.typeRunFlat" (change)="data.typeRunFlat = !data.typeRunFlat">
+                                        <label for="typeRunFlat">
+                                            Run Flat
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row filter-row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            Model
+                        </div>
+                        <div class="card-body filter-body">
+                            Fancy Slider here
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-8"></div>
     </div>
 </div>
