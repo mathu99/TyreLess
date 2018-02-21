@@ -26,6 +26,7 @@
         ],
         "tyreProfiles": [
             "30",
+            "35",
             "40",
             "55"
         ],
@@ -52,6 +53,231 @@
         "locations": [
             "Any",
             "Gauteng"
+        ]
+    },
+    "database": {
+        "records": [
+            {
+                "vehicleType": "Car",
+                "tyreWidth": "255",
+                "tyreProfile": "30",
+                "wheelSize": "19",
+                "quantity": "100",
+                "brand": "Bridgestone",
+                "tyreModel": "Potenza RE050",
+                "runFlat": true,
+                "price": "4000.00",
+                "location": {
+                    "province": "Gauteng",
+                    "suburb": "Fourways"
+                },
+                "partner": "Tiger Wheel & Tyre",
+                "branch": {
+                    "name": "Fourways Crossing",
+                    "email": "sales-partner@gmail.com",
+                    "location": "Coords"
+                }                
+            },{
+                "vehicleType": "Car",
+                "tyreWidth": "255",
+                "tyreProfile": "30",
+                "wheelSize": "19",
+                "quantity": "100",
+                "brand": "Bridgestone",
+                "tyreModel": "Potenza S001",
+                "runFlat": false,
+                "price": "4100.00",
+                "location": {
+                    "province": "Gauteng",
+                    "suburb": "Fourways"
+                },
+                "partner": "Supaquick",
+                "branch": {
+                    "name": "Fourways Crossing",
+                    "email": "sales-partner@gmail.com",
+                    "location": "Coords"
+                }                
+            },{
+                "vehicleType": "Car",
+                "tyreWidth": "195",
+                "tyreProfile": "55",
+                "wheelSize": "16",
+                "quantity": "100",
+                "brand": "Bridgestone",
+                "tyreModel": "Turanza ER300",
+                "runFlat": false,
+                "price": "2000.00",
+                "location": {
+                    "province": "Gauteng",
+                    "suburb": "Fourways"
+                },
+                "partner": "Supaquick",
+                "branch": {
+                    "name": "Fourways Crossing",
+                    "email": "sales-partner@gmail.com",
+                    "location": "Coords"
+                }                
+            },{
+                "vehicleType": "Car",
+                "tyreWidth": "255",
+                "tyreProfile": "30",
+                "wheelSize": "19",
+                "quantity": "100",
+                "brand": "Continental",
+                "tyreModel": "ContiSportContact 5P",
+                "runFlat": false,
+                "price": "4200.00",
+                "location": {
+                    "province": "Gauteng",
+                    "suburb": "Benoni"
+                },
+                "partner": "Tyremart",
+                "branch": {
+                    "name": "Benoni",
+                    "email": "sales-partner@gmail.com",
+                    "location": "Coords"
+                }                
+            },{
+                "vehicleType": "Car",
+                "tyreWidth": "255",
+                "tyreProfile": "40",
+                "wheelSize": "18",
+                "quantity": "100",
+                "brand": "Continental",
+                "tyreModel": "ContiSportContact 5",
+                "runFlat": false,
+                "price": "3000.00",
+                "location": {
+                    "province": "Gauteng",
+                    "suburb": "Rosebank"
+                },
+                "partner": "Best Drive",
+                "branch": {
+                    "name": "Rosebank",
+                    "email": "sales-partner@gmail.com",
+                    "location": "Coords"
+                }                
+            },{
+                "vehicleType": "Car",
+                "tyreWidth": "245",
+                "tyreProfile": "40",
+                "wheelSize": "18",
+                "quantity": "100",
+                "brand": "Continental",
+                "tyreModel": "ContiSportContact 3",
+                "runFlat": false,
+                "price": "2800.00",
+                "location": {
+                    "province": "Gauteng",
+                    "suburb": "Fourways"
+                },
+                "partner": "Supaquick",
+                "branch": {
+                    "name": "Fourways",
+                    "email": "sales-partner@gmail.com",
+                    "location": "Coords"
+                }                
+            },{
+                "vehicleType": "Car",
+                "tyreWidth": "255",
+                "tyreProfile": "30",
+                "wheelSize": "19",
+                "quantity": "100",
+                "brand": "Pirelli",
+                "tyreModel": "P Zero Rosso",
+                "runFlat": true,
+                "price": "3800.00",
+                "location": {
+                    "province": "Gauteng",
+                    "suburb": "Wynberg"
+                },
+                "partner": "Speedy",
+                "branch": {
+                    "name": "Wynberg",
+                    "email": "sales-partner@gmail.com",
+                    "location": "Coords"
+                }                
+            },{
+                "vehicleType": "Car",
+                "tyreWidth": "245",
+                "tyreProfile": "30",
+                "wheelSize": "17",
+                "quantity": "100",
+                "brand": "Pirelli",
+                "tyreModel": "P Zero Rosso",
+                "runFlat": false,
+                "price": "2900.00",
+                "location": {
+                    "province": "Gauteng",
+                    "suburb": "Sandton"
+                },
+                "partner": "Tiger Wheel & Tyre",
+                "branch": {
+                    "name": "Sandton City",
+                    "email": "sales-partner@gmail.com",
+                    "location": "Coords"
+                }                
+            },{
+                "vehicleType": "Car",
+                "tyreWidth": "255",
+                "tyreProfile": "30",
+                "wheelSize": "19",
+                "quantity": "100",
+                "brand": "Yokohama",
+                "tyreModel": "Advan Fleva V701",
+                "runFlat": false,
+                "price": "3500.00",
+                "location": {
+                    "province": "Gauteng",
+                    "suburb": "Bryanston"
+                },
+                "partner": "Hi-Q",
+                "branch": {
+                    "name": "Grosvenor Crossing",
+                    "email": "sales-partner@gmail.com",
+                    "location": "Coords"
+                }                
+            },{
+                "vehicleType": "Car",
+                "tyreWidth": "255",
+                "tyreProfile": "30",
+                "wheelSize": "19",
+                "quantity": "100",
+                "brand": "Goodyear",
+                "tyreModel": "Eagle F1 Asymmetric 3",
+                "runFlat": false,
+                "price": "3800.00",
+                "location": {
+                    "province": "Gauteng",
+                    "suburb": "Rosebank"
+                },
+                "partner": "Best Drive",
+                "branch": {
+                    "name": "Rosebank",
+                    "email": "sales-partner@gmail.com",
+                    "location": "Coords"
+                }                
+            },{
+                "vehicleType": "Car",
+                "tyreWidth": "255",
+                "tyreProfile": "30",
+                "wheelSize": "19",
+                "quantity": "100",
+                "brand": "Dunlop",
+                "tyreModel": "SP SportMaxx 050",
+                "runFlat": false,
+                "price": "3900.00",
+                "location": {
+                    "province": "Gauteng",
+                    "suburb": "Midrand"
+                },
+                "partner": "Dunlop Zone",
+                "branch": {
+                    "name": "Midrand",
+                    "email": "sales-partner@gmail.com",
+                    "location": "Coords"
+                }                
+            }
         ]
     }
 }

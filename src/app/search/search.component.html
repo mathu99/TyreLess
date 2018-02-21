@@ -143,10 +143,9 @@
                 <button class="btn btn-success w-100 h-100 p-3" type="button" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked  }">MODIFY SEARCH</button>
             </div>
         </div>
-        <div class="row">
+        <div class="row text-center">
             <div class="col-3"></div>
-            <div class="col-2 extras-col rounded dd-left">Include:</div>
-            <div class="col-2 extras-col rounded">
+            <div class="col-3 extras-col rounded">
                 <div class="checkbox checkbox-success float-left">
                     <input id="wheelAlignmentSearch" type="checkbox" [checked]="data.wheelAlignmentChecked" (change)="data.wheelAlignmentChecked = !data.wheelAlignmentChecked">
                     <label for="wheelAlignmentSearch">
@@ -154,7 +153,7 @@
                     </label>
                 </div>
             </div>
-            <div class="col-2 extras-col rounded">
+            <div class="col-3 extras-col rounded">
                 <div class="checkbox checkbox-success float-left">
                     <input id="wheelBalancingSearch" type="checkbox" [checked]="data.wheelBalancingChecked" (change)="data.wheelBalancingChecked = !data.wheelBalancingChecked">
                     <label for="wheelBalancingSearch">
@@ -168,27 +167,31 @@
 </div>
 <br>
 <div class="results-and-filters container custom">
-    <div class="row" *ngIf="!properties.results">
+    <div class="row" *ngIf="!properties.results || properties.results.length == 0">
         <div class="col-12">
             <div *ngIf="!properties.loading" class="text-center">
-                    <br><br>
-                    <img src="../../assets/no_results.png" class="search-icon" />
-                    <br>
-                    <br>
-                    <h5>No Results Found</h5>
-                    <h6>Please refine your search</h6>
+                <br>
+                <br>
+                <img src="../../assets/no_results.png" class="search-icon" />
+                <br>
+                <br>
+                <h5>No Results Found</h5>
+                <h6>Please refine your search</h6>
             </div>
             <div *ngIf="properties.loading" class="text-center">
-                        <br><br>
-                        <img src="../../assets/loading.gif" class="search-icon" />
-                        <br><br>
-                        <h5>Searching</h5>
-                        <h6>Please wait...</h6>
-                        <br><br>
-                </div>
+                <br>
+                <br>
+                <img src="../../assets/loading.gif" class="search-icon" />
+                <br>
+                <br>
+                <h5>Searching</h5>
+                <h6>Please wait...</h6>
+                <br>
+                <br>
+            </div>
         </div>
     </div>
-    <div class="row" *ngIf="properties.results">
+    <div class="row" *ngIf="properties.results && properties.results.length > 0">
         <div class="col-4">
             <div class="row">
                 <div class="col-6"></div>
@@ -279,6 +282,46 @@
                 </div>
             </div>
         </div>
-        <div class="col-8"></div>
+        <div class="col-8">
+            <div class="card m-1" *ngFor="let result of properties.results">
+                <div class="card-body results-table">
+                    <div class="row">
+                        <div class="col-1 m-0 p-1">
+                            <img class="w-100" ngbTooltip="{{result.partner}}" src="../../assets/{{result.partner}}.jpg" />
+                        </div>
+                        <div class="col-9">
+                            <div class="row">
+                                <div class="col-3">
+                                    <b>{{result.partner}}</b>
+                                    <br> {{result.location.suburb}}, {{result.location.province}}
+                                </div>
+                                <div class="col-5">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <img *ngIf="!result.runFlat" class="result-tyre" src="../../assets/Tyres/{{result.brand}}_{{result.tyreModel}}_{{result.tyreWidth}}_{{result.tyreProfile}}_R{{result.wheelSize}}.jpg"
+                                            />
+                                            <img *ngIf="result.runFlat" class="result-tyre" src="../../assets/Tyres/{{result.brand}}_{{result.tyreModel}}_{{result.tyreWidth}}_{{result.tyreProfile}}_R{{result.wheelSize}}_Runflat.jpg"
+                                            />
+                                        </div>
+                                        <div class="col-8 results-text">
+                                            {{result.brand}}
+                                            <br> {{result.tyreModel}}
+                                            <span *ngIf="result.runFlat">
+                                                <br>Run Flat</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <b>Inlcuded</b>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            {{result.price | currency:'R'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

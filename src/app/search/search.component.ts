@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { get, set, assign } from 'lodash';
@@ -15,6 +16,7 @@ export class SearchComponent {
   sub = null;
   properties = <any>{};
   data = <any>{};
+  searchableContent = <any>{};
 
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
@@ -33,15 +35,29 @@ export class SearchComponent {
       });
     this.http.get('environments/config.development.json').subscribe(res => {
       assign(this.properties,  res.json().properties)
+      assign(this.searchableContent,  res.json().database);
       this.data.selectedSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].imageSrc;
     });
   }
 
   search = () => {
     set(this.properties, 'loading', true);
+    set(this.properties, 'results', null);
     setTimeout(() => {
       set(this.properties, 'loading', false);
+      set(this.properties, 'results', this.performSearch());
+      console.log(this.properties.results)
     }, 2000);
+  };
+
+  performSearch = () => {
+    return get(this, 'searchableContent.records', []).filter(e => {
+      return e.vehicleType == get(this.data, 'selected')
+        &&  e.wheelSize == get(this.data, 'size')
+        // &&  e.tyreProfile == get(this.data, 'tyreProfile')
+        // &&  e.tyreWidth == get(this.data, 'tyreWidth')
+        // &&  e.location.province == get(this.data, 'location');
+    });
   };
 
   update = (property, value) => {

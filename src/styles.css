@@ -243,6 +243,19 @@
   max-height: 100pt;
 }
 
+.results-table{
+  font-size:10pt;
+  font-weight: 400;
+}
+
+.result-tyre{
+  height: 65px;
+}
+
+.tooltip-inner {
+  max-width: 350px;
+}
+
 .header-section{
   margin:0 auto;
   margin-top:70px;
