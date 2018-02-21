@@ -203,7 +203,7 @@
 
 .dd-col{
   min-height: 35pt;
-  padding:0;
+  padding:1px;
 }
 .dd-left{
   padding:5pt;
@@ -214,6 +214,9 @@
   line-height:35pt;
   font-size:20pt;
   vertical-align: middle;
+}
+.dd-search-text {
+  font-size:14pt;
 }
 .dd-caret{
   padding-right:5pt;
@@ -251,6 +254,18 @@ body{
 
 .page-card-deck{
   margin-bottom:50pt;
+}
+
+.extras-col {
+  text-align: center;
+  margin:1px;
+  background-color: white;
+  border: 1px solid #868e96;
+}
+
+.extras-col>.checkbox{
+  padding:1pt;
+  margin-top: 4pt;
 }
 
 .custom{

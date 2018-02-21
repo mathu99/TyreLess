@@ -27,7 +27,7 @@
                 <a [routerLink]="['/contactUs']">CONTACT US</a>
             </h5>
         </div>
-        <div class="row">
+        <div class="row" *ngIf="data">
             <div class="get-it">
                 <h1 class="text-center">TyreLess<span class="txt-green">.co.za</span></h1>
                 <h4 class="text-center">Search - Select - Save</h4>
@@ -38,23 +38,23 @@
                     </div>
                     <div class="col-8">
                         <div class="row">
-                            <div class="col-3 link" (click)="update('selected','car')">
-                                <span [ngClass]="{linkSelected : data.selected == 'car'}">
+                            <div class="col-3 link" (click)="update('selected','Car')">
+                                <span [ngClass]="{linkSelected : data.selected == 'Car'}">
                                     <img src="../../assets/Car.png" class="vehicle-icon" />CAR
                                 </span>
                             </div>
-                            <div class="col-3 link" (click)="update('selected','suv')">
-                                <span [ngClass]="{linkSelected : data.selected == 'suv'}">
+                            <div class="col-3 link" (click)="update('selected','4x4 / SUV')">
+                                <span [ngClass]="{linkSelected : data.selected == '4x4 / SUV'}">
                                     <img src="../../assets/4x4_SUV.png" class="vehicle-icon" />4x4 / SUV
                                 </span>
                             </div>
-                            <div class="col-3 link" (click)="update('selected','bike')">
-                                <span [ngClass]="{linkSelected : data.selected == 'bike'}">
+                            <div class="col-3 link" (click)="update('selected','Bike')">
+                                <span [ngClass]="{linkSelected : data.selected == 'Bike'}">
                                     <img src="../../assets/Bike.png" class="vehicle-icon" />BIKE
                                 </span>
                             </div>
-                            <div class="col-3 link" (click)="update('selected','commercial')">
-                                <span [ngClass]="{linkSelected : data.selected == 'commercial'}">
+                            <div class="col-3 link" (click)="update('selected','Commercial')">
+                                <span [ngClass]="{linkSelected : data.selected == 'Commercial'}">
                                     <img src="../../assets/Commercial.png" class="vehicle-icon" />COMMERCIAL
                                 </span>
                             </div>
@@ -223,7 +223,7 @@
                 <div class="row">
                     <div class="col-5"></div>
                     <div class="col-2 text-center">
-                        <button [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location, wheelAlignment: data.wheelAlignmentChecked, wheelBalancing: data.wheelBalancingChecked  }" class="btn btn-success w-100 p-3" type="button">SEARCH</button>
+                        <button [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked  }" class="btn btn-success w-100 p-3" type="button">SEARCH</button>
                     </div>
                     <div class="col-5"></div>
                 </div>
@@ -266,10 +266,10 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-3 link" (click)="update('selected','car')">
+            <div class="col-3 link" (click)="update('selected','Car')">
                 <img src="../../assets/Car.png" class="vehicle-icon" />
 
-                <span [ngClass]="{linkSelected : data.selected == 'car'}">
+                <span [ngClass]="{linkSelected : data.selected == 'Car'}">
                     <br> CAR
                 </span>
             </div>

@@ -1,5 +1,23 @@
 {
     "properties": {
+        "vehicleTypes": [
+            {
+                "name": "Car",
+                "imageSrc": "/assets/Car.png"
+            },
+            {
+                "name": "4x4 / SUV",
+                "imageSrc": "/assets/4x4_SUV.png"
+            },
+            {
+                "name": "Bike",
+                "imageSrc": "/assets/Bike.png"
+            },
+            {
+                "name": "Commercial",
+                "imageSrc": "/assets/Commercial.png"
+            }
+        ],
         "wheelSizes": [
             "16",
             "17",
