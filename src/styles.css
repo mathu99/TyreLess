@@ -248,12 +248,30 @@
   font-weight: 400;
 }
 
+.results-col{
+  padding-left: 3pt;
+  padding-right: 3pt;
+}
+
 .result-tyre{
   height: 65px;
 }
 
+.result-logo{
+  width:60px;
+}
+
+.btn-secondary{
+  background-color: white;
+  color:black;
+}
+
+.dropdown-toggle::after{
+  color:rgb(107,172,70);
+}
+
 .tooltip-inner {
-  max-width: 350px;
+  max-width: 350px !important;
 }
 
 .header-section{

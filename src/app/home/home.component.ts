@@ -25,6 +25,7 @@ export class HomeComponent {
         brand: this.properties.brands[0],
         location: this.properties.locations[0],
         selected: this.properties.vehicleTypes[0].name,
+        selectedFilter: this.properties.filters[0],
         wheelAlignmentChecked: false,
         wheelBalancingChecked: false,
       };

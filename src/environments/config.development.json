@@ -53,6 +53,10 @@
         "locations": [
             "Any",
             "Gauteng"
+        ],
+        "filters": [
+            "Price: Low to High",
+            "Price: High to Low"
         ]
     },
     "database": {

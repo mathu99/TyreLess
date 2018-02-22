@@ -140,7 +140,7 @@
                 </div>
             </div>
             <div class="col-2 dd-col">
-                <button class="btn btn-success w-100 h-100 p-3" type="button" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked  }">MODIFY SEARCH</button>
+                <button class="btn btn-success w-100 h-100 p-3" type="button" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }">MODIFY SEARCH</button>
             </div>
         </div>
         <div class="row text-center">
@@ -199,6 +199,26 @@
                     <a href="" (click)="resetFilter()">Reset Filter</a>
                 </div>
             </div>
+        </div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-6"></div>
+                <div class="col-6 text-right">
+                        Filter results: 
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{data.selectedFilter}}
+                            </button>
+                            <div class="dropdown-menu">
+                                <span (click)="filter(filterName) " *ngFor="let filterName of properties.filters" class="dropdown-item" href="#">{{filterName}}</span>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="properties.results && properties.results.length > 0">
+        <div class="col-4">
             <div class="row filter-row">
                 <div class="col-12">
                     <div class="card">
@@ -249,20 +269,20 @@
                         <div class="card-body filter-body">
                             <div class="row">
                                 <div class="col-6">
-                                    <div class="checkbox checkbox-success float-left">
+                                    <!-- <div class="checkbox checkbox-success float-left">
                                         <input id="typeRegular" type="checkbox" [checked]="data.typeRegular" (change)="data.typeRegular = !data.typeRegular">
                                         <label for="typeRegular">
                                             Regular
                                         </label>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="col-6">
-                                    <div class="checkbox checkbox-success float-left">
+                                    <!-- <div class="checkbox checkbox-success float-left">
                                         <input id="typeRunFlat" type="checkbox" [checked]="data.typeRunFlat" (change)="data.typeRunFlat = !data.typeRunFlat">
                                         <label for="typeRunFlat">
                                             Run Flat
                                         </label>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -284,40 +304,49 @@
         </div>
         <div class="col-8">
             <div class="card m-1" *ngFor="let result of properties.results">
-                <div class="card-body results-table">
+                <div class="card-body results-table p-3">
                     <div class="row">
-                        <div class="col-1 m-0 p-1">
+                        <div class="col-1 results-col">
                             <img class="w-100" ngbTooltip="{{result.partner}}" src="../../assets/{{result.partner}}.jpg" />
                         </div>
                         <div class="col-9">
                             <div class="row">
-                                <div class="col-3">
+                                <div class="col-3 results-col">
                                     <b>{{result.partner}}</b>
                                     <br> {{result.location.suburb}}, {{result.location.province}}
                                 </div>
-                                <div class="col-5">
+                                <div class="col-6">
                                     <div class="row">
-                                        <div class="col-4">
+                                        <div class="col-4 results-col text-center">
                                             <img *ngIf="!result.runFlat" class="result-tyre" src="../../assets/Tyres/{{result.brand}}_{{result.tyreModel}}_{{result.tyreWidth}}_{{result.tyreProfile}}_R{{result.wheelSize}}.jpg"
                                             />
                                             <img *ngIf="result.runFlat" class="result-tyre" src="../../assets/Tyres/{{result.brand}}_{{result.tyreModel}}_{{result.tyreWidth}}_{{result.tyreProfile}}_R{{result.wheelSize}}_Runflat.jpg"
                                             />
                                         </div>
-                                        <div class="col-8 results-text">
+                                        <div class="col-7 results-text results-col">
                                             {{result.brand}}
                                             <br> {{result.tyreModel}}
-                                            <span *ngIf="result.runFlat">
-                                                <br>Run Flat</span>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <span *ngIf="result.runFlat">Run Flat</span>
+                                                </div>
+                                                <div class="col-6">
+                                                    <img class="result-logo" src="../../assets/Tyre Manufacturer/{{result.brand}}.png" />
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-3">
                                     <b>Inlcuded</b>
                                 </div>
                             </div>
                         </div>
                         <div class="col-2">
-                            {{result.price | currency:'R'}}
+                            <a href="" ngbTooltip="{{data.quantity}} Tyres @ {{result.price | currency:'R'}} each">
+                                <b>{{result.totalPrice | currency:'R'}}</b>
+                            </a>
                         </div>
                     </div>
                 </div>
