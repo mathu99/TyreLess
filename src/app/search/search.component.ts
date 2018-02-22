@@ -49,14 +49,15 @@ export class SearchComponent {
     setTimeout(() => {
       set(this.properties, 'loading', false);
       set(this.properties, 'results', this.performSearch());
-      this.sort(this.data.selectedFilter || "Price: Low to High");
+      set(this.properties, 'filteredResults', (this.properties.results));  /* Copy of full results */
+      this.applyFilters();
       console.log(this.properties.results)
     }, 2000);
   };
 
   sort = (filterName) => {  /* Apply sort filters */
     this.update('selectedFilter', filterName);
-    this.properties.results = get(this.properties, 'results', []).sort((a, b) => {
+    this.properties.filteredResults = get(this.properties, 'filteredResults', []).sort((a, b) => {
       switch (filterName) {
         case 'Price: Low to High': {
           return parseFloat(a.totalPrice) - parseFloat(b.totalPrice);
@@ -68,12 +69,24 @@ export class SearchComponent {
     });
   }
 
-  filter = () => {  /* Apply side filters */
-    this.properties.results = get(this.properties, 'results', []).filter((e, i) => {
-      let matchesFilter = true;
-      
+  applyFilters = () => {  /* Apply side filters */
+    this.properties.filteredResults = get(this.properties, 'results', []).filter((e, i) => {
+      let matchesFilter = (this.data.typeRunFlat && this.data.typeRegular) ||
+      (this.data.typeRunFlat && e.runFlat) || (this.data.typeRegular && !e.runFlat);  /* Tyre type filter */
       return matchesFilter;
     });
+    this.sort(this.data.selectedFilter || "Price: Low to High");
+    this.setRetailers();
+  }
+
+  setRetailers = () => {
+    let retailers = [];
+    this.properties.filteredResults.forEach(e => {
+      if (retailers.indexOf(e.partner) == -1) {
+        retailers.push(e.partner);
+      }
+    });
+    set(this.properties, 'retailers', retailers);
   }
 
   performSearch = () => {

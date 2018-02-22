@@ -204,15 +204,15 @@
             <div class="row">
                 <div class="col-6"></div>
                 <div class="col-6 text-right">
-                        Filter results: 
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{data.selectedFilter}}
-                            </button>
-                            <div class="dropdown-menu">
-                                <span (click)="filter(filterName) " *ngFor="let filterName of properties.filters" class="dropdown-item" href="#">{{filterName}}</span>
-                            </div>
+                    Filter results:
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{data.selectedFilter}}
+                        </button>
+                        <div class="dropdown-menu">
+                            <span (click)="sort(filterName) " *ngFor="let filterName of properties.filters" class="dropdown-item" href="#">{{filterName}}</span>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -237,11 +237,11 @@
                         <div class="card-header">
                             Type
                         </div>
-                        <div class="card-body filter-body">
+                        <div class="card-body results-table filter-body">
                             <div class="row">
                                 <div class="col-6">
                                     <div class="checkbox checkbox-success float-left">
-                                        <input id="typeRegular" type="checkbox" [checked]="data.typeRegular" (change)="data.typeRegular = !data.typeRegular">
+                                        <input id="typeRegular" type="checkbox" [checked]="data.typeRegular" (click)="update('typeRegular', !data.typeRegular); applyFilters()">
                                         <label for="typeRegular">
                                             Regular
                                         </label>
@@ -249,7 +249,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="checkbox checkbox-success float-left">
-                                        <input id="typeRunFlat" type="checkbox" [checked]="data.typeRunFlat" (change)="data.typeRunFlat = !data.typeRunFlat">
+                                        <input id="typeRunFlat" type="checkbox" [checked]="data.typeRunFlat" (click)="update('typeRunFlat', !data.typeRunFlat); applyFilters()">
                                         <label for="typeRunFlat">
                                             Run Flat
                                         </label>
@@ -266,24 +266,17 @@
                         <div class="card-header">
                             Retailer
                         </div>
-                        <div class="card-body filter-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <!-- <div class="checkbox checkbox-success float-left">
-                                        <input id="typeRegular" type="checkbox" [checked]="data.typeRegular" (change)="data.typeRegular = !data.typeRegular">
-                                        <label for="typeRegular">
-                                            Regular
-                                        </label>
-                                    </div> -->
+                        <div class="card-body results-table filter-body">
+                            <div class="w-50 float-left" *ngFor="let retailer of properties.retailers; let i = index">
+                                <div class="checkbox checkbox-success float-left">
+                                    <input id="retailer{{retailer}}" type="checkbox">
+                                    <label for="retailer{{retailer}}">
+                                        {{retailer}}
+                                    </label>
                                 </div>
-                                <div class="col-6">
-                                    <!-- <div class="checkbox checkbox-success float-left">
-                                        <input id="typeRunFlat" type="checkbox" [checked]="data.typeRunFlat" (change)="data.typeRunFlat = !data.typeRunFlat">
-                                        <label for="typeRunFlat">
-                                            Run Flat
-                                        </label>
-                                    </div> -->
-                                </div>
+                            </div>
+                            <div class="text-center" *ngIf="properties.retailers.length == 0">
+                                No Results
                             </div>
                         </div>
                     </div>
@@ -296,14 +289,14 @@
                             Model
                         </div>
                         <div class="card-body filter-body">
-                            Fancy Slider here
+                            Models here
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-8">
-            <div class="card m-1" *ngFor="let result of properties.results">
+            <div class="card m-1" *ngFor="let result of properties.filteredResults">
                 <div class="card-body results-table p-3">
                     <div class="row">
                         <div class="col-1 results-col">
@@ -349,6 +342,16 @@
                             </a>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="card m-1 text-center" *ngIf="properties.results && properties.results.length > 0 && properties.filteredResults.length == 0 ">
+                <div class="card-body">
+                    <br>
+                    <img src="../../assets/no_results.png" class="search-icon" />
+                    <br>
+                    <br>
+                    <h5>No Results Found</h5>
+                    <h6>Please refine your search</h6>
                 </div>
             </div>
         </div>
