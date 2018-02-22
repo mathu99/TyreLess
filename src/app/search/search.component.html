@@ -196,7 +196,7 @@
             <div class="row">
                 <div class="col-6"></div>
                 <div class="col-6 text-right">
-                    <a href="" (click)="resetFilter()">Reset Filter</a>
+                    <a href="javascript:void(0)" (click)="resetFilters()">Reset Filter</a>
                 </div>
             </div>
         </div>
@@ -210,7 +210,7 @@
                             {{data.selectedFilter}}
                         </button>
                         <div class="dropdown-menu">
-                            <span (click)="sort(filterName) " *ngFor="let filterName of properties.filters" class="dropdown-item" href="#">{{filterName}}</span>
+                            <span (click)="sort(filterName) " *ngFor="let filterName of properties.filters" class="dropdown-item">{{filterName}}</span>
                         </div>
                     </div>
                 </div>
@@ -238,23 +238,17 @@
                             Type
                         </div>
                         <div class="card-body results-table filter-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="checkbox checkbox-success float-left">
-                                        <input id="typeRegular" type="checkbox" [checked]="data.typeRegular" (click)="update('typeRegular', !data.typeRegular); applyFilters()">
-                                        <label for="typeRegular">
-                                            Regular
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="checkbox checkbox-success float-left">
-                                        <input id="typeRunFlat" type="checkbox" [checked]="data.typeRunFlat" (click)="update('typeRunFlat', !data.typeRunFlat); applyFilters()">
-                                        <label for="typeRunFlat">
-                                            Run Flat
-                                        </label>
-                                    </div>
-                                </div>
+                            <div class="w-50 checkbox checkbox-success float-left">
+                                <input id="typeRegular" type="checkbox" [checked]="data.typeRegular" (click)="update('typeRegular', !data.typeRegular); applyFilters()">
+                                <label for="typeRegular">
+                                    Regular
+                                </label>
+                            </div>
+                            <div class="w-50 checkbox checkbox-success float-left">
+                                <input id="typeRunFlat" type="checkbox" [checked]="data.typeRunFlat" (click)="update('typeRunFlat', !data.typeRunFlat); applyFilters()">
+                                <label for="typeRunFlat">
+                                    Run Flat
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -269,7 +263,7 @@
                         <div class="card-body results-table filter-body">
                             <div class="w-50 float-left" *ngFor="let retailer of properties.retailers; let i = index">
                                 <div class="checkbox checkbox-success float-left">
-                                    <input id="retailer{{retailer}}" type="checkbox">
+                                    <input id="retailer{{retailer}}" type="checkbox" [checked]="properties.retailerChecks[i]" (change)="properties.retailerChecks[i] = !properties.retailerChecks[i]">
                                     <label for="retailer{{retailer}}">
                                         {{retailer}}
                                     </label>
@@ -331,14 +325,26 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <b>Inlcuded</b>
+                                <div class="col-3 text-center">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <b>Included</b>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngFor="let service of result.partnerDetails.services">
+                                        <div class="col-12 results-col">
+                                            {{service}}
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
-                        <div class="col-2">
-                            <a href="" ngbTooltip="{{data.quantity}} Tyres @ {{result.price | currency:'R'}} each">
-                                <b>{{result.totalPrice | currency:'R'}}</b>
+                        <div class="col-2 results-col text-center">
+                            <a href="javascript:void(0)" ngbTooltip="{{data.quantity}} Tyres @ {{result.price | currency:'R'}} each">
+                                <h6>
+                                    <b>{{result.totalPrice | currency:'R'}}</b>
+                                </h6>
                             </a>
                         </div>
                     </div>

@@ -20,6 +20,7 @@ export class SearchComponent {
     typeRunFlat: true
   };
   searchableContent = <any>{};
+  partners = <any>{};
 
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
@@ -37,8 +38,9 @@ export class SearchComponent {
         this.search();
       });
     this.http.get('environments/config.development.json').subscribe(res => {
-      assign(this.properties,  res.json().properties)
-      assign(this.searchableContent,  res.json().database);
+      assign(this.properties, res.json().properties)
+      assign(this.searchableContent, res.json().products);
+      assign(this.partners, res.json().partners);
       this.data.selectedSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].imageSrc;
     });
   }
@@ -51,7 +53,6 @@ export class SearchComponent {
       set(this.properties, 'results', this.performSearch());
       set(this.properties, 'filteredResults', (this.properties.results));  /* Copy of full results */
       this.applyFilters();
-      console.log(this.properties.results)
     }, 2000);
   };
 
@@ -69,41 +70,66 @@ export class SearchComponent {
     });
   }
 
+  resetFilters = () => {
+    set(this.data, 'typeRunFlat', true);
+    set(this.data, 'typeRegular', true)
+    set(this.data, 'selectedFilter', 'Price: Low to High');
+    this.applyFilters();
+  }
+
   applyFilters = () => {  /* Apply side filters */
     this.properties.filteredResults = get(this.properties, 'results', []).filter((e, i) => {
       let matchesFilter = (this.data.typeRunFlat && this.data.typeRegular) ||
-      (this.data.typeRunFlat && e.runFlat) || (this.data.typeRegular && !e.runFlat);  /* Tyre type filter */
+        (this.data.typeRunFlat && e.runFlat) || (this.data.typeRegular && !e.runFlat);  /* Tyre type filter */
       return matchesFilter;
     });
-    this.sort(this.data.selectedFilter || "Price: Low to High");
+    this.sort(this.data.selectedFilter || 'Price: Low to High');
     this.setRetailers();
   }
 
   setRetailers = () => {
     let retailers = [];
+    set(this, 'data.retailers', []);
+    set(this, 'data.retailerChecks', []);
     this.properties.filteredResults.forEach(e => {
       if (retailers.indexOf(e.partner) == -1) {
         retailers.push(e.partner);
       }
     });
     set(this.properties, 'retailers', retailers);
+    set(this.properties, 'retailerChecks', new Array(this.properties.retailers.length).fill(true));
   }
 
   performSearch = () => {
     return get(this, 'searchableContent.records', []).filter(e => {
       let matches = e.vehicleType == get(this.data, 'selected')
-        &&  e.wheelSize == get(this.data, 'size')
-        // &&  e.tyreProfile == get(this.data, 'tyreProfile')
-        // &&  e.tyreWidth == get(this.data, 'tyreWidth')
-        // &&  e.location.province == get(this.data, 'location');
-        if (get(this.data, 'brand') != 'Any') {
-          matches = matches && e.brand == get(this.data, 'brand');
-        }
-        return matches;
+        && e.wheelSize == get(this.data, 'size')
+      // &&  e.tyreProfile == get(this.data, 'tyreProfile')
+      // &&  e.tyreWidth == get(this.data, 'tyreWidth')
+      // &&  e.location.province == get(this.data, 'location');
+      if (get(this.data, 'brand') != 'Any') {
+        matches = matches && e.brand == get(this.data, 'brand');
+      }
+      return matches;
     }).map(e => { /* Work out total */
       e.totalPrice = '' + parseFloat(e.price) * parseFloat(get(this.data, 'quantity'));
       return e;
-    });
+    }).map(e => { /* Add partner details */
+      e.partnerDetails = get(this.partners, 'records', []).filter(p => p.name === e.partner)[0];
+      get(e, 'partnerDetails.services', []).forEach(s => {
+        let name = s;
+        if (this.data.wheelAlignmentChecked && name === "Wheel Alignment") {
+          s = {'name':name,'show':true};
+        } else if (this.data.wheelBalancingChecked && name === "Wheel Balancing") {
+          s = {'name':name,'show':true};
+        } else if (s !== "Wheel Alignment" && name !== "Wheel Balancing") {
+          s = {'name':name,'show':true};
+        }else{
+          s = {'name':name,'show':false};
+        }
+      });
+      return e;
+    })
   };
 
   update = (property, value) => {

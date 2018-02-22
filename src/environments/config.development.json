@@ -59,7 +59,7 @@
             "Price: High to Low"
         ]
     },
-    "database": {
+    "products": {
         "records": [
             {
                 "vehicleType": "Car",
@@ -80,8 +80,9 @@
                     "name": "Fourways Crossing",
                     "email": "sales-partner@gmail.com",
                     "location": "Coords"
-                }                
-            },{
+                }
+            },
+            {
                 "vehicleType": "Car",
                 "tyreWidth": "255",
                 "tyreProfile": "30",
@@ -100,8 +101,9 @@
                     "name": "Fourways Crossing",
                     "email": "sales-partner@gmail.com",
                     "location": "Coords"
-                }                
-            },{
+                }
+            },
+            {
                 "vehicleType": "Car",
                 "tyreWidth": "195",
                 "tyreProfile": "55",
@@ -120,8 +122,9 @@
                     "name": "Fourways Crossing",
                     "email": "sales-partner@gmail.com",
                     "location": "Coords"
-                }                
-            },{
+                }
+            },
+            {
                 "vehicleType": "Car",
                 "tyreWidth": "255",
                 "tyreProfile": "30",
@@ -140,8 +143,9 @@
                     "name": "Benoni",
                     "email": "sales-partner@gmail.com",
                     "location": "Coords"
-                }                
-            },{
+                }
+            },
+            {
                 "vehicleType": "Car",
                 "tyreWidth": "255",
                 "tyreProfile": "40",
@@ -160,8 +164,9 @@
                     "name": "Rosebank",
                     "email": "sales-partner@gmail.com",
                     "location": "Coords"
-                }                
-            },{
+                }
+            },
+            {
                 "vehicleType": "Car",
                 "tyreWidth": "245",
                 "tyreProfile": "40",
@@ -180,8 +185,9 @@
                     "name": "Fourways",
                     "email": "sales-partner@gmail.com",
                     "location": "Coords"
-                }                
-            },{
+                }
+            },
+            {
                 "vehicleType": "Car",
                 "tyreWidth": "255",
                 "tyreProfile": "30",
@@ -200,8 +206,9 @@
                     "name": "Wynberg",
                     "email": "sales-partner@gmail.com",
                     "location": "Coords"
-                }                
-            },{
+                }
+            },
+            {
                 "vehicleType": "Car",
                 "tyreWidth": "245",
                 "tyreProfile": "30",
@@ -220,8 +227,9 @@
                     "name": "Sandton City",
                     "email": "sales-partner@gmail.com",
                     "location": "Coords"
-                }                
-            },{
+                }
+            },
+            {
                 "vehicleType": "Car",
                 "tyreWidth": "255",
                 "tyreProfile": "30",
@@ -240,8 +248,9 @@
                     "name": "Grosvenor Crossing",
                     "email": "sales-partner@gmail.com",
                     "location": "Coords"
-                }                
-            },{
+                }
+            },
+            {
                 "vehicleType": "Car",
                 "tyreWidth": "255",
                 "tyreProfile": "30",
@@ -260,8 +269,9 @@
                     "name": "Rosebank",
                     "email": "sales-partner@gmail.com",
                     "location": "Coords"
-                }                
-            },{
+                }
+            },
+            {
                 "vehicleType": "Car",
                 "tyreWidth": "255",
                 "tyreProfile": "30",
@@ -280,7 +290,88 @@
                     "name": "Midrand",
                     "email": "sales-partner@gmail.com",
                     "location": "Coords"
-                }                
+                }
+            }
+        ]
+    },
+    "partners": {
+        "records": [
+            {
+                "name": "Tiger Wheel & Tyre",
+                "wheelAlignmentPrice": "299.00",
+                "wheelBalancingPrice": "50.00",
+                "services": [
+                    "Wheel Alignment",
+                    "Wheel Balancing",
+                    "All Road Hazard Guarantee",
+                    "Nitrogen Fill Up"
+                ]
+            },
+            {
+                "name": "Supaquick",
+                "wheelAlignmentPrice": "270.00",
+                "wheelBalancingPrice": "40.00",
+                "services": [
+                    "Wheel Alignment",
+                    "Wheel Balancing",
+                    "All Road Hazard Guarantee",
+                    "Nitrogen Fill Up"
+                ]
+            },
+            {
+                "name": "Tyremart",
+                "wheelAlignmentPrice": "299.00",
+                "wheelBalancingPrice": "50.00",
+                "services": [
+                    "Wheel Alignment",
+                    "Wheel Balancing",
+                    "All Road Hazard Guarantee",
+                    "Nitrogen Fill Up"
+                ]
+            },
+            {
+                "name": "Best Drive",
+                "wheelAlignmentPrice": "260.00",
+                "wheelBalancingPrice": "55.00",
+                "services": [
+                    "Wheel Alignment",
+                    "Wheel Balancing",
+                    "All Road Hazard Guarantee",
+                    "Nitrogen Fill Up"
+                ]
+            },
+            {
+                "name": "Speedy",
+                "wheelAlignmentPrice": "260.00",
+                "wheelBalancingPrice": "45.00",
+                "services": [
+                    "Wheel Alignment",
+                    "Wheel Balancing",
+                    "All Road Hazard Guarantee",
+                    "Nitrogen Fill Up"
+                ]
+            },
+            {
+                "name": "Hi-Q",
+                "wheelAlignmentPrice": "300.00",
+                "wheelBalancingPrice": "60.00",
+                "services": [
+                    "Wheel Alignment",
+                    "Wheel Balancing",
+                    "All Road Hazard Guarantee",
+                    "Nitrogen Fill Up"
+                ]
+            },
+            {
+                "name": "Dunlop Zone",
+                "wheelAlignmentPrice": "299.00",
+                "wheelBalancingPrice": "50.00",
+                "services": [
+                    "Wheel Alignment",
+                    "Wheel Balancing",
+                    "All Road Hazard Guarantee",
+                    "Nitrogen Fill Up"
+                ]
             }
         ]
     }
