@@ -115,19 +115,21 @@ export class SearchComponent {
       e.totalPrice = '' + parseFloat(e.price) * parseFloat(get(this.data, 'quantity'));
       return e;
     }).map(e => { /* Add partner details */
-      e.partnerDetails = get(this.partners, 'records', []).filter(p => p.name === e.partner)[0];
-      get(e, 'partnerDetails.services', []).forEach(s => {
+      e.partnerDetails = JSON.parse(JSON.stringify(get(this.partners, 'records', []).filter(p => p.name === e.partner)[0]));
+      e.partnerDetails.services = e.partnerDetails.services.map(s => {
         let name = s;
         if (this.data.wheelAlignmentChecked && name === "Wheel Alignment") {
-          s = {'name':name,'show':true};
+          s = { 'name': name, 'show': true };
         } else if (this.data.wheelBalancingChecked && name === "Wheel Balancing") {
-          s = {'name':name,'show':true};
+          s = { 'name': name, 'show': true };
         } else if (s !== "Wheel Alignment" && name !== "Wheel Balancing") {
-          s = {'name':name,'show':true};
-        }else{
-          s = {'name':name,'show':false};
+          s = { 'name': name, 'show': true };
+        } else {
+          s = { 'name': name, 'show': false };
         }
+        return s;
       });
+      console.log(e)
       return e;
     })
   };
