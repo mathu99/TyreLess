@@ -52,7 +52,7 @@ export class SearchComponent {
       set(this.properties, 'loading', false);
       set(this.properties, 'results', this.performSearch());
       set(this.properties, 'filteredResults', (this.properties.results));  /* Copy of full results */
-      this.applyFilters();
+      this.applyFilters(true);
     }, 2000);
   };
 
@@ -74,30 +74,40 @@ export class SearchComponent {
     set(this.data, 'typeRunFlat', true);
     set(this.data, 'typeRegular', true)
     set(this.data, 'selectedFilter', 'Price: Low to High');
-    this.applyFilters();
+    this.applyFilters(true);
   }
 
-  applyFilters = () => {  /* Apply side filters */
+  applyFilters = (initRetailers: boolean) => {  /* Apply side filters */
     this.properties.filteredResults = get(this.properties, 'results', []).filter((e, i) => {
       let matchesFilter = (this.data.typeRunFlat && this.data.typeRegular) ||
         (this.data.typeRunFlat && e.runFlat) || (this.data.typeRegular && !e.runFlat);  /* Tyre type filter */
       return matchesFilter;
     });
     this.sort(this.data.selectedFilter || 'Price: Low to High');
-    this.setRetailers();
+    if (initRetailers) {
+      this.setRetailers();
+    }
+    this.properties.filteredResults = get(this.properties, 'filteredResults', []).filter((e, i) => {  /* Only show checked retailers */
+      let retailer = get(this.properties, 'retailers', []).filter(r => r.name === e.partner)[0];
+      return retailer.checked;
+    });
   }
 
   setRetailers = () => {
     let retailers = [];
     set(this, 'data.retailers', []);
-    set(this, 'data.retailerChecks', []);
+    let i = 0;
     this.properties.filteredResults.forEach(e => {
       if (retailers.indexOf(e.partner) == -1) {
-        retailers.push(e.partner);
+        let retailer = {
+          'name': e.partner,
+          'id': i++,
+          'checked': true,
+        }
+        retailers.push(retailer);
       }
     });
     set(this.properties, 'retailers', retailers);
-    set(this.properties, 'retailerChecks', new Array(this.properties.retailers.length).fill(true));
   }
 
   performSearch = () => {
@@ -129,9 +139,13 @@ export class SearchComponent {
         }
         return s;
       });
-      console.log(e)
       return e;
     })
+  };
+
+  toggleRetailer = (retailer) => {
+    retailer.checked = !retailer.checked;
+    this.applyFilters(false);
   };
 
   update = (property, value) => {

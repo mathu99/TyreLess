@@ -263,9 +263,9 @@
                         <div class="card-body results-table filter-body">
                             <div class="w-50 float-left" *ngFor="let retailer of properties.retailers; let i = index">
                                 <div class="checkbox checkbox-success float-left">
-                                    <input id="retailer{{retailer}}" type="checkbox" [checked]="properties.retailerChecks[i]" (change)="properties.retailerChecks[i] = !properties.retailerChecks[i]">
-                                    <label for="retailer{{retailer}}">
-                                        {{retailer}}
+                                    <input id="retailer{{retailer.id}}" type="checkbox" [checked]="retailer.checked" (change)="toggleRetailer(retailer)">
+                                    <label for="retailer{{retailer.id}}">
+                                        {{retailer.name}}
                                     </label>
                                 </div>
                             </div>
