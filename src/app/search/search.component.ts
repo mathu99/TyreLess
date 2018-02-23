@@ -1,17 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { get, set, assign } from 'lodash';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
 })
 export class SearchComponent {
+  @ViewChild('content') private content;
   constructor(
     private route: ActivatedRoute,
-    private router: Router, private http: Http) { this.http = http }
+    private router: Router, private http: Http, private modalService: NgbModal) { this.http = http }
   collapsed = true;
   sub = null;
   properties = <any>{};
@@ -20,10 +22,20 @@ export class SearchComponent {
   };
   searchableContent = <any>{};
   partners = <any>{};
-
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
   }
+  open(content) {
+    this.modalService.open(content).result.then((result) => {
+
+    }, (reason) => {
+
+    });
+  }
+
+  viewBreakdown = (): void => {
+    this.open(this.content);
+  };
   ngOnInit() {
     this.sub = this.route
       .queryParams
@@ -118,9 +130,6 @@ export class SearchComponent {
         matches = matches && e.brand == get(this.data, 'brand');
       }
       return matches;
-    }).map(e => { /* Work out total */
-      e.totalPrice = '' + parseFloat(e.price) * parseFloat(get(this.data, 'quantity'));
-      return e;
     }).map(e => { /* Add partner details */
       e.partnerDetails = JSON.parse(JSON.stringify(get(this.partners, 'records', []).filter(p => p.name === e.partner)[0]));
       e.partnerDetails.services = e.partnerDetails.services.map(s => {
@@ -136,6 +145,15 @@ export class SearchComponent {
         }
         return s;
       });
+      return e;
+    }).map(e => { /* Work out total */
+      e.totalPrice = '' + parseFloat(e.price) * parseFloat(get(this.data, 'quantity'));
+      if (get(this.data, 'wheelAlignmentChecked') === true) {
+        e.totalPrice = (parseFloat(e.totalPrice) + parseFloat(get(e, 'partnerDetails.wheelAlignmentPrice', '0'))).toString();
+      }
+      if (get(this.data, 'wheelBalancingChecked') === true) {
+        e.totalPrice = (parseFloat(e.totalPrice) + parseFloat(get(e, 'partnerDetails.wheelBalancingPrice', '0'))).toString();
+      }
       return e;
     })
   };
