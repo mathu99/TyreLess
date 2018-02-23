@@ -33,9 +33,50 @@ export class SearchComponent {
     });
   }
 
-  viewBreakdown = (): void => {
+  viewBreakdown = (result): void => {
+    set(this.properties, 'details', result);
+    set(this.properties, 'details.breakdown', this.populateBreakdown(result))
+    console.log(get(this.properties, 'details'));
     this.open(this.content);
   };
+
+  populateBreakdown = (result): any => {
+    let breakdown = [],
+      productTotal = (parseFloat(result.quantitySelected) * parseFloat(result.price));
+    breakdown.push({
+      'line1': result.brand,
+      'line2': result.tyreModel,
+      'quantity': result.quantitySelected,
+      'totalCost': productTotal.toString(),
+    });
+    let total = (parseFloat(result.quantitySelected) * parseFloat(result.price))
+    if (result.wheelAlignmentChecked) {
+      breakdown.push({
+        'line1': 'Wheel Alignment',
+        'line2': '',
+        'quantity': 'N/A',
+        'totalCost': get(result, 'partnerDetails.wheelAlignmentPrice', '0'),
+      });
+      productTotal = productTotal + parseFloat(get(result, 'partnerDetails.wheelAlignmentPrice', '0'));
+    }
+    if (result.wheelBalancingChecked) {
+      breakdown.push({
+        'line1': 'Wheel Balancing',
+        'line2': '',
+        'quantity': 'N/A',
+        'totalCost': get(result, 'partnerDetails.wheelBalancingPrice', '0'),
+      });
+      productTotal = productTotal + parseFloat(get(result, 'partnerDetails.wheelBalancingPrice', '0'));
+    }
+    breakdown.push({
+      'line1': 'Total',
+      'line2': '',
+      'quantity': '',
+      'totalCost': productTotal.toString(),
+    });
+    return breakdown;
+  };
+
   ngOnInit() {
     this.sub = this.route
       .queryParams
@@ -126,7 +167,7 @@ export class SearchComponent {
       // &&  e.tyreProfile == get(this.data, 'tyreProfile')
       // &&  e.tyreWidth == get(this.data, 'tyreWidth')
       // &&  e.location.province == get(this.data, 'location');
-      if (get(this.data, 'brand') != 'Any') {
+      if (get(this.data, 'brand') != 'All') {
         matches = matches && e.brand == get(this.data, 'brand');
       }
       return matches;
@@ -147,6 +188,9 @@ export class SearchComponent {
       });
       return e;
     }).map(e => { /* Work out total */
+      e.quantitySelected = '' + get(this.data, 'quantity');
+      e.wheelAlignmentChecked = get(this.data, 'wheelAlignmentChecked');
+      e.wheelBalancingChecked = get(this.data, 'wheelBalancingChecked');
       e.totalPrice = '' + parseFloat(e.price) * parseFloat(get(this.data, 'quantity'));
       if (get(this.data, 'wheelAlignmentChecked') === true) {
         e.totalPrice = (parseFloat(e.totalPrice) + parseFloat(get(e, 'partnerDetails.wheelAlignmentPrice', '0'))).toString();

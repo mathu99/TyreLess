@@ -295,11 +295,11 @@
                     <div class="row">
                         <div class="col-10">
                             <div class="row">
-                                <div class="col-3">
-                                    <img class="w-75" ngbTooltip="{{result.partner}}" src="../../assets/{{result.partner}}.jpg" />
-                                    <br> {{result.location.suburb}}, {{result.location.province}}
+                                <div class="col-3 border-right">
+                                    <img class="w-100" ngbTooltip="{{result.partner}}" src="../../assets/{{result.partner}}.jpg" />
+                                    <br><br> {{result.location.suburb}}, {{result.location.province}}
                                 </div>
-                                <div class="col-6">
+                                <div class="col-6 border-right">
                                     <div class="row">
                                         <div class="col-4 results-col text-center">
                                             <img *ngIf="!result.runFlat" class="result-tyre" src="../../assets/Tyres/{{result.brand}}_{{result.tyreModel}}_{{result.tyreWidth}}_{{result.tyreProfile}}_R{{result.wheelSize}}.jpg"
@@ -314,18 +314,19 @@
                                                 <div class="col-6">
                                                     <span *ngIf="result.runFlat">Run Flat</span>
                                                 </div>
-                                                <div class="col-6">
-                                                    <img class="result-logo" src="../../assets/Tyre Manufacturer/{{result.brand}}.png" />
+                                                <div class="col-6 results-col">
+                                                        <br>
+                                                    <img class="result-logo w-100" ngbTooltip="{{result.brand}}" src="../../assets/Tyre Manufacturer/{{result.brand}}.png" />
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-3 text-center">
+                                <div class="col-3 text-center border-right">
                                     <div class="row">
                                         <div class="col-12">
-                                            <b>Included</b>
+                                            <div class="strong included-text rounded">Included</div>
                                         </div>
                                     </div>
                                     <div class="row" *ngFor="let service of result.partnerDetails.services">
@@ -338,7 +339,7 @@
                             </div>
                         </div>
                         <div class="col-2 results-col text-center">
-                            <a href="javascript:void(0)" ngbTooltip="View breakdown" (click)="viewBreakdown()">
+                            <a href="javascript:void(0)" ngbTooltip="View breakdown" (click)="viewBreakdown(result)">
                                 <h6>
                                     <b>{{result.totalPrice | currency:'R'}}</b>
                                 </h6>
@@ -368,7 +369,22 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <div class="modal-body">
-        content
+    <div class="modal-body custom-lite">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of properties.details.breakdown" [ngClass]="{strong : row.line1 == 'Total'}">
+                    <td>{{row.line1}}<br>{{row.line2}}</td>
+                    <td>{{row.quantity}}</td>
+                    <td>{{row.totalCost | currency:'R'}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </ng-template>

@@ -42,7 +42,7 @@
             "4"
         ],
         "brands": [
-            "Any",
+            "All",
             "Bridgestone",
             "Continental",
             "Dunlop",
@@ -51,7 +51,7 @@
             "Yokohama"
         ],
         "locations": [
-            "Any",
+            "All",
             "Gauteng"
         ],
         "filters": [

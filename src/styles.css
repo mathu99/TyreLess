@@ -302,6 +302,10 @@ body{
   color:white;
 }
 
+.strong{
+  font-weight: bold;
+}
+
 .filter-body{
   padding:5pt;
 }
@@ -325,6 +329,20 @@ body{
 .custom{
     font-weight: 600;
     font-family: "VarelaRound", "BryantMediumRegular", sans-serif !important;
+}
+.custom-lite{
+  font-weight: 400;
+  font-family: "VarelaRound", "BryantMediumRegular", sans-serif !important;
+}
+.border-right{
+  border-right: 1px solid rgba(0,0,0,.125)
+}
+.included-text{
+  background-color: red;
+  color:white;
+  display:inline;
+  padding-left:3pt;
+  padding-right:3pt;
 }
 .circle-links{
     margin-top:50pt;
