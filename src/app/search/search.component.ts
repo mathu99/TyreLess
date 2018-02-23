@@ -16,8 +16,7 @@ export class SearchComponent {
   sub = null;
   properties = <any>{};
   data = <any>{
-    typeRegular: true,
-    typeRunFlat: true
+    tyreType: 'regular',
   };
   searchableContent = <any>{};
   partners = <any>{};
@@ -71,16 +70,14 @@ export class SearchComponent {
   }
 
   resetFilters = () => {
-    set(this.data, 'typeRunFlat', true);
-    set(this.data, 'typeRegular', true)
+    set(this.data, 'tyreType', 'regular');
     set(this.data, 'selectedFilter', 'Price: Low to High');
     this.applyFilters(true);
   }
 
   applyFilters = (initRetailers: boolean) => {  /* Apply side filters */
     this.properties.filteredResults = get(this.properties, 'results', []).filter((e, i) => {
-      let matchesFilter = (this.data.typeRunFlat && this.data.typeRegular) ||
-        (this.data.typeRunFlat && e.runFlat) || (this.data.typeRegular && !e.runFlat);  /* Tyre type filter */
+      let matchesFilter = ((this.data.tyreType == 'regular' && !e.runFlat) || (this.data.tyreType == 'runFlat' && e.runFlat));  /* Tyre type filter */
       return matchesFilter;
     });
     this.sort(this.data.selectedFilter || 'Price: Low to High');

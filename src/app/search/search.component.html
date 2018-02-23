@@ -238,14 +238,14 @@
                             Type
                         </div>
                         <div class="card-body results-table filter-body">
-                            <div class="w-50 checkbox checkbox-success float-left">
-                                <input id="typeRegular" type="checkbox" [checked]="data.typeRegular" (click)="update('typeRegular', !data.typeRegular); applyFilters()">
+                            <div class="w-50 radio radio-success float-left">
+                                <input id="typeRegular" type="radio" [checked]="data.tyreType == 'regular'" (click)="update('tyreType', 'regular'); applyFilters(true)">
                                 <label for="typeRegular">
                                     Regular
                                 </label>
                             </div>
-                            <div class="w-50 checkbox checkbox-success float-left">
-                                <input id="typeRunFlat" type="checkbox" [checked]="data.typeRunFlat" (click)="update('typeRunFlat', !data.typeRunFlat); applyFilters()">
+                            <div class="w-50 radio radio-success float-left">
+                                <input id="typeRunFlat" type="radio" [checked]="data.tyreType =='runFlat'" (click)="update('tyreType', 'runFlat'); applyFilters(true)">
                                 <label for="typeRunFlat">
                                     Run Flat
                                 </label>
