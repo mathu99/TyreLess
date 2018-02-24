@@ -28,7 +28,7 @@
                         </div>
                         <img src="../..{{data.selectedSrc}}" class="vehicle-icon" />
                         <span class="dd-col dd-search-text">{{ data.selected }}</span>
-                        <i class="dd-caret fa fa-caret-down"></i>
+                        <i class="dd-caret fa fa-angle-down"></i>
                     </button>
                     <div class="w-100 dropdown-menu">
                         <button class="dropdown-item" type="button" *ngFor="let vehicle of properties.vehicleTypes" (click)="update('selectedSrc', vehicle.imageSrc); update('selected', vehicle.name)">
@@ -45,7 +45,7 @@
                             Tyre Width
                         </div>
                         <span class="dd-col dd-search-text">{{ data.width }}</span>
-                        <i class="dd-caret fa fa-caret-down"></i>
+                        <i class="dd-caret fa fa-angle-down"></i>
                     </button>
                     <div class="w-100 dropdown-menu">
                         <button class="dropdown-item" type="button" *ngFor="let width of properties.tyreWidths" (click)="update('width', width)">
@@ -62,7 +62,7 @@
                             Tyre Profile
                         </div>
                         <span class="dd-col dd-search-text">{{ data.profile }}</span>
-                        <i class="dd-caret fa fa-caret-down"></i>
+                        <i class="dd-caret fa fa-angle-down"></i>
                     </button>
                     <div class="w-100 dropdown-menu">
                         <button class="dropdown-item" type="button" *ngFor="let profile of properties.tyreProfiles" (click)="update('profile', profile)">
@@ -79,7 +79,7 @@
                             Wheel Size
                         </div>
                         <span class="dd-col dd-search-text">{{ data.size }}</span>
-                        <i class="dd-caret fa fa-caret-down"></i>
+                        <i class="dd-caret fa fa-angle-down"></i>
                     </button>
                     <div class="w-100 dropdown-menu">
                         <button class="dropdown-item" type="button" *ngFor="let size of properties.wheelSizes" (click)="update('size', size)">
@@ -96,7 +96,7 @@
                             Quantity
                         </div>
                         <span class="dd-col dd-search-text">{{ data.quantity }}</span>
-                        <i class="dd-caret fa fa-caret-down"></i>
+                        <i class="dd-caret fa fa-angle-down"></i>
                     </button>
                     <div class="w-100 dropdown-menu">
                         <button class="dropdown-item" type="button" *ngFor="let quantity of properties.quantities" (click)="update('quantity', quantity)">
@@ -113,7 +113,7 @@
                             Brand
                         </div>
                         <span class="dd-col dd-search-text">{{ data.brand }}</span>
-                        <i class="dd-caret fa fa-caret-down"></i>
+                        <i class="dd-caret fa fa-angle-down"></i>
                     </button>
                     <div class="w-100 dropdown-menu">
                         <button class="dropdown-item" type="button" *ngFor="let brand of properties.brands" (click)="update('brand', brand)">
@@ -130,7 +130,7 @@
                             Location
                         </div>
                         <span class="dd-col dd-search-text">{{ data.location }}</span>
-                        <i class="dd-caret fa fa-caret-down"></i>
+                        <i class="dd-caret fa fa-angle-down"></i>
                     </button>
                     <div class="w-100 dropdown-menu">
                         <button class="dropdown-item" type="button" *ngFor="let location of properties.locations" (click)="update('location', location)">
