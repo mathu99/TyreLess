@@ -204,7 +204,7 @@
             <div class="row">
                 <div class="col-6"></div>
                 <div class="col-6 text-right">
-                    Filter results:
+                    Sort results by:
                     <div class="btn-group">
                         <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{data.selectedFilter}}
@@ -297,7 +297,8 @@
                             <div class="row">
                                 <div class="col-3 border-right">
                                     <img class="w-100" ngbTooltip="{{result.partner}}" src="../../assets/{{result.partner}}.jpg" />
-                                    <br><br> {{result.location.suburb}}, {{result.location.province}}
+                                    <br>
+                                    <br> {{result.location.suburb}}, {{result.location.province}}
                                 </div>
                                 <div class="col-6 border-right">
                                     <div class="row">
@@ -315,7 +316,7 @@
                                                     <span *ngIf="result.runFlat">Run Flat</span>
                                                 </div>
                                                 <div class="col-6 results-col">
-                                                        <br>
+                                                    <br>
                                                     <img class="result-logo w-100" ngbTooltip="{{result.brand}}" src="../../assets/Tyre Manufacturer/{{result.brand}}.png" />
                                                 </div>
                                             </div>
@@ -339,11 +340,21 @@
                             </div>
                         </div>
                         <div class="col-2 results-col text-center">
-                            <a href="javascript:void(0)" ngbTooltip="View breakdown" (click)="viewBreakdown(result)">
-                                <h6>
-                                    <b>{{result.totalPrice | currency:'R'}}</b>
-                                </h6>
+                            <a href="javascript:void(0)" ngbTooltip="View Breakdown" (click)="viewBreakdown(result)">
+                                <i class="dd-caret fa fa-info-circle"></i>View Detail
                             </a>
+                            <div class="text-center p-2">
+                                <div class="checkbox checkbox-success select-box rounded">
+                                    <input id="select_{{result.brand}}" type="checkbox" [checked]="result.contactMe" (change)="result.contactMe = !result.contactMe">
+                                    <label for="select_{{result.brand}}">
+                                        SELECT
+                                    </label>
+                                </div>
+                            </div>
+                            <br>
+                            <h6>
+                                <b>{{result.totalPrice | currency:'R'}}</b>
+                            </h6>
                         </div>
                     </div>
                 </div>
@@ -380,7 +391,8 @@
             </thead>
             <tbody>
                 <tr *ngFor="let row of properties.details.breakdown" [ngClass]="{strong : row.line1 == 'Total'}">
-                    <td>{{row.line1}}<br>{{row.line2}}</td>
+                    <td>{{row.line1}}
+                        <br>{{row.line2}}</td>
                     <td>{{row.quantity}}</td>
                     <td>{{row.totalCost | currency:'R'}}</td>
                 </tr>

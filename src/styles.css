@@ -238,6 +238,13 @@
     display:none;
 }
 
+.select-box{
+  background-color: rgb(107,172,70);
+  color: white;
+  padding: 1pt;
+  padding-top: 6pt;
+}
+
 .vehicle-icon{
   max-width: 25pt;
   margin-right: 5pt;

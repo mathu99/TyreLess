@@ -188,6 +188,7 @@ export class SearchComponent {
       });
       return e;
     }).map(e => { /* Work out total */
+      e.contactMe = false;
       e.quantitySelected = '' + get(this.data, 'quantity');
       e.wheelAlignmentChecked = get(this.data, 'wheelAlignmentChecked');
       e.wheelBalancingChecked = get(this.data, 'wheelBalancingChecked');
