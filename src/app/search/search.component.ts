@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { get, set, assign } from 'lodash';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
 
 @Component({
   selector: 'app-search',
@@ -18,6 +20,11 @@ export class SearchComponent {
   sub = null;
   properties = <any>{
     showContactMe: false,
+    priceFilter: {
+      show: true,
+      min: '0',
+      max: '100000000000'
+    }
   };
   data = <any>{
     tyreType: 'regular',
@@ -38,7 +45,6 @@ export class SearchComponent {
   viewBreakdown = (result): void => {
     set(this.properties, 'details', result);
     set(this.properties, 'details.breakdown', this.populateBreakdown(result))
-    console.log(get(this.properties, 'details'));
     this.open(this.content);
   };
 
@@ -106,7 +112,7 @@ export class SearchComponent {
       set(this.properties, 'loading', false);
       set(this.properties, 'results', this.performSearch());
       set(this.properties, 'filteredResults', (this.properties.results));  /* Copy of full results */
-      this.applyFilters(true);
+      this.applyFilters(true, true);
     }, 2000);
   };
 
@@ -127,10 +133,10 @@ export class SearchComponent {
   resetFilters = () => {
     set(this.data, 'tyreType', 'regular');
     set(this.data, 'selectedFilter', 'Price: Low to High');
-    this.applyFilters(true);
+    this.applyFilters(true, true);
   }
 
-  applyFilters = (initRetailers: boolean) => {  /* Apply side filters */
+  applyFilters = (initRetailers: boolean, initPriceFilter: boolean) => {  /* Apply side filters */
     this.properties.filteredResults = get(this.properties, 'results', []).filter((e, i) => {
       let matchesFilter = ((this.data.tyreType == 'regular' && !e.runFlat) || (this.data.tyreType == 'runFlat' && e.runFlat));  /* Tyre type filter */
       return matchesFilter;
@@ -143,6 +149,21 @@ export class SearchComponent {
       let retailer = get(this.properties, 'retailers', []).filter(r => r.name === e.partner)[0];
       return retailer.checked;
     });
+    if (initPriceFilter) {
+      this.applyPriceFilter();
+    }
+    this.properties.filteredResults = get(this.properties, 'filteredResults', []).filter((e, i) => {  /* Only show checked retailers */
+      return parseFloat(e.totalPrice) <= parseFloat(get(this.properties, 'priceFilter.current', '100000000'))
+    });
+    this.checkSelect(null);
+  }
+
+  applyPriceFilter = () => {
+    let tmpResults = JSON.parse(JSON.stringify(this.properties.filteredResults));
+    tmpResults.sort((a, b) => parseFloat(a.totalPrice) - parseFloat(b.totalPrice));
+    set(this.properties, 'priceFilter.min', tmpResults[0].totalPrice);
+    set(this.properties, 'priceFilter.max', tmpResults[tmpResults.length-1].totalPrice);
+    set(this.properties, 'priceFilter.current', get(this.properties, 'priceFilter.max'));
   }
 
   setRetailers = () => {
@@ -206,13 +227,15 @@ export class SearchComponent {
   };
 
   checkSelect = (result) => {
-    result.contactMe = !result.contactMe;
+    if(result) {
+      result.contactMe = !result.contactMe;
+    }
     set(this.properties, 'showContactMe', get(this.properties, 'filteredResults', []).some(e => e.contactMe));
   };
 
   toggleRetailer = (retailer) => {
     retailer.checked = !retailer.checked;
-    this.applyFilters(false);
+    this.applyFilters(false, true);
   };
 
   update = (property, value) => {

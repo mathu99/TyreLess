@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 @font-face {
   font-family: "VarelaRound";
   src:  url("/assets/VarelaRound-Regular.ttf") format("truetype")
@@ -653,6 +655,20 @@ li::before {
     color: #fff;
     background-color: rgb(107,172,70) !important;
     border-color: rgb(107,172,70) !important;
+  }
+
+  .mat-slider-horizontal {
+    height: 48px;
+    width: 100%;
+  }
+
+  .mat-slider {
+    padding: 0;
+  }
+
+  #priceSlider{
+    font-size:10pt;
+    font-weight: 400;
   }
 
   @media (min-width:992px) {

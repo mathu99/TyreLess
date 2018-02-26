@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { MatSliderModule } from '@angular/material';
 
 import { routes } from './app.routes';
 import { AboutComponent } from './about/about.component';
@@ -21,12 +22,13 @@ import { TyreCareComponent } from './tyreCare/tyreCare.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    MatSliderModule,
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
   ],
   declarations: [
     AboutComponent,
-    AppComponent,    
+    AppComponent,
     HomeComponent,
     ContactUsComponent,
     HomeComponent,
