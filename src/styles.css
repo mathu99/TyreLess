@@ -239,10 +239,27 @@
 }
 
 .select-box{
+  cursor: pointer;
   background-color: rgb(107,172,70);
   color: white;
   padding: 1pt;
   padding-top: 6pt;
+  margin-bottom:5pt;
+}
+
+.sticky-footer{
+  background-color:white;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.3);
+  width:100%;
+  position: fixed;
+  bottom: 0;
+  padding:10pt;
+  text-align: center;
+  z-index: 1;
+}
+#contactMeBtn{
+  padding-left: 20pt;
+  padding-right: 20pt;
 }
 
 .vehicle-icon{

@@ -16,7 +16,9 @@ export class SearchComponent {
     private router: Router, private http: Http, private modalService: NgbModal) { this.http = http }
   collapsed = true;
   sub = null;
-  properties = <any>{};
+  properties = <any>{
+    showContactMe: false,
+  };
   data = <any>{
     tyreType: 'regular',
   };
@@ -201,6 +203,11 @@ export class SearchComponent {
       }
       return e;
     })
+  };
+
+  checkSelect = (result) => {
+    result.contactMe = !result.contactMe;
+    set(this.properties, 'showContactMe', get(this.properties, 'filteredResults', []).some(e => e.contactMe));
   };
 
   toggleRetailer = (retailer) => {

@@ -169,7 +169,7 @@
 <div class="results-and-filters container custom">
     <div class="row" *ngIf="!properties.results || properties.results.length == 0">
         <div class="col-12">
-            <div *ngIf="!properties.loading" class="text-center">
+            <div [hidden]="properties.loading" class="text-center">
                 <br>
                 <br>
                 <img src="../../assets/no_results.png" class="search-icon" />
@@ -178,7 +178,7 @@
                 <h5>No Results Found</h5>
                 <h6>Please refine your search</h6>
             </div>
-            <div *ngIf="properties.loading" class="text-center">
+            <div [hidden]="!properties.loading" class="text-center">
                 <br>
                 <br>
                 <img src="../../assets/loading.gif" class="search-icon" />
@@ -341,17 +341,16 @@
                         </div>
                         <div class="col-2 results-col text-center">
                             <a href="javascript:void(0)" ngbTooltip="View Breakdown" (click)="viewBreakdown(result)">
-                                <i class="dd-caret fa fa-info-circle"></i>View Detail
+                                <i class="fa fa-info-circle"></i> View Detail
                             </a>
                             <div class="text-center p-2">
                                 <div class="checkbox checkbox-success select-box rounded">
-                                    <input id="select_{{result.brand}}" type="checkbox" [checked]="result.contactMe" (change)="result.contactMe = !result.contactMe">
+                                    <input id="select_{{result.brand}}" type="checkbox" [checked]="result.contactMe" (change)="checkSelect(result)">
                                     <label for="select_{{result.brand}}">
                                         SELECT
                                     </label>
                                 </div>
                             </div>
-                            <br>
                             <h6>
                                 <b>{{result.totalPrice | currency:'R'}}</b>
                             </h6>
@@ -372,6 +371,12 @@
         </div>
     </div>
 </div>
+
+<footer class="footer sticky-footer" [hidden]="!properties.showContactMe">
+    <div class="container">
+        <button class="btn btn-success h-100" id="contactMeBtn" type="button">CONTACT ME ></button>
+    </div>
+</footer>
 
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
