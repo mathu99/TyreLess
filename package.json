@@ -38,6 +38,7 @@
     "@types/moment": "^2.13.0",
     "@types/node": "~6.0.60",
     "@types/underscore": "^1.8.7",
+    "angular-2-dropdown-multiselect": "^1.6.3",
     "bootstrap": "^4.0.0-beta.2",
     "codelyzer": "^4.0.1",
     "core-js": "^2.4.1",

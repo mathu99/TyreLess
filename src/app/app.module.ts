@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MatSliderModule } from '@angular/material';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 import { routes } from './app.routes';
 import { AboutComponent } from './about/about.component';
@@ -23,6 +24,7 @@ import { TyreCareComponent } from './tyreCare/tyreCare.component';
     FormsModule,
     HttpModule,
     MatSliderModule,
+    MultiselectDropdownModule,
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
   ],
