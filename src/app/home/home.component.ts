@@ -32,10 +32,9 @@ export class HomeComponent {
 
   // Text configuration
   dropdownTexts: IMultiSelectTexts = {
-    checkAll: 'All Tyres',
-    allSelected: 'All Tyre Types',
-    defaultTitle: 'Choose Tyre Type',
-    
+    checkAll: 'All Tyre Brands',
+    allSelected: 'All Tyre Brands',
+    defaultTitle: 'Choose Tyre Brand',
   };
 
   toggleCollapsed(): void {
