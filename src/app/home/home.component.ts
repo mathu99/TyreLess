@@ -15,8 +15,6 @@ export class HomeComponent {
   properties = null;
   data = null;
   collapsed = true;
-  // Default selection
-  optionsModel: number[] = [1, 2];
 
   // Settings configuration
   dropdownSettings: IMultiSelectSettings = {
@@ -24,7 +22,7 @@ export class HomeComponent {
     showCheckAll: false,
     showUncheckAll: false,
     checkedStyle: 'fontawesome',
-    buttonClasses: 'btn btn-secondary dd-inner dd-right',
+    buttonClasses: 'btn btn-secondary w-100 dd-right',
     dynamicTitleMaxItems: 1,
     displayAllSelectedText: true,
     containerClasses: 'dd-container',

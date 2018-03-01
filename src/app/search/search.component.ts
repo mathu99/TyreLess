@@ -6,6 +6,12 @@ import { get, set, assign } from 'lodash';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
+import {
+  MultiselectDropdownModule,
+  IMultiSelectSettings,
+  IMultiSelectTexts,
+  IMultiSelectOption
+} from 'angular-2-dropdown-multiselect';
 
 @Component({
   selector: 'app-search',
@@ -31,6 +37,27 @@ export class SearchComponent {
   };
   searchableContent = <any>{};
   partners = <any>{};
+
+  // Settings configuration
+  dropdownSettings: IMultiSelectSettings = {
+    enableSearch: false,
+    showCheckAll: false,
+    showUncheckAll: false,
+    checkedStyle: 'fontawesome',
+    buttonClasses: 'btn btn-secondary dd-inner',
+    dynamicTitleMaxItems: 1,
+    displayAllSelectedText: true,
+    containerClasses: 'dd-container',
+  };
+
+  // Text configuration
+  brandTexts: IMultiSelectTexts = {
+    checkAll: 'All Tyre Brands',
+    allSelected: 'All',
+    defaultTitle: 'Unselected',
+    defaultLabel: 'Brand',
+  };
+
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
   }
@@ -90,6 +117,7 @@ export class SearchComponent {
       .queryParams
       .subscribe(params => {
         assign(this.data, JSON.parse(JSON.stringify(params))); /* Copy object */
+        assign(this.data.brand, this.data.brand.map(e => parseInt(e)));
         this.data.wheelAlignmentChecked = this.data.wheelAlignmentChecked == "true";
         this.data.wheelBalancingChecked = this.data.wheelBalancingChecked == "true";
         if (get(this.properties, 'vehicleTypes') != undefined) {
@@ -101,6 +129,12 @@ export class SearchComponent {
       assign(this.properties, res.json().properties)
       assign(this.searchableContent, res.json().products);
       assign(this.partners, res.json().partners);
+      this.properties.brands = this.properties.brands.map((e, i) => {
+        return <IMultiSelectOption> {
+          id: i,
+          name: e,
+        }
+      });
       this.data.selectedSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].imageSrc;
     });
   }
@@ -113,7 +147,7 @@ export class SearchComponent {
       set(this.properties, 'results', this.performSearch());
       set(this.properties, 'filteredResults', (this.properties.results));  /* Copy of full results */
       this.applyFilters(true, true);
-    }, 2000);
+    }, 0);
   };
 
   sort = (filterName) => {  /* Apply sort filters */
@@ -159,11 +193,13 @@ export class SearchComponent {
   }
 
   applyPriceFilter = () => {
-    let tmpResults = JSON.parse(JSON.stringify(this.properties.filteredResults));
-    tmpResults.sort((a, b) => parseFloat(a.totalPrice) - parseFloat(b.totalPrice));
-    set(this.properties, 'priceFilter.min', tmpResults[0].totalPrice);
-    set(this.properties, 'priceFilter.max', tmpResults[tmpResults.length-1].totalPrice);
-    set(this.properties, 'priceFilter.current', get(this.properties, 'priceFilter.max'));
+    if (get(this.properties, 'filteredResults') !== undefined && get(this.properties, 'filteredResults').length > 0) {
+      let tmpResults = JSON.parse(JSON.stringify(this.properties.filteredResults));
+      tmpResults.sort((a, b) => parseFloat(a.totalPrice) - parseFloat(b.totalPrice));
+      set(this.properties, 'priceFilter.min', tmpResults[0].totalPrice);
+      set(this.properties, 'priceFilter.max', tmpResults[tmpResults.length - 1].totalPrice);
+      set(this.properties, 'priceFilter.current', get(this.properties, 'priceFilter.max'));
+    }
   }
 
   setRetailers = () => {
@@ -227,7 +263,7 @@ export class SearchComponent {
   };
 
   checkSelect = (result) => {
-    if(result) {
+    if (result) {
       result.contactMe = !result.contactMe;
     }
     set(this.properties, 'showContactMe', get(this.properties, 'filteredResults', []).some(e => e.contactMe));
