@@ -79,7 +79,7 @@
                                             </div>
                                             <div class="col-5 dd-col dd-right">{{data.width}}</div>
                                             <div class="col-2 dd-col dd-caret">
-                                                <i class="fa fa-caret-down"></i>
+                                                <i class="fa fa-angle-down"></i>
                                             </div>
                                         </div>
                                     </button>
@@ -101,7 +101,7 @@
                                             </div>
                                             <div class="col-5 dd-col dd-right">{{ data.profile }}</div>
                                             <div class="col-2 dd-col dd-caret">
-                                                <i class="fa fa-caret-down"></i>
+                                                <i class="fa fa-angle-down"></i>
                                             </div>
                                         </div>
                                     </button>
@@ -123,7 +123,7 @@
                                             </div>
                                             <div class="col-5 dd-col dd-right">{{ data.size }}</div>
                                             <div class="col-2 dd-col dd-caret">
-                                                <i class="fa fa-caret-down"></i>
+                                                <i class="fa fa-angle-down"></i>
                                             </div>
                                         </div>
                                     </button>
@@ -144,7 +144,7 @@
                                             </div>
                                             <div class="col-5 dd-col dd-right">{{ data.quantity }}</div>
                                             <div class="col-2 dd-col dd-caret">
-                                                <i class="fa fa-caret-down"></i>
+                                                <i class="fa fa-angle-down"></i>
                                             </div>
                                         </div>
                                     </button>
@@ -169,7 +169,7 @@
                                             </div>
                                             <div class="col-7 dd-col dd-right">{{ data.brand }}</div>
                                             <div class="col-2 dd-col dd-caret">
-                                                <i class="fa fa-caret-down"></i>
+                                                <i class="fa fa-angle-down"></i>
                                             </div>
                                         </div>
                                     </button>
@@ -179,7 +179,7 @@
                                         </button>
                                     </div>
                                 </div> -->
-                                <ss-multiselect-dropdown [options]="properties.brands" [texts]="dropdownTexts" [settings]="dropdownSettings" [(ngModel)]="data.brand"></ss-multiselect-dropdown>
+                                <ss-multiselect-dropdown [options]="properties.brands" [texts]="brandTexts" [settings]="dropdownSettings" [(ngModel)]="data.brand"></ss-multiselect-dropdown>
                             </div>
                             <div class="col-6 dd-col">
                                 <div class="btn-group w-100">
@@ -191,7 +191,7 @@
                                             </div>
                                             <div class="col-7 dd-col dd-right">{{ data.location }}</div>
                                             <div class="col-2 dd-col dd-caret">
-                                                <i class="fa fa-caret-down"></i>
+                                                <i class="fa fa-angle-down"></i>
                                             </div>
                                         </div>
                                     </button>
@@ -311,7 +311,7 @@
                             Tyre Width
                         </div>
                         <span class="dd-col dd-right">{{ data.width }}</span>
-                        <i class="dd-caret fa fa-caret-down"></i>
+                        <i class="dd-caret fa fa-angle-down"></i>
                     </button>
                     <div class="w-100 dropdown-menu">
                         <button class="dropdown-item" type="button" *ngFor="let width of properties.tyreWidths" (click)="update('width', width)">
@@ -328,7 +328,7 @@
                             Tyre Profile
                         </div>
                         <span class="dd-col dd-right">{{ data.profile }}</span>
-                        <i class="dd-caret fa fa-caret-down"></i>
+                        <i class="dd-caret fa fa-angle-down"></i>
                     </button>
                     <div class="w-100 dropdown-menu">
                         <button class="dropdown-item" type="button" *ngFor="let profile of properties.tyreProfiles" (click)="update('profile', profile)">
@@ -345,7 +345,7 @@
                             Wheel Size
                         </div>
                         <span class="dd-col dd-right">{{ data.size }}</span>
-                        <i class="dd-caret fa fa-caret-down"></i>
+                        <i class="dd-caret fa fa-angle-down"></i>
                     </button>
                     <div class="w-100 dropdown-menu">
                         <button class="dropdown-item" type="button" *ngFor="let size of properties.wheelSizes" (click)="update('size', size)">
@@ -362,7 +362,7 @@
                             Quantity
                         </div>
                         <span class="dd-col dd-right">{{ data.quantity }}</span>
-                        <i class="dd-caret fa fa-caret-down"></i>
+                        <i class="dd-caret fa fa-angle-down"></i>
                     </button>
                     <div class="w-100 dropdown-menu">
                         <button class="dropdown-item" type="button" *ngFor="let quantity of properties.quantities" (click)="update('quantity', quantity)">
@@ -381,7 +381,7 @@
                             Brand
                         </div>
                         <span class="dd-col dd-right">{{ data.brand }}</span>
-                        <i class="dd-caret fa fa-caret-down"></i>
+                        <i class="dd-caret fa fa-angle-down"></i>
                     </button>
                     <div class="w-100 dropdown-menu">
                         <button class="dropdown-item" type="button" *ngFor="let brand of properties.brands" (click)="update('brand', brand)">
@@ -398,7 +398,7 @@
                             Location
                         </div>
                         <span class="dd-col dd-right">{{ data.location }}</span>
-                        <i class="dd-caret fa fa-caret-down"></i>
+                        <i class="dd-caret fa fa-angle-down"></i>
                     </button>
                     <div class="w-100 dropdown-menu">
                         <button class="dropdown-item" type="button" *ngFor="let location of properties.locations" (click)="update('location', location)">

@@ -1,5 +1,6 @@
 {
   "compileOnSave": false,
+  "module":"commonjs",
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "sourceMap": true,

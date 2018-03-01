@@ -21,8 +21,8 @@ export class HomeComponent {
   // Settings configuration
   dropdownSettings: IMultiSelectSettings = {
     enableSearch: false,
-    showCheckAll: true,
-    showUncheckAll: true,
+    showCheckAll: false,
+    showUncheckAll: false,
     checkedStyle: 'fontawesome',
     buttonClasses: 'btn btn-secondary dd-inner dd-right',
     dynamicTitleMaxItems: 1,
@@ -31,10 +31,11 @@ export class HomeComponent {
   };
 
   // Text configuration
-  dropdownTexts: IMultiSelectTexts = {
+  brandTexts: IMultiSelectTexts = {
     checkAll: 'All Tyre Brands',
-    allSelected: 'All Tyre Brands',
-    defaultTitle: 'Choose Tyre Brand',
+    allSelected: 'All',
+    defaultTitle: 'Unselected',
+    defaultLabel: 'Brand',
   };
 
   toggleCollapsed(): void {

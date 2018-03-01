@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MatSliderModule } from '@angular/material';
-import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { MultiselectDropdownModule } from './dropdown/dropdown.module';
 
 import { routes } from './app.routes';
 import { AboutComponent } from './about/about.component';

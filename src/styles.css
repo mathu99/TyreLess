@@ -190,6 +190,9 @@
 .dropdown-item.active, .dropdown-item:active{
   background-color:rgb(107,172,70) !important;
 }
+.dropdown-item.active>a, .dropdown-item:active>a{
+  color:white !important;
+}
 /*
   Dropdown
 */
@@ -259,6 +262,7 @@
 }
 
 .dropdown-item>a, .dropdown-item>a:hover{
+  text-decoration: none;
   color:black;
 }
 
@@ -320,7 +324,11 @@
 }
 
 .dropdown-toggle::after{
-  color:rgb(107,172,70);
+  display:none;
+}
+
+.dropdown-item active{
+  color:white;
 }
 
 .tooltip-inner {
