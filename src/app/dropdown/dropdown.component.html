@@ -1,5 +1,5 @@
 <div class="dropdown" [ngClass]="settings.containerClasses" [class.open]="isVisible">
-    <button type="button" class="dropdown-toggle" [ngClass]="settings.buttonClasses" (click)="toggleDropdown()" [disabled]="disabled">
+    <button *ngIf="!labelOnTop" type="button" class="dropdown-toggle" [ngClass]="settings.buttonClasses" (click)="toggleDropdown()" [disabled]="disabled">
         <div class="row">
             <div class="col-3 dd-col dd-left">
                 <div style="line-height:25pt">{{ label }}</div>
@@ -9,6 +9,14 @@
                 <i class="fa fa-angle-down"></i>
             </div>
         </div>
+    </button>
+    <button *ngIf="labelOnTop" class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false" [ngClass]="settings.buttonClasses" (click)="toggleDropdown()" [disabled]="disabled">
+        <div class="dd-left">
+            {{ label }}
+        </div>
+        <span class="dd-col dd-right">{{ title }}</span>
+        <i class="dd-caret fa fa-angle-down"></i>
     </button>
     <ul #scroller *ngIf="isVisible" class="dropdown-menu" [ngClass]="{\'chunkydropdown-menu\': settings.checkedStyle == \'visual\' }"
         (scroll)="settings.isLazyLoad ? checkScrollPosition($event) : null" (wheel)="settings.stopScrollPropagation ? checkScrollPropagation($event, scroller) : null"

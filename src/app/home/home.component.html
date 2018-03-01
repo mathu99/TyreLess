@@ -29,9 +29,7 @@
         </div>
         <div class="row" *ngIf="data">
             <div class="get-it">
-                <h1 class="text-center">TyreLess
-                    <span class="txt-green">.co.za</span>
-                </h1>
+                <h1 class="text-center">TyreLess<span class="txt-green">.co.za</span></h1>
                 <h4 class="text-center">Search - Select - Save</h4>
                 <br>
                 <br>
@@ -160,25 +158,6 @@
                     <div class="col-6">
                         <div class="row">
                             <div class="col-6 dd-col">
-                                <!-- <div class="btn-group w-100">
-                                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        <div class="row">
-                                            <div class="col-3 dd-col dd-left">
-                                                <div style="line-height:25pt">Brand</div>
-                                            </div>
-                                            <div class="col-7 dd-col dd-right">{{ data.brand }}</div>
-                                            <div class="col-2 dd-col dd-caret">
-                                                <i class="fa fa-angle-down"></i>
-                                            </div>
-                                        </div>
-                                    </button>
-                                    <div class="w-100 dropdown-menu">
-                                        <button class="dropdown-item" type="button" *ngFor="let brand of properties.brands" (click)="update('brand', brand)">
-                                            {{ brand }}
-                                        </button>
-                                    </div>
-                                </div> -->
                                 <ss-multiselect-dropdown [options]="properties.brands" [texts]="brandTexts" [settings]="dropdownSettings" [(ngModel)]="data.brand"></ss-multiselect-dropdown>
                             </div>
                             <div class="col-6 dd-col">
@@ -227,7 +206,7 @@
                     <div class="col-5"></div>
                     <div class="col-2 text-center">
                         <button [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
-                            class="btn btn-success w-100 p-3" type="button">SEARCH</button>
+                            class="btn btn-success w-100 p-3" type="button" [disabled]="!data.brand || data.brand.length==0">SEARCH</button>
                     </div>
                     <div class="col-5"></div>
                 </div>
@@ -262,11 +241,7 @@
     <div class="show-on-mobile container">
         <div class="row">
             <div class="get-it text-center">
-                <h2>
-                    <b>TyreLess
-                        <span class="txt-green">.co.za</span>
-                    </b>
-                </h2>
+                <h2><b>TyreLess<span class="txt-green">.co.za</span></b></h2>
                 <h4>Search - Select - Save</h4>
             </div>
         </div>
@@ -374,24 +349,11 @@
         </div>
         <div class="row">
             <div class="col-6 dd-col">
-                <div class="btn-group w-100">
-                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <div class="dd-left">
-                            Brand
-                        </div>
-                        <span class="dd-col dd-right">{{ data.brand }}</span>
-                        <i class="dd-caret fa fa-angle-down"></i>
-                    </button>
-                    <div class="w-100 dropdown-menu">
-                        <button class="dropdown-item" type="button" *ngFor="let brand of properties.brands" (click)="update('brand', brand)">
-                            {{ brand }}
-                        </button>
-                    </div>
-                </div>
+                <ss-multiselect-dropdown [options]="properties.brands" [labelOnTop]="true" [texts]="brandTexts" [settings]="dropdownSettings"
+                    [(ngModel)]="data.brand"></ss-multiselect-dropdown>
             </div>
             <div class="col-6 dd-col">
-                <div class="btn-group w-100">
+                <div class="btn-group w-100 h-100">
                     <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                         <div class="dd-left">
@@ -429,7 +391,7 @@
         <br>
         <div class="row">
             <div class="col-12 text-center">
-                <button [routerLink]="['/search']" class="btn btn-success w-100 p-3" type="button">SEARCH</button>
+                <button [routerLink]="['/search']" class="btn btn-success w-100 p-3" type="button"  [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }" [disabled]="!data.brand || data.brand.length==0">SEARCH</button>
             </div>
         </div>
     </div>

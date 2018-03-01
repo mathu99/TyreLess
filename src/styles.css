@@ -731,6 +731,7 @@ li::before {
 
     .dd-left{
       padding:0pt;
+      line-height:18px;
     }
 
     section.information{
@@ -741,10 +742,6 @@ li::before {
       line-height: 20pt;
       font-size: 15pt;
       vertical-align: middle;
-  }
-
-  .dd-t-custom {
-    margin:1pt;
   }
 
   .dd-caret {
