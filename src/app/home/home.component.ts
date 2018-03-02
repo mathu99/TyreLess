@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
+import { assign, set } from 'lodash';
 import {
   MultiselectDropdownModule,
   IMultiSelectSettings,
   IMultiSelectTexts,
   IMultiSelectOption
-} from 'angular-2-dropdown-multiselect';
+} from '../dropdown/';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +28,7 @@ export class HomeComponent {
     displayAllSelectedText: true,
     containerClasses: 'dd-container',
   };
+  mobileDropdownSettings: IMultiSelectSettings = {};
 
   // Text configuration
   brandTexts: IMultiSelectTexts = {
@@ -62,6 +64,8 @@ export class HomeComponent {
           wheelBalancingChecked: false,
         };
     });
+    assign(this.mobileDropdownSettings, this.dropdownSettings);
+    set(this.mobileDropdownSettings, 'labelOnTop', true);
   }
 
   update = (property, value) => {

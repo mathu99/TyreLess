@@ -1,5 +1,5 @@
 <div class="dropdown" [ngClass]="settings.containerClasses" [class.open]="isVisible">
-    <button *ngIf="!labelOnTop" type="button" class="dropdown-toggle" [ngClass]="settings.buttonClasses" (click)="toggleDropdown()" [disabled]="disabled">
+    <button *ngIf="!settings.labelOnTop" type="button" class="dropdown-toggle" [ngClass]="settings.buttonClasses" (click)="toggleDropdown()" [disabled]="disabled">
         <div class="row">
             <div class="col-3 dd-col dd-left">
                 <div style="line-height:25pt">{{ label }}</div>
@@ -10,7 +10,7 @@
             </div>
         </div>
     </button>
-    <button *ngIf="labelOnTop" class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown"
+    <button *ngIf="settings.labelOnTop" class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false" [ngClass]="settings.buttonClasses" (click)="toggleDropdown()" [disabled]="disabled">
         <div class="dd-left">
             {{ label }}

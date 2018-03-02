@@ -11,7 +11,7 @@ import {
   IMultiSelectSettings,
   IMultiSelectTexts,
   IMultiSelectOption
-} from 'angular-2-dropdown-multiselect';
+} from '../dropdown';
 
 @Component({
   selector: 'app-search',
@@ -48,6 +48,7 @@ export class SearchComponent {
     dynamicTitleMaxItems: 1,
     displayAllSelectedText: true,
     containerClasses: 'dd-container',
+    labelOnTop: true,
   };
 
   // Text configuration

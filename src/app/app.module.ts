@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
@@ -28,9 +28,6 @@ import { TyreCareComponent } from './tyreCare/tyreCare.component';
     RouterModule.forRoot(routes),
     NgbModule.forRoot(),
   ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-],
   declarations: [
     AboutComponent,
     AppComponent,

@@ -50,6 +50,7 @@ export interface IMultiSelectSettings {
     loadViewDistance?: number;
     stopScrollPropagation?: boolean;
     selectAddedValues?: boolean;
+    labelOnTop?:boolean;
     /**
      * false - By default
      * If activated label IDs don't count and won't be written to the model.
@@ -66,4 +67,5 @@ export interface IMultiSelectTexts {
     searchNoRenderText?: string;
     defaultTitle?: string;
     allSelected?: string;
+    defaultLabel?: string;
 }
