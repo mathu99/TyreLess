@@ -49,10 +49,32 @@
             "Pirelli",
             "Yokohama"
         ],
-        "locations": [
-            "All",
-            "Gauteng"
-        ],
+        "locations": [{
+            "name": "Gauteng",
+            "checked": false,
+            "sub_locations": [{
+                "name": "Benoni",
+                "checked": false
+            },{
+                "name": "Bryanston",
+                "checked": false
+            },{
+                "name": "Fourways",
+                "checked": false
+            },{
+                "name": "Midrand",
+                "checked": false
+            },{
+                "name": "Rosebank",
+                "checked": false
+            },{
+                "name": "Sandton",
+                "checked": false
+            },{
+                "name": "Wynberg",
+                "checked": false
+            }]
+        }],
         "filters": [
             "Price: Low to High",
             "Price: High to Low"

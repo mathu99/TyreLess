@@ -148,7 +148,7 @@ export class SearchComponent {
       set(this.properties, 'results', this.performSearch());
       set(this.properties, 'filteredResults', (this.properties.results));  /* Copy of full results */
       this.applyFilters(true, true);
-    }, 0);
+    }, 2000);
   };
 
   sort = (filterName) => {  /* Apply sort filters */
@@ -228,7 +228,8 @@ export class SearchComponent {
       // &&  e.tyreWidth == get(this.data, 'tyreWidth')
       // &&  e.location.province == get(this.data, 'location');
       if (get(this.data, 'brand') != 'All') {
-        matches = matches && e.brand == get(this.data, 'brand');
+        let brandIndex = get(this.properties, 'brands').filter(b => b.name === e.brand)[0].id;
+        matches = matches && get(this.data, 'brand').indexOf(brandIndex) > 0;
       }
       return matches;
     }).map(e => { /* Add partner details */

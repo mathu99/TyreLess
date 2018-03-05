@@ -29,7 +29,9 @@
         </div>
         <div class="row" *ngIf="data">
             <div class="get-it">
-                <h1 class="text-center">TyreLess<span class="txt-green">.co.za</span></h1>
+                <h1 class="text-center">TyreLess
+                    <span class="txt-green">.co.za</span>
+                </h1>
                 <h4 class="text-center">Search - Select - Save</h4>
                 <br>
                 <br>
@@ -163,22 +165,17 @@
                             <div class="col-6 dd-col">
                                 <div class="btn-group w-100">
                                     <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
+                                        aria-expanded="false" (click)="openPropertyModal()">
                                         <div class="row">
                                             <div class="col-3 dd-col dd-left">
                                                 <div style="line-height:25pt">Location</div>
                                             </div>
-                                            <div class="col-7 dd-col dd-right">{{ data.location }}</div>
+                                            <div class="col-7 dd-col dd-right">{{ data.locationStr }}</div>
                                             <div class="col-2 dd-col dd-caret">
                                                 <i class="fa fa-angle-down"></i>
                                             </div>
                                         </div>
                                     </button>
-                                    <div class="w-100 dropdown-menu">
-                                        <button class="dropdown-item" type="button" *ngFor="let location of properties.locations" (click)="update('location', location)">
-                                            {{ location }}
-                                        </button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -206,7 +203,7 @@
                     <div class="col-5"></div>
                     <div class="col-2 text-center">
                         <button [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
-                            class="btn btn-success w-100 p-3" type="button" [disabled]="!data.brand || data.brand.length==0">SEARCH</button>
+                            class="btn btn-success w-100 p-3" type="button" [disabled]="!data.brand || data.brand.length==0 || data.locationStr == 'None'">SEARCH</button>
                     </div>
                     <div class="col-5"></div>
                 </div>
@@ -241,7 +238,11 @@
     <div class="show-on-mobile container">
         <div class="row">
             <div class="get-it text-center">
-                <h2><b>TyreLess<span class="txt-green">.co.za</span></b></h2>
+                <h2>
+                    <b>TyreLess
+                        <span class="txt-green">.co.za</span>
+                    </b>
+                </h2>
                 <h4>Search - Select - Save</h4>
             </div>
         </div>
@@ -349,24 +350,18 @@
         </div>
         <div class="row">
             <div class="col-6 dd-col">
-                <ss-multiselect-dropdown [options]="properties.brands" [texts]="brandTexts" [settings]="mobileDropdownSettings"
-                    [(ngModel)]="data.brand"></ss-multiselect-dropdown>
+                <ss-multiselect-dropdown [options]="properties.brands" [texts]="brandTexts" [settings]="mobileDropdownSettings" [(ngModel)]="data.brand"></ss-multiselect-dropdown>
             </div>
             <div class="col-6 dd-col">
                 <div class="btn-group w-100 h-100">
                     <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
+                        aria-expanded="false" (click)="openPropertyModal()">
                         <div class="dd-left">
                             Location
                         </div>
-                        <span class="dd-col dd-right">{{ data.location }}</span>
+                        <span class="dd-col dd-right">{{ data.locationStr }}</span>
                         <i class="dd-caret fa fa-angle-down"></i>
                     </button>
-                    <div class="w-100 dropdown-menu">
-                        <button class="dropdown-item" type="button" *ngFor="let location of properties.locations" (click)="update('location', location)">
-                            {{ location }}
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -391,7 +386,8 @@
         <br>
         <div class="row">
             <div class="col-12 text-center">
-                <button [routerLink]="['/search']" class="btn btn-success w-100 p-3" type="button"  [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }" [disabled]="!data.brand || data.brand.length==0">SEARCH</button>
+                <button [routerLink]="['/search']" class="btn btn-success w-100 p-3" type="button" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
+                [disabled]="!data.brand || data.brand.length==0 || data.locationStr == 'None'">SEARCH</button>
             </div>
         </div>
     </div>
@@ -440,3 +436,41 @@
 <section class="information">
     <p class="text-center">Search the best deals from hundreds of Partners countrywide</p>
 </section>
+
+<ng-template #locationModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title custom">Location</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body custom-lite">
+        <div class="card" *ngFor="let location of properties.locations">
+            <div class="card-header">
+                <div class="row">
+                        <div class="col-2">
+                                <div class="checkbox checkbox-success checkbox-adjust">
+                                    <input id="{{location.name}}" type="checkbox" [checked]="location.checked" (change)="topLevelCheck(location)">
+                                    <label for="{{location.name}}">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-8" (click)="location.collapsed = !location.collapsed" style="cursor: pointer;">
+                                {{location.name}}
+                            </div>
+                </div>
+            </div>
+            <div class="card-body" [hidden]="location.collapsed">
+                    <div class="checkbox checkbox-success w-50 float-left" *ngFor="let sublocation of location.sub_locations">
+                            <input id="{{sublocation.name}}" type="checkbox" [checked]="sublocation.checked" (change)="lowLevelCheck(location, sublocation)">
+                            <label for="{{sublocation.name}}">
+                                {{sublocation.name}}
+                            </label>
+                        </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Done</button>
+          </div>
+</ng-template>
