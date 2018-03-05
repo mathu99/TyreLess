@@ -51,28 +51,39 @@ export class HomeComponent {
 
   open(content) {
     this.modalService.open(content).result.then((result) => {
-      this.data.locationStr = this.getLocationFromObject(this.properties.locations);
+      set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
     }, (reason) => {
-      this.data.locationStr = this.getLocationFromObject(this.properties.locations);
+      set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
     });
   }
 
-  getLocationFromObject = (locations):string => {
+  getLocationFromObject = (locations):any => {
+    let locationObj = {
+      name: 'Unselected',
+      highLevel: '',
+      lowLevel: [],
+    }
     let highLevel = locations.filter(e => e.checked);
-    if (highLevel.length > 1) {
+    if (highLevel.length > 1) { /* Not allowed currently */
       return 'Multiple';
     } else if (highLevel.length == 1) {
-      return highLevel[0].name;
+      locationObj.highLevel = highLevel[0].name;
+      locationObj.name = highLevel[0].name;
+      return locationObj;
     } else {
       for (let i = 0; i < locations.length; i++) {
         let lowLevel = locations[i].sub_locations.filter(e => e.checked);
+        locationObj.highLevel = locations[i].name;
+        locationObj.lowLevel = lowLevel.map(e => e.name);
         if (lowLevel.length > 1) {
-          return 'Multiple';
+          locationObj.name = lowLevel.length + ' checked';
+          return locationObj;
         } else if (lowLevel.length == 1) {
-          return lowLevel[0].name;
+          locationObj.name = lowLevel[0].name;
+          return locationObj;
       }
     }
-      return 'None';
+      return locationObj;
     }
   }
 
@@ -102,7 +113,7 @@ export class HomeComponent {
           size: this.properties.wheelSizes[0],
           quantity: this.properties.quantities[0],
           brand: this.properties.brands.map(e => e.id),
-          locationStr: this.getLocationFromObject(this.properties.locations),
+          location: this.getLocationFromObject(this.properties.locations),
           selected: this.properties.vehicleTypes[0].name,
           selectedFilter: this.properties.filters[0],
           wheelAlignmentChecked: false,

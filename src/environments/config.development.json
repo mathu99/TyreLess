@@ -52,6 +52,7 @@
         "locations": [{
             "name": "Gauteng",
             "checked": false,
+            "collapsed": false,
             "sub_locations": [{
                 "name": "Benoni",
                 "checked": false

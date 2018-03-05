@@ -170,10 +170,8 @@
                                             <div class="col-3 dd-col dd-left">
                                                 <div style="line-height:25pt">Location</div>
                                             </div>
-                                            <div class="col-7 dd-col dd-right">{{ data.locationStr }}</div>
-                                            <div class="col-2 dd-col dd-caret">
-                                                <i class="fa fa-angle-down"></i>
-                                            </div>
+                                            <div class="col-7 dd-col dd-right">{{ data.location.name }}</div>
+                                            <div class="col-2"></div>
                                         </div>
                                     </button>
                                 </div>
@@ -202,8 +200,8 @@
                 <div class="row">
                     <div class="col-5"></div>
                     <div class="col-2 text-center">
-                        <button [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
-                            class="btn btn-success w-100 p-3" type="button" [disabled]="!data.brand || data.brand.length==0 || data.locationStr == 'None'">SEARCH</button>
+                        <button [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
+                            class="btn btn-success w-100 p-3" type="button" [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">SEARCH</button>
                     </div>
                     <div class="col-5"></div>
                 </div>
@@ -359,8 +357,7 @@
                         <div class="dd-left">
                             Location
                         </div>
-                        <span class="dd-col dd-right">{{ data.locationStr }}</span>
-                        <i class="dd-caret fa fa-angle-down"></i>
+                        <span class="dd-col dd-right">{{ data.location.name }}</span>
                     </button>
                 </div>
             </div>
@@ -386,8 +383,8 @@
         <br>
         <div class="row">
             <div class="col-12 text-center">
-                <button [routerLink]="['/search']" class="btn btn-success w-100 p-3" type="button" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
-                [disabled]="!data.brand || data.brand.length==0 || data.locationStr == 'None'">SEARCH</button>
+                <button [routerLink]="['/search']" class="btn btn-success w-100 p-3" type="button" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
+                [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">SEARCH</button>
             </div>
         </div>
     </div>
@@ -444,7 +441,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <div class="modal-body custom-lite">
+    <div class="modal-body custom-lite custom">
         <div class="card" *ngFor="let location of properties.locations">
             <div class="card-header">
                 <div class="row">
