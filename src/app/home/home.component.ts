@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Http } from '@angular/http';
-import { assign, set } from 'lodash';
+import { assign, get, set } from 'lodash';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   MultiselectDropdownModule,
@@ -41,7 +41,7 @@ export class HomeComponent {
     defaultLabel: 'Brand',
   };
 
-  openPropertyModal = ():void => {
+  openLocationModal = ():void => {
     this.open(this.locationModal);
   }
 
@@ -89,18 +89,38 @@ export class HomeComponent {
 
   topLevelCheck = (location):void => { /* Checking a top-level location (province) - this checks/unchecks all suburbs */
     location.checked = !location.checked;
+    if (location.checked) {
+      location.collapsed = false;
+    }
     location.sub_locations.map(e => e.checked = location.checked);
+    get(this.properties, 'locations', []).forEach(e => {
+      if (e.name != location.name && location.checked) {  /* Uncheck everything else */
+        e.checked = false;
+        e.collapsed = true;
+        e.sub_locations.map(s => s.checked = false);
+      }
+    });
   };
 
   lowLevelCheck = (location, sublocation):void => { /* Unheck parent if necessary */
     sublocation.checked = !sublocation.checked;
     location.checked = location.sub_locations.every(e => e.checked);
+    if (location.checked) {
+      location.collapsed = false;
+    }
+    get(this.properties, 'locations', []).forEach(e => {
+      if (e.name != location.name) {  /* Uncheck everything else */
+        e.checked = false;
+        e.collapsed = true;
+        e.sub_locations.map(s => s.checked = false);
+      }
+    });
   };
 
   constructor(private http: Http, private modalService: NgbModal) {
     this.http.get('environments/config.development.json').subscribe(res => {
       this.properties = res.json().properties;
-      this.topLevelCheck(this.properties.locations[0]); /* Check all of Gauteng for demo purposes */
+      this.topLevelCheck(this.properties.locations[2]); /* Check all of Gauteng for demo purposes */
       this.properties.brands = this.properties.brands.map((e, i) => {
         return <IMultiSelectOption> {
           id: i,

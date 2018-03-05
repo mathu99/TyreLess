@@ -29,9 +29,7 @@
         </div>
         <div class="row" *ngIf="data">
             <div class="get-it">
-                <h1 class="text-center">TyreLess
-                    <span class="txt-green">.co.za</span>
-                </h1>
+                <h1 class="text-center">TyreLess<span class="txt-green">.co.za</span></h1>
                 <h4 class="text-center">Search - Select - Save</h4>
                 <br>
                 <br>
@@ -165,7 +163,7 @@
                             <div class="col-6 dd-col">
                                 <div class="btn-group w-100">
                                     <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom" type="button" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false" (click)="openPropertyModal()">
+                                        aria-expanded="false" (click)="openLocationModal()">
                                         <div class="row">
                                             <div class="col-3 dd-col dd-left">
                                                 <div style="line-height:25pt">Location</div>
@@ -236,11 +234,7 @@
     <div class="show-on-mobile container">
         <div class="row">
             <div class="get-it text-center">
-                <h2>
-                    <b>TyreLess
-                        <span class="txt-green">.co.za</span>
-                    </b>
-                </h2>
+                <h2><b>TyreLess<span class="txt-green">.co.za</span></b></h2>
                 <h4>Search - Select - Save</h4>
             </div>
         </div>
@@ -384,7 +378,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <button [routerLink]="['/search']" class="btn btn-success w-100 p-3" type="button" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
-                [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">SEARCH</button>
+                    [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">SEARCH</button>
             </div>
         </div>
     </div>
@@ -445,29 +439,32 @@
         <div class="card" *ngFor="let location of properties.locations">
             <div class="card-header">
                 <div class="row">
-                        <div class="col-2">
-                                <div class="checkbox checkbox-success checkbox-adjust">
-                                    <input id="{{location.name}}" type="checkbox" [checked]="location.checked" (change)="topLevelCheck(location)">
-                                    <label for="{{location.name}}">
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-8" (click)="location.collapsed = !location.collapsed" style="cursor: pointer;">
-                                {{location.name}}
-                            </div>
+                    <div class="col-2">
+                        <div class="checkbox checkbox-success checkbox-adjust">
+                            <input id="{{location.name}}" type="checkbox" [checked]="location.checked" (change)="topLevelCheck(location)">
+                            <label for="{{location.name}}">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-8" (click)="location.collapsed = !location.collapsed" style="cursor: pointer;">
+                        {{location.name}}
+                    </div>
                 </div>
             </div>
             <div class="card-body" [hidden]="location.collapsed">
-                    <div class="checkbox checkbox-success w-50 float-left" *ngFor="let sublocation of location.sub_locations">
-                            <input id="{{sublocation.name}}" type="checkbox" [checked]="sublocation.checked" (change)="lowLevelCheck(location, sublocation)">
-                            <label for="{{sublocation.name}}">
-                                {{sublocation.name}}
-                            </label>
-                        </div>
+                <div class="checkbox checkbox-success w-50 float-left" *ngFor="let sublocation of location.sub_locations">
+                    <input id="{{sublocation.name}}" type="checkbox" [checked]="sublocation.checked" (change)="lowLevelCheck(location, sublocation)">
+                    <label for="{{sublocation.name}}">
+                        {{sublocation.name}}
+                    </label>
+                </div>
+                <div class="text-center" [hidden]="location.sub_locations.length > 0">
+                    None Currently
+                </div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Done</button>
-          </div>
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Done</button>
+    </div>
 </ng-template>

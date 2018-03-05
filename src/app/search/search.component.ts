@@ -19,6 +19,7 @@ import {
 })
 export class SearchComponent {
   @ViewChild('content') private content;
+  @ViewChild('searchLocationModal') private locationModal;
   constructor(
     private route: ActivatedRoute,
     private router: Router, private http: Http, private modalService: NgbModal) { this.http = http }
@@ -62,13 +63,81 @@ export class SearchComponent {
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
   }
+
   open(content) {
     this.modalService.open(content).result.then((result) => {
-
+        set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
     }, (reason) => {
-
+        set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
     });
   }
+
+  openLocationModal = ():void => {
+    get(this.properties,'locations',[]).forEach(e => {
+      e.collapsed = !e.sub_locations.some(s => s.checked == true);
+    });
+    this.open(this.locationModal);
+  }
+
+  getLocationFromObject = (locations):any => {
+    let locationObj = {
+      name: 'Unselected',
+      highLevel: '',
+      lowLevel: [],
+    }
+    let highLevel = locations.filter(e => e.checked);
+    if (highLevel.length > 1) { /* Not allowed currently */
+      return 'Multiple';
+    } else if (highLevel.length == 1) {
+      locationObj.highLevel = highLevel[0].name;
+      locationObj.name = highLevel[0].name;
+      return locationObj;
+    } else {
+      for (let i = 0; i < locations.length; i++) {
+        let lowLevel = locations[i].sub_locations.filter(e => e.checked);
+        locationObj.highLevel = locations[i].name;
+        locationObj.lowLevel = lowLevel.map(e => e.name);
+        if (lowLevel.length > 1) {
+          locationObj.name = lowLevel.length + ' checked';
+          return locationObj;
+        } else if (lowLevel.length == 1) {
+          locationObj.name = lowLevel[0].name;
+          return locationObj;
+      }
+    }
+      return locationObj;
+    }
+  }
+
+  topLevelCheck = (location):void => { /* Checking a top-level location (province) - this checks/unchecks all suburbs */
+    location.checked = !location.checked;
+    if (location.checked) {
+      location.collapsed = false;
+    }
+    location.sub_locations.map(e => e.checked = location.checked);
+    get(this.properties, 'locations', []).forEach(e => {
+      if (e.name != location.name && location.checked) {  /* Uncheck everything else */
+        e.checked = false;
+        e.collapsed = true;
+        e.sub_locations.map(s => s.checked = false);
+      }
+    });
+  };
+
+  lowLevelCheck = (location, sublocation):void => { /* Unheck parent if necessary */
+    sublocation.checked = !sublocation.checked;
+    location.checked = location.sub_locations.every(e => e.checked);
+    if (location.checked) {
+      location.collapsed = false;
+    }
+    get(this.properties, 'locations', []).forEach(e => {
+      if (e.name != location.name) {  /* Uncheck everything else */
+        e.checked = false;
+        e.collapsed = true;
+        e.sub_locations.map(s => s.checked = false);
+      }
+    });
+  };
 
   viewBreakdown = (result): void => {
     set(this.properties, 'details', result);
@@ -124,20 +193,28 @@ export class SearchComponent {
         if (get(this.properties, 'vehicleTypes') != undefined) {
           this.data.selectedSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].imageSrc;
         }
+        this.http.get('environments/config.development.json').subscribe(res => {
+          assign(this.properties, res.json().properties)
+          let highLevel = get(this.properties,'locations',[]).filter(e => e.name == get(this.data, 'location'))[0];
+          if (get(this.data, 'subLocations', []).length == 0){  /* High-level only selection */
+            highLevel.checked = true;
+            highLevel.sub_locations.map(e => e.checked = true);
+          }else {
+            highLevel.sub_locations.map(e => e.checked = get(this.data, 'subLocations', []).indexOf(e.name) > -1);
+          }
+          set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
+          assign(this.searchableContent, res.json().products);
+          assign(this.partners, res.json().partners);
+          this.properties.brands = this.properties.brands.map((e, i) => {
+            return <IMultiSelectOption> {
+              id: i,
+              name: e,
+            }
+          });
+          this.data.selectedSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].imageSrc;
+        });
         this.search();
       });
-    this.http.get('environments/config.development.json').subscribe(res => {
-      assign(this.properties, res.json().properties)
-      assign(this.searchableContent, res.json().products);
-      assign(this.partners, res.json().partners);
-      this.properties.brands = this.properties.brands.map((e, i) => {
-        return <IMultiSelectOption> {
-          id: i,
-          name: e,
-        }
-      });
-      this.data.selectedSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].imageSrc;
-    });
   }
 
   search = () => {
@@ -226,7 +303,10 @@ export class SearchComponent {
         && e.wheelSize == get(this.data, 'size')
       // &&  e.tyreProfile == get(this.data, 'tyreProfile')
       // &&  e.tyreWidth == get(this.data, 'tyreWidth')
-      // &&  e.location.province == get(this.data, 'location');
+      &&  e.location.province == get(this.data, 'location.highLevel');  /* Province filter */
+      if (get(this.data, 'location.lowLevel', []).length > 0) { /* Suburb filter */
+        matches = matches && get(this.data, 'location.lowLevel', []).indexOf(e.location.suburb) > -1;
+      }
       if (get(this.data, 'brand') != 'All') {
         let brandIndex = get(this.properties, 'brands').filter(b => b.name === e.brand)[0].id;
         matches = matches && get(this.data, 'brand').indexOf(brandIndex) > 0;

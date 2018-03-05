@@ -50,9 +50,34 @@
             "Yokohama"
         ],
         "locations": [{
+            "name": "Eastern Cape",
+            "checked": false,
+            "collapsed": true,
+            "sub_locations": [{
+                "name": "East London",
+                "checked": false
+            },{
+                "name": "Port Elizabeth",
+                "checked": false
+            }]
+            },{
+            "name": "Free State",
+            "checked": false,
+            "collapsed": true,
+            "sub_locations": [{
+                "name": "Bloemfontein",
+                "checked": false
+            },{
+                "name": "Harrismith",
+                "checked": false
+            },{
+                "name": "Welkom",
+                "checked": false
+            }]
+            },{
             "name": "Gauteng",
             "checked": false,
-            "collapsed": false,
+            "collapsed": true,
             "sub_locations": [{
                 "name": "Benoni",
                 "checked": false
@@ -73,6 +98,63 @@
                 "checked": false
             },{
                 "name": "Wynberg",
+                "checked": false
+            }]
+        },{
+            "name": "KwaZulu-Natal",
+            "checked": false,
+            "collapsed": true,
+            "sub_locations": [{
+                "name": "Durban",
+                "checked": false
+            },{
+                "name": "Pietermaritzburg",
+                "checked": false
+            }]
+            },{
+            "name": "Limpopo",
+            "checked": false,
+            "collapsed": true,
+            "sub_locations": []
+            },{
+            "name": "Mpumalanga",
+            "checked": false,
+            "collapsed": true,
+            "sub_locations": []
+            },{
+            "name": "North West",
+            "checked": false,
+            "collapsed": true,
+            "sub_locations": []
+            },{
+            "name": "Northern Cape",
+            "checked": false,
+            "collapsed": true,
+            "sub_locations": []
+            },{
+            "name": "Western Cape",
+            "checked": false,
+            "collapsed": true,
+            "sub_locations": [{
+                "name": "Belville",
+                "checked": false
+            },{
+                "name": "Cape Town",
+                "checked": false
+            },{
+                "name": "George",
+                "checked": false
+            },{
+                "name": "Hermanus",
+                "checked": false
+            },{
+                "name": "Paarl",
+                "checked": false
+            },{
+                "name": "Stellenbosch",
+                "checked": false
+            },{
+                "name": "Worcester",
                 "checked": false
             }]
         }],
