@@ -16,7 +16,7 @@
 <br>
 <br>
 <br>
-<div class="custom header-section">
+<div class="custom header-section-40">
     <div class="container">
         <div class="row" style="max-height:80px">
             <div class="col-2 dd-col">
@@ -122,7 +122,7 @@
                 </div>
             </div>
             <div class="col-2 dd-col">
-                <button class="btn btn-success w-100 h-100 p-3" type="button" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }">MODIFY SEARCH</button>
+                <button class="btn btn-success w-100 h-100 p-3" type="button" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }" [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">MODIFY SEARCH</button>
             </div>
         </div>
         <div class="row text-center">
@@ -174,12 +174,9 @@
         </div>
     </div>
     <div class="row" *ngIf="properties.results && properties.results.length > 0">
-        <div class="col-4">
-            <div class="row">
-                <div class="col-6"></div>
-                <div class="col-6 text-right">
+        <div class="col-4" style="position: relative">
+            <div style="position: absolute; bottom: 0; right:12pt">
                     <a href="javascript:void(0)" (click)="resetFilters()">Reset Filter</a>
-                </div>
             </div>
         </div>
         <div class="col-8">
@@ -189,7 +186,7 @@
                     Sort results by:
                     <div class="btn-group">
                         <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{data.selectedFilter}}
+                            {{data.selectedFilter}} <i class="fa fa-angle-down" style="color:rgb(107,172,70)"></i>
                         </button>
                         <div class="dropdown-menu">
                             <span (click)="sort(filterName) " *ngFor="let filterName of properties.filters" class="dropdown-item">{{filterName}}</span>
@@ -201,9 +198,9 @@
     </div>
     <div class="row" *ngIf="properties.results && properties.results.length > 0">
         <div class="col-4">
-            <div class="row filter-row" *ngIf="properties.filteredResults && properties.filteredResults.length > 0">
+            <div class="row" *ngIf="properties.filteredResults && properties.filteredResults.length > 0">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card m-1">
                         <div class="card-header">
                             Price
                         </div>
@@ -219,9 +216,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row filter-row">
+            <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card m-1">
                         <div class="card-header">
                             Type
                         </div>
@@ -242,9 +239,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row filter-row">
+            <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card m-1">
                         <div class="card-header">
                             Retailer
                         </div>
@@ -264,9 +261,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row filter-row">
+            <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card m-1">
                         <div class="card-header">
                             Model
                         </div>
@@ -362,7 +359,7 @@
 
 <footer class="footer sticky-footer" [hidden]="!properties.showContactMe">
     <div class="container">
-        <button class="btn btn-success h-100" id="contactMeBtn" type="button" ngbTooltip="A sales representative from the vendor(s) will be in touch to follow up with you on this deal">CONTACT ME ></button>
+        <button class="btn btn-success h-100 custom" id="contactMeBtn" type="button" ngbTooltip="A sales representative from the vendor(s) will be in touch to follow up with you on this deal">CONTACT ME ></button>
     </div>
 </footer>
 

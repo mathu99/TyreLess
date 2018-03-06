@@ -1,8 +1,5 @@
 <nav id="mainNavbar" class="navbar navbar-light navbar-fixed-top navbar-expand-lg custom fixed-top">
-    <a class="navbar-brand" [routerLink]="['/']">
-        <span class="nav-logo-left">TyreLess</span>
-        <span class="nav-logo-right">.co.za</span>
-    </a>
+    <a class="navbar-brand" [routerLink]="['/']"><span class="nav-logo-left">TyreLess</span><span class="nav-logo-right">.co.za</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapsed()">
         <span class="navbar-toggler-icon"></span>
@@ -104,7 +101,9 @@
                 </a>
                 <br>
                 <br>
-                <b>Become a TyreLess Partner Retailer</b>
+                <a href="mailto:engage@tyreless.co.za?subject=Partner%20with%20TyreLess">
+                    <b>Become a TyreLess Partner Retailer</b>
+                </a>
                 <ng-template #content let-c="close" let-d="dismiss">
                     <div class="modal-header">
                         <h4 class="modal-title custom">Feedback received</h4>
@@ -114,7 +113,8 @@
                     </div>
                     <div class="modal-body">
                         <p>Thanks for reaching out to us. We will be in touch shortly.
-                                <br><br>-Tyreless Team
+                            <br>
+                            <br>-Tyreless Team
                         </p>
                     </div>
                 </ng-template>
