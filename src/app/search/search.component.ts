@@ -257,6 +257,9 @@ export class SearchComponent {
     if (initRetailers) {
       this.setRetailers();
     }
+    //if (initRetailers) {
+      this.setModels();
+    //}
     this.properties.filteredResults = get(this.properties, 'filteredResults', []).filter((e, i) => {  /* Only show checked retailers */
       let retailer = get(this.properties, 'retailers', []).filter(r => r.name === e.partner)[0];
       return retailer.checked;
@@ -280,18 +283,57 @@ export class SearchComponent {
     }
   }
 
+  setModels = () => {
+    let models = [];
+    set(this, 'data.models', []);
+    let i = 0;
+    this.properties.filteredResults.forEach(e => {
+      let obj = {
+        brand: e.brand,
+        models: [],
+      };
+      if (models.filter(r => r.brand === e.brand).length == 0) {
+        obj.models.push({
+          id: 0,
+          modelName: e.tyreModel,
+          checked: true,
+        })
+        models.push(obj);
+      } else {
+        models.filter(r => r.brand === e.brand)[0].models.push({
+          id: models.filter(r => r.brand === e.brand)[0].models.length,
+          modelName: e.tyreModel,
+          checked: true,
+        });
+      }
+    });
+    models.forEach(e => { /* Alphabetical Sorting */
+      e.models.sort((a, b) => {
+        let textA = a.modelName.toUpperCase();
+        let textB = b.modelName.toUpperCase();
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+      });
+    });
+    models.sort((a, b) => {
+      let textA = a.brand.toUpperCase();
+      let textB = b.brand.toUpperCase();
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    });
+    set(this.properties, 'models', models);
+  }
+
   setRetailers = () => {
     let retailers = [];
     set(this, 'data.retailers', []);
     let i = 0;
     this.properties.filteredResults.forEach(e => {
       if (retailers.indexOf(e.partner) == -1) {
-        let retailer = {
+        let model = {
           'name': e.partner,
           'id': i++,
           'checked': true,
         }
-        retailers.push(retailer);
+        retailers.push(model);
       }
     });
     set(this.properties, 'retailers', retailers);

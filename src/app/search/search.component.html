@@ -268,7 +268,19 @@
                             Model
                         </div>
                         <div class="card-body filter-body">
-                            Models here
+                            <div class="card model-card m-1" *ngFor="let brand of properties.models">
+                                <div class="card-header text-left">{{brand.brand}}</div>
+                                <div class="card-body results-table filter-body">
+                                        <div class="w-100 float-left" *ngFor="let model of brand.models; let i = index">
+                                            <div class="checkbox checkbox-success float-left">
+                                                <input id="{{brand.brand}}_model_{{model.id}}" type="checkbox" [checked]="model.checked" (change)="togglelModel(model)">
+                                                <label for="{{brand.brand}}_model_{{model.id}}">
+                                                        {{model.modelName}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

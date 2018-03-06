@@ -382,6 +382,7 @@ body{
 
 .filter-body{
   padding:5pt;
+  padding-bottom: 0pt;
 }
 
 .filter-row{
@@ -589,6 +590,13 @@ li::before {
 
   .link>span{
     padding:5pt;
+}
+
+.model-card>.card-header{
+  padding: 0pt;
+    background-color: rgba(0,0,0,0.05);
+    color: black;
+    padding-left: 15pt;
 }
 
 .link>span>i{
