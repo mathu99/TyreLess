@@ -521,6 +521,7 @@ li::before {
     /* background-size: cover; */
     border:none;
     background: url('/assets/Our Offering.jpeg') repeat 0 0;
+    background-size:100%;
   }
 
   #howItWorks{
@@ -529,6 +530,7 @@ li::before {
       border:none;
       min-height:200pt;
       background: url('/assets/How It Works.jpeg') repeat 0 0;
+      background-size:120%;
   }
 
   #tyreCare{
@@ -537,6 +539,7 @@ li::before {
       border:none;
       min-height:200pt;
       background: url('/assets/Tyre Care.jpg') repeat 0 0;
+      background-size:130%;
   }
 
   .card-transparent{

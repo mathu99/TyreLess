@@ -309,7 +309,7 @@ export class SearchComponent {
       }
       if (get(this.data, 'brand') != 'All') {
         let brandIndex = get(this.properties, 'brands').filter(b => b.name === e.brand)[0].id;
-        matches = matches && get(this.data, 'brand').indexOf(brandIndex) > 0;
+        matches = matches && get(this.data, 'brand').indexOf(brandIndex) > -1;
       }
       return matches;
     }).map(e => { /* Add partner details */
