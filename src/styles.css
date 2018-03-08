@@ -372,7 +372,7 @@ body{
 .card-header{
   padding:5pt;
   text-align: center;
-  background-color:darkgray;
+  background-color:#6c757d;
   color:white;
 }
 
@@ -597,6 +597,11 @@ li::before {
     background-color: rgba(0,0,0,0.05);
     color: black;
     padding-left: 15pt;
+}
+.model-card>.card-body{
+  padding: 2pt;
+  padding-top: 5pt;
+  padding-bottom: 0pt;
 }
 
 .link>span>i{

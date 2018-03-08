@@ -106,8 +106,7 @@
                 </div>
             </div>
             <div class="col-2 dd-col">
-                    <ss-multiselect-dropdown [options]="properties.brands" [texts]="brandTexts" [settings]="dropdownSettings"
-                    [(ngModel)]="data.brand"></ss-multiselect-dropdown>
+                <ss-multiselect-dropdown [options]="properties.brands" [texts]="brandTexts" [settings]="dropdownSettings" [(ngModel)]="data.brand"></ss-multiselect-dropdown>
             </div>
             <div class="col-2 dd-col">
                 <div class="btn-group w-100">
@@ -122,7 +121,8 @@
                 </div>
             </div>
             <div class="col-2 dd-col">
-                <button class="btn btn-success w-100 h-100 p-3" type="button" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }" [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">MODIFY SEARCH</button>
+                <button class="btn btn-success w-100 h-100 p-3" type="button" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
+                    [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">MODIFY SEARCH</button>
             </div>
         </div>
         <div class="row text-center">
@@ -176,7 +176,7 @@
     <div class="row" *ngIf="properties.results && properties.results.length > 0">
         <div class="col-4" style="position: relative">
             <div style="position: absolute; bottom: 0; right:12pt">
-                    <a href="javascript:void(0)" (click)="resetFilters()">Reset Filter</a>
+                <a href="javascript:void(0)" (click)="resetFilters()">Reset Filter</a>
             </div>
         </div>
         <div class="col-8">
@@ -186,7 +186,8 @@
                     Sort results by:
                     <div class="btn-group">
                         <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{data.selectedFilter}} <i class="fa fa-angle-down" style="color:rgb(107,172,70)"></i>
+                            {{data.selectedFilter}}
+                            <i class="fa fa-angle-down" style="color:rgb(107,172,70)"></i>
                         </button>
                         <div class="dropdown-menu">
                             <span (click)="sort(filterName) " *ngFor="let filterName of properties.filters" class="dropdown-item">{{filterName}}</span>
@@ -198,19 +199,24 @@
     </div>
     <div class="row" *ngIf="properties.results && properties.results.length > 0">
         <div class="col-4">
-            <div class="row" *ngIf="properties.filteredResults && properties.filteredResults.length > 0">
+            <div class="row">
                 <div class="col-12">
                     <div class="card m-1">
                         <div class="card-header">
                             Price
                         </div>
-                        <div class="card-body filter-body p-3" id="priceSlider">
-                            <mat-slider [min]="properties.priceFilter.min" [max]="properties.priceFilter.max" (change)="applyFilters(true, false)" [(ngModel)]="properties.priceFilter.current"></mat-slider>
-                            <div class="row">
-                                <div class="col-4 text-left"></div>
-                                <div class="col-8 text-right">
-                                    <b>Max price:</b> {{properties.priceFilter.current | currency:'R'}}
+                        <div class="card-body filter-body p-2" id="priceSlider">
+                            <div *ngIf="properties.filteredResults && properties.filteredResults.length > 0">
+                                <mat-slider [min]="properties.priceFilter.min" [max]="properties.priceFilter.max" (change)="applyFilters(true, false, true)" [(ngModel)]="properties.priceFilter.current"></mat-slider>
+                                <div class="row">
+                                    <div class="col-4 text-left"></div>
+                                    <div class="col-8 text-right">
+                                        <b>Max price:</b> {{properties.priceFilter.current | currency:'R'}}
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="text-center" *ngIf="!properties.filteredResults || properties.filteredResults.length == 0">
+                                N/A
                             </div>
                         </div>
                     </div>
@@ -222,15 +228,15 @@
                         <div class="card-header">
                             Type
                         </div>
-                        <div class="card-body results-table filter-body">
+                        <div class="card-body results-table filter-body p-2">
                             <div class="w-50 radio radio-success float-left">
-                                <input id="typeRegular" type="radio" [checked]="data.tyreType == 'regular'" (click)="update('tyreType', 'regular'); applyFilters(true, true)">
+                                <input id="typeRegular" type="radio" [checked]="data.tyreType == 'regular'" (click)="update('tyreType', 'regular'); applyFilters(true, true, true)">
                                 <label for="typeRegular">
                                     Regular
                                 </label>
                             </div>
                             <div class="w-50 radio radio-success float-left">
-                                <input id="typeRunFlat" type="radio" [checked]="data.tyreType =='runFlat'" (click)="update('tyreType', 'runFlat'); applyFilters(true, true)">
+                                <input id="typeRunFlat" type="radio" [checked]="data.tyreType =='runFlat'" (click)="update('tyreType', 'runFlat'); applyFilters(true, true , true)">
                                 <label for="typeRunFlat">
                                     Run Flat
                                 </label>
@@ -245,8 +251,8 @@
                         <div class="card-header">
                             Retailer
                         </div>
-                        <div class="card-body results-table filter-body">
-                            <div class="w-50 float-left" *ngFor="let retailer of properties.retailers; let i = index">
+                        <div class="card-body results-table filter-body p-2">
+                            <div class="w-50 float-left" *ngFor="let retailer of properties.retailers; let i = index" [hidden]="!retailer.visible">
                                 <div class="checkbox checkbox-success float-left">
                                     <input id="retailer{{retailer.id}}" type="checkbox" [checked]="retailer.checked" (change)="toggleRetailer(retailer)">
                                     <label for="retailer{{retailer.id}}">
@@ -255,7 +261,7 @@
                                 </div>
                             </div>
                             <div class="text-center" *ngIf="properties.retailers.length == 0">
-                                No Results
+                                N/A
                             </div>
                         </div>
                     </div>
@@ -267,19 +273,22 @@
                         <div class="card-header">
                             Model
                         </div>
-                        <div class="card-body filter-body">
-                            <div class="card model-card m-1" *ngFor="let brand of properties.models">
-                                <div class="card-header text-left">{{brand.brand}}</div>
-                                <div class="card-body results-table filter-body">
-                                        <div class="w-100 float-left" *ngFor="let model of brand.models; let i = index">
-                                            <div class="checkbox checkbox-success float-left">
-                                                <input id="{{brand.brand}}_model_{{model.id}}" type="checkbox" [checked]="model.checked" (change)="togglelModel(model)">
-                                                <label for="{{brand.brand}}_model_{{model.id}}">
-                                                        {{model.modelName}}
-                                                </label>
-                                            </div>
+                        <div class="card-body results-table filter-body p-2">
+                            <div class="card model-card m-1" [hidden]="!properties.filteredResults || properties.filteredResults.length == 0" *ngFor="let brand of properties.models">
+                                <div class="card-header text-left"><b>{{brand.brand}}</b></div>
+                                <div class="card-body">
+                                    <div class="w-100 float-left" *ngFor="let model of brand.models; let i = index">
+                                        <div class="checkbox checkbox-success float-left">
+                                            <input id="{{brand.brand}}_model_{{model.id}}" type="checkbox" [checked]="model.checked" (change)="togglelModel(model)">
+                                            <label for="{{brand.brand}}_model_{{model.id}}">
+                                                {{model.modelName}}
+                                            </label>
                                         </div>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="text-center" *ngIf="!properties.filteredResults || properties.filteredResults.length == 0">
+                                N/A
                             </div>
                         </div>
                     </div>
@@ -404,42 +413,42 @@
 </ng-template>
 
 <ng-template #searchLocationModal let-c="close" let-d="dismiss">
-        <div class="modal-header">
-            <h4 class="modal-title custom">Location</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body custom-lite custom">
-            <div class="card" *ngFor="let location of properties.locations">
-                <div class="card-header">
-                    <div class="row">
-                            <div class="col-2">
-                                    <div class="checkbox checkbox-success checkbox-adjust">
-                                        <input id="{{location.name}}" type="checkbox" [checked]="location.checked" (change)="topLevelCheck(location)">
-                                        <label for="{{location.name}}">
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-8" (click)="location.collapsed = !location.collapsed" style="cursor: pointer;">
-                                    {{location.name}}
-                                </div>
+    <div class="modal-header">
+        <h4 class="modal-title custom">Location</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body custom-lite custom">
+        <div class="card" *ngFor="let location of properties.locations">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-2">
+                        <div class="checkbox checkbox-success checkbox-adjust">
+                            <input id="{{location.name}}" type="checkbox" [checked]="location.checked" (change)="topLevelCheck(location)">
+                            <label for="{{location.name}}">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-8" (click)="location.collapsed = !location.collapsed" style="cursor: pointer;">
+                        {{location.name}}
                     </div>
                 </div>
-                <div class="card-body" [hidden]="location.collapsed">
-                        <div class="checkbox checkbox-success w-50 float-left" *ngFor="let sublocation of location.sub_locations">
-                                <input id="{{sublocation.name}}" type="checkbox" [checked]="sublocation.checked" (change)="lowLevelCheck(location, sublocation)">
-                                <label for="{{sublocation.name}}">
-                                    {{sublocation.name}}
-                                </label>
-                            </div>
-                            <div class="text-center" [hidden]="location.sub_locations.length > 0">
-                                    None Currently
-                                </div>
+            </div>
+            <div class="card-body" [hidden]="location.collapsed">
+                <div class="checkbox checkbox-success w-50 float-left" *ngFor="let sublocation of location.sub_locations">
+                    <input id="{{sublocation.name}}" type="checkbox" [checked]="sublocation.checked" (change)="lowLevelCheck(location, sublocation)">
+                    <label for="{{sublocation.name}}">
+                        {{sublocation.name}}
+                    </label>
+                </div>
+                <div class="text-center" [hidden]="location.sub_locations.length > 0">
+                    None Currently
                 </div>
             </div>
         </div>
-        <div class="modal-footer">
-                <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Done</button>
-              </div>
-    </ng-template>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Done</button>
+    </div>
+</ng-template>

@@ -224,7 +224,7 @@ export class SearchComponent {
       set(this.properties, 'loading', false);
       set(this.properties, 'results', this.performSearch());
       set(this.properties, 'filteredResults', (this.properties.results));  /* Copy of full results */
-      this.applyFilters(true, true);
+      this.applyFilters(true, true, true);
     }, 2000);
   };
 
@@ -245,10 +245,10 @@ export class SearchComponent {
   resetFilters = () => {
     set(this.data, 'tyreType', 'regular');
     set(this.data, 'selectedFilter', 'Price: Low to High');
-    this.applyFilters(true, true);
+    this.applyFilters(true, true, true);
   }
 
-  applyFilters = (initRetailers: boolean, initPriceFilter: boolean) => {  /* Apply side filters */
+  applyFilters = (initRetailers: boolean, initPriceFilter: boolean, initModels?: boolean) => {  /* Apply side filters */
     this.properties.filteredResults = get(this.properties, 'results', []).filter((e, i) => {
       let matchesFilter = ((this.data.tyreType == 'regular' && !e.runFlat) || (this.data.tyreType == 'runFlat' && e.runFlat));  /* Tyre type filter */
       return matchesFilter;
@@ -257,9 +257,7 @@ export class SearchComponent {
     if (initRetailers) {
       this.setRetailers();
     }
-    //if (initRetailers) {
-      this.setModels();
-    //}
+    
     this.properties.filteredResults = get(this.properties, 'filteredResults', []).filter((e, i) => {  /* Only show checked retailers */
       let retailer = get(this.properties, 'retailers', []).filter(r => r.name === e.partner)[0];
       return retailer.checked;
@@ -270,6 +268,9 @@ export class SearchComponent {
     this.properties.filteredResults = get(this.properties, 'filteredResults', []).filter((e, i) => {  /* Only show checked retailers */
       return parseFloat(e.totalPrice) <= parseFloat(get(this.properties, 'priceFilter.current', '100000000'))
     });
+    if (initModels) { /* Only show checked model */
+      this.setModels();
+    }
     this.checkSelect(null);
   }
 
@@ -324,19 +325,26 @@ export class SearchComponent {
 
   setRetailers = () => {
     let retailers = [];
-    set(this, 'data.retailers', []);
     let i = 0;
-    this.properties.filteredResults.forEach(e => {
-      if (retailers.indexOf(e.partner) == -1) {
-        let model = {
-          'name': e.partner,
-          'id': i++,
-          'checked': true,
+    if (get(this, 'properties.retailers') == undefined) {
+      set(this, 'properties.retailers', []);
+      this.properties.results.forEach(e => {
+        if (retailers.indexOf(e.partner) == -1) {
+          let model = {
+            'name': e.partner,
+            'id': i++,
+            'checked': true,
+            'visible': this.properties.filteredResults.filter(r => r.partner == e.partner).length > 0,
+          }
+          retailers.push(model);
         }
-        retailers.push(model);
-      }
-    });
-    set(this.properties, 'retailers', retailers);
+      });
+      set(this.properties, 'retailers', retailers);
+    } else {
+      this.properties.retailers.forEach(e => {
+        e.visible = this.properties.filteredResults.filter(r => r.partner == e.name).length > 0;
+      });
+    }
   }
 
   performSearch = () => {
@@ -395,7 +403,12 @@ export class SearchComponent {
 
   toggleRetailer = (retailer) => {
     retailer.checked = !retailer.checked;
-    this.applyFilters(false, true);
+    this.applyFilters(false, true, true);
+  };
+
+  togglelModel = (model) => {
+    model.checked = !model.checked;
+    this.applyFilters(true, true, false);
   };
 
   update = (property, value) => {
