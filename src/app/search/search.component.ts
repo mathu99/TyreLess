@@ -218,7 +218,7 @@ export class SearchComponent {
   }
 
   search = () => {
-    get(this, 'properties.retailers', undefined);
+    set(this, 'properties.retailers', undefined);
     set(this, 'properties.models', undefined);
     set(this.properties, 'loading', true);
     set(this.properties, 'results', null);
@@ -299,7 +299,7 @@ export class SearchComponent {
     if (get(this, 'properties.models') === undefined) {
       let models = [];
       set(this, 'properties.models', []);
-      this.properties.filteredResults.forEach(e => {
+      this.properties.results.forEach(e => {
         let obj = {
           brand: e.brand,
           models: [],
@@ -309,7 +309,7 @@ export class SearchComponent {
             id: 0,
             modelName: e.tyreModel,
             checked: true,
-            visible: true,
+            visible: this.properties.filteredResults.filter(r => r.tyreModel == e.tyreModel).length > 0,
           })
           set(obj, 'visible', obj.models.filter(o => o.visible).length > 0);
           models.push(obj);
@@ -374,7 +374,7 @@ export class SearchComponent {
   }
 
   performSearch = () => {
-    return get(this, 'searchableContent.records', []).filter(e => {
+    return get(this, 'searchableContent.records', []).filter((e, i) => {
       let matches = e.vehicleType == get(this.data, 'selected')
         && e.wheelSize == get(this.data, 'size')
       // &&  e.tyreProfile == get(this.data, 'tyreProfile')
@@ -417,7 +417,10 @@ export class SearchComponent {
         e.totalPrice = (parseFloat(e.totalPrice) + parseFloat(get(e, 'partnerDetails.wheelBalancingPrice', '0'))).toString();
       }
       return e;
-    })
+    }).map((e, i) => {
+      e.index = i;
+      return e;
+    });
   };
 
   checkSelect = (result) => {

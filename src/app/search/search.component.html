@@ -260,7 +260,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="text-center" *ngIf="properties.retailers.length == 0">
+                            <div class="text-center" *ngIf="!properties.retailers || properties.retailers.length == 0">
                                 N/A
                             </div>
                         </div>
@@ -351,8 +351,8 @@
                             </a>
                             <div class="text-center p-2">
                                 <div class="checkbox checkbox-success select-box rounded">
-                                    <input id="select_{{result.brand}}" type="checkbox" [checked]="result.contactMe" (change)="checkSelect(result)">
-                                    <label for="select_{{result.brand}}">
+                                    <input id="select_{{result.index}}" type="checkbox" [checked]="result.contactMe" (change)="checkSelect(result)">
+                                    <label for="select_{{result.index}}">
                                         SELECT
                                     </label>
                                 </div>
