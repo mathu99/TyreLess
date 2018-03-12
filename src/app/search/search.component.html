@@ -207,7 +207,7 @@
                         </div>
                         <div class="card-body filter-body p-2" id="priceSlider">
                             <div *ngIf="properties.filteredResults && properties.filteredResults.length > 0">
-                                <mat-slider [min]="properties.priceFilter.min" [max]="properties.priceFilter.max" (change)="applyFilters(true, false, true)" [(ngModel)]="properties.priceFilter.current"></mat-slider>
+                                <mat-slider [min]="properties.priceFilter.min" [max]="properties.priceFilter.max" (change)="applyFilters('price')" [(ngModel)]="properties.priceFilter.current"></mat-slider>
                                 <div class="row">
                                     <div class="col-4 text-left"></div>
                                     <div class="col-8 text-right">
@@ -230,13 +230,13 @@
                         </div>
                         <div class="card-body results-table filter-body p-2">
                             <div class="w-50 radio radio-success float-left">
-                                <input id="typeRegular" type="radio" [checked]="data.tyreType == 'regular'" (click)="update('tyreType', 'regular'); applyFilters(true, true, true)">
+                                <input id="typeRegular" type="radio" [checked]="data.tyreType == 'regular'" (click)="update('tyreType', 'regular'); applyFilters('type')">
                                 <label for="typeRegular">
                                     Regular
                                 </label>
                             </div>
                             <div class="w-50 radio radio-success float-left">
-                                <input id="typeRunFlat" type="radio" [checked]="data.tyreType =='runFlat'" (click)="update('tyreType', 'runFlat'); applyFilters(true, true , true)">
+                                <input id="typeRunFlat" type="radio" [checked]="data.tyreType =='runFlat'" (click)="update('tyreType', 'runFlat'); applyFilters('type')">
                                 <label for="typeRunFlat">
                                     Run Flat
                                 </label>
@@ -274,10 +274,10 @@
                             Model
                         </div>
                         <div class="card-body results-table filter-body p-2">
-                            <div class="card model-card m-1" [hidden]="!properties.filteredResults || properties.filteredResults.length == 0" *ngFor="let brand of properties.models">
+                            <div class="card model-card m-1" [hidden]="!properties.models || properties.models.length == 0" *ngFor="let brand of properties.models" [hidden]="!brand.visible">
                                 <div class="card-header text-left"><b>{{brand.brand}}</b></div>
                                 <div class="card-body">
-                                    <div class="w-100 float-left" *ngFor="let model of brand.models; let i = index">
+                                    <div class="w-100 float-left" *ngFor="let model of brand.models; let i = index" [hidden]="!model.visible">
                                         <div class="checkbox checkbox-success float-left">
                                             <input id="{{brand.brand}}_model_{{model.id}}" type="checkbox" [checked]="model.checked" (change)="togglelModel(model)">
                                             <label for="{{brand.brand}}_model_{{model.id}}">
@@ -287,7 +287,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-center" *ngIf="!properties.filteredResults || properties.filteredResults.length == 0">
+                            <div class="text-center" *ngIf="!properties.models || properties.models.length == 0">
                                 N/A
                             </div>
                         </div>

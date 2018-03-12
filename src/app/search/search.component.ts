@@ -218,13 +218,15 @@ export class SearchComponent {
   }
 
   search = () => {
+    get(this, 'properties.retailers', undefined);
+    set(this, 'properties.models', undefined);
     set(this.properties, 'loading', true);
     set(this.properties, 'results', null);
     setTimeout(() => {
       set(this.properties, 'loading', false);
       set(this.properties, 'results', this.performSearch());
       set(this.properties, 'filteredResults', (this.properties.results));  /* Copy of full results */
-      this.applyFilters(true, true, true);
+      this.applyFilters();
     }, 2000);
   };
 
@@ -245,32 +247,41 @@ export class SearchComponent {
   resetFilters = () => {
     set(this.data, 'tyreType', 'regular');
     set(this.data, 'selectedFilter', 'Price: Low to High');
-    this.applyFilters(true, true, true);
+    set(this, 'properties.retailers', undefined);
+    set(this, 'properties.models', undefined);
+    this.applyFilters();
   }
 
-  applyFilters = (initRetailers: boolean, initPriceFilter: boolean, initModels?: boolean) => {  /* Apply side filters */
+  applyFilters = (calledFrom?: string) => {  /* Apply side filters */
+
     this.properties.filteredResults = get(this.properties, 'results', []).filter((e, i) => {
       let matchesFilter = ((this.data.tyreType == 'regular' && !e.runFlat) || (this.data.tyreType == 'runFlat' && e.runFlat));  /* Tyre type filter */
       return matchesFilter;
     });
+
     this.sort(this.data.selectedFilter || 'Price: Low to High');
-    if (initRetailers) {
-      this.setRetailers();
+
+    if (calledFrom != 'price') {
+      this.applyPriceFilter();
     }
+
+    this.properties.filteredResults = get(this.properties, 'filteredResults', []).filter((e, i) => {  /* Only show results in price range */
+      return parseFloat(e.totalPrice) <= parseFloat(get(this.properties, 'priceFilter.current', '100000000'))
+    });
+
+    this.setRetailers();
     
     this.properties.filteredResults = get(this.properties, 'filteredResults', []).filter((e, i) => {  /* Only show checked retailers */
       let retailer = get(this.properties, 'retailers', []).filter(r => r.name === e.partner)[0];
       return retailer.checked;
     });
-    if (initPriceFilter) {
-      this.applyPriceFilter();
-    }
-    this.properties.filteredResults = get(this.properties, 'filteredResults', []).filter((e, i) => {  /* Only show checked retailers */
-      return parseFloat(e.totalPrice) <= parseFloat(get(this.properties, 'priceFilter.current', '100000000'))
+
+    this.setModels();
+
+    this.properties.filteredResults = get(this.properties, 'filteredResults', []).filter((e, i) => {  
+      let brand = get(this.properties, 'models', []).filter(m => m.brand === e.brand)[0];
+      return brand.models.filter(m => m.modelName == e.tyreModel)[0].checked;
     });
-    if (initModels) { /* Only show checked model */
-      this.setModels();
-    }
     this.checkSelect(null);
   }
 
@@ -285,49 +296,59 @@ export class SearchComponent {
   }
 
   setModels = () => {
-    let models = [];
-    set(this, 'data.models', []);
-    let i = 0;
-    this.properties.filteredResults.forEach(e => {
-      let obj = {
-        brand: e.brand,
-        models: [],
-      };
-      if (models.filter(r => r.brand === e.brand).length == 0) {
-        obj.models.push({
-          id: 0,
-          modelName: e.tyreModel,
-          checked: true,
-        })
-        models.push(obj);
-      } else {
-        models.filter(r => r.brand === e.brand)[0].models.push({
-          id: models.filter(r => r.brand === e.brand)[0].models.length,
-          modelName: e.tyreModel,
-          checked: true,
+    if (get(this, 'properties.models') === undefined) {
+      let models = [];
+      set(this, 'properties.models', []);
+      this.properties.filteredResults.forEach(e => {
+        let obj = {
+          brand: e.brand,
+          models: [],
+        };
+        if (models.filter(r => r.brand === e.brand).length == 0) {
+          obj.models.push({
+            id: 0,
+            modelName: e.tyreModel,
+            checked: true,
+            visible: true,
+          })
+          set(obj, 'visible', obj.models.filter(o => o.visible).length > 0);
+          models.push(obj);
+        } else {
+          models.filter(r => r.brand === e.brand)[0].models.push({
+            id: models.filter(r => r.brand === e.brand)[0].models.length,
+            modelName: e.tyreModel,
+            checked: true,
+            visible: true,
+          });
+        }
+      });
+      models.forEach(e => { /* Alphabetical Sorting */
+        e.models.sort((a, b) => {
+          let textA = a.modelName.toUpperCase();
+          let textB = b.modelName.toUpperCase();
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         });
-      }
-    });
-    models.forEach(e => { /* Alphabetical Sorting */
-      e.models.sort((a, b) => {
-        let textA = a.modelName.toUpperCase();
-        let textB = b.modelName.toUpperCase();
+      });
+      models.sort((a, b) => {
+        let textA = a.brand.toUpperCase();
+        let textB = b.brand.toUpperCase();
         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
       });
-    });
-    models.sort((a, b) => {
-      let textA = a.brand.toUpperCase();
-      let textB = b.brand.toUpperCase();
-      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-    });
-    set(this.properties, 'models', models);
+      set(this.properties, 'models', models);
+    } else {
+      get(this.properties, 'models').forEach(e => {
+        e.models.forEach(m => {
+          m.visible = this.properties.filteredResults.filter(r => r.brand == e.brand && m.modelName == r.tyreModel).length > 0;
+        });
+        e.visible = e.models.filter(r => r.visible).length > 0;
+      });
+    }
   }
 
   setRetailers = () => {
     let retailers = [];
     let i = 0;
     if (get(this, 'properties.retailers') == undefined) {
-      set(this, 'properties.retailers', []);
       this.properties.results.forEach(e => {
         if (retailers.indexOf(e.partner) == -1) {
           let model = {
@@ -338,6 +359,11 @@ export class SearchComponent {
           }
           retailers.push(model);
         }
+      });
+      retailers.sort((a, b) => {
+        let textA = a.name.toUpperCase();
+        let textB = b.name.toUpperCase();
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
       });
       set(this.properties, 'retailers', retailers);
     } else {
@@ -403,12 +429,12 @@ export class SearchComponent {
 
   toggleRetailer = (retailer) => {
     retailer.checked = !retailer.checked;
-    this.applyFilters(false, true, true);
+    this.applyFilters('retailer');
   };
 
   togglelModel = (model) => {
     model.checked = !model.checked;
-    this.applyFilters(true, true, false);
+    this.applyFilters('model');
   };
 
   update = (property, value) => {
