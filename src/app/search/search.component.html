@@ -380,7 +380,34 @@
 
 <footer class="footer sticky-footer" [hidden]="!properties.showContactMe">
     <div class="container">
-        <button class="btn btn-success h-100 custom" id="contactMeBtn" type="button" ngbTooltip="A sales representative from the vendor(s) will be in touch to follow up with you on this deal">CONTACT ME ></button>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <div class="text-center font-weight-bold m-2">
+                    Please enter your contact details and our Partners will contatct you regarding your selected deals
+                </div>
+                <form name="searchResultsContact" #searchResultsContact="ngForm">
+                    <div class="row">
+                        <div class="col-3 p-1">
+                                <input id="searchContactName" name="searchContactName" type="text" class="form-control" placeholder="Name" [(ngModel)]="data.getContacted.name"
+                                required />
+                        </div>
+                        <div class="col-3 p-1">
+                                <input id="searchMobileNumber" name="searchMobileNumber" type="text" class="form-control" pattern="[0-9]*" minlength="10" maxlength="10" placeholder="Mobile Number" [(ngModel)]="data.getContacted.mobile"
+                                required />
+                        </div>
+                        <div class="col-3 p-1">
+                                <input id="searchEmail" name="searchEmail" type="text" class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="Email Address" [email]="true" [(ngModel)]="data.getContacted.email"
+                                required />
+                        </div>
+                        <div class="col-3 p-1">
+                            <button class="btn btn-success h-100 w-100 custom" id="contactMeBtn" type="button" [disabled]="!searchResultsContact.form.valid">CONTACT ME ></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-1"></div>
+        </div>
     </div>
 </footer>
 

@@ -61,7 +61,7 @@
                             <label for="contactUsEmail">Email:</label>
                         </div>
                         <div class="col-8">
-                            <input for="contactUsEmail" name="contactUsEmail" type="email" class="form-control" placeholder="name@example.com" [email]="true"
+                            <input for="contactUsEmail" name="contactUsEmail" type="email" class="form-control"  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="name@example.com" [email]="true"
                                 [(ngModel)]="data.email" required/>
                         </div>
                     </div>

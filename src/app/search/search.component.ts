@@ -3,6 +3,7 @@ import { CurrencyPipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { get, set, assign } from 'lodash';
+import { EmailValidator } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
@@ -35,6 +36,7 @@ export class SearchComponent {
   };
   data = <any>{
     tyreType: 'regular',
+    getContacted: <any> {},
   };
   searchableContent = <any>{};
   partners = <any>{};
@@ -63,6 +65,10 @@ export class SearchComponent {
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
   }
+
+  submitContactForm = (): void => {
+    
+  };
 
   open(content) {
     this.modalService.open(content).result.then((result) => {
@@ -311,7 +317,6 @@ export class SearchComponent {
             checked: true,
             visible: this.properties.filteredResults.filter(r => r.tyreModel == e.tyreModel).length > 0,
           })
-          set(obj, 'visible', obj.models.filter(o => o.visible).length > 0);
           models.push(obj);
         } else {
           models.filter(r => r.brand === e.brand)[0].models.push({
@@ -323,6 +328,7 @@ export class SearchComponent {
         }
       });
       models.forEach(e => { /* Alphabetical Sorting */
+        set(e, 'visible', e.models.filter(o => o.visible).length > 0);
         e.models.sort((a, b) => {
           let textA = a.modelName.toUpperCase();
           let textB = b.modelName.toUpperCase();
