@@ -120,7 +120,7 @@ export class HomeComponent {
   constructor(private http: Http, private modalService: NgbModal) {
     this.http.get('environments/config.development.json').subscribe(res => {
       this.properties = res.json().properties;
-      this.topLevelCheck(this.properties.locations[2]); /* Check all of Gauteng for demo purposes */
+      // this.topLevelCheck(this.properties.locations[2]); /* Check all of Gauteng for demo purposes */
       this.properties.brands = this.properties.brands.map((e, i) => {
         return <IMultiSelectOption> {
           id: i,

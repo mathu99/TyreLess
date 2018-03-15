@@ -206,12 +206,14 @@
                             Price
                         </div>
                         <div class="card-body filter-body p-2" id="priceSlider">
-                            <div *ngIf="properties.filteredResults && properties.filteredResults.length > 0">
+                            <div *ngIf="properties.filteredResults && properties.filteredResults.length > 0" class="p-2">
                                 <mat-slider [min]="properties.priceFilter.min" [max]="properties.priceFilter.max" (change)="applyFilters('price')" [(ngModel)]="properties.priceFilter.current"></mat-slider>
                                 <div class="row">
-                                    <div class="col-4 text-left"></div>
-                                    <div class="col-8 text-right">
-                                        <b>Max price:</b> {{properties.priceFilter.current | currency:'R'}}
+                                    <div class="col-6 text-left">
+                                        <b>Min:</b> {{properties.priceFilter.min | currency:'R'}}
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <b>Max:</b> {{properties.priceFilter.max | currency:'R'}}
                                     </div>
                                 </div>
                             </div>
@@ -384,7 +386,7 @@
             <div class="col-1"></div>
             <div class="col-10">
                 <div class="text-center font-weight-bold m-2">
-                    Please enter your contact details and our Partners will contatct you regarding your selected deals
+                    Please enter your details and our Partners will contatct you regarding your selected deals
                 </div>
                 <form name="searchResultsContact" #searchResultsContact="ngForm">
                     <div class="row">
@@ -488,7 +490,7 @@
             </button>
         </div>
         <div class="modal-body custom-lite text-center">
-            Thanks! Your details have been submitted and our Partners will contatct you regarding your selected deals soon
+            Thanks! Your details have been submitted and our Partners will be in touch shortly
         </div>
         <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>

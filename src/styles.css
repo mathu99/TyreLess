@@ -362,7 +362,7 @@
 }
 
 body{
-  background-color: rgb(247,247,247);
+  background-color:white;
 }
 
 .page-card-deck{
@@ -372,8 +372,8 @@ body{
 .card-header{
   padding:5pt;
   text-align: center;
-  background-color:#6c757d;
-  color:white;
+  /* background-color:#6c757d;
+  color:white; */
 }
 
 .strong{
@@ -458,11 +458,11 @@ h4{
 }
 
 html{
-    background-color: rgb(247,247,247);
+    background-color:white;
 }
 
 .jumbotron{
-    background-color: rgb(247,247,247);
+    background-color:white;
     margin-bottom: 0 !important;
 }
   
@@ -584,12 +584,25 @@ li::before {
   }
 
   .link>span:hover, .linkSelected{
-      border-bottom: 1.5pt solid rgb(107,172,70);
+      border-bottom: 1.8pt solid black;
       cursor:pointer;
   }
 
   .link>span{
     padding:5pt;
+}
+
+.modal-header{
+  color:white;
+  background-color:rgb(107,172,70);
+}
+
+.close{
+  cursor: pointer;
+}
+
+.close, .close:focus, .close:hover{
+  color:white;
 }
 
 .model-card>.card-header{
