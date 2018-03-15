@@ -401,7 +401,7 @@
                                 required />
                         </div>
                         <div class="col-3 p-1">
-                            <button class="btn btn-success h-100 w-100 custom" id="contactMeBtn" type="button" [disabled]="!searchResultsContact.form.valid">CONTACT ME ></button>
+                            <button class="btn btn-success h-100 w-100 custom" id="contactMeBtn" type="button" [disabled]="!searchResultsContact.form.valid" (click)="submitContactForm()">CONTACT ME ></button>
                         </div>
                     </div>
                 </form>
@@ -476,6 +476,21 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Done</button>
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Done</button>
     </div>
 </ng-template>
+
+<ng-template #contactFormModal let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title custom">Details submitted</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body custom-lite text-center">
+            Thanks! Your details have been submitted and our Partners will contatct you regarding your selected deals soon
+        </div>
+        <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+            </div>
+    </ng-template>

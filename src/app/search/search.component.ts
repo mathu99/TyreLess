@@ -21,6 +21,8 @@ import {
 export class SearchComponent {
   @ViewChild('content') private content;
   @ViewChild('searchLocationModal') private locationModal;
+  @ViewChild('contactFormModal') private contactFormModal;
+  
   constructor(
     private route: ActivatedRoute,
     private router: Router, private http: Http, private modalService: NgbModal) { this.http = http }
@@ -67,7 +69,13 @@ export class SearchComponent {
   }
 
   submitContactForm = (): void => {
-    
+    this.open(this.contactFormModal);
+    this.data.getContacted = <any>{};
+    this.properties.filteredResults.forEach(e => {
+      if (e.contactMe === true) {
+        this.checkSelect(e);
+      }
+    });
   };
 
   open(content) {
