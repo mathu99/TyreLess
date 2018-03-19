@@ -41,7 +41,7 @@
       height: 16px;
       left: 0;
       top: 0;
-      margin-left: -20px;
+      margin-left: -22px;
       padding-left: 3px;
       padding-top: 1px;
       font-size: 11px;
@@ -297,6 +297,14 @@
   text-align: center;
   z-index: 1;
 }
+
+#searchButton{
+  max-height: 45pt;
+  padding: 8pt;
+  font-size: 16pt;
+  box-shadow:3px 3px 4px rgba(0,0,0,0.3);
+  text-shadow:2px 2px 3px rgba(0,0,0,0.3);
+}
 #contactMeBtn{
   padding-left: 20pt;
   padding-right: 20pt;
@@ -432,6 +440,7 @@ body{
     box-shadow:3px 3px 4px rgba(0,0,0,0.3);
     background-color: white;
     color:rgb(107,172,70);
+    text-shadow:2px 2px 3px rgba(0,0,0,0.3);
   }
 
   .round-btn:hover{
@@ -471,8 +480,8 @@ html{
   }
 
   a{
-    cursor: pointer !important;
-    color:rgb(107,172,70) !important;
+    cursor: pointer;
+    color:rgb(107,172,70);
   }
   a:hover{
     color:rgb(81, 153, 40);
@@ -508,12 +517,12 @@ li::before {
     position: relative;
     background-size: cover;
     border:none;
-    background: -moz-linear-gradient(top, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.9) 100%), url("/assets/checkered-flag.jpg") repeat 0 0;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.9)), color-stop(100%,rgba(255,255,255,0.9))), url("/assets/checkered-flag.jpg") repeat 0 0;
-    background: -webkit-linear-gradient(top, rgba(255,255,255,0.9) 0%,rgba(255,255,255,0.9) 100%), url("/assets/checkered-flag.jpg") repeat 0 0;
-    background: -o-linear-gradient(top, rgba(255,255,255,0.9) 0%,rgba(255,255,255,0.9) 100%), url("/assets/checkered-flag.jpg") repeat 0 0;
-    background: -ms-linear-gradient(top, rgba(255,255,255,0.9) 0%,rgba(255,255,255,0.9) 100%), url("/assets/checkered-flag.jpg") repeat 0 0;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%,rgba(255,255,255,0.9) 100%), url("/assets/checkered-flag.jpg") repeat 0 0;
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.85) 100%), url("/assets/checkered-flag.jpg") repeat 0 0;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.85)), color-stop(100%,rgba(255,255,255,0.85))), url("/assets/checkered-flag.jpg") repeat 0 0;
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0.85) 0%,rgba(255,255,255,0.85) 100%), url("/assets/checkered-flag.jpg") repeat 0 0;
+    background: -o-linear-gradient(top, rgba(255,255,255,0.85) 0%,rgba(255,255,255,0.85) 100%), url("/assets/checkered-flag.jpg") repeat 0 0;
+    background: -ms-linear-gradient(top, rgba(255,255,255,0.85) 0%,rgba(255,255,255,0.85) 100%), url("/assets/checkered-flag.jpg") repeat 0 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.85) 0%,rgba(255,255,255,0.85) 100%), url("/assets/checkered-flag.jpg") repeat 0 0;
     background-size:100%;
   }
 
@@ -585,7 +594,7 @@ li::before {
   }
 
   .link>span:hover, .linkSelected{
-      border-bottom: 1.8pt solid black;
+      border-bottom: 2pt solid black;
       cursor:pointer;
   }
 
@@ -618,6 +627,13 @@ li::before {
   padding-bottom: 0pt;
 }
 
+.link{
+  font-weight: 400;
+  font-size: 0.9rem;
+  padding-right: 0;
+  padding-left: 0;
+}
+
 .link>span>i{
     margin-right:3pt;
 }
@@ -633,8 +649,9 @@ li::before {
   section.information{
     padding:15pt;
     line-height: 15pt;
-    background-color: darkgray;
+    background-color: gray;
     color:white;
+    font-size:14pt;
   }
   section.information>p{
     margin:0;
@@ -648,8 +665,8 @@ li::before {
 }
   
   .brand-img{
-    max-height: 60pt;
-    max-width: 60pt;
+    max-height: 70pt;
+    max-width: 70pt;
   }
   
   .site-footer{
@@ -781,6 +798,10 @@ li::before {
   }
 
   @media (max-width:768px) {
+
+    .checkbox label::after {
+      margin-left: -21px;
+    }
 
     .checkbox-adjust{
       padding-left: 0px;

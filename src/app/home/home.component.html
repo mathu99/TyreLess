@@ -23,44 +23,47 @@
 <div class="jumbotron hero custom" id="homePage">
     <div class="container hide-from-mobile">
         <div class="text-right">
-            <h5 [ngx-scroll-to]="'#contactUs'" [ngx-scroll-to-offset]="0">
-                <a>CONTACT US</a>
-            </h5>
+            <h4>
+                <a class="ml-auto" [ngx-scroll-to]="'#contactUs'" [ngx-scroll-to-offset]="0">
+                    <span class="nav-right-text text-success">CONTACT US</span>
+                </a>
+            </h4>
         </div>
         <div class="row" *ngIf="data">
             <div class="get-it" in-viewport (inViewportAction)="setNavBarVisibility($event)">
                 <h1 class="text-center">TyreLess<span class="txt-green">.co.za</span></h1>
                 <h4 class="text-center">Search - Select - Save</h4>
                 <br>
-                <br>
-                <div class="row text-left">
-                    <div class="col-2">
+                <div class="row text-left" style="max-width:800pt; margin:0 auto">
+                    <div class="col-1">
                     </div>
-                    <div class="col-8">
+                    <div class="col-10">
                         <div class="row">
-                            <div class="col-3 link" (click)="update('selected','Car')">
+                            <div class="col-2"></div>
+                            <div class="col-2 link" (click)="update('selected','Car')">
                                 <span [ngClass]="{linkSelected : data.selected == 'Car'}">
                                     <img src="../../assets/Car.png" class="vehicle-icon" />CAR
                                 </span>
                             </div>
-                            <div class="col-3 link" (click)="update('selected','4x4 / SUV')">
+                            <div class="col-2 link" (click)="update('selected','4x4 / SUV')">
                                 <span [ngClass]="{linkSelected : data.selected == '4x4 / SUV'}">
                                     <img src="../../assets/4x4_SUV.png" class="vehicle-icon" />4x4 / SUV
                                 </span>
                             </div>
-                            <div class="col-3 link" (click)="update('selected','Bike')">
+                            <div class="col-2 link" (click)="update('selected','Bike')">
                                 <span [ngClass]="{linkSelected : data.selected == 'Bike'}">
                                     <img src="../../assets/Bike.png" class="vehicle-icon" />BIKE
                                 </span>
                             </div>
-                            <div class="col-3 link" (click)="update('selected','Commercial')">
+                            <div class="col-2 link" (click)="update('selected','Commercial')">
                                 <span [ngClass]="{linkSelected : data.selected == 'Commercial'}">
                                     <img src="../../assets/Commercial.png" class="vehicle-icon" />COMMERCIAL
                                 </span>
                             </div>
+                            <div class="col-2"></div>
                         </div>
                     </div>
-                    <div class="col-2"></div>
+                    <div class="col-1"></div>
                 </div>
                 <br>
                 <div class="row text-left">
@@ -195,32 +198,32 @@
                 <br>
                 <br>
                 <div class="row">
-                    <div class="col-5"></div>
-                    <div class="col-2 text-center">
-                        <button [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
+                    <div class="col-4" style="max-height:12pt"></div>
+                    <div class="col-4 text-center">
+                        <button id="searchButton" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
                             class="btn btn-success w-100 p-3" type="button" [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">SEARCH</button>
                     </div>
-                    <div class="col-5"></div>
+                    <div class="col-4"></div>
                 </div>
                 <div class="row circle-links">
                     <div class="col-2"></div>
                     <div class="col-8">
                         <div class="row">
                             <div class="col-3">
-                                <button [ngx-scroll-to]="'#ourOffering'" [ngx-scroll-to-offset]="0" class="btn btn-secondary round-btn" type="button">Our
-                                    <br>Offering</button>
+                                <button [ngx-scroll-to]="'#ourOffering'" [ngx-scroll-to-offset]="0" class="btn btn-secondary round-btn" type="button">OUR
+                                    <br>OFFERING</button>
                             </div>
                             <div class="col-3">
-                                <button [ngx-scroll-to]="'#howItWorks'" [ngx-scroll-to-offset]="-75" class="btn btn-secondary round-btn" type="button">How it
-                                    <br>Works</button>
+                                <button [ngx-scroll-to]="'#howItWorks'" [ngx-scroll-to-offset]="-75" class="btn btn-secondary round-btn" type="button">HOW IT
+                                    <br>WORKS</button>
                             </div>
                             <div class="col-3">
-                                <button [ngx-scroll-to]="'#tyreCare'" [ngx-scroll-to-offset]="-75" class="btn btn-secondary round-btn" type="button">Tyre
-                                    <br>Care</button>
+                                <button [ngx-scroll-to]="'#tyreCare'" [ngx-scroll-to-offset]="-75" class="btn btn-secondary round-btn" type="button">TYRE
+                                    <br>CARE</button>
                             </div>
                             <div class="col-3">
-                                <button [ngx-scroll-to]="'#contactUs'" [ngx-scroll-to-offset]="0" class="btn btn-secondary round-btn" type="button">About
-                                    <br>Us</button>
+                                <button [ngx-scroll-to]="'#contactUs'" [ngx-scroll-to-offset]="0" class="btn btn-secondary round-btn" type="button">ABOUT
+                                    <br>US</button>
                             </div>
                         </div>
                     </div>
@@ -388,44 +391,50 @@
     </section>
     <br>
 <section class="brands hide-from-mobile">
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <div class="row">
-                <div class="col-2">
+            <div class="row w-100">
+                <div class="col-2"></div>
+                <div class="col-1 p-0">
                     <span class="helper">
                     </span>
                     <img src="../assets/Best Drive.jpg" class="brand-img" />
                 </div>
-                <div class="col-2">
+                <div class="col-1 p-0">
                     <span class="helper">
                     </span>
                     <img src="../assets/Speedy.jpg" class="brand-img" />
                 </div>
-                <div class="col-2">
+                <div class="col-1 p-0">
                     <span class="helper">
                     </span>
                     <img src="../assets/Supaquick.jpg" class="brand-img" />
                 </div>
-                <div class="col-2">
+                <div class="col-1 p-0">
                     <span class="helper">
                     </span>
                     <img src="../assets/Tiger Wheel &amp; Tyre.jpg" class="brand-img" />
                 </div>
-                <div class="col-2">
+                <div class="col-1 p-0">
                     <span class="helper">
                     </span>
                     <img src="../assets/Tyremart.jpg" class="brand-img" />
                 </div>
-                <div class="col-2">
+                <div class="col-1 p-0">
                     <span class="helper">
                     </span>
                     <img src="../assets/Tyres &amp; More.jpg" class="brand-img" />
                 </div>
+                <div class="col-1 p-0">
+                        <span class="helper">
+                        </span>
+                        <img src="../assets/Hi-Q.jpg" class="brand-img" />
+                    </div>
+                    <div class="col-1 p-0">
+                        <span class="helper">
+                        </span>
+                        <img src="../assets/Tiger Wheel &amp; Tyre.jpg" class="brand-img" />
+                    </div>
+                    <div class="col-2"></div>
             </div>
-        </div>
-        <div class="col-2"></div>
-    </div>
 </section>
 
 <ng-template #locationModal let-c="close" let-d="dismiss">
