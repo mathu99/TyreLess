@@ -112,7 +112,7 @@ export class SearchComponent {
         locationObj.highLevel = locations[i].name;
         locationObj.lowLevel = lowLevel.map(e => e.name);
         if (lowLevel.length > 1) {
-          locationObj.name = lowLevel.length + ' checked';
+          locationObj.name = lowLevel.length + ' suburbs';
           return locationObj;
         } else if (lowLevel.length == 1) {
           locationObj.name = lowLevel[0].name;

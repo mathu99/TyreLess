@@ -41,7 +41,7 @@
       height: 16px;
       left: 0;
       top: 0;
-      margin-left: -22px;
+      margin-left: -21px;
       padding-left: 3px;
       padding-top: 1px;
       font-size: 11px;
@@ -201,6 +201,10 @@
 .dropdown-item {
   padding: .25rem 0.5rem;
 }
+
+h5{
+  font-size: 1.1rem;
+}
 /*
   Dropdown
 */
@@ -218,17 +222,17 @@
 }
 
 .dd-col{
-  min-height: 35pt;
+  /* min-height: 35pt; */
   padding:1px;
 }
 .dd-left{
-  padding:5pt;
+  /* padding:5pt; */
   font-size:9pt;
   vertical-align: middle;
 }
 .dd-right{
-  line-height:35pt;
-  font-size:20pt;
+  /* line-height:35pt; */
+  font-size:18pt;
   vertical-align: middle;
 }
 .dd-search-text {
@@ -236,9 +240,9 @@
 }
 .dd-caret{
   font-size:15pt;
-  padding-right:5pt;
+  padding-right:8pt;
   text-align: center;
-  line-height: 35pt;
+  /* line-height: 35pt; */
   color:rgb(107,172,70);
 }
 .dd-t-custom::after{
@@ -371,6 +375,7 @@
 
 body{
   background-color:white;
+  font-size: 0.9rem;
 }
 
 .page-card-deck{
@@ -562,7 +567,12 @@ li::before {
     max-width: 120pt;
   }
 
-  .search-select-save-sm{
+  .tyre-care{
+    margin-top:10pt;
+    max-width: 90pt;
+  }
+
+  .tyre-care-sm{
     padding:5pt;
     max-width:60pt;
   }
@@ -651,7 +661,7 @@ li::before {
     line-height: 15pt;
     background-color: gray;
     color:white;
-    font-size:14pt;
+    font-size:1.1rem;
   }
   section.information>p{
     margin:0;
@@ -843,7 +853,7 @@ li::before {
       font-size: 8pt;
     }
     h2{
-      font-size: 40pt;
+      font-size: 2.2rem;
     }
     .txt-green{
       font-size:32pt;

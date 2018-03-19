@@ -24,7 +24,7 @@
     <div class="container hide-from-mobile">
         <div class="text-right">
             <h4>
-                <a class="ml-auto" [ngx-scroll-to]="'#contactUs'" [ngx-scroll-to-offset]="0">
+                <a class="ml-auto font-weight-bold" [ngx-scroll-to]="'#contactUs'" [ngx-scroll-to-offset]="0">
                     <span class="nav-right-text text-success">CONTACT US</span>
                 </a>
             </h4>
@@ -201,7 +201,7 @@
                     <div class="col-4" style="max-height:12pt"></div>
                     <div class="col-4 text-center">
                         <button id="searchButton" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
-                            class="btn btn-success w-100 p-3" type="button" [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">SEARCH</button>
+                            class="btn btn-success w-100" type="button" [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">SEARCH</button>
                     </div>
                     <div class="col-4"></div>
                 </div>
@@ -492,7 +492,7 @@
     </button>
     <div id="navbarSupportedContent" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}" class="nav-right">
         <a class="navbar-brand ml-auto" [ngx-scroll-to]="'#contactUs'" [ngx-scroll-to-offset]="0">
-            <span class="nav-right-text text-success">CONTACT US</span>
+            <h4 class="nav-right-text text-success font-weight-bold">CONTACT US</h4>
         </a>
     </div>
 </nav>
