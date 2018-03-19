@@ -1,4 +1,4 @@
-<nav id="mainNavbar" class="show-on-mobile navbar w-100 navbar-light navbar-fixed-top navbar-expand-lg custom fixed-top">
+<!-- <nav id="mainNavbar" class="show-on-mobile navbar w-100 navbar-light navbar-fixed-top navbar-expand-lg custom fixed-top">
     <a class="navbar-brand" [routerLink]="['/']">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -18,17 +18,17 @@
             <span class="nav-right-text text-success">Tyre Care</span>
         </a>
     </div>
-</nav>
+</nav> -->
 
-<div class="jumbotron hero custom">
+<div class="jumbotron hero custom" id="homePage">
     <div class="container hide-from-mobile">
         <div class="text-right">
-            <h5>
-                <a [routerLink]="['/contactUs']">CONTACT US</a>
+            <h5 [ngx-scroll-to]="'#contactUs'" [ngx-scroll-to-offset]="0">
+                <a>CONTACT US</a>
             </h5>
         </div>
         <div class="row" *ngIf="data">
-            <div class="get-it">
+            <div class="get-it" in-viewport (inViewportAction)="setNavBarVisibility($event)">
                 <h1 class="text-center">TyreLess<span class="txt-green">.co.za</span></h1>
                 <h4 class="text-center">Search - Select - Save</h4>
                 <br>
@@ -207,19 +207,19 @@
                     <div class="col-8">
                         <div class="row">
                             <div class="col-3">
-                                <button [routerLink]="['/ourOffering']" class="btn btn-secondary round-btn" type="button">Our
+                                <button [ngx-scroll-to]="'#ourOffering'" [ngx-scroll-to-offset]="0" class="btn btn-secondary round-btn" type="button">Our
                                     <br>Offering</button>
                             </div>
                             <div class="col-3">
-                                <button [routerLink]="['/howItWorks']" class="btn btn-secondary round-btn" type="button">How it
+                                <button [ngx-scroll-to]="'#howItWorks'" [ngx-scroll-to-offset]="-75" class="btn btn-secondary round-btn" type="button">How it
                                     <br>Works</button>
                             </div>
                             <div class="col-3">
-                                <button [routerLink]="['/tyreCare']" class="btn btn-secondary round-btn" type="button">Tyre
+                                <button [ngx-scroll-to]="'#tyreCare'" [ngx-scroll-to-offset]="-75" class="btn btn-secondary round-btn" type="button">Tyre
                                     <br>Care</button>
                             </div>
                             <div class="col-3">
-                                <button [routerLink]="['/contactUs']" class="btn btn-secondary round-btn" type="button">About
+                                <button [ngx-scroll-to]="'#contactUs'" [ngx-scroll-to-offset]="0" class="btn btn-secondary round-btn" type="button">About
                                     <br>Us</button>
                             </div>
                         </div>
@@ -468,3 +468,22 @@
         <button type="button" class="btn btn-secondary" (click)="c('Close click')">Done</button>
     </div>
 </ng-template>
+
+<our-offering id="ourOffering"></our-offering>
+<how-it-works id="howItWorks"></how-it-works>
+<tyre-care id="tyreCare"></tyre-care>
+<contact-us id="contactUs"></contact-us>
+<br>
+<br>
+<nav id="mainNavbar" class="navbar navbar-light navbar-fixed-top navbar-expand-lg custom fixed-top" [hidden]="!properties.navBarVisible">
+    <a class="navbar-brand" [ngx-scroll-to]="'#homePage'"><span class="nav-logo-left">TyreLess</span><span class="nav-logo-right">.co.za</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapsed()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="navbarSupportedContent" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}" class="nav-right">
+        <a class="navbar-brand ml-auto" [ngx-scroll-to]="'#contactUs'" [ngx-scroll-to-offset]="0">
+            <span class="nav-right-text text-success">CONTACT US</span>
+        </a>
+    </div>
+</nav>

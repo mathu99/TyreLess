@@ -3,7 +3,7 @@ import { EmailValidator } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-contact-us',
+  selector: 'contact-us',
   templateUrl: './contactUs.component.html',
 })
 export class ContactUsComponent {

@@ -70,8 +70,8 @@ var MultiselectDropdown = (function () {
         this.defaultTexts = {
             checkAll: 'Check all',
             uncheckAll: 'Uncheck all',
-            checked: 'checked',
-            checkedPlural: 'checked',
+            checked: 'brand',
+            checkedPlural: 'brands',
             searchPlaceholder: 'Search...',
             searchEmptyResult: 'Nothing found...',
             searchNoRenderText: 'Type in search box to see results...',

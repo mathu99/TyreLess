@@ -13,6 +13,7 @@ import {
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
+
 export class HomeComponent {
   @ViewChild('locationModal') private locationModal;
   properties = null;
@@ -40,6 +41,10 @@ export class HomeComponent {
     defaultTitle: 'Unselected',
     defaultLabel: 'Brand',
   };
+
+  setNavBarVisibility = ($event:any) => {
+    set(this.properties, 'navBarVisible', !$event.value);
+  }
 
   openLocationModal = ():void => {
     this.open(this.locationModal);

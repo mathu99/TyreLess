@@ -6,9 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MatSliderModule } from '@angular/material';
 import { MultiselectDropdownModule } from './dropdown/dropdown.module';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { InViewportModule } from 'ng-in-viewport';
 
 import { routes } from './app.routes';
-import { AboutComponent } from './about/about.component';
 import { AppComponent } from './app.component';
 import { ContactUsComponent } from './contact/contactUs.component';
 import { HomeComponent } from './home/home.component';
@@ -17,6 +18,7 @@ import { OurOfferingComponent } from './ourOffering/ourOffering.component';
 import { SearchComponent } from './search/search.component';
 import { TyreCareComponent } from './tyreCare/tyreCare.component';
 
+import 'intersection-observer';
 
 @NgModule({
   imports: [
@@ -26,10 +28,11 @@ import { TyreCareComponent } from './tyreCare/tyreCare.component';
     MatSliderModule,
     MultiselectDropdownModule,
     RouterModule.forRoot(routes),
+    InViewportModule.forRoot(),
     NgbModule.forRoot(),
+    ScrollToModule.forRoot(),
   ],
   declarations: [
-    AboutComponent,
     AppComponent,
     HomeComponent,
     ContactUsComponent,

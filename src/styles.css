@@ -471,7 +471,8 @@ html{
   }
 
   a{
-    color:rgb(107,172,70);
+    cursor: pointer !important;
+    color:rgb(107,172,70) !important;
   }
   a:hover{
     color:rgb(81, 153, 40);
