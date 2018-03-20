@@ -12,6 +12,11 @@ export class PartnersComponent {
         this.http = http
     }
     properties = <any>{};
+    collapsed = true;
+    
+    toggleCollapsed(): void {
+        this.collapsed = !this.collapsed;
+      }
 
     ngOnInit() {
         this.http.get('environments/config.development.json').subscribe(res => {
