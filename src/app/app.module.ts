@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { ContactUsComponent } from './contact/contactUs.component';
 import { HomeComponent } from './home/home.component';
 import { HowItWorksComponent } from './howItWorks/howItWorks.component';
+import { PartnersComponent } from './partners/partners.component';
 import { OurOfferingComponent } from './ourOffering/ourOffering.component';
 import { SearchComponent } from './search/search.component';
 import { TyreCareComponent } from './tyreCare/tyreCare.component';
@@ -39,6 +40,7 @@ import 'intersection-observer';
     HomeComponent,
     HowItWorksComponent,
     OurOfferingComponent,
+    PartnersComponent,
     SearchComponent,
     TyreCareComponent,
   ],

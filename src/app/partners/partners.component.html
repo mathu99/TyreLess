@@ -1,0 +1,52 @@
+<nav id="mainNavbar" class="navbar navbar-light navbar-fixed-top navbar-expand-lg custom fixed-top">
+    <a class="navbar-brand" [routerLink]="['/']">
+        <span class="nav-logo-left">TyreLess</span><span class="nav-logo-right">.co.za</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapsed()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="navbarSupportedContent" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}" class="nav-right">
+        <a class="navbar-brand ml-auto" [routerLink]="['/contactUs']">
+            <span class="nav-right-text text-success">CONTACT US</span>
+        </a>
+    </div>
+</nav>
+<div class="jumbotron custom header-section">
+    <div class="container">
+        <div class="row">
+            <div class="get-it w-100">
+                <h2 class="text-center">
+                    <b>Our Partners</b>
+                </h2>
+                <h4 class="text-center">View our Partners and their trusted brands</h4>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <h3 class="text-center font-weight-bold">Partners</h3>
+                    <div class="row">
+                        <div class="col-3" *ngFor="let letter of properties.partnerList">
+                            <span class="p-1">{{letter.letter}}</span>
+                            <div class="p-1" *ngFor="let partner of letter.partners">
+                                <a href="http://{{partner.email}}" target="_blank">{{partner.name}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-center font-weight-bold">Tyre Brands</h3>
+                    <div class="row">
+                        <div class="col-3" *ngFor="let letter of properties.tyreBrandList">
+                            <span class="p-1">{{letter.letter}}</span>
+                            <div class="p-1" *ngFor="let partner of letter.partners">
+                                <a href="http://{{partner.email}}" target="_blank">{{partner.name}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

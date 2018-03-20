@@ -129,7 +129,7 @@ export class HomeComponent {
       this.properties.brands = this.properties.brands.map((e, i) => {
         return <IMultiSelectOption> {
           id: i,
-          name: e,
+          name: e.name,
         }
       });
         this.data = {

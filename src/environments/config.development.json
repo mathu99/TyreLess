@@ -42,122 +42,176 @@
             "4"
         ],
         "brands": [
-            "Bridgestone",
-            "Continental",
-            "Dunlop",
-            "Goodyear",
-            "Pirelli",
-            "Yokohama"
+            {
+                "name": "Bridgestone",
+                "email": "bridgestone.co.za"
+            },
+            {
+                "name": "Continental",
+                "email": "continental.co.za"
+            },
+            {
+                "name": "Dunlop",
+                "email": "dunlop.co.za"
+            },
+            {
+                "name": "Goodyear",
+                "email": "goodyear.co.za"
+            },
+            {
+                "name": "Pirelli",
+                "email": "pirelli.com"
+            },
+            {
+                "name": "Yokohama",
+                "email": "yokohama.co.za"
+            }
         ],
-        "locations": [{
-            "name": "Eastern Cape",
-            "checked": false,
-            "collapsed": true,
-            "sub_locations": [{
-                "name": "East London",
-                "checked": false
-            },{
-                "name": "Port Elizabeth",
-                "checked": false
-            }]
-            },{
-            "name": "Free State",
-            "checked": false,
-            "collapsed": true,
-            "sub_locations": [{
-                "name": "Bloemfontein",
-                "checked": false
-            },{
-                "name": "Harrismith",
-                "checked": false
-            },{
-                "name": "Welkom",
-                "checked": false
-            }]
-            },{
-            "name": "Gauteng",
-            "checked": false,
-            "collapsed": true,
-            "sub_locations": [{
-                "name": "Benoni",
-                "checked": false
-            },{
-                "name": "Bryanston",
-                "checked": false
-            },{
-                "name": "Fourways",
-                "checked": false
-            },{
-                "name": "Midrand",
-                "checked": false
-            },{
-                "name": "Rosebank",
-                "checked": false
-            },{
-                "name": "Sandton",
-                "checked": false
-            },{
-                "name": "Wynberg",
-                "checked": false
-            }]
-        },{
-            "name": "KwaZulu-Natal",
-            "checked": false,
-            "collapsed": true,
-            "sub_locations": [{
-                "name": "Durban",
-                "checked": false
-            },{
-                "name": "Pietermaritzburg",
-                "checked": false
-            }]
-            },{
-            "name": "Limpopo",
-            "checked": false,
-            "collapsed": true,
-            "sub_locations": []
-            },{
-            "name": "Mpumalanga",
-            "checked": false,
-            "collapsed": true,
-            "sub_locations": []
-            },{
-            "name": "North West",
-            "checked": false,
-            "collapsed": true,
-            "sub_locations": []
-            },{
-            "name": "Northern Cape",
-            "checked": false,
-            "collapsed": true,
-            "sub_locations": []
-            },{
-            "name": "Western Cape",
-            "checked": false,
-            "collapsed": true,
-            "sub_locations": [{
-                "name": "Belville",
-                "checked": false
-            },{
-                "name": "Cape Town",
-                "checked": false
-            },{
-                "name": "George",
-                "checked": false
-            },{
-                "name": "Hermanus",
-                "checked": false
-            },{
-                "name": "Paarl",
-                "checked": false
-            },{
-                "name": "Stellenbosch",
-                "checked": false
-            },{
-                "name": "Worcester",
-                "checked": false
-            }]
-        }],
+        "locations": [
+            {
+                "name": "Eastern Cape",
+                "checked": false,
+                "collapsed": true,
+                "sub_locations": [
+                    {
+                        "name": "East London",
+                        "checked": false
+                    },
+                    {
+                        "name": "Port Elizabeth",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "name": "Free State",
+                "checked": false,
+                "collapsed": true,
+                "sub_locations": [
+                    {
+                        "name": "Bloemfontein",
+                        "checked": false
+                    },
+                    {
+                        "name": "Harrismith",
+                        "checked": false
+                    },
+                    {
+                        "name": "Welkom",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "name": "Gauteng",
+                "checked": false,
+                "collapsed": true,
+                "sub_locations": [
+                    {
+                        "name": "Benoni",
+                        "checked": false
+                    },
+                    {
+                        "name": "Bryanston",
+                        "checked": false
+                    },
+                    {
+                        "name": "Fourways",
+                        "checked": false
+                    },
+                    {
+                        "name": "Midrand",
+                        "checked": false
+                    },
+                    {
+                        "name": "Rosebank",
+                        "checked": false
+                    },
+                    {
+                        "name": "Sandton",
+                        "checked": false
+                    },
+                    {
+                        "name": "Wynberg",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "name": "KwaZulu-Natal",
+                "checked": false,
+                "collapsed": true,
+                "sub_locations": [
+                    {
+                        "name": "Durban",
+                        "checked": false
+                    },
+                    {
+                        "name": "Pietermaritzburg",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "name": "Limpopo",
+                "checked": false,
+                "collapsed": true,
+                "sub_locations": []
+            },
+            {
+                "name": "Mpumalanga",
+                "checked": false,
+                "collapsed": true,
+                "sub_locations": []
+            },
+            {
+                "name": "North West",
+                "checked": false,
+                "collapsed": true,
+                "sub_locations": []
+            },
+            {
+                "name": "Northern Cape",
+                "checked": false,
+                "collapsed": true,
+                "sub_locations": []
+            },
+            {
+                "name": "Western Cape",
+                "checked": false,
+                "collapsed": true,
+                "sub_locations": [
+                    {
+                        "name": "Belville",
+                        "checked": false
+                    },
+                    {
+                        "name": "Cape Town",
+                        "checked": false
+                    },
+                    {
+                        "name": "George",
+                        "checked": false
+                    },
+                    {
+                        "name": "Hermanus",
+                        "checked": false
+                    },
+                    {
+                        "name": "Paarl",
+                        "checked": false
+                    },
+                    {
+                        "name": "Stellenbosch",
+                        "checked": false
+                    },
+                    {
+                        "name": "Worcester",
+                        "checked": false
+                    }
+                ]
+            }
+        ],
         "filters": [
             "Price: Low to High",
             "Price: High to Low"
@@ -612,6 +666,7 @@
         "records": [
             {
                 "name": "Tiger Wheel & Tyre",
+                "email": "twt.co.za",
                 "wheelAlignmentPrice": "299.00",
                 "wheelBalancingPrice": "50.00",
                 "services": [
@@ -623,6 +678,7 @@
             },
             {
                 "name": "Supaquick",
+                "email": "supaquick.co.za",
                 "wheelAlignmentPrice": "270.00",
                 "wheelBalancingPrice": "40.00",
                 "services": [
@@ -634,6 +690,7 @@
             },
             {
                 "name": "Tyremart",
+                "email": "tyremart.co.za",
                 "wheelAlignmentPrice": "299.00",
                 "wheelBalancingPrice": "50.00",
                 "services": [
@@ -645,6 +702,7 @@
             },
             {
                 "name": "Best Drive",
+                "email": "bestdrive.co.za",
                 "wheelAlignmentPrice": "260.00",
                 "wheelBalancingPrice": "55.00",
                 "services": [
@@ -656,6 +714,7 @@
             },
             {
                 "name": "Speedy",
+                "email": "speedy.co.za",
                 "wheelAlignmentPrice": "260.00",
                 "wheelBalancingPrice": "45.00",
                 "services": [
@@ -667,6 +726,7 @@
             },
             {
                 "name": "Hi-Q",
+                "email": "hiq.co.za",
                 "wheelAlignmentPrice": "300.00",
                 "wheelBalancingPrice": "60.00",
                 "services": [
@@ -678,6 +738,7 @@
             },
             {
                 "name": "Dunlop Zone",
+                "email": "dunlopzone.co.za",
                 "wheelAlignmentPrice": "299.00",
                 "wheelBalancingPrice": "50.00",
                 "services": [
@@ -686,6 +747,14 @@
                     "All Road Hazard Guarantee",
                     "Nitrogen Fill Up"
                 ]
+            }
+        ]
+    },
+    "tyreBrands": {
+        "records": [
+            {
+                "name": "Dunlop Zone",
+                "email": "dunlopzone.co.za"
             }
         ]
     }

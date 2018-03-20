@@ -236,7 +236,11 @@
     <div class="show-on-mobile container">
         <div class="row">
             <div class="get-it text-center">
-                <h2><b>TyreLess<span class="txt-green">.co.za</span></b></h2>
+                <h2>
+                    <b>TyreLess
+                        <span class="txt-green">.co.za</span>
+                    </b>
+                </h2>
                 <h4>Search - Select - Save</h4>
             </div>
         </div>
@@ -387,54 +391,62 @@
 </div>
 
 <section class="information">
-        <p class="text-center">Search the best deals from hundreds of Partners countrywide</p>
-    </section>
-    <br>
+    <p class="text-center">Search the best deals from hundreds of Partners countrywide</p>
+</section>
+<br>
 <section class="brands hide-from-mobile">
-            <div class="row w-100">
-                <div class="col-2"></div>
-                <div class="col-1 p-0">
-                    <span class="helper">
-                    </span>
-                    <img src="../assets/Best Drive.jpg" class="brand-img" />
-                </div>
-                <div class="col-1 p-0">
-                    <span class="helper">
-                    </span>
-                    <img src="../assets/Speedy.jpg" class="brand-img" />
-                </div>
-                <div class="col-1 p-0">
-                    <span class="helper">
-                    </span>
-                    <img src="../assets/Supaquick.jpg" class="brand-img" />
-                </div>
-                <div class="col-1 p-0">
-                    <span class="helper">
-                    </span>
-                    <img src="../assets/Tiger Wheel &amp; Tyre.jpg" class="brand-img" />
-                </div>
-                <div class="col-1 p-0">
-                    <span class="helper">
-                    </span>
-                    <img src="../assets/Tyremart.jpg" class="brand-img" />
-                </div>
-                <div class="col-1 p-0">
-                    <span class="helper">
-                    </span>
-                    <img src="../assets/Tyres &amp; More.jpg" class="brand-img" />
-                </div>
-                <div class="col-1 p-0">
-                        <span class="helper">
-                        </span>
-                        <img src="../assets/Hi-Q.jpg" class="brand-img" />
-                    </div>
-                    <div class="col-1 p-0">
-                        <span class="helper">
-                        </span>
-                        <img src="../assets/Tiger Wheel &amp; Tyre.jpg" class="brand-img" />
-                    </div>
-                    <div class="col-2"></div>
-            </div>
+    <div class="row w-100">
+        <div class="col-2"></div>
+        <div class="col-1 p-0">
+            <span class="helper">
+            </span>
+            <img src="../assets/Best Drive.jpg" class="brand-img" />
+        </div>
+        <div class="col-1 p-0">
+            <span class="helper">
+            </span>
+            <img src="../assets/Speedy.jpg" class="brand-img" />
+        </div>
+        <div class="col-1 p-0">
+            <span class="helper">
+            </span>
+            <img src="../assets/Supaquick.jpg" class="brand-img" />
+        </div>
+        <div class="col-1 p-0">
+            <span class="helper">
+            </span>
+            <img src="../assets/Tiger Wheel &amp; Tyre.jpg" class="brand-img" />
+        </div>
+        <div class="col-1 p-0">
+            <span class="helper">
+            </span>
+            <img src="../assets/Tyremart.jpg" class="brand-img" />
+        </div>
+        <div class="col-1 p-0">
+            <span class="helper">
+            </span>
+            <img src="../assets/Tyres &amp; More.jpg" class="brand-img" />
+        </div>
+        <div class="col-1 p-0">
+            <span class="helper">
+            </span>
+            <img src="../assets/Hi-Q.jpg" class="brand-img" />
+        </div>
+        <div class="col-1 p-0">
+            <span class="helper">
+            </span>
+            <img src="../assets/Tiger Wheel &amp; Tyre.jpg" class="brand-img" />
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <div class="row text-center font-weight-bold p-3">
+        <div class="col-2"></div>
+        <div class="col-8 text-success custom">
+            <a [routerLink]="['/partners']">
+                View all our Partners
+            </a>
+        </div>
+    </div>
 </section>
 
 <ng-template #locationModal let-c="close" let-d="dismiss">
@@ -485,7 +497,10 @@
 <br>
 <br>
 <nav id="mainNavbar" class="navbar navbar-light navbar-fixed-top navbar-expand-lg custom fixed-top" [hidden]="!properties.navBarVisible">
-    <a class="navbar-brand" [ngx-scroll-to]="'#homePage'"><span class="nav-logo-left">TyreLess</span><span class="nav-logo-right">.co.za</span></a>
+    <a class="navbar-brand" [ngx-scroll-to]="'#homePage'">
+        <span class="nav-logo-left">TyreLess</span>
+        <span class="nav-logo-right">.co.za</span>
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapsed()">
         <span class="navbar-toggler-icon"></span>

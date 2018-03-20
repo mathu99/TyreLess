@@ -222,7 +222,7 @@ export class SearchComponent {
           this.properties.brands = this.properties.brands.map((e, i) => {
             return <IMultiSelectOption> {
               id: i,
-              name: e,
+              name: e.name,
             }
           });
           this.data.selectedSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].imageSrc;
