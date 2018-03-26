@@ -47,49 +47,49 @@
                 <br>
                 <form name="contactUsForm" #contactUsForm="ngForm">
                     <div class="row">
-                        <div class="col-4 text-right">
+                        <!-- <div class="col-4 text-right">
                             <label for="contactUsName">Name:</label>
-                        </div>
-                        <div class="col-8">
+                        </div> -->
+                        <div class="col-12">
                             <input type="text" id="contactUsName" name="contactUsName" class="form-control" [(ngModel)]="data.name" placeholder="Your Name"
                                 required/>
                         </div>
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-4 text-right">
+                        <!-- <div class="col-4 text-right">
                             <label for="contactUsEmail">Email:</label>
-                        </div>
-                        <div class="col-8">
+                        </div> -->
+                        <div class="col-12">
                             <input for="contactUsEmail" name="contactUsEmail" type="email" class="form-control"  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="name@example.com" [email]="true"
                                 [(ngModel)]="data.email" required/>
                         </div>
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-4 text-right">
+                        <!-- <div class="col-4 text-right">
                             <label for="contactUsSubject">Subject:</label>
-                        </div>
-                        <div class="col-8">
+                        </div> -->
+                        <div class="col-12">
                             <input id="contactUsSubject" name="contactUsSubject" type="text" class="form-control" placeholder="Subject" [(ngModel)]="data.subject"
                                 required />
                         </div>
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-4 text-right">
+                        <!-- <div class="col-4 text-right">
                             <label for="contactUsMessage">Message:</label>
-                        </div>
-                        <div class="col-8">
+                        </div> -->
+                        <div class="col-12">
                             <textarea id="contactUsMessage" name="contactUsMessage" class="form-control" placeholder="Message" rows="4" [(ngModel)]="data.message"
                                 required></textarea>
                         </div>
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-4 text-right">
-                        </div>
-                        <div class="col-8">
+                        <!-- <div class="col-4 text-right">
+                        </div> -->
+                        <div class="col-12">
                             <button class="btn btn-success w-100" type="submit" (click)="submitContact()" [disabled]="!contactUsForm.form.valid">Submit</button>
                         </div>
                     </div>
