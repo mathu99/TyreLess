@@ -297,15 +297,17 @@
             </div>
         </div>
         <div class="col-8">
-            <div class="card m-1" *ngFor="let result of properties.filteredResults">
-                <div class="card-body results-table p-3">
+            <div class="card m-1 box-shadow" *ngFor="let result of properties.filteredResults">
+                <div class="card-body results-table p-2">
                     <div class="row">
                         <div class="col-10">
                             <div class="row">
-                                <div class="col-3 border-right">
-                                    <img class="w-100" ngbTooltip="{{result.partner}}" src="../../assets/{{result.partner}}.jpg" />
-                                    <br>
-                                    <br> {{result.location.suburb}}, {{result.location.province}}
+                                <div class="col-3 border-right text-center">
+                                    <div class="text-center"><h6 class="font-weight-bold">{{result.partner}}</h6></div>
+                                    <img class="p-1 result-img" ngbTooltip="{{result.partner}}" src="../../assets/{{result.partner}}.jpg" />
+                                    <div class="text-left p-1">
+                                        {{result.branch.name}}<br>{{result.location.suburb}}
+                                    </div>
                                 </div>
                                 <div class="col-6 border-right">
                                     <div class="row">
@@ -334,7 +336,8 @@
                                 <div class="col-3 text-center border-right">
                                     <div class="row">
                                         <div class="col-12">
-                                            <div class="strong included-text rounded">Included</div>
+                                            <img class="w-50" src="../../assets/Included.jpeg">
+                                            <!-- <div class="strong included-text rounded">Included</div> -->
                                         </div>
                                     </div>
                                     <div class="row" *ngFor="let service of result.partnerDetails.services">
