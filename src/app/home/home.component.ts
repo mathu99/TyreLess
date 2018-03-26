@@ -133,9 +133,9 @@ export class HomeComponent {
         }
       });
         this.data = {
-          width: this.properties.tyreWidths[0],
-          profile: this.properties.tyreProfiles[0],
-          size: this.properties.wheelSizes[0],
+          width: '-',//this.properties.tyreWidths[0],
+          profile: '-',//this.properties.tyreProfiles[0],
+          size: '-',//this.properties.wheelSizes[0],
           quantity: this.properties.quantities[0],
           brand: this.properties.brands.map(e => e.id),
           location: this.getLocationFromObject(this.properties.locations),

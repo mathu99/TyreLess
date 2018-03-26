@@ -350,7 +350,12 @@ a:hover{
   border-color: rgba(0,0,0,.125);
 }
 
-.btn-secondar:hover{
+.btn-secondary:hover{
+  background-color: gray;
+  border-color: gray;
+}
+
+.btn-secondary:not([disabled]):not(.disabled).active, .btn-secondary:not([disabled]):not(.disabled):active, .show>.btn-secondary.dropdown-toggle{
   background-color: gray;
   border-color: gray;
 }
@@ -387,12 +392,17 @@ a:hover{
 }
 
 body{
+  font-family: "VarelaRound";
   background-color:white;
   font-size: 0.9rem;
 }
 
 .page-card-deck{
   margin-bottom:50pt;
+}
+
+.fancy-card{
+  border-radius: 1.9rem 0rem 1.9rem 0rem;
 }
 
 .card-header{
@@ -468,7 +478,7 @@ body{
     box-shadow:3px 3px 4px rgba(0,0,0,0.3);
     background-color: white;
     color: rgb(81, 153, 40);
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.3) !important;
+    /* text-shadow: 2px 2px 3px rgba(0,0,0,0.3) !important; */
     border:1px solid lightgrey;
   }
 
@@ -592,8 +602,8 @@ li::before {
   }
 
   .tyre-care{
-    margin-top:10pt;
-    max-width: 90pt;
+    margin-top: 2pt;
+    max-width: 60pt;
   }
 
   .tyre-care-sm{

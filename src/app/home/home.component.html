@@ -30,7 +30,7 @@
             </h6>
         </div>
         <div class="row" *ngIf="data">
-            <div class="get-it" in-viewport (inViewportAction)="setNavBarVisibility($event)">
+            <div class="get-it">
                 <h1 class="text-center">TyreLess<span class="txt-green">.co.za</span></h1>
                 <h4 class="text-center">Search - Select - Save</h4>
                 <br>
@@ -188,7 +188,7 @@
                             Wheel Alignment
                         </label>
                     </div>
-                    <div class="checkbox checkbox-success float-left">
+                    <div class="checkbox checkbox-success float-left" style="padding-left:15pt">
                         <input id="wheelBalancingSm" type="checkbox" [checked]="data.wheelBalancingChecked" (change)="data.wheelBalancingChecked = !data.wheelBalancingChecked">
                         <label for="wheelBalancing">
                             Wheel Balancing
@@ -390,7 +390,7 @@
     </div>
 </div>
 
-<section class="information">
+<section class="information" in-viewport (inViewportAction)="setNavBarVisibility($event)">
     <p class="text-center custom">Search the best deals from hundreds of Partners countrywide</p>
 </section>
 <br>
@@ -498,8 +498,7 @@
 <br>
 <nav id="mainNavbar" class="navbar navbar-light navbar-fixed-top navbar-expand-lg custom fixed-top" [hidden]="!properties.navBarVisible">
     <a class="navbar-brand" [ngx-scroll-to]="'#homePage'">
-        <span class="nav-logo-left">TyreLess</span>
-        <span class="nav-logo-right">.co.za</span>
+        <span class="nav-logo-left">TyreLess</span><span class="nav-logo-right">.co.za</span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapsed()">
