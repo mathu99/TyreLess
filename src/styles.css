@@ -213,8 +213,6 @@ h5{
   cursor: pointer;
   color:black;
   background-color: white;
-  min-height: 40pt;
-  max-height: 78px;
 }
 
 .btn, .dropdown-item{
@@ -227,12 +225,12 @@ h5{
 }
 .dd-left{
   /* padding:5pt; */
-  font-size:9pt;
+  font-size:8pt;
   vertical-align: middle;
 }
 .dd-right{
   /* line-height:35pt; */
-  font-size:18pt;
+  font-size:16pt;
   vertical-align: middle;
 }
 .dd-search-text {
@@ -371,6 +369,11 @@ h5{
 
 .brands{
   background-color: white;
+}
+
+.brands>.row{
+  margin-right: 0pt;
+  margin-left: 0pt;
 }
 
 body{

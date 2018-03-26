@@ -23,11 +23,11 @@
 <div class="jumbotron hero custom" id="homePage">
     <div class="container hide-from-mobile">
         <div class="text-right">
-            <h4>
+            <h6>
                 <a class="ml-auto font-weight-bold" [ngx-scroll-to]="'#contactUs'" [ngx-scroll-to-offset]="0">
                     <span class="nav-right-text text-success">CONTACT US</span>
                 </a>
-            </h4>
+            </h6>
         </div>
         <div class="row" *ngIf="data">
             <div class="get-it" in-viewport (inViewportAction)="setNavBarVisibility($event)">
@@ -507,7 +507,7 @@
     </button>
     <div id="navbarSupportedContent" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}" class="nav-right">
         <a class="navbar-brand ml-auto" [ngx-scroll-to]="'#contactUs'" [ngx-scroll-to-offset]="0">
-            <h4 class="nav-right-text text-success font-weight-bold">CONTACT US</h4>
+            <h6 class="nav-right-text text-success font-weight-bold">CONTACT US</h6>
         </a>
     </div>
 </nav>
