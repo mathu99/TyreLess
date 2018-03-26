@@ -8,19 +8,18 @@
     </button>
     <div id="navbarSupportedContent" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}" class="nav-right">
         <a class="navbar-brand ml-auto" [routerLink]="['/contactUs']">
-            <span class="nav-right-text text-success">CONTACT US</span>
+            <h6><span class="nav-right-text text-success">CONTACT US</span></h6>
         </a>
     </div>
 </nav>
-<br>
-<br>
-<br>
 <div class="custom header-section-40">
+    <br>
+    <br>
     <div class="container">
         <div class="row" style="max-height:80px">
             <div class="col-2 dd-col">
                 <div class="btn-group w-100">
-                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0" type="button" data-toggle="dropdown" aria-haspopup="true"
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0 h-100" type="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                         <div class="dd-left p-0">
                             Vehicle Type
@@ -38,7 +37,7 @@
             </div>
             <div class="col-1 dd-col">
                 <div class="btn-group w-100">
-                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0" type="button" data-toggle="dropdown" aria-haspopup="true"
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                         <div class="dd-left p-0">
                             Tyre Width
@@ -55,7 +54,7 @@
             </div>
             <div class="col-1 dd-col">
                 <div class="btn-group w-100">
-                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0" type="button" data-toggle="dropdown" aria-haspopup="true"
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                         <div class="dd-left p-0">
                             Tyre Profile
@@ -72,7 +71,7 @@
             </div>
             <div class="col-1 dd-col">
                 <div class="btn-group w-100">
-                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0" type="button" data-toggle="dropdown" aria-haspopup="true"
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                         <div class="dd-left p-0">
                             Wheel Size
@@ -89,7 +88,7 @@
             </div>
             <div class="col-1 dd-col">
                 <div class="btn-group w-100">
-                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0" type="button" data-toggle="dropdown" aria-haspopup="true"
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
                         <div class="dd-left p-0">
                             Quantity
@@ -109,7 +108,7 @@
             </div>
             <div class="col-2 dd-col">
                 <div class="btn-group w-100">
-                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0" type="button" data-toggle="dropdown" aria-haspopup="true"
+                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false" (click)="openLocationModal()">
                         <div class="dd-left p-0">
                             Location
@@ -120,8 +119,8 @@
                 </div>
             </div>
             <div class="col-2 dd-col">
-                <button class="btn btn-success w-100 h-100 p-3" type="button" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
-                    [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">MODIFY SEARCH</button>
+                <button class="btn btn-success w-100 h-100 p-0" type="button" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
+                    [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">Modify Search</button>
             </div>
         </div>
         <div class="row text-center">
@@ -146,7 +145,6 @@
         </div>
     </div>
 </div>
-<br>
 <div class="results-and-filters container custom">
     <div class="row" *ngIf="!properties.results || properties.results.length == 0">
         <div class="col-12">
@@ -173,7 +171,7 @@
         </div>
     </div>
     <div class="row" *ngIf="properties.results && properties.results.length > 0">
-        <div class="col-4" style="position: relative">
+        <div class="col-4 text-10" style="position: relative">
             <div style="position: absolute; bottom: 0; right:12pt">
                 <a href="javascript:void(0)" (click)="resetFilters()">Reset Filter</a>
             </div>
@@ -181,14 +179,14 @@
         <div class="col-8">
             <div class="row">
                 <div class="col-6"></div>
-                <div class="col-6 text-right">
+                <div class="col-6 text-right text-10">
                     Sort results by:
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="btn-group" style="margin-top:3pt">
+                        <button type="button" style="font-size:0.9rem !important" class="btn btn-secondary dropdown-toggle p-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{data.selectedFilter}}
                             <i class="fa fa-angle-down" style="color:rgb(107,172,70)"></i>
                         </button>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu" style="font-size:0.9rem !important">
                             <span (click)="sort(filterName) " *ngFor="let filterName of properties.filters" class="dropdown-item">{{filterName}}</span>
                         </div>
                     </div>
@@ -201,7 +199,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card m-1">
-                        <div class="card-header">
+                        <div class="card-header p-0 text-10">
                             Price
                         </div>
                         <div class="card-body filter-body p-2" id="priceSlider">
@@ -226,7 +224,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card m-1">
-                        <div class="card-header">
+                        <div class="card-header p-0 text-10">
                             Type
                         </div>
                         <div class="card-body results-table filter-body p-2">
@@ -249,7 +247,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card m-1">
-                        <div class="card-header">
+                        <div class="card-header p-0 text-10">
                             Retailer
                         </div>
                         <div class="card-body results-table filter-body p-2">
@@ -271,7 +269,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card m-1">
-                        <div class="card-header">
+                        <div class="card-header p-0 text-10">
                             Model
                         </div>
                         <div class="card-body results-table filter-body p-2">

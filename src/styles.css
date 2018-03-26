@@ -12,6 +12,14 @@
             url("/assets/BryantMediumRegular.ttf") format("truetype")
 }
 
+label{
+   margin-bottom: 0;
+}
+
+.text-10{
+  font-size:10pt;
+}
+
 .checkbox {
   font-weight: 400;
    }
@@ -224,7 +232,7 @@ h5{
   padding:1px;
 }
 .dd-left{
-  /* padding:5pt; */
+  padding-left:5pt;
   font-size:8pt;
   vertical-align: middle;
 }
@@ -268,6 +276,10 @@ h5{
 .dropdown-menu{
   width:100%;
   color:black;
+}
+
+.dropdown-menu {
+  min-width: 0 !important;
 }
 
 .dropdown-item.active>a, .dropdown-item:active {
@@ -380,6 +392,8 @@ a:hover{
 .header-section-40{
   margin:0 auto;
   margin-top:40px;
+  background-color:rgb(220,220,220);
+  padding-bottom: 5pt;
 }
 
 .brands{
@@ -408,6 +422,7 @@ body{
 .card-header{
   padding:5pt;
   text-align: center;
+  background-color: rgb(220,220,220);
   /* background-color:#6c757d;
   color:white; */
 }

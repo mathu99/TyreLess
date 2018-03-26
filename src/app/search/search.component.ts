@@ -49,7 +49,7 @@ export class SearchComponent {
     showCheckAll: false,
     showUncheckAll: false,
     checkedStyle: 'fontawesome',
-    buttonClasses: 'btn btn-secondary dd-inner',
+    buttonClasses: 'btn btn-secondary dd-inner p-0',
     dynamicTitleMaxItems: 1,
     displayAllSelectedText: true,
     containerClasses: 'dd-container',
