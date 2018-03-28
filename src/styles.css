@@ -108,8 +108,6 @@ label{
   top: -3pt;
 }
 
-.radio {
-  padding-left: 20px; }
   .radio label {
     display: inline-block;
     position: relative;
@@ -297,7 +295,8 @@ h5{
   background-color: rgb(107,172,70);
   color: white;
   padding: 1pt;
-  padding-top: 6pt;
+  padding-top: 4pt;
+  padding-bottom: 4pt;
   margin-bottom:5pt;
 }
 
@@ -449,7 +448,7 @@ body{
 
 .extras-col>.checkbox{
   padding:1pt;
-  margin-top: 4pt;
+  margin-top: 3pt;
 }
 
 .custom{
@@ -535,10 +534,10 @@ html{
 
   a{
     cursor: pointer;
-    color:rgb(107,172,70);
+    color:rgb(107,172,70) !important;
   }
   a:hover{
-    color:rgb(81, 153, 40);
+    color:rgb(81, 153, 40) !important;
   }
 
   .txt-green{
@@ -594,7 +593,13 @@ li::before {
       position: relative;
       border:none;
       min-height:200pt;
-      background: url("/assets/How It Works.jpeg") repeat 0 0;
+      background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%), url("/assets/How It Works.jpeg") repeat 0 0, url("/assets/How It Works.jpeg") repeat 0 0;
+      background: -moz-linear-gradient(top, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.3) 100%), url("/assets/How It Works.jpeg") repeat 0 0;
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.3)), color-stop(100%,rgba(255,255,255,0.3))), url("/assets/How It Works.jpeg") repeat 0 0;
+      background: -webkit-linear-gradient(top, rgba(255,255,255,0.3) 0%,rgba(255,255,255,0.3) 100%), url("/assets/How It Works.jpeg") repeat 0 0;
+      background: -o-linear-gradient(top, rgba(255,255,255,0.3) 0%,rgba(255,255,255,0.3) 100%), url("/assets/How It Works.jpeg") repeat 0 0;
+      background: -ms-linear-gradient(top, rgba(255,255,255,0.3) 0%,rgba(255,255,255,0.3) 100%), url("/assets/How It Works.jpeg") repeat 0 0;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%,rgba(255,255,255,0.3) 100%), url("/assets/How It Works.jpeg") repeat 0 0;
       background-size:120%;
   }
 
@@ -685,16 +690,22 @@ li::before {
     padding-left: 15pt;
 }
 .model-card>.card-body{
-  padding: 2pt;
+  /* padding: 2pt; */
   padding-top: 5pt;
   padding-bottom: 0pt;
 }
 
 .link{
+  display:inline-block;
   font-weight: 400;
   font-size: 0.9rem;
-  padding-right: 0;
+  margin-right: 12pt;
   padding-left: 0;
+}
+
+.link-text{
+  position: relative;
+  top:3pt;
 }
 
 .link>span>i{
@@ -728,8 +739,9 @@ li::before {
 }
   
   .brand-img{
-    max-height: 70pt;
-    max-width: 70pt;
+    max-height: 30pt;
+    margin-right:10pt;
+    /* max-width: 70pt; */
   }
   
   .site-footer{
@@ -784,7 +796,7 @@ li::before {
     font-size:20px;
     border-radius:50%;
     margin:4px;
-    color:#fff;
+    color:#fff !important;
     text-align:center;
     background-color:rgb(107,172,70);
     height:32px;

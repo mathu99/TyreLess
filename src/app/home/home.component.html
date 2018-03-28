@@ -25,7 +25,7 @@
         <div class="text-right">
             <h6>
                 <a class="ml-auto font-weight-bold" [ngx-scroll-to]="'#contactUs'" [ngx-scroll-to-offset]="0">
-                    <span class="nav-right-text text-success">CONTACT US</span>
+                    <span class="nav-right-text">CONTACT US</span>
                 </a>
             </h6>
         </div>
@@ -39,28 +39,32 @@
                     </div>
                     <div class="col-10">
                         <div class="row">
-                            <div class="col-2"></div>
-                            <div class="col-2 link" (click)="update('selected','Car')">
-                                <span [ngClass]="{linkSelected : data.selected == 'Car'}">
-                                    <img src="../../assets/Car.png" class="vehicle-icon" />CAR
-                                </span>
+                            <div class="col-12 text-center">
+                                <div class="link" (click)="update('selected','Car')">
+                                    <span [ngClass]="{linkSelected : data.selected == 'Car'}">
+                                        <img src="../../assets/Car.png" class="vehicle-icon" />
+                                        <span class="link-text">CAR</span>
+                                    </span>
+                                </div>
+                                <div class="link" (click)="update('selected','4x4 / SUV')">
+                                    <span [ngClass]="{linkSelected : data.selected == '4x4 / SUV'}">
+                                        <img src="../../assets/4x4_SUV.png" class="vehicle-icon" />
+                                        <span class="link-text">4x4 / SUV</span>
+                                    </span>
+                                </div>
+                                <div class="link" (click)="update('selected','Bike')">
+                                    <span [ngClass]="{linkSelected : data.selected == 'Bike'}">
+                                        <img src="../../assets/Bike.png" class="vehicle-icon" />
+                                        <span class="link-text">BIKE</span>
+                                    </span>
+                                </div>
+                                <div class="link" (click)="update('selected','Commercial')">
+                                    <span [ngClass]="{linkSelected : data.selected == 'Commercial'}">
+                                        <img src="../../assets/Commercial.png" class="vehicle-icon" />
+                                        <span class="link-text">COMMERCIAL</span>
+                                    </span>
+                                </div>
                             </div>
-                            <div class="col-2 link" (click)="update('selected','4x4 / SUV')">
-                                <span [ngClass]="{linkSelected : data.selected == '4x4 / SUV'}">
-                                    <img src="../../assets/4x4_SUV.png" class="vehicle-icon" />4x4 / SUV
-                                </span>
-                            </div>
-                            <div class="col-2 link" (click)="update('selected','Bike')">
-                                <span [ngClass]="{linkSelected : data.selected == 'Bike'}">
-                                    <img src="../../assets/Bike.png" class="vehicle-icon" />BIKE
-                                </span>
-                            </div>
-                            <div class="col-2 link" (click)="update('selected','Commercial')">
-                                <span [ngClass]="{linkSelected : data.selected == 'Commercial'}">
-                                    <img src="../../assets/Commercial.png" class="vehicle-icon" />COMMERCIAL
-                                </span>
-                            </div>
-                            <div class="col-2"></div>
                         </div>
                     </div>
                     <div class="col-1"></div>
@@ -172,7 +176,9 @@
                                                 <div style="line-height:25pt">Location</div>
                                             </div>
                                             <div class="col-7 dd-col dd-right">{{ data.location.name }}</div>
-                                            <div class="col-2"></div>
+                                            <div class="col-2 dd-col dd-caret">
+                                                <i class="fa fa-angle-down"></i>
+                                            </div>
                                         </div>
                                     </button>
                                 </div>
@@ -358,6 +364,7 @@
                             Location
                         </div>
                         <span class="dd-col dd-right">{{ data.location.name }}</span>
+                        <i class="dd-caret fa fa-angle-down"></i>
                     </button>
                 </div>
             </div>
@@ -395,7 +402,18 @@
 </section>
 <br>
 <section class="brands hide-from-mobile">
-    <div class="row w-100">
+        <div class="row w-100">
+            <div style="margin:auto; display:block;">
+                <img src="../assets/Best Drive.jpg" class="brand-img" />
+                <img src="../assets/Dunlop Zone.jpg" class="brand-img" />
+                <img src="../assets/Hi-Q.jpg" class="brand-img" />
+                <img src="../assets/Speedy.jpg" class="brand-img" />
+                <img src="../assets/Tiger Wheel &amp; Tyre.jpg" class="brand-img" />
+                <img src="../assets/Tyremart.jpg" class="brand-img" />
+                <img src="../assets/Tyres &amp; More.jpg" class="brand-img" />
+            </div>
+        </div>
+    <!-- <div class="row w-100">
         <div class="col-2"></div>
         <div class="col-1 p-0">
             <span class="helper">
@@ -438,11 +456,11 @@
             <img src="../assets/Tiger Wheel &amp; Tyre.jpg" class="brand-img" />
         </div>
         <div class="col-2"></div>
-    </div>
+    </div> -->
     <div class="row text-center font-weight-bold p-3">
         <div class="col-2"></div>
         <div class="col-8 text-success custom text-right">
-            <a [routerLink]="['/partners']" style="color:black">
+            <a [routerLink]="['/partners']" style="color:black !important">
                 View all our Partners
             </a>
         </div>
@@ -461,9 +479,9 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-2">
-                        <div class="checkbox checkbox-success checkbox-adjust">
+                        <div class="checkbox checkbox-success">
                             <input id="{{location.name}}" type="checkbox" [checked]="location.checked" (change)="topLevelCheck(location)">
-                            <label for="{{location.name}}">
+                            <label for="{{location.name}}">&nbsp;
                             </label>
                         </div>
                     </div>
@@ -506,7 +524,7 @@
     </button>
     <div id="navbarSupportedContent" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}" class="nav-right">
         <a class="navbar-brand ml-auto" [ngx-scroll-to]="'#contactUs'" [ngx-scroll-to-offset]="0">
-            <h6 class="nav-right-text text-success font-weight-bold">CONTACT US</h6>
+            <h6 class="nav-right-text font-weight-bold">CONTACT US</h6>
         </a>
     </div>
 </nav>
