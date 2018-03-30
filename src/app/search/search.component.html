@@ -300,14 +300,14 @@
                     <div class="row">
                         <div class="col-10">
                             <div class="row">
-                                <div class="col-3 border-right text-center">
-                                    <div class="text-center"><h6 class="font-weight-bold">{{result.partner}}</h6></div>
+                                <div class="col-3 text-center" style="padding-right:0pt">
+                                    <div class="text-center"><h6 class="font-weight-bold h6-sm">{{result.partner}}</h6></div>
                                     <img class="p-1 result-img" src="../../assets/{{result.partner}}.jpg" />
                                     <div class="text-left p-1">
                                         {{result.branch.name}}<br>{{result.location.suburb}}
                                     </div>
                                 </div>
-                                <div class="col-6 border-right">
+                                <div class="col-5 border-right" style="padding-left:20pt; padding-right:10pt">
                                     <div class="row">
                                         <div class="col-4 results-col text-center">
                                             <img *ngIf="!result.runFlat" class="result-tyre" src="../../assets/Tyres/{{result.brand}}_{{result.tyreModel}}_{{result.tyreWidth}}_{{result.tyreProfile}}_R{{result.wheelSize}}.jpg"
@@ -315,23 +315,23 @@
                                             <img *ngIf="result.runFlat" class="result-tyre" src="../../assets/Tyres/{{result.brand}}_{{result.tyreModel}}_{{result.tyreWidth}}_{{result.tyreProfile}}_R{{result.wheelSize}}_Runflat.jpg"
                                             />
                                         </div>
-                                        <div class="col-7 results-text results-col">
+                                        <div class="col-8 results-text results-col" style="padding-left:10pt">
                                             {{result.brand}}
                                             <br> {{result.tyreModel}}
-                                            <div class="row">
+                                            <div class="row" style="position: absolute; bottom:10pt; right:30pt">
                                                 <div class="col-6">
                                                     <span *ngIf="result.runFlat">Run Flat</span>
                                                 </div>
                                                 <div class="col-6 results-col">
                                                     <br>
-                                                    <img class="result-logo w-100" ngbTooltip="{{result.brand}}" src="../../assets/Tyre Manufacturer/{{result.brand}}.png" />
+                                                    <img class="result-logo" src="../../assets/Tyre Manufacturer/{{result.brand}}.png" />
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-3 text-center border-right">
+                                <div class="col-4 text-center border-right">
                                     <div class="row">
                                         <div class="col-12">
                                             <img class="w-50" src="../../assets/Included.jpeg">
@@ -348,7 +348,7 @@
                             </div>
                         </div>
                         <div class="col-2 results-col text-center">
-                            <a href="javascript:void(0)" ngbTooltip="View Breakdown" (click)="viewBreakdown(result)">
+                            <a href="javascript:void(0)" (click)="viewBreakdown(result)">
                                 <i class="fa fa-info-circle"></i> View Detail
                             </a>
                             <div class="text-center p-2">

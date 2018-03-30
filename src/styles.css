@@ -362,7 +362,7 @@ h5{
 }
 
 .result-tyre{
-  height: 65px;
+  height: 100px;
 }
 
 .result-logo{
@@ -789,6 +789,13 @@ li::before {
   .nav-logo-right{
     color:rgb(107,172,70);
     font-size:18pt;
+  }
+  .nav-right-text{
+    padding-right:50pt;
+  }
+
+  .h6-sm{
+    font-size:0.9rem;
   }
 
   .navbar{
