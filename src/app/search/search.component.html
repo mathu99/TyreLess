@@ -15,7 +15,7 @@
 <div class="custom header-section-40">
     <br>
     <br>
-    <div class="container">
+    <div class="container-increased">
         <div class="row" style="max-height:80px">
             <div class="col-2 dd-col">
                 <div class="btn-group w-100 h-100">
@@ -24,13 +24,13 @@
                         <div class="dd-left p-0">
                             Vehicle Type
                         </div>
-                        <img src="../..{{data.selectedSrc}}" class="vehicle-icon" />
+                        <img src="../..{{data.selectedSrc}}" class="vehicle-icon-sm" />
                         <span class="dd-col dd-search-text">{{ data.selected }}</span>
                         <i class="dd-caret fa fa-angle-down"></i>
                     </button>
                     <div class="w-100 dropdown-menu">
                         <button class="dropdown-item" type="button" *ngFor="let vehicle of properties.vehicleTypes" (click)="update('selectedSrc', vehicle.imageSrc); update('selected', vehicle.name)">
-                            <img src="../..{{vehicle.imageSrc}}" class="vehicle-icon" /> {{ vehicle.name }}
+                            <img src="../..{{vehicle.imageSrc}}" class="vehicle-icon-sm" /> {{ vehicle.name }}
                         </button>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
                 </div>
             </div>
             <div class="col-2 dd-col">
-                <button class="btn btn-success w-100 h-100 p-0" type="button" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
+                <button class="btn btn-success shadow-btn w-100 h-100 p-0" type="button" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
                     [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">Modify Search</button>
             </div>
         </div>
@@ -381,12 +381,12 @@
     <br><br>
 </div>
 
-<footer class="footer sticky-footer" [hidden]="!properties.showContactMe">
+<footer class="footer sticky-footer m-2 p-2" [hidden]="!properties.showContactMe">
     <div class="container">
         <div class="row">
             <div class="col-1"></div>
             <div class="col-10">
-                <div class="text-center font-weight-bold m-2">
+                <div class="text-center m-2">
                     Please enter your details and our Partners will contatct you regarding your selected deals
                 </div>
                 <form name="searchResultsContact" #searchResultsContact="ngForm">
@@ -404,7 +404,7 @@
                                 required />
                         </div>
                         <div class="col-3 p-1">
-                            <button class="btn btn-success h-100 w-100 custom" id="contactMeBtn" type="button" [disabled]="!searchResultsContact.form.valid" (click)="submitContactForm()">CONTACT ME ></button>
+                            <button class="btn btn-success shadow-btn h-100 w-100 custom" id="contactMeBtn" type="button" [disabled]="!searchResultsContact.form.valid" (click)="submitContactForm()">CONTACT ME ></button>
                         </div>
                     </div>
                 </form>

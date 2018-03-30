@@ -301,14 +301,22 @@ h5{
 }
 
 .sticky-footer{
-  background-color:rgb(247,247,247);
+  background-color: gray;
+  color:white;
+  border:1px solid white;
   box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.3);
+  text-shadow:2px 2px 3px rgba(0,0,0,0.3);
   width:100%;
   position: fixed;
   bottom: 0;
   padding:10pt;
   text-align: center;
   z-index: 1;
+}
+
+.shadow-btn{
+  box-shadow:3px 3px 4px rgba(0,0,0,0.3);
+  text-shadow:2px 2px 3px rgba(0,0,0,0.3);
 }
 
 #searchButton{
@@ -326,6 +334,16 @@ h5{
 .vehicle-icon{
   max-width: 25pt;
   margin-right: 5pt;
+}
+
+.vehicle-icon-sm{
+  max-width: 20pt;
+  margin-right:2pt
+}
+
+.container-increased{
+  margin-right:10%;
+  margin-left:10%;
 }
 
 .search-icon{
@@ -721,7 +739,7 @@ li::before {
   }
 
   section.information{
-    padding:15pt;
+    padding:10pt;
     line-height: 15pt;
     background-color: gray;
     color:white;
