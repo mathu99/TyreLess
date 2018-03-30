@@ -316,13 +316,13 @@
                                             />
                                         </div>
                                         <div class="col-8 results-text results-col" style="padding-left:10pt">
+                                            <br>
                                             {{result.brand}}
                                             <br> {{result.tyreModel}}
+                                            <br>
+                                            <span *ngIf="result.runFlat">Run Flat</span>
                                             <div class="row" style="position: absolute; bottom:10pt; right:30pt">
-                                                <div class="col-6">
-                                                    <span *ngIf="result.runFlat">Run Flat</span>
-                                                </div>
-                                                <div class="col-6 results-col">
+                                                <div class="col-12 results-col">
                                                     <br>
                                                     <img class="result-logo" src="../../assets/Tyre Manufacturer/{{result.brand}}.png" />
                                                 </div>
@@ -331,7 +331,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4 text-center border-right">
+                                <div class="col-4 text-center border-dashed">
                                     <div class="row">
                                         <div class="col-12">
                                             <img class="w-50" src="../../assets/Included.jpeg">
@@ -348,10 +348,11 @@
                             </div>
                         </div>
                         <div class="col-2 results-col text-center">
-                            <a href="javascript:void(0)" (click)="viewBreakdown(result)">
+                            <br>
+                            <a href="javascript:void(0)" class="black-link" (click)="viewBreakdown(result)">
                                 <i class="fa fa-info-circle"></i> View Detail
                             </a>
-                            <div class="text-center p-2">
+                            <div class="text-center p-2" style="padding-left: 12pt !important;padding-right: 12pt !important;" >
                                 <div class="checkbox checkbox-success select-box rounded">
                                     <input id="select_{{result.index}}" type="checkbox" [checked]="result.contactMe" (change)="checkSelect(result)">
                                     <label for="select_{{result.index}}">
