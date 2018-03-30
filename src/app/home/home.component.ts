@@ -141,8 +141,8 @@ export class HomeComponent {
           location: this.getLocationFromObject(this.properties.locations),
           selected: this.properties.vehicleTypes[0].name,
           selectedFilter: this.properties.filters[0],
-          wheelAlignmentChecked: false,
-          wheelBalancingChecked: false,
+          wheelAlignmentChecked: true,
+          wheelBalancingChecked: true,
         };
     });
     assign(this.mobileDropdownSettings, this.dropdownSettings);

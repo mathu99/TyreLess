@@ -449,6 +449,7 @@ body{
 
 .strong{
   font-weight: bold;
+  background-color: rgba(0,0,0,.05);
 }
 
 .filter-body{
@@ -528,6 +529,10 @@ body{
     color: rgb(81, 153, 40);
     /* text-shadow: 2px 2px 3px rgba(0,0,0,0.3) !important; */
     border:1px solid lightgrey;
+  }
+
+  .included-img{
+    width:35%;
   }
 
   .round-btn:hover{
