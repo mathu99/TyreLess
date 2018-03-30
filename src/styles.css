@@ -338,12 +338,13 @@ h5{
 
 .vehicle-icon-sm{
   max-width: 20pt;
-  margin-right:2pt
+  margin-right:2pt;
+  padding-left: 2pt;
 }
 
 .container-increased{
-  margin-right:10%;
-  margin-left:10%;
+  margin-right:12%;
+  margin-left:12%;
 }
 
 .search-icon{
@@ -467,6 +468,14 @@ body{
 .extras-col>.checkbox{
   padding:1pt;
   margin-top: 3pt;
+  width:100%;
+}
+
+.model-card{
+  border-radius: 0;
+  border-bottom:0;
+  border-left:0;
+  border-right:0;
 }
 
 .custom{
@@ -706,11 +715,16 @@ li::before {
     background-color: rgba(0,0,0,0.05);
     color: black;
     padding-left: 15pt;
+    border: 0;
 }
 .model-card>.card-body{
   /* padding: 2pt; */
   padding-top: 5pt;
   padding-bottom: 0pt;
+}
+
+.result-padding{
+  padding-left:15pt !important;
 }
 
 .link{
@@ -873,8 +887,8 @@ li::before {
   }
 
   #priceSlider{
-    font-size:10pt;
     font-weight: 400;
+    font-size: 12px;
   }
 
   @media (min-width: 1200px) {

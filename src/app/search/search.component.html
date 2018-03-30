@@ -171,22 +171,22 @@
         </div>
     </div>
     <div class="row" *ngIf="properties.results && properties.results.length > 0">
-        <div class="col-4 p-1 text-10" style="position: relative">
+        <div class="col-3 p-1 text-10" style="position: relative">
             <div style="position: absolute; bottom: 0; right:12pt">
                 <a href="javascript:void(0)" (click)="resetFilters()">Reset Filter</a>
             </div>
         </div>
-        <div class="col-8 p-1">
+        <div class="col-9 p-1">
             <div class="row">
                 <div class="col-6"></div>
                 <div class="col-6 text-right text-10">
                     Sort results by:
                     <div class="btn-group" style="margin-top:3pt">
-                        <button type="button" style="font-size:0.9rem !important" class="btn btn-secondary dropdown-toggle p-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" style="font-size:0.8rem !important" class="btn btn-secondary dropdown-toggle p-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{data.selectedFilter}}
                             <i class="fa fa-angle-down" style="color:rgb(107,172,70)"></i>
                         </button>
-                        <div class="dropdown-menu" style="font-size:0.9rem !important">
+                        <div class="dropdown-menu" style="font-size:0.8rem !important">
                             <span (click)="sort(filterName) " *ngFor="let filterName of properties.filters" class="dropdown-item">{{filterName}}</span>
                         </div>
                     </div>
@@ -195,14 +195,14 @@
         </div>
     </div>
     <div class="row" *ngIf="properties.results && properties.results.length > 0">
-        <div class="col-4 p-1">
+        <div class="col-3 p-1">
             <div class="row">
                 <div class="col-12">
                     <div class="card m-1">
                         <div class="card-header p-0 text-10">
                             Price
                         </div>
-                        <div class="card-body filter-body" id="priceSlider">
+                        <div class="card-body filter-body results-table" id="priceSlider">
                             <div *ngIf="properties.filteredResults && properties.filteredResults.length > 0" class="p-2">
                                 <mat-slider [min]="properties.priceFilter.min" [max]="properties.priceFilter.max" (change)="applyFilters('price')" [(ngModel)]="properties.priceFilter.current"></mat-slider>
                                 <div class="row">
@@ -210,7 +210,7 @@
                                         <b>Min:</b> {{properties.priceFilter.min | currency:'R'}}
                                     </div>
                                     <div class="col-6 text-right">
-                                        <b>Max:</b> {{properties.priceFilter.max | currency:'R'}}
+                                        <b>Max:</b> {{properties.priceFilter.current | currency:'R'}}
                                     </div>
                                 </div>
                             </div>
@@ -227,7 +227,7 @@
                         <div class="card-header p-0 text-10">
                             Type
                         </div>
-                        <div class="card-body results-table filter-body p-2">
+                        <div class="card-body results-table filter-body p-2 result-padding">
                             <div class="w-50 radio radio-success float-left">
                                 <input id="typeRegular" type="radio" [checked]="data.tyreType == 'regular'" (click)="update('tyreType', 'regular'); applyFilters('type')">
                                 <label for="typeRegular">
@@ -250,8 +250,8 @@
                         <div class="card-header p-0 text-10">
                             Retailer
                         </div>
-                        <div class="card-body results-table filter-body p-2">
-                            <div class="w-50 float-left" *ngFor="let retailer of properties.retailers; let i = index" [hidden]="!retailer.visible">
+                        <div class="card-body results-table filter-body p-2 result-padding">
+                            <div class="w-100 float-left" *ngFor="let retailer of properties.retailers; let i = index" [hidden]="!retailer.visible">
                                 <div class="checkbox checkbox-success float-left">
                                     <input id="retailer{{retailer.id}}" type="checkbox" [checked]="retailer.checked" (change)="toggleRetailer(retailer)">
                                     <label for="retailer{{retailer.id}}">
@@ -272,10 +272,10 @@
                         <div class="card-header p-0 text-10">
                             Model
                         </div>
-                        <div class="card-body results-table filter-body p-2">
+                        <div class="card-body results-table filter-body p-0">
                             <div class="card model-card m-0" [hidden]="!properties.models || properties.models.length == 0" *ngFor="let brand of properties.models" [hidden]="!brand.visible">
                                 <div class="card-header text-center"><b>{{brand.brand}}</b></div>
-                                <div class="card-body p-2">
+                                <div class="card-body p-2 result-padding">
                                     <div class="w-100 float-left" *ngFor="let model of brand.models; let i = index" [hidden]="!model.visible">
                                         <div class="checkbox checkbox-success float-left">
                                             <input id="{{brand.brand}}_model_{{model.id}}" type="checkbox" [checked]="model.checked" (change)="togglelModel(model)">
@@ -294,7 +294,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-8 p-1">
+        <div class="col-9 p-1">
             <div class="card m-1 box-shadow" *ngFor="let result of properties.filteredResults">
                 <div class="card-body results-table p-2">
                     <div class="row">
@@ -302,7 +302,7 @@
                             <div class="row">
                                 <div class="col-3 border-right text-center">
                                     <div class="text-center"><h6 class="font-weight-bold">{{result.partner}}</h6></div>
-                                    <img class="p-1 result-img" ngbTooltip="{{result.partner}}" src="../../assets/{{result.partner}}.jpg" />
+                                    <img class="p-1 result-img" src="../../assets/{{result.partner}}.jpg" />
                                     <div class="text-left p-1">
                                         {{result.branch.name}}<br>{{result.location.suburb}}
                                     </div>
