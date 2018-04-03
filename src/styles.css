@@ -652,7 +652,13 @@ li::before {
       position: relative;
       border:none;
       min-height:200pt;
-      background: url("/assets/Tyre Care.jpg") repeat 0 0;
+      background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%), url("/assets/Tyre Care.jpeg") repeat 0 0, url("/assets/Tyre Care.jpeg") repeat 0 0;
+      background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 100%), url("/assets/Tyre Care.jpeg") repeat 0 0;
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,0))), url("/assets/Tyre Care.jpeg") repeat 0 0;
+      background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 100%), url("/assets/Tyre Care.jpeg") repeat 0 0;
+      background: -o-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 100%), url("/assets/Tyre Care.jpeg") repeat 0 0;
+      background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 100%), url("/assets/Tyre Care.jpeg") repeat 0 0;
+      background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 100%), url("/assets/Tyre Care.jpeg") repeat 0 0;
       background-size:130%;
   }
 
