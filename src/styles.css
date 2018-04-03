@@ -331,6 +331,11 @@ h5{
 #contactMeBtn{
   padding-left: 20pt;
   padding-right: 20pt;
+  font-weight: normal;
+}
+
+.pin-icon{
+  max-height:20px;
 }
 
 .vehicle-icon{

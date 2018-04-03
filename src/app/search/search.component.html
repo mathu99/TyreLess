@@ -304,7 +304,9 @@
                                     <div class="text-center"><h6 class="font-weight-bold h6-sm">{{result.partner}}</h6></div>
                                     <img class="p-1 result-img" src="../../assets/{{result.partner}}.jpg" />
                                     <div class="text-left p-1">
-                                        {{result.branch.name}}<br>{{result.location.suburb}}
+                                        {{result.branch.name}}
+                                        <br>
+                                        {{result.location.suburb}}<a href="https://www.google.com/maps" target="_blank"><img ngbTooltip="View on Google Maps" class="pin-icon" src="../../assets/Pin.png" alt="Location"/></a>
                                     </div>
                                 </div>
                                 <div class="col-5 border-right" style="padding-left:20pt; padding-right:10pt">
