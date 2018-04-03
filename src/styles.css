@@ -287,7 +287,7 @@ h5{
 
 .dropdown-item>a, .dropdown-item>a:hover{
   text-decoration: none;
-  color:black;
+  color:black !important;
 }
 
 .select-box{
