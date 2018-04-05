@@ -112,7 +112,7 @@
                         "checked": false
                     },
                     {
-                        "name": "Bryanston",
+                        "name": "Roodepoort",
                         "checked": false
                     },
                     {
@@ -237,7 +237,7 @@
                 "branch": {
                     "name": "Fourways Crossing",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "L9, Fourways Crossing Centre, William Nicol Dr, Fourways, Johannesburg, 2055"
                 }
             },
             {
@@ -258,7 +258,7 @@
                 "branch": {
                     "name": "Fourways Crossing",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "Sunrise Blvd, Fourways, Sandton, 2191"
                 }
             },
             {
@@ -279,7 +279,7 @@
                 "branch": {
                     "name": "Fourways Crossing",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "L9, Fourways Crossing Centre, William Nicol Dr, Fourways, Johannesburg, 2055"
                 }
             },
             {
@@ -300,7 +300,7 @@
                 "branch": {
                     "name": "Benoni",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "1 Ampthill Ave, Benoni, 1500"
                 }
             },
             {
@@ -321,7 +321,7 @@
                 "branch": {
                     "name": "Rosebank",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "136 Jan Smuts Ave, Parkwood, Randburg, 2028"
                 }
             },
             {
@@ -342,7 +342,7 @@
                 "branch": {
                     "name": "Fourways",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "Sunrise Blvd, Fourways, Sandton, 2191"
                 }
             },
             {
@@ -363,7 +363,7 @@
                 "branch": {
                     "name": "Wynberg",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "6th St, Wynberg, Sandton, 2090"
                 }
             },
             {
@@ -384,7 +384,7 @@
                 "branch": {
                     "name": "Sandton City",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "Motor 1 Mezzanine, Roof parking, Sandton Drive, Sandhurst, Sandton, 2196"
                 }
             },
             {
@@ -399,13 +399,13 @@
                 "price": "3500.00",
                 "location": {
                     "province": "Gauteng",
-                    "suburb": "Bryanston"
+                    "suburb": "Roodepoort"
                 },
                 "partner": "Hi-Q",
                 "branch": {
-                    "name": "Grosvenor Crossing",
+                    "name": "Roodepoort",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "1, Cascades Rd, Little Falls, Roodepoort, 1724"
                 }
             },
             {
@@ -426,7 +426,7 @@
                 "branch": {
                     "name": "Rosebank",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "136 Jan Smuts Ave, Parkwood, Randburg, 2028"
                 }
             },
             {
@@ -447,7 +447,7 @@
                 "branch": {
                     "name": "Midrand",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "Motor City, Midrand, Old Pretoria Main Rd, Midrand, Johannesburg, 1682"
                 }
             },
             {
@@ -468,7 +468,7 @@
                 "branch": {
                     "name": "Fourways",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "Sunrise Blvd, Fourways, Sandton, 2191"
                 }
             },
             {
@@ -489,7 +489,7 @@
                 "branch": {
                     "name": "Fourways",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "L9, Fourways Crossing Centre, William Nicol Dr, Fourways, Johannesburg, 2055"
                 }
             },
             {
@@ -510,7 +510,7 @@
                 "branch": {
                     "name": "Benoni",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "1 Ampthill Ave, Benoni, 1500"
                 }
             },
             {
@@ -531,7 +531,7 @@
                 "branch": {
                     "name": "Rosebank",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "136 Jan Smuts Ave, Parkwood, Randburg, 2028"
                 }
             },
             {
@@ -552,7 +552,7 @@
                 "branch": {
                     "name": "Fourways",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "Sunrise Blvd, Fourways, Sandton, 2191"
                 }
             },
             {
@@ -573,7 +573,7 @@
                 "branch": {
                     "name": "Wynberg",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "6th St, Wynberg, Sandton, 2090"
                 }
             },
             {
@@ -594,7 +594,7 @@
                 "branch": {
                     "name": "Sandton",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "Motor 1 Mezzanine, Roof parking, Sandton Drive, Sandhurst, Sandton, 2196"
                 }
             },
             {
@@ -609,13 +609,13 @@
                 "price": "3500.00",
                 "location": {
                     "province": "Gauteng",
-                    "suburb": "Bryanston"
+                    "suburb": "Roodepoort"
                 },
                 "partner": "Hi-Q",
                 "branch": {
-                    "name": "Bryanston",
+                    "name": "Roodepoort",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "1, Cascades Rd, Little Falls, Roodepoort, 1724"
                 }
             },
             {
@@ -636,7 +636,7 @@
                 "branch": {
                     "name": "Rosebank",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "136 Jan Smuts Ave, Parkwood, Randburg, 2028"
                 }
             },
             {
@@ -657,7 +657,7 @@
                 "branch": {
                     "name": "Midrand",
                     "email": "sales-partner@gmail.com",
-                    "location": "Coords"
+                    "location": "Motor City, Midrand, Old Pretoria Main Rd, Midrand, Johannesburg, 1682"
                 }
             }
         ]
