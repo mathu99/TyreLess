@@ -350,8 +350,8 @@ h5{
 }
 
 .container-increased{
-  margin-right:12%;
-  margin-left:12%;
+  margin:0 auto;
+  width:1025.25px;
 }
 
 .search-icon{
@@ -504,10 +504,14 @@ body{
 }
 .included-text{
   background-color: red;
+  font-style: italic;
   color:white;
   display:inline;
-  padding-left:3pt;
-  padding-right:3pt;
+  margin:2pt;
+  padding:2pt;
+  padding-left:5pt;
+  padding-right:5pt;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.3) !important;
 }
 .circle-links{
     margin-top:40pt;
@@ -537,7 +541,8 @@ body{
   }
 
   .included-img{
-    width:35%;
+    width:40%;
+    padding:2pt;
   }
 
   .round-btn:hover{

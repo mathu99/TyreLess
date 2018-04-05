@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Http } from '@angular/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
 import { assign, get, set } from 'lodash';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
@@ -122,7 +124,24 @@ export class HomeComponent {
     });
   };
 
-  constructor(private http: Http, private modalService: NgbModal) {
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+        if (params.contactUs === 'true') {
+          const config: ScrollToConfigOptions = {
+            offset: 750,            
+            target: 'contactUs',
+          };
+          this.scrollToService.scrollTo(config);
+        } else {
+          const config: ScrollToConfigOptions = {
+            target: 'homePage',
+          };
+          this.scrollToService.scrollTo(config);
+        }
+      });
+    }
+
+  constructor(private route: ActivatedRoute, private router: Router, private scrollToService: ScrollToService, private http: Http, private modalService: NgbModal) {
     this.http.get('environments/config.development.json').subscribe(res => {
       this.properties = res.json().properties;
       // this.topLevelCheck(this.properties.locations[2]); /* Check all of Gauteng for demo purposes */

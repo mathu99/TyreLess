@@ -13,6 +13,7 @@ import { TyreCareComponent } from './tyreCare/tyreCare.component';
 export const routes: Routes = [
   { path: 'contactUs', component: ContactUsComponent },
   { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'howItWorks', component: HowItWorksComponent },
   { path: 'ourOffering', component: OurOfferingComponent },
   { path: 'partners', component: PartnersComponent },
