@@ -468,7 +468,8 @@ body{
 
 .extras-col {
   text-align: center;
-  margin:1px;
+  margin: 1px;
+  margin-left: 0;
   background-color: white;
   border: 1px solid rgba(0,0,0,.125);
 }
@@ -739,10 +740,9 @@ li::before {
 }
 
 .model-card>.card-header{
-  padding: 0pt;
+    padding: 0pt;
     background-color: rgba(0,0,0,0.05);
     color: black;
-    padding-left: 15pt;
     border: 0;
 }
 .model-card>.card-body{

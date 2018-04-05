@@ -112,15 +112,15 @@
                         "checked": false
                     },
                     {
-                        "name": "Roodepoort",
-                        "checked": false
-                    },
-                    {
                         "name": "Fourways",
                         "checked": false
                     },
                     {
                         "name": "Midrand",
+                        "checked": false
+                    },
+                    {
+                        "name": "Roodepoort",
                         "checked": false
                     },
                     {
