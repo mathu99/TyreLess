@@ -29,10 +29,11 @@ export class HomeComponent {
     showCheckAll: false,
     showUncheckAll: false,
     checkedStyle: 'fontawesome',
-    buttonClasses: 'btn btn-secondary w-100 dd-right',
+    buttonClasses: 'btn btn-secondary w-100 dd-right p-0',
     dynamicTitleMaxItems: 1,
     displayAllSelectedText: true,
     containerClasses: 'dd-container',
+    labelOnTop: true,
   };
   mobileDropdownSettings: IMultiSelectSettings = {};
 
