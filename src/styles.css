@@ -831,6 +831,7 @@ li::before {
   }
   .nav-right-text{
     padding-right:50pt;
+    font-size:0.9rem;
   }
 
   .h6-sm{
