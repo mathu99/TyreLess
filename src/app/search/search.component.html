@@ -198,7 +198,7 @@
         <div class="col-3 p-1">
             <div class="row">
                 <div class="col-12">
-                    <div class="card m-1">
+                    <div class="card m-1 dark-card-border">
                         <div class="card-header p-0 text-10">
                             Price
                         </div>
@@ -223,7 +223,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="card m-1">
+                    <div class="card m-1 dark-card-border">
                         <div class="card-header p-0 text-10">
                             Type
                         </div>
@@ -246,7 +246,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="card m-1">
+                    <div class="card m-1 dark-card-border">
                         <div class="card-header p-0 text-10">
                             Retailer
                         </div>
@@ -268,7 +268,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="card m-1">
+                    <div class="card m-1 dark-card-border">
                         <div class="card-header p-0 text-10">
                             Model
                         </div>
@@ -295,18 +295,25 @@
             </div>
         </div>
         <div class="col-9 p-1">
-            <div class="card m-1 box-shadow" *ngFor="let result of properties.filteredResults">
+            <div class="card m-2 box-shadow" *ngFor="let result of properties.filteredResults">
                 <div class="card-body results-table p-2">
                     <div class="row">
                         <div class="col-10">
                             <div class="row">
-                                <div class="col-3 text-center" style="padding-right:0pt">
+                                <div class="col-3 text-center" style="padding-right:0pt; padding-left:2pt">
                                     <div class="text-center"><h6 class="font-weight-bold h6-sm">{{result.partner}}</h6></div>
                                     <img class="p-1 result-img" src="../../assets/{{result.partner}}.jpg" />
                                     <div class="text-left p-1">
-                                        {{result.branch.name}}
-                                        <br>
-                                        {{result.location.suburb}}<a href="https://www.google.com/maps/search/{{result.partner}} {{result.branch.location}}" target="_blank"><img ngbTooltip="View on Google Maps" class="pin-icon" src="../../assets/Pin.png" alt="Location"/></a>
+                                        <div class="row m-1 p-0">
+                                            <div class="col-12" style="padding-left:5pt">
+                                                {{result.branch.name}}
+                                            </div>
+                                        </div>
+                                        <div class="row m-1 p-0">
+                                            <div class="col-12" style="padding-left:5pt">
+                                                {{result.location.suburb}}<a href="https://www.google.com/maps/search/{{result.partner}} {{result.branch.location}}" target="_blank"><img ngbTooltip="View on Google Maps" class="pin-icon" src="../../assets/Pin.png" alt="Location"/></a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-5 border-right" style="padding-left:20pt; padding-right:10pt">
@@ -323,8 +330,10 @@
                                             <br> {{result.tyreModel}}
                                             <br>
                                             <span *ngIf="result.runFlat">Run Flat</span>
-                                            <div class="row" style="position: absolute; bottom:10pt; right:30pt">
+                                            <div class="row" style="position: absolute; bottom:0; right:30pt">
                                                 <div class="col-12 results-col">
+                                                    <br>
+                                                    <br>
                                                     <br>
                                                     <img class="result-logo" src="../../assets/Tyre Manufacturer/{{result.brand}}.png" />
                                                 </div>
@@ -352,10 +361,10 @@
                         <div class="col-2 results-col text-center">
                             <br>
                             <a href="javascript:void(0)" class="black-link" (click)="viewBreakdown(result)">
-                                <i class="fa fa-info-circle"></i> View Detail
+                                View Detail
                             </a>
                             <div class="text-center p-2" style="padding-left: 12pt !important;padding-right: 12pt !important;" >
-                                <div class="checkbox checkbox-success select-box rounded">
+                                <div class="checkbox checkbox-success checkbox-green select-box rounded" [ngClass]="{selectedBox : result.contactMe}">
                                     <input id="select_{{result.index}}" type="checkbox" [checked]="result.contactMe" (change)="checkSelect(result)">
                                     <label for="select_{{result.index}}">
                                         SELECT

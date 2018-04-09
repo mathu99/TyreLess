@@ -108,6 +108,26 @@ label{
   top: -3pt;
 }
 
+.checkbox-green label::before{
+  border-radius: 1rem;
+  border-color:rgb(107,172,70); 
+}
+
+.selectedBox{
+  background-color:rgb(107,172,70) !important; 
+  color:white !important;
+  text-shadow:2px 2px 3px rgba(0,0,0,0.3) !important;
+}
+
+.selectedBox label::before{
+  border: 2px solid white !important;
+  text-shadow: 0;
+}
+
+.selectedBox input[type="checkbox"]:checked + label::before{
+  background-color: rgb(48, 112, 10) !important;
+}
+
   .radio label {
     display: inline-block;
     position: relative;
@@ -300,6 +320,11 @@ h5{
   padding-bottom: 4pt;
   margin-bottom:5pt;
   font-weight: bold;
+  border-radius:1rem !important;
+}
+
+.dark-card-border{
+  border: 1px solid darkgray;
 }
 
 .sticky-footer{
@@ -336,7 +361,10 @@ h5{
 }
 
 .pin-icon{
-  max-height:20px;
+  max-height: 20px;
+  position: relative;
+  padding-left: 2px;
+  top: -5px;
 }
 
 .vehicle-icon{
@@ -501,7 +529,7 @@ body{
 }
 .border-dashed{
   border-right-style: dashed;
-    border-right-color: rgba(0,0,0,.125);
+    border-right-color: rgba(0,0,0,.225);
     border-right-width: 1px;
 }
 .included-text{
@@ -820,7 +848,6 @@ li::before {
   }
   
   .site-footer{
-    border-top: 1px solid rgba(0,0,0,.125);
     text-align:center;
   }
 
