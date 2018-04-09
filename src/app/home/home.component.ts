@@ -26,8 +26,8 @@ export class HomeComponent {
   // Settings configuration
   dropdownSettings: IMultiSelectSettings = {
     enableSearch: false,
-    showCheckAll: false,
-    showUncheckAll: false,
+    showCheckAll: true,
+    showUncheckAll: true,
     checkedStyle: 'fontawesome',
     buttonClasses: 'btn btn-secondary w-100 dd-right p-0',
     dynamicTitleMaxItems: 1,
@@ -39,8 +39,9 @@ export class HomeComponent {
 
   // Text configuration
   brandTexts: IMultiSelectTexts = {
-    checkAll: 'All Tyre Brands',
-    allSelected: 'All',
+    checkAll: 'Select all',
+    uncheckAll: 'Deselect all',
+    allSelected: 'All Manufacturers',
     defaultTitle: 'Unselected',
     defaultLabel: 'Brand',
   };
@@ -67,7 +68,7 @@ export class HomeComponent {
 
   getLocationFromObject = (locations):any => {
     let locationObj = {
-      name: 'Unselected',
+      name: 'Province/Suburb',
       highLevel: '',
       lowLevel: [],
     }
@@ -153,9 +154,9 @@ export class HomeComponent {
         }
       });
         this.data = {
-          width: '-',//this.properties.tyreWidths[0],
-          profile: '-',//this.properties.tyreProfiles[0],
-          size: '-',//this.properties.wheelSizes[0],
+          width: 'mm',//this.properties.tyreWidths[0],
+          profile: 'mm',//this.properties.tyreProfiles[0],
+          size: 'inch',//this.properties.wheelSizes[0],
           quantity: this.properties.quantities[0],
           brand: this.properties.brands.map(e => e.id),
           location: this.getLocationFromObject(this.properties.locations),

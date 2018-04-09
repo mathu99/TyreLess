@@ -322,9 +322,10 @@ h5{
 }
 
 #searchButton{
+  font-weight: bold;
   max-height: 45pt;
   padding: 8pt;
-  font-size: 16pt;
+  font-size: 18pt;
   box-shadow:3px 3px 4px rgba(0,0,0,0.3);
   text-shadow:2px 2px 3px rgba(0,0,0,0.3);
 }
@@ -528,6 +529,7 @@ body{
 }
 
 .round-btn{
+    margin:0 auto;
     font-weight: bold;
     border:none;
     display:block;
@@ -832,6 +834,25 @@ li::before {
   .nav-right-text{
     padding-right:50pt;
     font-size:0.9rem;
+  }
+
+  #contactUsBtn{
+    position: relative;
+    left: 20pt;
+  }
+
+  .big-slash{
+    font-size:25pt;
+    text-align: center;
+    width:100%;
+  }
+
+  .card-header-light{
+    background-color: rgba(0,0,0,0.05);
+  }
+
+  .unselected{
+    color:gray;
   }
 
   .h6-sm{
