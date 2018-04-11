@@ -48,143 +48,141 @@
                     <div class="col-1"></div>
                 </div>
                 <br>
-                <div class="row" style="max-height:80px">
-                    <div class="col-6">
-                        <div class="row h-100">
-                            <div class="col-3 p-0">
-                                    <div class="dd-col h-100">
-                                            <div class="btn-group w-100 h-100">
-                                                <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    <div class="dd-left p-0">
-                                                        Tyre Width
-                                                    </div>
-                                                    <span class="dd-col dd-search-text" [ngClass]="{unselected : data.width == 'mm'}">{{ data.width }}</span>
-                                                    <i class="dd-caret fa fa-angle-down"></i>
-                                                </button>
-                                                <div class="w-100 dropdown-menu">
-                                                    <button class="dropdown-item" type="button" *ngFor="let width of properties.tyreWidths" (click)="update('width', width)">
-                                                        {{ width }}
+                <div class="gray-container">
+                        <div class="row" style="max-height:80px; margin-right: 0; margin-left: 0;">
+                        <div class="col-6">
+                            <div class="row h-100">
+                                <div class="col-3 p-0">
+                                        <div class="dd-col h-100">
+                                                <div class="btn-group w-100 h-100">
+                                                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        <div class="dd-left p-0">
+                                                            Tyre Width
+                                                        </div>
+                                                        <span class="dd-col dd-search-text" [ngClass]="{unselected : data.width == 'mm'}">{{ data.width }}</span>
+                                                        <i class="dd-caret fa fa-angle-down"></i>
                                                     </button>
+                                                    <div class="w-100 dropdown-menu">
+                                                        <button class="dropdown-item" type="button" *ngFor="let width of properties.tyreWidths" (click)="update('width', width)">
+                                                            {{ width }}
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
+                                </div>
+                                <div class="col-3 p-0">
+                                    <div class="row p-0 m-0">
+                                        <div class="col-2 p-0 m-0">
+                                            <div class="big-slash">/</div>
                                         </div>
-                            </div>
-                            <div class="col-3 p-0">
-                                <div class="row p-0 m-0">
-                                    <div class="col-2 p-0 m-0">
-                                        <div class="big-slash">/</div>
-                                    </div>
-                                    <div class="col-10 p-0 m-0">
-                                            <div class="dd-col p-0 h-100">
-                                                    <div class="btn-group w-100 h-100">
-                                                        <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            <div class="dd-left p-0">
-                                                                Tyre Profile
-                                                            </div>
-                                                            <span class="dd-col dd-search-text" [ngClass]="{unselected : data.profile == 'mm'}">{{ data.profile }}</span>
-                                                            <i class="dd-caret fa fa-angle-down"></i>
-                                                        </button>
-                                                        <div class="w-100 dropdown-menu">
-                                                            <button class="dropdown-item" type="button" *ngFor="let profile of properties.tyreProfiles" (click)="update('profile', profile)">
-                                                                {{ profile }}
+                                        <div class="col-10 p-0 m-0">
+                                                <div class="dd-col p-0 h-100">
+                                                        <div class="btn-group w-100 h-100">
+                                                            <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">
+                                                                <div class="dd-left p-0">
+                                                                    Tyre Profile
+                                                                </div>
+                                                                <span class="dd-col dd-search-text" [ngClass]="{unselected : data.profile == 'mm'}">{{ data.profile }}</span>
+                                                                <i class="dd-caret fa fa-angle-down"></i>
                                                             </button>
+                                                            <div class="w-100 dropdown-menu">
+                                                                <button class="dropdown-item" type="button" *ngFor="let profile of properties.tyreProfiles" (click)="update('profile', profile)">
+                                                                    {{ profile }}
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-3 p-0">
-                                    <div class="row p-0 m-0">
-                                            <div class="col-2 p-0 m-0">
-                                                <div class="big-slash">/</div>
+                                <div class="col-3 p-0">
+                                        <div class="row p-0 m-0">
+                                                <div class="col-2 p-0 m-0">
+                                                    <div class="big-slash">/</div>
+                                                </div>
+                                                <div class="col-10 p-0 m-0">
+                                        <div class="dd-col p-0 h-100">
+                                                <div class="btn-group w-100 h-100">
+                                                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                        <div class="dd-left p-0">
+                                                            Wheel Size
+                                                        </div>
+                                                        <span class="dd-col dd-search-text" [ngClass]="{unselected : data.size == 'inch'}">{{ data.size }}</span>
+                                                        <i class="dd-caret fa fa-angle-down"></i>
+                                                    </button>
+                                                    <div class="w-100 dropdown-menu">
+                                                        <button class="dropdown-item" type="button" *ngFor="let size of properties.wheelSizes" (click)="update('size', size)">
+                                                            {{ size }}
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-10 p-0 m-0">
-                                    <div class="dd-col p-0 h-100">
+                                            </div>
+                                            </div>
+                                </div>
+                                <div class="col-3 p-0">
+                                    <div class="dd-col h-100">
                                             <div class="btn-group w-100 h-100">
                                                 <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="false">
                                                     <div class="dd-left p-0">
-                                                        Wheel Size
+                                                        Quantity
                                                     </div>
-                                                    <span class="dd-col dd-search-text" [ngClass]="{unselected : data.size == 'inch'}">{{ data.size }}</span>
+                                                    <span class="dd-col dd-search-text">{{ data.quantity }}</span>
                                                     <i class="dd-caret fa fa-angle-down"></i>
                                                 </button>
                                                 <div class="w-100 dropdown-menu">
-                                                    <button class="dropdown-item" type="button" *ngFor="let size of properties.wheelSizes" (click)="update('size', size)">
-                                                        {{ size }}
+                                                    <button class="dropdown-item" type="button" *ngFor="let quantity of properties.quantities" (click)="update('quantity', quantity)">
+                                                        {{ quantity }}
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
-                                        </div>
-                                        </div>
+                                </div>
                             </div>
-                            <div class="col-3 p-0">
-                                <div class="dd-col h-100">
-                                        <div class="btn-group w-100 h-100">
-                                            <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false">
-                                                <div class="dd-left p-0">
-                                                    Quantity
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-6 p-0">
+                                        <div class="dd-col h-100">
+                                                <ss-multiselect-dropdown [options]="properties.brands" [texts]="brandTexts" [settings]="dropdownSettings" [(ngModel)]="data.brand"></ss-multiselect-dropdown>
+                                            </div>
+                                </div>
+                                <div class="col-6 p-0">
+                                        <div class="dd-col h-100">
+                                                <div class="btn-group w-100 h-100">
+                                                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false" (click)="openLocationModal()">
+                                                        <div class="dd-left p-0">
+                                                            Location
+                                                        </div>
+                                                        <span class="dd-col dd-search-text" [ngClass]="{unselected : data.location.name == 'Province/Suburb'}">{{ data.location.name }}</span>
+                                                        <i class="dd-caret fa fa-angle-down"></i>
+                                                    </button>
                                                 </div>
-                                                <span class="dd-col dd-search-text">{{ data.quantity }}</span>
-                                                <i class="dd-caret fa fa-angle-down"></i>
-                                            </button>
-                                            <div class="w-100 dropdown-menu">
-                                                <button class="dropdown-item" type="button" *ngFor="let quantity of properties.quantities" (click)="update('quantity', quantity)">
-                                                    {{ quantity }}
-                                                </button>
                                             </div>
-                                        </div>
-                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="row">
-                            <div class="col-6 p-0">
-                                    <div class="dd-col h-100">
-                                            <ss-multiselect-dropdown [options]="properties.brands" [texts]="brandTexts" [settings]="dropdownSettings" [(ngModel)]="data.brand"></ss-multiselect-dropdown>
-                                        </div>
-                            </div>
-                            <div class="col-6 p-0">
-                                    <div class="dd-col h-100">
-                                            <div class="btn-group w-100 h-100">
-                                                <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false" (click)="openLocationModal()">
-                                                    <div class="dd-left p-0">
-                                                        Location
-                                                    </div>
-                                                    <span class="dd-col dd-search-text" [ngClass]="{unselected : data.location.name == 'Province/Suburb'}">{{ data.location.name }}</span>
-                                                    <i class="dd-caret fa fa-angle-down"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                            </div>
+                    <div class="checkbox-spacer">
+                        <div class="checkbox checkbox-success float-left">
+                            <input id="wheelAlignmentSm" type="checkbox" [checked]="data.wheelAlignmentChecked" (change)="data.wheelAlignmentChecked = !data.wheelAlignmentChecked">
+                            <label for="wheelAlignment">
+                                Wheel Alignment
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-success float-left" style="padding-left:15pt">
+                            <input id="wheelBalancingSm" type="checkbox" [checked]="data.wheelBalancingChecked" (change)="data.wheelBalancingChecked = !data.wheelBalancingChecked">
+                            <label for="wheelBalancing">
+                                Wheel Balancing
+                            </label>
                         </div>
                     </div>
-                    
-                    
-                    
-                </div>
-                <br>
-                <div>
-                    <div class="checkbox checkbox-success float-left">
-                        <input id="wheelAlignmentSm" type="checkbox" [checked]="data.wheelAlignmentChecked" (change)="data.wheelAlignmentChecked = !data.wheelAlignmentChecked">
-                        <label for="wheelAlignment">
-                            Wheel Alignment
-                        </label>
                     </div>
-                    <div class="checkbox checkbox-success float-left" style="padding-left:15pt">
-                        <input id="wheelBalancingSm" type="checkbox" [checked]="data.wheelBalancingChecked" (change)="data.wheelBalancingChecked = !data.wheelBalancingChecked">
-                        <label for="wheelBalancing">
-                            Wheel Balancing
-                        </label>
-                    </div>
-                </div>
+            </div>
                 <br>
                 <br>
                 <div class="row">
@@ -197,7 +195,7 @@
                     </div>
                     <div class="col-4"></div>
                 </div>
-                <div class="row circle-links">
+                <div class="row circle-links" in-viewport (inViewportAction)="setNavBarVisibility($event)">
                     <div class="col-2"></div>
                     <div class="col-8">
                         <div class="row">
@@ -383,7 +381,7 @@
     </div>
 </div>
 
-<section class="information" in-viewport (inViewportAction)="setNavBarVisibility($event)">
+<section class="information">
     <p class="text-center custom">Search the best deals from hundreds of Partners countrywide</p>
 </section>
 <br>

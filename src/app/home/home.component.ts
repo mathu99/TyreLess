@@ -41,7 +41,7 @@ export class HomeComponent {
   brandTexts: IMultiSelectTexts = {
     checkAll: 'Select all',
     uncheckAll: 'Deselect all',
-    allSelected: 'All Manufacturers',
+    allSelected: 'All Brands',
     defaultTitle: 'Unselected',
     defaultLabel: 'Brand',
   };
@@ -68,7 +68,7 @@ export class HomeComponent {
 
   getLocationFromObject = (locations):any => {
     let locationObj = {
-      name: 'Province/Suburb',
+      name: '-',
       highLevel: '',
       lowLevel: [],
     }
@@ -154,9 +154,9 @@ export class HomeComponent {
         }
       });
         this.data = {
-          width: 'mm',//this.properties.tyreWidths[0],
-          profile: 'mm',//this.properties.tyreProfiles[0],
-          size: 'inch',//this.properties.wheelSizes[0],
+          width: '---',//this.properties.tyreWidths[0],
+          profile: '--',//this.properties.tyreProfiles[0],
+          size: '--',//this.properties.wheelSizes[0],
           quantity: this.properties.quantities[0],
           brand: this.properties.brands.map(e => e.id),
           location: this.getLocationFromObject(this.properties.locations),
