@@ -8,7 +8,9 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   router: Router = null;
+  year: number;
   constructor(private _router: Router ) {
     this.router = _router;
+    this.year = (new Date()).getFullYear();
   }
 }
