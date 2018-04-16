@@ -247,7 +247,16 @@ export class SearchComponent {
   sort = (filterName) => {  /* Apply sort filters */
     this.update('selectedFilter', filterName);
     this.properties.filteredResults = get(this.properties, 'filteredResults', []).sort((a, b) => {
-      switch (filterName) {
+      var partnerA=a.partner.toLowerCase(), partnerB=b.partner.toLowerCase();
+      if (partnerA < partnerB) //sort alphabetically (lowest priority)
+        return -1;
+      if (partnerA > partnerB)
+        return 1;
+      return 0;
+    }).sort((a, b) => {
+      return parseFloat(b.extrasScore) - parseFloat(a.extrasScore);   //sort by extra's score (higher priority)
+    }).sort((a, b) => {
+      switch (filterName) { //sort by price (highest)
         case 'Price: Low to High': {
           return parseFloat(a.totalPrice) - parseFloat(b.totalPrice);
         }
@@ -255,7 +264,7 @@ export class SearchComponent {
           return parseFloat(b.totalPrice) - parseFloat(a.totalPrice);
         }
       }
-    });
+    })
   }
 
   resetFilters = () => {
@@ -430,6 +439,7 @@ export class SearchComponent {
       if (get(this.data, 'wheelBalancingChecked') === true) {
         e.totalPrice = (parseFloat(e.totalPrice) + parseFloat(get(e, 'partnerDetails.wheelBalancingPrice', '0'))).toString();
       }
+      e.extrasScore = e.partnerDetails.services.filter(s => s.show).length || 0; /* Add additional weight to ranking based on services provided by partner */
       return e;
     }).map((e, i) => {
       e.index = i;

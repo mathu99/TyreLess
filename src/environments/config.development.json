@@ -438,7 +438,7 @@
                 "brand": "Dunlop",
                 "tyreModel": "SP SportMaxx 050",
                 "runFlat": false,
-                "price": "3900.00",
+                "price": "3500.00",
                 "location": {
                     "province": "Gauteng",
                     "suburb": "Midrand"
@@ -709,6 +709,7 @@
                     "Wheel Alignment",
                     "Wheel Balancing",
                     "All Road Hazard Guarantee",
+                    "Competition Entry",
                     "Nitrogen Fill Up"
                 ]
             },
