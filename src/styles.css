@@ -608,6 +608,7 @@ html{
 .jumbotron{
     background-color:white;
     margin-bottom: 0 !important;
+    border-radius: 0 !important;
 }
   
   .navbar-brand .glyphicon{
@@ -695,7 +696,7 @@ li::before {
   background-color: rgb(242,242,242);
 }
 
-  #howItWorks{
+  #howItWorksSection{
     display: block;
       position: relative;
       border:none;
@@ -733,6 +734,20 @@ li::before {
     margin-top:10pt;
     max-width: 120pt;
   }
+
+  .search-select-save-sm{
+      max-width: 50pt;
+  }
+
+  .plr-5{
+    padding-left:5pt;
+    padding-right:5pt;
+  }
+
+  hr{
+    margin-left: 15%;
+    margin-right: 15%;
+}
 
   .tyre-care{
     margin-top: 2pt;

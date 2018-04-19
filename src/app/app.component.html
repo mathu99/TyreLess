@@ -3,10 +3,21 @@
 </div>
 <footer class="site-footer">
   <div class="container">
-    <div class="row text-left">
+    <div class="row text-left hide-from-mobile">
         <h6 class="p-3">Facile Technologies Pty Ltd © {{year}}</h6>
         <a [routerLink]="['/termsOfUse']" class="p-3">Terms of Use</a>
         <a [routerLink]="['/privacyPolicy']" class="p-3">Privacy Policy</a>
+    </div>
+    <div class="show-on-mobile text-center">
+        <p>Facile Technologies Pty Ltd © {{year}}</p>
+        <div class="row">
+          <div class="col-6">
+              <a [routerLink]="['/termsOfUse']">Terms of Use</a>
+          </div>
+          <div class="col-6">
+              <a [routerLink]="['/privacyPolicy']">Privacy Policy</a>
+          </div>
+        </div>
     </div>
   </div>
 </footer>
