@@ -241,7 +241,7 @@ export class SearchComponent {
       set(this.properties, 'results', this.performSearch());
       set(this.properties, 'filteredResults', (this.properties.results));  /* Copy of full results */
       this.applyFilters();
-    }, 2000);
+    }, 1000);
   };
 
   sort = (filterName) => {  /* Apply sort filters */
