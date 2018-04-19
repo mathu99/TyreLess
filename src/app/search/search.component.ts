@@ -373,7 +373,7 @@ export class SearchComponent {
     let i = 0;
     if (get(this, 'properties.retailers') == undefined) {
       this.properties.results.forEach(e => {
-        if (retailers.indexOf(e.partner) == -1) {
+        if (retailers.filter(r => r.name == e.partner).length == 0) {
           let model = {
             'name': e.partner,
             'id': i++,
