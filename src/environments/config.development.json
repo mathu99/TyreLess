@@ -438,7 +438,7 @@
                 "brand": "Dunlop",
                 "tyreModel": "SP SportMaxx 050",
                 "runFlat": false,
-                "price": "3500.00",
+                "price": "3900.00",
                 "location": {
                     "province": "Gauteng",
                     "suburb": "Midrand"
@@ -448,6 +448,66 @@
                     "name": "Midrand",
                     "email": "sales-partner@gmail.com",
                     "location": "Motor City, Midrand, Old Pretoria Main Rd, Midrand, Johannesburg, 1682"
+                }
+            },{
+                "vehicleType": "Car",
+                "tyreWidth": "255",
+                "tyreProfile": "30",
+                "wheelSize": "19",
+                "quantity": "100",
+                "brand": "Dunlop",
+                "tyreModel": "SP SportMaxx 051",
+                "runFlat": false,
+                "price": "3900.00",
+                "location": {
+                    "province": "Gauteng",
+                    "suburb": "Sandton"
+                },
+                "partner": "Tiger Wheel & Tyre",
+                "branch": {
+                    "name": "Sandton City",
+                    "email": "sales-partner@gmail.com",
+                    "location": "Not provided"
+                }
+            },{
+                "vehicleType": "Car",
+                "tyreWidth": "255",
+                "tyreProfile": "30",
+                "wheelSize": "19",
+                "quantity": "100",
+                "brand": "Dunlop",
+                "tyreModel": "SP SportMaxx 052",
+                "runFlat": false,
+                "price": "3890.00",
+                "location": {
+                    "province": "Gauteng",
+                    "suburb": "Bryanston"
+                },
+                "partner": "Hi-Q",
+                "branch": {
+                    "name": "Grossvener Crossing",
+                    "email": "sales-partner@gmail.com",
+                    "location": "Not provided"
+                }
+            },{
+                "vehicleType": "Car",
+                "tyreWidth": "255",
+                "tyreProfile": "30",
+                "wheelSize": "19",
+                "quantity": "100",
+                "brand": "Dunlop",
+                "tyreModel": "SP SportMaxx 053",
+                "runFlat": false,
+                "price": "3890.00",
+                "location": {
+                    "province": "Gauteng",
+                    "suburb": "Bryanston"
+                },
+                "partner": "Supaquick",
+                "branch": {
+                    "name": "Grossvener Crossing",
+                    "email": "sales-partner@gmail.com",
+                    "location": "Not provided"
                 }
             },
             {
@@ -670,6 +730,7 @@
                 "wheelAlignmentPrice": "299.00",
                 "wheelBalancingPrice": "50.00",
                 "services": [
+                    "Competition Entry",
                     "Wheel Alignment",
                     "Wheel Balancing",
                     "All Road Hazard Guarantee",
@@ -679,13 +740,11 @@
             {
                 "name": "Supaquick",
                 "email": "supaquick.co.za",
-                "wheelAlignmentPrice": "270.00",
-                "wheelBalancingPrice": "40.00",
+                "wheelAlignmentPrice": "299.00",
+                "wheelBalancingPrice": "50.00",
                 "services": [
                     "Wheel Alignment",
-                    "Wheel Balancing",
-                    "All Road Hazard Guarantee",
-                    "Nitrogen Fill Up"
+                    "Wheel Balancing"
                 ]
             },
             {
@@ -728,13 +787,11 @@
             {
                 "name": "Hi-Q",
                 "email": "hiq.co.za",
-                "wheelAlignmentPrice": "300.00",
-                "wheelBalancingPrice": "60.00",
+                "wheelAlignmentPrice": "299.00",
+                "wheelBalancingPrice": "50.00",
                 "services": [
                     "Wheel Alignment",
-                    "Wheel Balancing",
-                    "All Road Hazard Guarantee",
-                    "Nitrogen Fill Up"
+                    "Wheel Balancing"
                 ]
             },
             {
@@ -743,9 +800,9 @@
                 "wheelAlignmentPrice": "299.00",
                 "wheelBalancingPrice": "50.00",
                 "services": [
+                    "Competition Entry",
                     "Wheel Alignment",
                     "Wheel Balancing",
-                    "All Road Hazard Guarantee",
                     "Nitrogen Fill Up"
                 ]
             }
