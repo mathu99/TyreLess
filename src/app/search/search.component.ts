@@ -336,12 +336,15 @@ export class SearchComponent {
           })
           models.push(obj);
         } else {
-          models.filter(r => r.brand === e.brand)[0].models.push({
-            id: models.filter(r => r.brand === e.brand)[0].models.length,
-            modelName: e.tyreModel,
-            checked: true,
-            visible: true,
-          });
+          /* Check if that model of the brand is already there */
+          if (models.filter(r => r.brand === e.brand)[0].models.filter(m => m.modelName === e.tyreModel).length === 0) {
+            models.filter(r => r.brand === e.brand)[0].models.push({
+              id: models.filter(r => r.brand === e.brand)[0].models.length,
+              modelName: e.tyreModel,
+              checked: true,
+              visible: true,
+            });
+          }
         }
       });
       models.forEach(e => { /* Alphabetical Sorting */
