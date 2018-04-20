@@ -1,5 +1,5 @@
-<div class="jumbotron hero custom" id="homePage">
-    <div class="container hide-from-mobile">
+<div class="jumbotron hero custom hide-from-mobile" id="homePage">
+    <div class="container">
         <div class="text-right">
             <h6>
                 <a class="ml-auto font-weight-bold" [ngx-scroll-to]="'#contactUs'" [ngx-scroll-to-offset]="0">
@@ -224,11 +224,13 @@
     </div>
 </div>
 
-<section class="information">
+<section class="information hide-from-mobile">
     <p class="text-center custom">Search the best deals from hundreds of Partners countrywide</p>
 </section>
-<br>
-<section class="brands">
+<div class="hide-from-mobile">
+    <br>
+</div>
+<section class="brands hide-from-mobile">
         <div class="row w-100">
             <div style="margin:auto; display:block;">
                 <img src="../assets/Best Drive.jpg" class="brand-img" />
@@ -250,6 +252,56 @@
         </div>
     </div>
 </section>
+<div class="show-on-mobile">
+    <div class="light-grey-bg">
+        <br>
+        <br>
+        <h2 class="text-center font-weight-bold">TyreLess<span class="txt-green-sm">.co.za</span></h2>
+        <p class="text-center m-0">Search - Select - Save</p>
+        <br>
+        <div class="text-center">
+            <div class="link" (click)="update('selected','Car')">
+                <span [ngClass]="{linkSelected : data.selected == 'Car'}">
+                    <img src="../../assets/Car.png" class="vehicle-icon-sm" />
+                    <span class="link-text">CAR</span>
+                </span>
+            </div>
+            <div class="link" (click)="update('selected','4x4 / SUV')">
+                <span [ngClass]="{linkSelected : data.selected == '4x4 / SUV'}">
+                    <img src="../../assets/4x4_SUV.png" class="vehicle-icon-sm" />
+                    <span class="link-text">4x4 / SUV</span>
+                </span>
+            </div>
+            <div class="link" (click)="update('selected','Bike')">
+                <span [ngClass]="{linkSelected : data.selected == 'Bike'}">
+                    <img src="../../assets/Bike.png" class="vehicle-icon-sm" />
+                    <span class="link-text">BIKE</span>
+                </span>
+            </div>
+            <div class="link" (click)="update('selected','Commercial')">
+                <span [ngClass]="{linkSelected : data.selected == 'Commercial'}">
+                    <img src="../../assets/Commercial.png" class="vehicle-icon-sm" />
+                    <span class="link-text">COMMERCIAL</span>
+                </span>
+            </div>
+        </div>
+        <br>
+        <br>
+    </div>
+    <section class="information">
+        <p class="text-center font-weight-bold">Search deals from hundreds of Partners countrywide</p>
+    </section>
+    <div class="w-100 text-center p-1" style="margin-top:10pt">
+        <div style="margin:auto; display:block;">
+            <img src="../assets/Hi-Q.jpg" class="brand-img-sm" />
+            <img src="../assets/Speedy.jpg" class="brand-img-sm" />
+            <img src="../assets/Supaquick.jpg" class="brand-img-sm" />
+            <img src="../assets/Tiger Wheel &amp; Tyre.jpg" class="brand-img-sm" />
+            <img src="../assets/Tyremart.jpg" class="brand-img-sm" />
+            <img src="../assets/Tyres &amp; More.jpg" class="brand-img-sm" />
+        </div>
+    </div>
+</div>
 <ng-template #locationModal let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h4 class="modal-title custom">Location</h4>
@@ -294,7 +346,7 @@
 <how-it-works id="howItWorks"></how-it-works>
 <tyre-care id="tyreCare" class="hide-from-mobile"></tyre-care>
 <contact-us id="contactUs"></contact-us>
-<nav id="mainNavbar" class="navbar navbar-light navbar-fixed-top navbar-expand-lg custom fixed-top" [hidden]="!properties.navBarVisible">
+<nav id="mainNavbar" class="hide-from-mobile navbar navbar-light navbar-fixed-top navbar-expand-lg custom fixed-top" [hidden]="!properties.navBarVisible">
     <a class="navbar-brand" [routerLink]="['/']" [ngx-scroll-to]="'#homePage'">
         <span class="nav-logo-left">TyreLess</span><span class="nav-logo-right">.co.za</span>
     </a>
@@ -303,8 +355,8 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div id="navbarSupportedContent" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}" class="nav-right">
-        <a class="navbar-brand ml-auto" [ngx-scroll-to]="'#contactUs'" [ngx-scroll-to-offset]="0">
-            <h6 class="nav-right-text font-weight-bold">CONTACT US</h6>
-        </a>
-    </div>
+    <a class="navbar-brand ml-auto" [ngx-scroll-to]="'#contactUs'" [ngx-scroll-to-offset]="0">
+        <h6 class="nav-right-text font-weight-bold">CONTACT US</h6>
+    </a>
+</div>
 </nav>

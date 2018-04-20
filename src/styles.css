@@ -744,6 +744,15 @@ li::before {
     padding-right:5pt;
   }
 
+  .plr-3{
+    padding-left:3pt;
+    padding-right:3pt;
+  }
+
+  .light-grey-bg{
+    background: rgb(242,242,242);
+  }
+
   hr{
     margin-left: 15%;
     margin-right: 15%;
@@ -875,6 +884,11 @@ li::before {
     margin-right:10pt;
     /* max-width: 70pt; */
   }
+
+  .brand-img-sm{
+    margin-right:1px;
+    max-height:15pt;
+  }
   
   .site-footer{
     text-align:center;
@@ -921,6 +935,10 @@ li::before {
   .navbar{
     box-shadow:1px 1px 1px rgba(0,0,0,0.3);
     background-color: white;
+  }
+
+  .navbar-light .navbar-toggler{
+    border: 0;
   }
   
   .ml-auto{
@@ -1096,6 +1114,13 @@ li::before {
       text-align: center;
       padding: 0pt;
       font-size: 8pt;
+      margin-right:0pt;
+    }
+    .link>span:hover, .linkSelected{
+      border-bottom:2px solid;
+    }
+    .link>span{
+      padding:3pt;
     }
     h2{
       font-size: 2.2rem;
@@ -1103,6 +1128,13 @@ li::before {
     .txt-green{
       font-size:32pt;
   }
+  .txt-green-sm{
+    color:rgb(107,172,70);
+    font-size:16pt;
+}
+section.information{
+  padding:5pt;
+}
     .nav-logo-left{
       margin-left: 0pt;
     }
@@ -1112,6 +1144,9 @@ li::before {
     
     #ourOfferingImg, .hide-from-mobile{
       display: none !important;
+    }
+    .show-on-mobile{
+      font-size: 10pt;
     }
   }
 
