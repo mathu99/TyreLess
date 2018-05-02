@@ -453,14 +453,14 @@
         <div class="card" *ngFor="let location of properties.locations">
             <div class="card-header card-header-light">
                 <div class="row">
-                    <div class="col-2">
+                    <div class="col-2 p-0">
                         <div class="checkbox checkbox-success">
                             <input id="{{location.name}}" type="checkbox" [checked]="location.checked" (change)="topLevelCheck(location)">
                             <label for="{{location.name}}">&nbsp;
                             </label>
                         </div>
                     </div>
-                    <div class="col-8 font-weight-bold" (click)="location.collapsed = !location.collapsed" style="cursor: pointer;">
+                    <div class="col-8 p-0 font-weight-bold" (click)="location.collapsed = !location.collapsed" style="cursor: pointer;">
                         {{location.name}}
                     </div>
                 </div>
