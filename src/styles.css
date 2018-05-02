@@ -354,6 +354,14 @@ h5{
   box-shadow:3px 3px 4px rgba(0,0,0,0.3);
   text-shadow:2px 2px 3px rgba(0,0,0,0.3);
 }
+
+#searchButtonMobile{
+  font-weight: bold;
+  padding: 8pt;
+  box-shadow:3px 3px 4px rgba(0,0,0,0.3);
+  text-shadow:2px 2px 3px rgba(0,0,0,0.3);
+}
+
 #contactMeBtn{
   padding-left: 20pt;
   padding-right: 20pt;
@@ -1071,7 +1079,12 @@ li::before {
   }
 
   @media (max-width:768px) {
-
+    .dd-search-text{
+      font-size:12pt;
+    }
+    .txt-shadow{
+      text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+    }
     .checkbox label::after {
       margin-left: -21px;
     }
@@ -1105,7 +1118,8 @@ li::before {
 }
 
   .dd-col {
-      padding: 1pt;
+    font-size: 12pt;
+    padding: 1pt;
   }
     .vehicle-icon{
       margin: 0pt;

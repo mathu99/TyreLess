@@ -35,7 +35,7 @@ export class HomeComponent {
     containerClasses: 'dd-container',
     labelOnTop: true,
   };
-  mobileDropdownSettings: IMultiSelectSettings = {};
+  dropdownSettingsMobile = JSON.parse(JSON.stringify(this.dropdownSettings));
 
   // Text configuration
   brandTexts: IMultiSelectTexts = {
@@ -127,6 +127,7 @@ export class HomeComponent {
   };
 
   ngOnInit() {
+    this.dropdownSettingsMobile.buttonClasses += ' dd-search-text';
     this.route.queryParams.subscribe(params => {
         if (params.contactUs === 'true') {
           const config: ScrollToConfigOptions = {
@@ -166,8 +167,6 @@ export class HomeComponent {
           wheelBalancingChecked: true,
         };
     });
-    assign(this.mobileDropdownSettings, this.dropdownSettings);
-    set(this.mobileDropdownSettings, 'labelOnTop', true);
   }
 
   update = (property, value) => {
