@@ -386,6 +386,49 @@ h5{
   padding-left: 2pt;
 }
 
+.skew-outer{
+  -ms-transform: skewX(-20deg); 
+  -webkit-transform: skewX(-20deg); 
+  transform: skewX(-20deg);
+}
+.padder::before{
+  content: " ";
+  width: 15pt;
+  position: absolute;
+  left: -9pt;
+  top: -3pt;
+  background: rgb(217,217,217);
+  height: 115%;
+  z-index: 100;
+}
+.padder-after::after{
+  content: " ";
+  width: 15pt;
+  position: absolute;
+  right: -9pt;
+  top: -3pt;
+  background: rgb(217,217,217);
+  height: 115%;
+  z-index: 100;
+}
+
+.shift-up{
+  position: relative;
+  left: 5pt;
+}
+
+.shift-left{
+  position: relative; 
+  left:-5pt; 
+  z-index: 101;
+}
+
+.skew-inner{
+  -ms-transform: skewX(20deg); 
+  -webkit-transform: skewX(20deg); 
+  transform: skewX(20deg);
+}
+
 .container-increased{
   margin:0 auto;
   width:1025.25px;
@@ -672,7 +715,7 @@ li::before {
   }
 
   .gray-container{
-    padding:6pt;
+    padding:9pt;
     padding-bottom: 10pt;
     background: rgb(217,217,217);
     border-radius: .25rem;
@@ -681,7 +724,7 @@ li::before {
   .checkbox-spacer{
     position: relative;
     top:5pt;
-    left:5pt;
+    left:10pt;
   }
 
   /* #ourOfferingImg>div{
