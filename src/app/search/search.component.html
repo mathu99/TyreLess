@@ -204,7 +204,7 @@
                         </div>
                         <div class="card-body filter-body results-table" id="priceSlider">
                             <div *ngIf="properties.filteredResults && properties.filteredResults.length > 0" class="p-2">
-                                <mat-slider [min]="properties.priceFilter.min" [max]="properties.priceFilter.max" (change)="applyFilters('price')" [(ngModel)]="properties.priceFilter.current"></mat-slider>
+                                <mat-slider [min]="properties.priceFilter.min" [max]="properties.priceFilter.max" (input)="priceChange($event)" [(ngModel)]="properties.priceFilter.current"></mat-slider>
                                 <div class="row">
                                     <div class="col-6 text-left">
                                         <b>Min:</b> {{properties.priceFilter.min | currency:'R'}}

@@ -533,7 +533,7 @@ body{
 }
 
 .strong{
-  font-weight: bold;
+  font-weight: 500;
   background-color: rgba(0,0,0,.05);
 }
 
@@ -585,14 +585,14 @@ body{
 }
 .included-text{
   background-color: red;
-  font-style: italic;
-  color:white;
-  display:inline;
-  margin:2pt;
-  padding:2pt;
-  padding-left:5pt;
-  padding-right:5pt;
-  text-shadow: 2px 2px 3px rgba(0,0,0,0.3) !important;
+    font-style: italic;
+    color: white;
+    display: inline;
+    margin: 2pt;
+    padding: 2pt;
+    padding-left: 5pt;
+    padding-right: 5pt;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.9) !important;
 }
 .circle-links{
     margin-top:40pt;

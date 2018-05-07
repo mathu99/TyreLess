@@ -64,6 +64,11 @@ export class SearchComponent {
     defaultLabel: 'Brand',
   };
 
+  priceChange = ($event): void => {
+    set(this, 'properties.priceFilter.current', $event.value);
+    this.applyFilters('price');
+  }
+
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
   }
