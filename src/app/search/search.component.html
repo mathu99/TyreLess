@@ -198,7 +198,7 @@
         <div class="col-3 p-1">
             <div class="row">
                 <div class="col-12">
-                    <div class="card m-1 dark-card-border">
+                    <div class="card m-1 box-shadow">
                         <div class="card-header p-0 text-10">
                             Price
                         </div>
@@ -223,7 +223,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="card m-1 dark-card-border">
+                    <div class="card m-1 box-shadow">
                         <div class="card-header p-0 text-10">
                             Type
                         </div>
@@ -246,7 +246,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="card m-1 dark-card-border">
+                    <div class="card m-1 box-shadow">
                         <div class="card-header p-0 text-10">
                             Retailer
                         </div>
@@ -268,7 +268,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="card m-1 dark-card-border">
+                    <div class="card m-1 box-shadow">
                         <div class="card-header p-0 text-10">
                             Model
                         </div>
@@ -295,7 +295,7 @@
             </div>
         </div>
         <div class="col-9 p-1">
-            <div class="card m-2 box-shadow" *ngFor="let result of properties.filteredResults">
+            <div class="card m-2 dark-card-border" *ngFor="let result of properties.filteredResults">
                 <div class="card-body results-table p-2">
                     <div class="row">
                         <div class="col-10">
@@ -304,14 +304,18 @@
                                     <div class="text-center"><h6 class="font-weight-bold h6-sm">{{result.partner}}</h6></div>
                                     <img class="p-1 result-img" src="../../assets/{{result.partner}}.jpg" />
                                     <div class="text-left p-1">
-                                        <div class="row m-1 p-0">
-                                            <div class="col-12" style="padding-left:5pt">
+                                        <div class="row m-0 p-0" style="padding-left:5pt">
+                                            <div class="col-2 p-0">
+                                                <a href="https://www.google.com/maps/search/{{result.partner}} {{result.branch.location}}" target="_blank"><img ngbTooltip="View on Google Maps" class="pin-icon" src="../../assets/Pin.png" alt="Location"/></a>
+                                            </div>
+                                            <div class="col-10 p-0">
                                                 {{result.branch.name}}
                                             </div>
                                         </div>
-                                        <div class="row m-1 p-0">
-                                            <div class="col-12" style="padding-left:5pt">
-                                                {{result.location.suburb}}<a href="https://www.google.com/maps/search/{{result.partner}} {{result.branch.location}}" target="_blank"><img ngbTooltip="View on Google Maps" class="pin-icon" src="../../assets/Pin.png" alt="Location"/></a>
+                                        <div class="row m-0 p-0" style="padding-left:5pt">
+                                            <div class="col-2 p-0"></div>
+                                            <div class="col-10 p-0">
+                                                {{result.location.suburb}}
                                             </div>
                                         </div>
                                     </div>
@@ -378,7 +382,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card m-1 text-center box-shadow" *ngIf="properties.results && properties.results.length > 0 && properties.filteredResults.length == 0 ">
+            <div class="card m-1 text-center dark-card-border" *ngIf="properties.results && properties.results.length > 0 && properties.filteredResults.length == 0 ">
                 <div class="card-body">
                     <br>
                     <img src="../../assets/no_results.png" class="search-icon" />
