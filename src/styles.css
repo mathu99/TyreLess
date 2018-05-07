@@ -661,6 +661,16 @@ html{
     margin-bottom: 0 !important;
     border-radius: 0 !important;
 }
+
+.mlr-2{
+  margin-left:.6rem!important;
+  margin-right:.6rem!important;
+}
+
+.mlr-4{
+  margin-left:1.1rem!important;
+  margin-right:1.1rem!important;
+}
   
   .navbar-brand .glyphicon{
     margin-right:6px;
@@ -824,7 +834,7 @@ li::before {
 }
 
   .hero .get-it h1, .hero .get-it p{
-    text-shadow:2px 2px 3px rgba(0,0,0,0.3);
+    text-shadow:2px 2px 2px rgba(0,0,0,0.6);
   }
   
   .hero .get-it .btn{
@@ -1122,11 +1132,15 @@ li::before {
   }
 
   @media (max-width:768px) {
+    .padder::before, .padder-after::after{
+      background: rgb(242,242,242);
+    }
+
     .dd-search-text{
       font-size:12pt;
     }
     .txt-shadow{
-      text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+      text-shadow: 2px 2px 2px rgba(0,0,0,0.2);
     }
     .checkbox label::after {
       margin-left: -21px;
