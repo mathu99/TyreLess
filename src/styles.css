@@ -1193,15 +1193,12 @@ li::before {
     .link>span{
       padding:3pt;
     }
-    h2{
-      font-size: 2.2rem;
-    }
     .txt-green{
       font-size:32pt;
   }
   .txt-green-sm{
     color:rgb(107,172,70);
-    font-size:16pt;
+    font-size:22pt;
 }
 section.information{
   padding:5pt;
