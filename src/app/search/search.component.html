@@ -295,7 +295,7 @@
             </div>
         </div>
         <div class="col-9 p-1">
-            <div class="card m-2 dark-card-border" *ngFor="let result of properties.filteredResults">
+            <div class="card m-2 box-shadow" *ngFor="let result of properties.filteredResults">
                 <div class="card-body results-table p-2">
                     <div class="row">
                         <div class="col-10">
@@ -382,7 +382,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card m-1 text-center dark-card-border" *ngIf="properties.results && properties.results.length > 0 && properties.filteredResults.length == 0 ">
+            <div class="card m-1 text-center box-shadow" *ngIf="properties.results && properties.results.length > 0 && properties.filteredResults.length == 0 ">
                 <div class="card-body">
                     <br>
                     <img src="../../assets/no_results.png" class="search-icon" />
