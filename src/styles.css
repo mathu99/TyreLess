@@ -501,6 +501,13 @@ a:hover{
   padding-bottom: 5pt;
 }
 
+.header-section-mobile{
+  margin:0 auto;
+  margin-top:56pt;
+  background-color:rgb(220,220,220);
+  padding: 5pt;
+}
+
 .brands{
   background-color: white;
 }
@@ -800,6 +807,12 @@ li::before {
       max-width: 50pt;
   }
 
+  .plr-8{
+    padding: 1;
+    padding-left:8pt !important;
+    padding-right:8pt !important;
+  }
+  
   .plr-5{
     padding-left:5pt;
     padding-right:5pt;
@@ -1134,6 +1147,23 @@ li::before {
   @media (max-width:768px) {
     .padder::before, .padder-after::after{
       background: rgb(242,242,242);
+    }
+
+    .results-table{
+      font-size: 8pt;
+    }
+
+    .h6-sm{
+      font-size:0.8rem;
+    }
+
+    .result-tyre {
+      height: 80px;
+    }
+
+    .select-box{
+      margin-bottom: 0pt;
+      padding-bottom: 2pt;
     }
 
     .dd-search-text{

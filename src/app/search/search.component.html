@@ -12,315 +12,438 @@
         </a>
     </div>
 </nav>
-<div class="custom header-section-40">
-    <br>
-    <br>
-    <div class="container-increased">
-        <div class="row" style="max-height:80px">
-            <div class="col-2 dd-col">
-                <div class="btn-group w-100 h-100">
-                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0 h-100" type="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <div class="dd-left p-0">
-                            Vehicle Type
-                        </div>
-                        <img src="../..{{data.selectedSrc}}" class="vehicle-icon-sm" />
-                        <span class="dd-col dd-search-text">{{ data.selected }}</span>
-                        <i class="dd-caret fa fa-angle-down"></i>
-                    </button>
-                    <div class="w-100 dropdown-menu">
-                        <button class="dropdown-item" type="button" *ngFor="let vehicle of properties.vehicleTypes" (click)="update('selectedSrc', vehicle.imageSrc); update('selected', vehicle.name)">
-                            <img src="../..{{vehicle.imageSrc}}" class="vehicle-icon-sm" /> {{ vehicle.name }}
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-1 dd-col">
-                <div class="btn-group w-100 h-100">
-                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <div class="dd-left p-0">
-                            Tyre Width
-                        </div>
-                        <span class="dd-col dd-search-text">{{ data.width }}</span>
-                        <i class="dd-caret fa fa-angle-down"></i>
-                    </button>
-                    <div class="w-100 dropdown-menu">
-                        <button class="dropdown-item" type="button" *ngFor="let width of properties.tyreWidths" (click)="update('width', width)">
-                            {{ width }}
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-1 dd-col">
-                <div class="btn-group w-100 h-100">
-                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <div class="dd-left p-0">
-                            Tyre Profile
-                        </div>
-                        <span class="dd-col dd-search-text">{{ data.profile }}</span>
-                        <i class="dd-caret fa fa-angle-down"></i>
-                    </button>
-                    <div class="w-100 dropdown-menu">
-                        <button class="dropdown-item" type="button" *ngFor="let profile of properties.tyreProfiles" (click)="update('profile', profile)">
-                            {{ profile }}
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-1 dd-col">
-                <div class="btn-group w-100 h-100">
-                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <div class="dd-left p-0">
-                            Wheel Size
-                        </div>
-                        <span class="dd-col dd-search-text">{{ data.size }}</span>
-                        <i class="dd-caret fa fa-angle-down"></i>
-                    </button>
-                    <div class="w-100 dropdown-menu">
-                        <button class="dropdown-item" type="button" *ngFor="let size of properties.wheelSizes" (click)="update('size', size)">
-                            {{ size }}
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-1 dd-col">
-                <div class="btn-group w-100 h-100">
-                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <div class="dd-left p-0">
-                            Quantity
-                        </div>
-                        <span class="dd-col dd-search-text">{{ data.quantity }}</span>
-                        <i class="dd-caret fa fa-angle-down"></i>
-                    </button>
-                    <div class="w-100 dropdown-menu">
-                        <button class="dropdown-item" type="button" *ngFor="let quantity of properties.quantities" (click)="update('quantity', quantity)">
-                            {{ quantity }}
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2 dd-col">
-                <ss-multiselect-dropdown [options]="properties.brands" [texts]="brandTexts" [settings]="dropdownSettings" [(ngModel)]="data.brand"></ss-multiselect-dropdown>
-            </div>
-            <div class="col-2 dd-col">
-                <div class="btn-group w-100 h-100">
-                    <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" (click)="openLocationModal()">
-                        <div class="dd-left p-0">
-                            Location
-                        </div>
-                        <span class="dd-col dd-search-text">{{ data.location.name }}</span>
-                        <i class="dd-caret fa fa-angle-down"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="col-2 dd-col">
-                <button class="btn btn-success shadow-btn w-100 h-100 p-0" type="button" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
-                    [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">Modify Search</button>
-            </div>
-        </div>
-        <div class="row text-center">
-            <div class="col-3"></div>
-            <div class="col-3 extras-col rounded">
-                <div class="checkbox checkbox-success float-left">
-                    <input id="wheelAlignmentSearch" type="checkbox" [checked]="data.wheelAlignmentChecked" (change)="data.wheelAlignmentChecked = !data.wheelAlignmentChecked">
-                    <label for="wheelAlignmentSearch">
-                        Wheel Alignment
-                    </label>
-                </div>
-            </div>
-            <div class="col-3 extras-col rounded">
-                <div class="checkbox checkbox-success float-left">
-                    <input id="wheelBalancingSearch" type="checkbox" [checked]="data.wheelBalancingChecked" (change)="data.wheelBalancingChecked = !data.wheelBalancingChecked">
-                    <label for="wheelBalancingSearch">
-                        Wheel Balancing
-                    </label>
-                </div>
-            </div>
-            <div class="col-3"></div>
-        </div>
-    </div>
-</div>
-<div class="results-and-filters container-increased custom">
-    <div class="row" *ngIf="!properties.results || properties.results.length == 0">
-        <div class="col-12">
-            <div [hidden]="properties.loading" class="text-center">
+<div class="hide-from-mobile">
+        <div class="custom header-section-40">
                 <br>
                 <br>
-                <img src="../../assets/no_results.png" class="search-icon" />
-                <br>
-                <br>
-                <h5>No Results Found</h5>
-                <h6>Please refine your search</h6>
-            </div>
-            <div [hidden]="!properties.loading" class="text-center">
-                <br>
-                <br>
-                <img src="../../assets/loading.gif" class="search-icon" />
-                <br>
-                <br>
-                <h5>Searching</h5>
-                <h6>Please wait...</h6>
-                <br>
-                <br>
-            </div>
-        </div>
-    </div>
-    <div class="row" *ngIf="properties.results && properties.results.length > 0">
-        <div class="col-3 p-1 text-10" style="position: relative">
-            <div style="position: absolute; bottom: 0; right:12pt">
-                <a href="javascript:void(0)" (click)="resetFilters()">Reset Filter</a>
-            </div>
-        </div>
-        <div class="col-9 p-1">
-            <div class="row">
-                <div class="col-6"></div>
-                <div class="col-6 text-right text-10">
-                    Sort results by:
-                    <div class="btn-group" style="margin-top:3pt">
-                        <button type="button" style="font-size:0.8rem !important" class="btn btn-secondary dropdown-toggle p-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{data.selectedFilter}}
-                            <i class="fa fa-angle-down" style="color:rgb(107,172,70)"></i>
-                        </button>
-                        <div class="dropdown-menu" style="font-size:0.8rem !important">
-                            <span (click)="sort(filterName) " *ngFor="let filterName of properties.filters" class="dropdown-item">{{filterName}}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row" *ngIf="properties.results && properties.results.length > 0">
-        <div class="col-3 p-1">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card m-1 box-shadow">
-                        <div class="card-header p-0 text-10">
-                            Price
-                        </div>
-                        <div class="card-body filter-body results-table" id="priceSlider">
-                            <div *ngIf="properties.filteredResults && properties.filteredResults.length > 0" class="p-2">
-                                <mat-slider [min]="properties.priceFilter.min" [max]="properties.priceFilter.max" (input)="priceChange($event)" [(ngModel)]="properties.priceFilter.current"></mat-slider>
-                                <div class="row">
-                                    <div class="col-6 text-left">
-                                        <b>Min:</b> {{properties.priceFilter.min | currency:'R'}}
+                <div class="container-increased">
+                    <div class="row" style="max-height:80px">
+                        <div class="col-2 dd-col">
+                            <div class="btn-group w-100 h-100">
+                                <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0 h-100" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <div class="dd-left p-0">
+                                        Vehicle Type
                                     </div>
-                                    <div class="col-6 text-right">
-                                        <b>Max:</b> {{properties.priceFilter.current | currency:'R'}}
-                                    </div>
+                                    <img src="../..{{data.selectedSrc}}" class="vehicle-icon-sm" />
+                                    <span class="dd-col dd-search-text">{{ data.selected }}</span>
+                                    <i class="dd-caret fa fa-angle-down"></i>
+                                </button>
+                                <div class="w-100 dropdown-menu">
+                                    <button class="dropdown-item" type="button" *ngFor="let vehicle of properties.vehicleTypes" (click)="update('selectedSrc', vehicle.imageSrc); update('selected', vehicle.name)">
+                                        <img src="../..{{vehicle.imageSrc}}" class="vehicle-icon-sm" /> {{ vehicle.name }}
+                                    </button>
                                 </div>
                             </div>
-                            <div class="text-center" *ngIf="!properties.filteredResults || properties.filteredResults.length == 0">
-                                N/A
+                        </div>
+                        <div class="col-1 dd-col">
+                            <div class="btn-group w-100 h-100">
+                                <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <div class="dd-left p-0">
+                                        Tyre Width
+                                    </div>
+                                    <span class="dd-col dd-search-text">{{ data.width }}</span>
+                                    <i class="dd-caret fa fa-angle-down"></i>
+                                </button>
+                                <div class="w-100 dropdown-menu">
+                                    <button class="dropdown-item" type="button" *ngFor="let width of properties.tyreWidths" (click)="update('width', width)">
+                                        {{ width }}
+                                    </button>
+                                </div>
                             </div>
+                        </div>
+                        <div class="col-1 dd-col">
+                            <div class="btn-group w-100 h-100">
+                                <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <div class="dd-left p-0">
+                                        Tyre Profile
+                                    </div>
+                                    <span class="dd-col dd-search-text">{{ data.profile }}</span>
+                                    <i class="dd-caret fa fa-angle-down"></i>
+                                </button>
+                                <div class="w-100 dropdown-menu">
+                                    <button class="dropdown-item" type="button" *ngFor="let profile of properties.tyreProfiles" (click)="update('profile', profile)">
+                                        {{ profile }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-1 dd-col">
+                            <div class="btn-group w-100 h-100">
+                                <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <div class="dd-left p-0">
+                                        Wheel Size
+                                    </div>
+                                    <span class="dd-col dd-search-text">{{ data.size }}</span>
+                                    <i class="dd-caret fa fa-angle-down"></i>
+                                </button>
+                                <div class="w-100 dropdown-menu">
+                                    <button class="dropdown-item" type="button" *ngFor="let size of properties.wheelSizes" (click)="update('size', size)">
+                                        {{ size }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-1 dd-col">
+                            <div class="btn-group w-100 h-100">
+                                <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <div class="dd-left p-0">
+                                        Quantity
+                                    </div>
+                                    <span class="dd-col dd-search-text">{{ data.quantity }}</span>
+                                    <i class="dd-caret fa fa-angle-down"></i>
+                                </button>
+                                <div class="w-100 dropdown-menu">
+                                    <button class="dropdown-item" type="button" *ngFor="let quantity of properties.quantities" (click)="update('quantity', quantity)">
+                                        {{ quantity }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2 dd-col">
+                            <ss-multiselect-dropdown [options]="properties.brands" [texts]="brandTexts" [settings]="dropdownSettings" [(ngModel)]="data.brand"></ss-multiselect-dropdown>
+                        </div>
+                        <div class="col-2 dd-col">
+                            <div class="btn-group w-100 h-100">
+                                <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" (click)="openLocationModal()">
+                                    <div class="dd-left p-0">
+                                        Location
+                                    </div>
+                                    <span class="dd-col dd-search-text">{{ data.location.name }}</span>
+                                    <i class="dd-caret fa fa-angle-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-2 dd-col">
+                            <button class="btn btn-success shadow-btn w-100 h-100 p-0" type="button" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
+                                [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">Modify Search</button>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="card m-1 box-shadow">
-                        <div class="card-header p-0 text-10">
-                            Type
-                        </div>
-                        <div class="card-body results-table filter-body p-2 result-padding">
-                            <div class="w-50 radio radio-success float-left">
-                                <input id="typeRegular" type="radio" [checked]="data.tyreType == 'regular'" (click)="update('tyreType', 'regular'); applyFilters('type')">
-                                <label for="typeRegular">
-                                    Regular
-                                </label>
-                            </div>
-                            <div class="w-50 radio radio-success float-left">
-                                <input id="typeRunFlat" type="radio" [checked]="data.tyreType =='runFlat'" (click)="update('tyreType', 'runFlat'); applyFilters('type')">
-                                <label for="typeRunFlat">
-                                    Run Flat
+                    <div class="row text-center">
+                        <div class="col-3"></div>
+                        <div class="col-3 extras-col rounded">
+                            <div class="checkbox checkbox-success float-left">
+                                <input id="wheelAlignmentSearch" type="checkbox" [checked]="data.wheelAlignmentChecked" (change)="data.wheelAlignmentChecked = !data.wheelAlignmentChecked">
+                                <label for="wheelAlignmentSearch">
+                                    Wheel Alignment
                                 </label>
                             </div>
                         </div>
+                        <div class="col-3 extras-col rounded">
+                            <div class="checkbox checkbox-success float-left">
+                                <input id="wheelBalancingSearch" type="checkbox" [checked]="data.wheelBalancingChecked" (change)="data.wheelBalancingChecked = !data.wheelBalancingChecked">
+                                <label for="wheelBalancingSearch">
+                                    Wheel Balancing
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-3"></div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="card m-1 box-shadow">
-                        <div class="card-header p-0 text-10">
-                            Retailer
+            <div class="results-and-filters container-increased custom">
+                <div class="row" *ngIf="!properties.results || properties.results.length == 0">
+                    <div class="col-12">
+                        <div [hidden]="properties.loading" class="text-center">
+                            <br>
+                            <br>
+                            <img src="../../assets/no_results.png" class="search-icon" />
+                            <br>
+                            <br>
+                            <h5>No Results Found</h5>
+                            <h6>Please refine your search</h6>
                         </div>
-                        <div class="card-body results-table filter-body p-2 result-padding">
-                            <div class="w-100 float-left" *ngFor="let retailer of properties.retailers; let i = index" [hidden]="!retailer.visible">
-                                <div class="checkbox checkbox-success float-left">
-                                    <input id="retailer{{retailer.id}}" type="checkbox" [checked]="retailer.checked" (change)="toggleRetailer(retailer)">
-                                    <label for="retailer{{retailer.id}}">
-                                        {{retailer.name}}
-                                    </label>
+                        <div [hidden]="!properties.loading" class="text-center">
+                            <br>
+                            <br>
+                            <img src="../../assets/loading.gif" class="search-icon" />
+                            <br>
+                            <br>
+                            <h5>Searching</h5>
+                            <h6>Please wait...</h6>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="properties.results && properties.results.length > 0">
+                    <div class="col-3 p-1 text-10" style="position: relative">
+                        <div style="position: absolute; bottom: 0; right:12pt">
+                            <a href="javascript:void(0)" (click)="resetFilters()">Reset Filter</a>
+                        </div>
+                    </div>
+                    <div class="col-9 p-1">
+                        <div class="row">
+                            <div class="col-6"></div>
+                            <div class="col-6 text-right text-10">
+                                Sort results by:
+                                <div class="btn-group" style="margin-top:3pt">
+                                    <button type="button" style="font-size:0.8rem !important" class="btn btn-secondary dropdown-toggle p-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{data.selectedFilter}}
+                                        <i class="fa fa-angle-down" style="color:rgb(107,172,70)"></i>
+                                    </button>
+                                    <div class="dropdown-menu" style="font-size:0.8rem !important">
+                                        <span (click)="sort(filterName) " *ngFor="let filterName of properties.filters" class="dropdown-item">{{filterName}}</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="text-center" *ngIf="!properties.retailers || properties.retailers.length == 0">
-                                N/A
-                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="card m-1 box-shadow">
-                        <div class="card-header p-0 text-10">
-                            Model
+                <div class="row" *ngIf="properties.results && properties.results.length > 0">
+                    <div class="col-3 p-1">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card m-1 box-shadow">
+                                    <div class="card-header p-0 text-10">
+                                        Price
+                                    </div>
+                                    <div class="card-body filter-body results-table" id="priceSlider">
+                                        <div *ngIf="properties.filteredResults && properties.filteredResults.length > 0" class="p-2">
+                                            <mat-slider [min]="properties.priceFilter.min" [max]="properties.priceFilter.max" (input)="priceChange($event)" [(ngModel)]="properties.priceFilter.current"></mat-slider>
+                                            <div class="row">
+                                                <div class="col-6 text-left">
+                                                    <b>Min:</b> {{properties.priceFilter.min | currency:'R'}}
+                                                </div>
+                                                <div class="col-6 text-right">
+                                                    <b>Max:</b> {{properties.priceFilter.current | currency:'R'}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-center" *ngIf="!properties.filteredResults || properties.filteredResults.length == 0">
+                                            N/A
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body results-table filter-body p-0">
-                            <div class="card model-card m-0" [hidden]="!properties.models || properties.models.length == 0" *ngFor="let brand of properties.models" [hidden]="!brand.visible">
-                                <div class="card-header text-center"><b>{{brand.brand}}</b></div>
-                                <div class="card-body p-2 result-padding">
-                                    <div class="w-100 float-left" *ngFor="let model of brand.models; let i = index" [hidden]="!model.visible">
-                                        <div class="checkbox checkbox-success float-left">
-                                            <input id="{{brand.brand}}_model_{{model.id}}" type="checkbox" [checked]="model.checked" (change)="togglelModel(model)">
-                                            <label for="{{brand.brand}}_model_{{model.id}}">
-                                                {{model.modelName}}
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card m-1 box-shadow">
+                                    <div class="card-header p-0 text-10">
+                                        Type
+                                    </div>
+                                    <div class="card-body results-table filter-body p-2 result-padding">
+                                        <div class="w-50 radio radio-success float-left">
+                                            <input id="typeRegular" type="radio" [checked]="data.tyreType == 'regular'" (click)="update('tyreType', 'regular'); applyFilters('type')">
+                                            <label for="typeRegular">
+                                                Regular
+                                            </label>
+                                        </div>
+                                        <div class="w-50 radio radio-success float-left">
+                                            <input id="typeRunFlat" type="radio" [checked]="data.tyreType =='runFlat'" (click)="update('tyreType', 'runFlat'); applyFilters('type')">
+                                            <label for="typeRunFlat">
+                                                Run Flat
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-center" *ngIf="!properties.models || properties.models.length == 0">
-                                N/A
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card m-1 box-shadow">
+                                    <div class="card-header p-0 text-10">
+                                        Retailer
+                                    </div>
+                                    <div class="card-body results-table filter-body p-2 result-padding">
+                                        <div class="w-100 float-left" *ngFor="let retailer of properties.retailers; let i = index" [hidden]="!retailer.visible">
+                                            <div class="checkbox checkbox-success float-left">
+                                                <input id="retailer{{retailer.id}}" type="checkbox" [checked]="retailer.checked" (change)="toggleRetailer(retailer)">
+                                                <label for="retailer{{retailer.id}}">
+                                                    {{retailer.name}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="text-center" *ngIf="!properties.retailers || properties.retailers.length == 0">
+                                            N/A
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card m-1 box-shadow">
+                                    <div class="card-header p-0 text-10">
+                                        Model
+                                    </div>
+                                    <div class="card-body results-table filter-body p-0">
+                                        <div class="card model-card m-0" [hidden]="!properties.models || properties.models.length == 0" *ngFor="let brand of properties.models" [hidden]="!brand.visible">
+                                            <div class="card-header text-center"><b>{{brand.brand}}</b></div>
+                                            <div class="card-body p-2 result-padding">
+                                                <div class="w-100 float-left" *ngFor="let model of brand.models; let i = index" [hidden]="!model.visible">
+                                                    <div class="checkbox checkbox-success float-left">
+                                                        <input id="{{brand.brand}}_model_{{model.id}}" type="checkbox" [checked]="model.checked" (change)="togglelModel(model)">
+                                                        <label for="{{brand.brand}}_model_{{model.id}}">
+                                                            {{model.modelName}}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-center" *ngIf="!properties.models || properties.models.length == 0">
+                                            N/A
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-9 p-1">
+                        <div class="card m-2 box-shadow" *ngFor="let result of properties.filteredResults">
+                            <div class="card-body results-table p-2">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div class="row">
+                                            <div class="col-3 text-center" style="padding-right:0pt; padding-left:2pt">
+                                                <div class="text-center"><h6 class="font-weight-bold h6-sm">{{result.partner}}</h6></div>
+                                                <img class="p-1 result-img" src="../../assets/{{result.partner}}.jpg" />
+                                                <div class="text-left p-1">
+                                                    <div class="row m-0 p-0" style="padding-left:5pt">
+                                                        <div class="col-2 p-0">
+                                                            <a href="https://www.google.com/maps/search/{{result.partner}} {{result.branch.location}}" target="_blank"><img ngbTooltip="View on Google Maps" class="pin-icon" src="../../assets/Pin.png" alt="Location"/></a>
+                                                        </div>
+                                                        <div class="col-10 p-0">
+                                                            {{result.branch.name}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="row m-0 p-0" style="padding-left:5pt">
+                                                        <div class="col-2 p-0"></div>
+                                                        <div class="col-10 p-0">
+                                                            {{result.location.suburb}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-5 border-right" style="padding-left:20pt; padding-right:10pt">
+                                                <div class="row">
+                                                    <div class="col-4 results-col text-center">
+                                                        <img *ngIf="!result.runFlat" class="result-tyre" src="../../assets/Tyres/{{result.brand}}_{{result.tyreModel}}_{{result.tyreWidth}}_{{result.tyreProfile}}_R{{result.wheelSize}}.jpg"
+                                                        />
+                                                        <img *ngIf="result.runFlat" class="result-tyre" src="../../assets/Tyres/{{result.brand}}_{{result.tyreModel}}_{{result.tyreWidth}}_{{result.tyreProfile}}_R{{result.wheelSize}}_Runflat.jpg"
+                                                        />
+                                                    </div>
+                                                    <div class="col-8 results-text results-col" style="padding-left:10pt">
+                                                        <br>
+                                                        {{result.brand}}
+                                                        <br> {{result.tyreModel}}
+                                                        <br>
+                                                        <span *ngIf="result.runFlat">Run Flat</span>
+                                                        <div class="row" style="position: absolute; bottom:0; right:30pt">
+                                                            <div class="col-12 results-col">
+                                                                <br>
+                                                                <br>
+                                                                <br>
+                                                                <img class="result-logo" src="../../assets/Tyre Manufacturer/{{result.brand}}.png" />
+                                                            </div>
+                                                        </div>
+            
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 text-center border-dashed">
+                                                <div class="row" style="margin-bottom:5pt">
+                                                    <div class="col-12">
+                                                        <!-- <img class="included-img" src="../../assets/included.png"> -->
+                                                        <div class="strong included-text rounded">Included</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row" *ngFor="let service of result.partnerDetails.services">
+                                                    <div class="col-12 results-col" *ngIf="service.show">
+                                                        {{service.name}}
+                                                    </div>
+                                                </div>
+            
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 results-col text-center">
+                                        <br>
+                                        <a href="javascript:void(0)" class="black-link" (click)="viewBreakdown(result)">
+                                            View Deal
+                                        </a>
+                                        <div class="text-center p-2" style="padding-left: 12pt !important;padding-right: 12pt !important;" >
+                                            <div class="checkbox checkbox-success checkbox-green select-box rounded" [ngClass]="{selectedBox : result.contactMe}">
+                                                <input id="select_{{result.index}}" type="checkbox" [checked]="result.contactMe" (change)="checkSelect(result)">
+                                                <label for="select_{{result.index}}">
+                                                    SELECT
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <h6>
+                                            <b>{{result.totalPrice | currency:'R'}}</b>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card m-1 text-center box-shadow" *ngIf="properties.results && properties.results.length > 0 && properties.filteredResults.length == 0 ">
+                            <div class="card-body">
+                                <br>
+                                <img src="../../assets/no_results.png" class="search-icon" />
+                                <br>
+                                <br>
+                                <h5>No Results Found</h5>
+                                <h6>Please refine your search</h6>
                             </div>
                         </div>
                     </div>
                 </div>
+                <br><br>
+            </div>
+</div>
+
+<div class="show-on-mobile">
+    <div class="header-section-mobile">
+        <div class="row text-center">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <div class="row">
+                    <div class="col-4">
+                        <button class="btn btn-secondary plr-8 w-100" type="button"><i class="fa fa-filter text-success"></i> Filter</button>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-secondary plr-8 w-100" type="button"><i class="fa fa-sort text-success"></i> Sort</button>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-secondary plr-8 w-100" type="button"><i class="fa fa-map-marker text-success"></i> Map</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-9 p-1">
-            <div class="card m-2 box-shadow" *ngFor="let result of properties.filteredResults">
+    </div>
+        <div class="card m-2 box-shadow" *ngFor="let result of properties.filteredResults">
                 <div class="card-body results-table p-2">
                     <div class="row">
-                        <div class="col-10">
+                        <div class="col-9">
                             <div class="row">
-                                <div class="col-3 text-center" style="padding-right:0pt; padding-left:2pt">
+                                <div class="col-4 text-center" style="padding-right:0pt; padding-left:2pt">
                                     <div class="text-center"><h6 class="font-weight-bold h6-sm">{{result.partner}}</h6></div>
-                                    <img class="p-1 result-img" src="../../assets/{{result.partner}}.jpg" />
+                                    <img class="p-1 plr-3 result-img" src="../../assets/{{result.partner}}.jpg" />
                                     <div class="text-left p-1">
                                         <div class="row m-0 p-0" style="padding-left:5pt">
-                                            <div class="col-2 p-0">
+                                            <div class="col-3 p-0">
                                                 <a href="https://www.google.com/maps/search/{{result.partner}} {{result.branch.location}}" target="_blank"><img ngbTooltip="View on Google Maps" class="pin-icon" src="../../assets/Pin.png" alt="Location"/></a>
                                             </div>
-                                            <div class="col-10 p-0">
+                                            <div class="col-9 p-0">
                                                 {{result.branch.name}}
                                             </div>
                                         </div>
                                         <div class="row m-0 p-0" style="padding-left:5pt">
-                                            <div class="col-2 p-0"></div>
-                                            <div class="col-10 p-0">
+                                            <div class="col-3 p-0"></div>
+                                            <div class="col-9 p-0">
                                                 {{result.location.suburb}}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-5 border-right" style="padding-left:20pt; padding-right:10pt">
+                                <div class="col-8 border-right">
                                     <div class="row">
                                         <div class="col-4 results-col text-center">
                                             <img *ngIf="!result.runFlat" class="result-tyre" src="../../assets/Tyres/{{result.brand}}_{{result.tyreModel}}_{{result.tyreWidth}}_{{result.tyreProfile}}_R{{result.wheelSize}}.jpg"
@@ -346,10 +469,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4 text-center border-dashed">
+                                <!-- <div class="col-4 text-center border-dashed">
                                     <div class="row" style="margin-bottom:5pt">
                                         <div class="col-12">
-                                            <!-- <img class="included-img" src="../../assets/included.png"> -->
                                             <div class="strong included-text rounded">Included</div>
                                         </div>
                                     </div>
@@ -359,15 +481,16 @@
                                         </div>
                                     </div>
 
-                                </div>
+                                </div> -->
                             </div>
                         </div>
-                        <div class="col-2 results-col text-center">
-                            <br>
+                        <div class="col-3 results-col text-center">
                             <a href="javascript:void(0)" class="black-link" (click)="viewBreakdown(result)">
-                                View Detail
+                                View Deal
                             </a>
-                            <div class="text-center p-2" style="padding-left: 12pt !important;padding-right: 12pt !important;" >
+                            <br>
+                            <br>
+                            <div class="text-center m-1 plr-3">
                                 <div class="checkbox checkbox-success checkbox-green select-box rounded" [ngClass]="{selectedBox : result.contactMe}">
                                     <input id="select_{{result.index}}" type="checkbox" [checked]="result.contactMe" (change)="checkSelect(result)">
                                     <label for="select_{{result.index}}">
@@ -375,6 +498,7 @@
                                     </label>
                                 </div>
                             </div>
+                            <br>
                             <h6>
                                 <b>{{result.totalPrice | currency:'R'}}</b>
                             </h6>
@@ -392,9 +516,6 @@
                     <h6>Please refine your search</h6>
                 </div>
             </div>
-        </div>
-    </div>
-    <br><br>
 </div>
 
 <footer class="footer sticky-footer m-2 p-2" [hidden]="!properties.showContactMe">
