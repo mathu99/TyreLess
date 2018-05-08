@@ -105,7 +105,7 @@
                             </div>
                         </div>
                         <div class="col-2 dd-col">
-                            <ss-multiselect-dropdown [options]="properties.brands" [texts]="brandTexts" [settings]="dropdownSettings" [(ngModel)]="data.brand"></ss-multiselect-dropdown>
+                            <ss-multiselect-dropdown [options]="properties.brands" [texts]="brandTexts" [settings]="dropdownSettings" [(ngModel)]="data.brand" (ngModelChange)="changeDropdown($event)"></ss-multiselect-dropdown>
                         </div>
                         <div class="col-2 dd-col">
                             <div class="btn-group w-100 h-100">
@@ -400,6 +400,44 @@
 </div>
 
 <div class="show-on-mobile">
+    <div class="filter-section p-1">
+        <table class="m-0 text-center w-100">
+            <tr>
+                <td class="w-125 green-border">
+                    <img src="../..{{data.selectedSrc}}" class="vehicle-icon-sm" />
+                </td>
+                <td class="w-25 green-border">
+                    {{data.width}}/{{data.profile}}/R{{data.size}}
+                </td>
+                <td class="w-125 green-border">
+                    x{{data.quantity}}
+                </td>
+                <td class="w-25 green-border">
+                    {{properties.label}}
+                </td>
+                <td class="w-25">
+                    {{data.location.name}}
+                </td>
+            </tr>
+        </table>
+        <div class="row m-0 text-center" style="margin-top:5pt !important">
+            <div class="p-1" [ngClass]="{
+                'w-33' : data.wheelAlignmentChecked && data.wheelBalancingChecked, 
+                'w-50' : data.wheelAlignmentChecked
+            }" *ngIf="data.wheelAlignmentChecked">Wheel Alignment</div>
+            <div class="p-1" [ngClass]="{
+                'w-33' : data.wheelAlignmentChecked && data.wheelBalancingChecked, 
+                'w-50' : data.wheelBalancingChecked
+            }" *ngIf="data.wheelBalancingChecked">Wheel Balancing</div>
+            <div [ngClass]="{
+                'w-100': !data.wheelAlignmentChecked && !data.wheelBalancingChecked, 
+                'w-33' : data.wheelAlignmentChecked && data.wheelBalancingChecked, 
+                'w-50' : data.wheelBalancingChecked || data.wheelAlignmentChecked
+            }">
+                <button class="btn btn-success plr-8 w-75 fs-9" type="button" style="max-width: 100pt !important" [routerLink]="['/']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"><i class="fa fa-pencil"></i> Modify</button>
+            </div>
+        </div>
+    </div>
     <div class="header-section-mobile">
         <div class="row text-center">
             <div class="col-1"></div>
@@ -519,6 +557,30 @@
                     <h6>Please refine your search</h6>
                 </div>
             </div>
+            <div class="row" *ngIf="!properties.results || properties.results.length == 0">
+                    <div class="col-12">
+                        <div [hidden]="properties.loading" class="text-center">
+                            <br>
+                            <br>
+                            <img src="../../assets/no_results.png" class="search-icon" />
+                            <br>
+                            <br>
+                            <h5>No Results Found</h5>
+                            <h6>Please refine your search</h6>
+                        </div>
+                        <div [hidden]="!properties.loading" class="text-center">
+                            <br>
+                            <br>
+                            <img src="../../assets/loading.gif" class="search-icon" />
+                            <br>
+                            <br>
+                            <h5>Searching</h5>
+                            <h6>Please wait...</h6>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                </div>
 </div>
 
 <footer class="footer sticky-footer m-2 p-2" [hidden]="!properties.showContactMe">

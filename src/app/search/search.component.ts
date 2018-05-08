@@ -34,7 +34,8 @@ export class SearchComponent {
       show: true,
       min: '0',
       max: '100000000000'
-    }
+    },
+    label: '',
   };
   data = <any>{
     tyreType: 'regular',
@@ -63,6 +64,10 @@ export class SearchComponent {
     defaultTitle: 'Unselected',
     defaultLabel: 'Brand',
   };
+
+  changeDropdown = ($event): void => {
+    this.properties.label = ($event.length === this.properties.brands.length) ? 'All Brands' : ($event.length === 1)  ? this.properties.brands[$event[0]].name : 'Multiple Brands';
+  }
 
   priceChange = ($event): void => {
     set(this, 'properties.priceFilter.current', $event.value);
