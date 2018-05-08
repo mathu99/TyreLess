@@ -808,9 +808,16 @@ li::before {
   }
 
   .plr-8{
-    padding: 1;
+    padding: 2pt !important;
     padding-left:8pt !important;
     padding-right:8pt !important;
+  }
+
+  .includes-mobile{
+    border: 1px solid rgba(0,0,0,.125);
+    padding:3pt;
+    background-color:rgb(220,220,220);
+    color:black;
   }
   
   .plr-5{
@@ -1110,6 +1117,10 @@ li::before {
     font-size: 12px;
   }
 
+  .fs-9{
+    font-size:9pt;
+  }
+
   @media (min-width: 1200px) {
     .container {
         max-width: 960px;
@@ -1162,12 +1173,11 @@ li::before {
     }
 
     .result-tyre {
-      height: 80px;
+      height: 70px;
     }
 
     .select-box{
       margin-bottom: 0pt;
-      padding-bottom: 2pt;
     }
 
     .dd-search-text{
