@@ -1153,6 +1153,10 @@ li::before {
       font-size: 8pt;
     }
 
+    .checkbox label {
+      padding-left: 0;
+  }
+
     .h6-sm{
       font-size:0.8rem;
     }
@@ -1181,7 +1185,22 @@ li::before {
     }
 
     .checkbox-success{
-      font-size:10pt;
+      font-size: 9pt;
+    }
+
+    .result-img {
+      max-height: 35px;
+      max-width: 90%;
+    }
+
+    .mtb-5{
+      margin-top:5pt;
+      margin-bottom:5pt;
+    }
+
+    .pin-icon{
+      padding-left:0pt;
+      max-height:15px;
     }
 
     .dd-left{
