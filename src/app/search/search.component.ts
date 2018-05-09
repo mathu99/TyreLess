@@ -43,6 +43,7 @@ export class SearchComponent {
   };
   searchableContent = <any>{};
   partners = <any>{};
+  showFiller = true;
 
   // Settings configuration
   dropdownSettings: IMultiSelectSettings = {

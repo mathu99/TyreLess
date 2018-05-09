@@ -534,6 +534,10 @@ a:hover{
   border-right:1pt solid rgb(107,172,70);
 }
 
+.mobile-sidenav{
+  margin-top:56pt;
+}
+
 .filter-section{
   color:white;
   margin-top:56pt;
