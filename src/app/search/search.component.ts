@@ -36,6 +36,10 @@ export class SearchComponent {
       max: '100000000000'
     },
     label: '',
+    mobileSidenav: {
+      text: 'Filter Results By:',
+      mode: 'filter'
+    }
   };
   data = <any>{
     tyreType: 'regular',

@@ -536,6 +536,11 @@ a:hover{
 
 .mobile-sidenav{
   margin-top:56pt;
+  width: 200pt;
+}
+.mobile-sidenav-top{
+  background-color: rgb(242,242,242);
+  font-size:10pt;
 }
 
 .filter-section{
