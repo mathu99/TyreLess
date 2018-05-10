@@ -658,8 +658,8 @@
                                             <br>
                                             <div class="text-center">
                                                 <div class="checkbox checkbox-success checkbox-green mobile-select select-box rounded" [ngClass]="{selectedBox : result.contactMe}">
-                                                    <input id="select_{{result.index}}" type="checkbox" [checked]="result.contactMe" (change)="checkSelect(result)">
-                                                    <label for="select_{{result.index}}">
+                                                    <input id="select_mobile_{{result.index}}" type="checkbox" [checked]="result.contactMe" (change)="checkSelect(result)">
+                                                    <label for="select_mobile_{{result.index}}">
                                                         SELECT
                                                     </label>
                                                 </div>
@@ -719,9 +719,13 @@
                                       </div>
             </div>
         </mat-sidenav-container>   
+    </div>
         
+<footer class="footer sticky-footer-mobile show-on-mobile" [hidden]="!properties.showContactMe">
+        <button class="btn btn-success shadow-btn h-100 w-100 custom contact-me-btn" type="button">CONTACT ME ></button>
+</footer>
 
-<footer class="footer sticky-footer m-2 p-2" [hidden]="!properties.showContactMe">
+<footer class="footer sticky-footer m-2 p-2 hide-from-mobile" [hidden]="!properties.showContactMe">
     <div class="container">
         <div class="row">
             <div class="col-1"></div>
@@ -744,7 +748,7 @@
                                 required />
                         </div>
                         <div class="col-3 p-1">
-                            <button class="btn btn-success shadow-btn h-100 w-100 custom" id="contactMeBtn" type="button" [disabled]="!searchResultsContact.form.valid" (click)="submitContactForm()">CONTACT ME ></button>
+                            <button class="btn btn-success shadow-btn h-100 w-100 custom contact-me-btn" id="contactMeBtn" type="button" [disabled]="!searchResultsContact.form.valid" (click)="submitContactForm()">CONTACT ME ></button>
                         </div>
                     </div>
                 </form>
@@ -753,6 +757,7 @@
         </div>
     </div>
 </footer>
+
 
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
