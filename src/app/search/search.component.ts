@@ -240,6 +240,7 @@ export class SearchComponent {
         this.data.wheelBalancingChecked = this.data.wheelBalancingChecked == "true";
         if (get(this.properties, 'vehicleTypes') != undefined) {
           this.data.selectedSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].imageSrc;
+          this.data.whiteSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].whiteSrc;
         }
         this.http.get('environments/config.development.json').subscribe(res => {
           assign(this.properties, res.json().properties)
@@ -260,6 +261,7 @@ export class SearchComponent {
             }
           });
           this.data.selectedSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].imageSrc;
+          this.data.whiteSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].whiteSrc;
         });
         this.search();
       });

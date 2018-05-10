@@ -3,19 +3,23 @@
         "vehicleTypes": [
             {
                 "name": "Car",
-                "imageSrc": "/assets/Car.png"
+                "imageSrc": "/assets/Car.png",
+                "whiteSrc": "/assets/Car-white.png"
             },
             {
                 "name": "4x4 / SUV",
-                "imageSrc": "/assets/4x4_SUV.png"
+                "imageSrc": "/assets/4x4_SUV.png",
+                "whiteSrc": "/assets/4x4_SUV-white.png"
             },
             {
                 "name": "Bike",
-                "imageSrc": "/assets/Bike.png"
+                "imageSrc": "/assets/Bike.png",
+                "whiteSrc": "/assets/Bike-white.png"
             },
             {
                 "name": "Commercial",
-                "imageSrc": "/assets/Commercial.png"
+                "imageSrc": "/assets/Commercial.png",
+                "whiteSrc": "/assets/Commercial-white.png"
             }
         ],
         "wheelSizes": [
