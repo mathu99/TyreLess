@@ -1253,6 +1253,7 @@ li::before {
     .pin-icon{
       padding-left:0pt;
       max-height:15px;
+      left: -2px;
     }
 
     .dd-left{

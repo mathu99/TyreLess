@@ -413,25 +413,71 @@
                         </div>
                     </div>
                 </div>
+                <div class="mobile-filter" *ngIf="properties.mobileSidenav.mode=='filter'">
+                        <div class="row">
+                        <div class="col-12">
+                            <div class="card m-1 box-shadow">
+                                <div class="card-header p-0 text-10">
+                                    Price
+                                </div>
+                                <div class="card-body filter-body results-table" id="priceSlider">
+                                    <div *ngIf="properties.filteredResults && properties.filteredResults.length > 0" class="p-2">
+                                        <mat-slider [min]="properties.priceFilter.min" [max]="properties.priceFilter.max" (input)="priceChange($event)" [(ngModel)]="properties.priceFilter.current"></mat-slider>
+                                        <div class="row">
+                                            <div class="col-6 text-left">
+                                                <b>Min:</b> {{properties.priceFilter.min | currency:'R'}}
+                                            </div>
+                                            <div class="col-6 text-right">
+                                                <b>Max:</b> {{properties.priceFilter.current | currency:'R'}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center" *ngIf="!properties.filteredResults || properties.filteredResults.length == 0">
+                                        N/A
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card m-1 box-shadow">
+                                <div class="card-header p-0 text-10">
+                                    Type
+                                </div>
+                                <div class="card-body results-table filter-body p-2 result-padding">
+                                    <div class="w-50 radio radio-success float-left">
+                                        <input id="typeRegular" type="radio" [checked]="data.tyreType == 'regular'" (click)="update('tyreType', 'regular'); applyFilters('type')">
+                                        <label for="typeRegular">
+                                            Regular
+                                        </label>
+                                    </div>
+                                    <div class="w-50 radio radio-success float-left">
+                                        <input id="typeRunFlat" type="radio" [checked]="data.tyreType =='runFlat'" (click)="update('tyreType', 'runFlat'); applyFilters('type')">
+                                        <label for="typeRunFlat">
+                                            Run Flat
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                             <div class="col-12">
                                 <div class="card m-1 box-shadow">
                                     <div class="card-header p-0 text-10">
-                                        Price
+                                        Retailer
                                     </div>
-                                    <div class="card-body filter-body results-table" id="priceSlider">
-                                        <div *ngIf="properties.filteredResults && properties.filteredResults.length > 0" class="p-2">
-                                            <mat-slider [min]="properties.priceFilter.min" [max]="properties.priceFilter.max" (input)="priceChange($event)" [(ngModel)]="properties.priceFilter.current"></mat-slider>
-                                            <div class="row">
-                                                <div class="col-6 text-left">
-                                                    <b>Min:</b> {{properties.priceFilter.min | currency:'R'}}
-                                                </div>
-                                                <div class="col-6 text-right">
-                                                    <b>Max:</b> {{properties.priceFilter.current | currency:'R'}}
-                                                </div>
+                                    <div class="card-body results-table filter-body p-2 result-padding">
+                                        <div class="w-100 float-left" *ngFor="let retailer of properties.retailers; let i = index" [hidden]="!retailer.visible">
+                                            <div class="checkbox checkbox-success float-left">
+                                                <input id="retailer{{retailer.id}}" type="checkbox" [checked]="retailer.checked" (change)="toggleRetailer(retailer)">
+                                                <label for="retailer{{retailer.id}}">
+                                                    {{retailer.name}}
+                                                </label>
                                             </div>
                                         </div>
-                                        <div class="text-center" *ngIf="!properties.filteredResults || properties.filteredResults.length == 0">
+                                        <div class="text-center" *ngIf="!properties.retailers || properties.retailers.length == 0">
                                             N/A
                                         </div>
                                     </div>
@@ -442,74 +488,51 @@
                             <div class="col-12">
                                 <div class="card m-1 box-shadow">
                                     <div class="card-header p-0 text-10">
-                                        Type
+                                        Model
                                     </div>
-                                    <div class="card-body results-table filter-body p-2 result-padding">
-                                        <div class="w-50 radio radio-success float-left">
-                                            <input id="typeRegular" type="radio" [checked]="data.tyreType == 'regular'" (click)="update('tyreType', 'regular'); applyFilters('type')">
-                                            <label for="typeRegular">
-                                                Regular
-                                            </label>
+                                    <div class="card-body results-table filter-body p-0">
+                                        <div class="card model-card m-0" [hidden]="!properties.models || properties.models.length == 0" *ngFor="let brand of properties.models" [hidden]="!brand.visible">
+                                            <div class="card-header text-center"><b>{{brand.brand}}</b></div>
+                                            <div class="card-body p-2 result-padding">
+                                                <div class="w-100 float-left" *ngFor="let model of brand.models; let i = index" [hidden]="!model.visible">
+                                                    <div class="checkbox checkbox-success float-left">
+                                                        <input id="{{brand.brand}}_model_{{model.id}}" type="checkbox" [checked]="model.checked" (change)="togglelModel(model)">
+                                                        <label for="{{brand.brand}}_model_{{model.id}}">
+                                                            {{model.modelName}}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="w-50 radio radio-success float-left">
-                                            <input id="typeRunFlat" type="radio" [checked]="data.tyreType =='runFlat'" (click)="update('tyreType', 'runFlat'); applyFilters('type')">
-                                            <label for="typeRunFlat">
-                                                Run Flat
-                                            </label>
+                                        <div class="text-center" *ngIf="!properties.models || properties.models.length == 0">
+                                            N/A
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                                <div class="col-12">
-                                    <div class="card m-1 box-shadow">
-                                        <div class="card-header p-0 text-10">
-                                            Retailer
-                                        </div>
-                                        <div class="card-body results-table filter-body p-2 result-padding">
-                                            <div class="w-100 float-left" *ngFor="let retailer of properties.retailers; let i = index" [hidden]="!retailer.visible">
-                                                <div class="checkbox checkbox-success float-left">
-                                                    <input id="retailer{{retailer.id}}" type="checkbox" [checked]="retailer.checked" (change)="toggleRetailer(retailer)">
-                                                    <label for="retailer{{retailer.id}}">
-                                                        {{retailer.name}}
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="text-center" *ngIf="!properties.retailers || properties.retailers.length == 0">
-                                                N/A
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card m-1 box-shadow">
-                                        <div class="card-header p-0 text-10">
-                                            Model
-                                        </div>
-                                        <div class="card-body results-table filter-body p-0">
-                                            <div class="card model-card m-0" [hidden]="!properties.models || properties.models.length == 0" *ngFor="let brand of properties.models" [hidden]="!brand.visible">
-                                                <div class="card-header text-center"><b>{{brand.brand}}</b></div>
-                                                <div class="card-body p-2 result-padding">
-                                                    <div class="w-100 float-left" *ngFor="let model of brand.models; let i = index" [hidden]="!model.visible">
-                                                        <div class="checkbox checkbox-success float-left">
-                                                            <input id="{{brand.brand}}_model_{{model.id}}" type="checkbox" [checked]="model.checked" (change)="togglelModel(model)">
-                                                            <label for="{{brand.brand}}_model_{{model.id}}">
-                                                                {{model.modelName}}
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="text-center" *ngIf="!properties.models || properties.models.length == 0">
-                                                N/A
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                </div>
+                <div class="mobile-sort" *ngIf="properties.mobileSidenav.mode=='sort'">
+                    <div class="p-3">
+                        <div class="radio radio-success">
+                            <input id="typeLowToHigh" type="radio" [checked]="data.selectedFilter == 'Price: Low to High'" (click)="sort('Price: Low to High')">
+                            <label for="typeLowToHigh">
+                                Price: Low to High
+                            </label>
+                        </div>
+                        <div class="radio radio-success">
+                            <input id="typeHightToLow" type="radio" [checked]="data.selectedFilter == 'Price: High to Low'" (click)="sort('Price: High to Low')">
+                            <label for="typeHightToLow">
+                                Price: High to Low
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-sort text-center" *ngIf="properties.mobileSidenav.mode=='map'">
+                    <div class="p-3">
+                        Coming Soon...
+                    </div>
+                </div>
             </mat-sidenav>
             <div class="mobile-sidenav-content">
         <div class="filter-section p-1">
@@ -556,13 +579,13 @@
                             <div class="col-10">
                                 <div class="row">
                                     <div class="col-4">
-                                        <button class="btn btn-secondary plr-8 w-100 fs-9" type="button" (click)="drawer.toggle()"><i class="fa fa-filter text-success"></i> Filter</button>
+                                        <button class="btn btn-secondary plr-8 w-100 fs-9" type="button" (click)="sideNav('filter'); drawer.toggle()"><i class="fa fa-filter text-success"></i> Filter</button>
                                     </div>
                                     <div class="col-4">
-                                        <button class="btn btn-secondary plr-8 w-100 fs-9" type="button" (click)="drawer.toggle()"><i class="fa fa-sort text-success"></i> Sort</button>
+                                        <button class="btn btn-secondary plr-8 w-100 fs-9" type="button" (click)="sideNav('sort'); drawer.toggle()"><i class="fa fa-sort text-success"></i> Sort</button>
                                     </div>
                                     <div class="col-4">
-                                        <button class="btn btn-secondary plr-8 w-100 fs-9" type="button" (click)="drawer.toggle()"><i class="fa fa-map-marker text-success"></i> Map</button>
+                                        <button class="btn btn-secondary plr-8 w-100 fs-9" type="button" (click)="sideNav('map'); drawer.toggle()"><i class="fa fa-map-marker text-success"></i> Map</button>
                                     </div>
                                 </div>
                             </div>
@@ -576,7 +599,7 @@
                                                 <div class="col-4 p-0 text-center" style="padding-right:0pt; padding-left:2pt">
                                                     <div class="text-center"><h6 class="font-weight-bold h6-sm m-0 p-1">{{result.partner}}</h6></div>
                                                     <img class="plr-5 result-img mtb-5" src="../../assets/{{result.partner}}.jpg" />
-                                                    <div class="text-left p-1">
+                                                    <div class="text-left p-0">
                                                         <div class="row m-0 p-0" style="padding-left:5pt">
                                                             <div class="col-2 p-0 text-right">
                                                                 <a href="https://www.google.com/maps/search/{{result.partner}} {{result.branch.location}}" target="_blank"><img ngbTooltip="View on Google Maps" class="pin-icon" src="../../assets/Pin.png" alt="Location"/></a>
@@ -653,9 +676,9 @@
                                             </h6>
                                         </div>
                                     </div>
-                                    <div class="m-0 text-center includes-mobile rounded">
+                                    <div class="m-0 text-center includes-mobile rounded" *ngIf="anyService(result.partnerDetails.services)">
                                         <b>Includes:</b>
-                                        <span *ngFor="let service of result.partnerDetails.services"><span class="col-12 results-col" *ngIf="service.show">{{service.name}},&nbsp;</span></span>
+                                        <span *ngFor="let service of result.partnerDetails.services"><span class="" *ngIf="service.show">{{service.name}},&nbsp;</span></span>
                                     </div>
                                 </div>
                             </div>

@@ -37,8 +37,8 @@ export class SearchComponent {
     },
     label: '',
     mobileSidenav: {
-      text: 'Filter Results By:',
-      mode: 'filter'
+      text: '',
+      mode: ''
     }
   };
   data = <any>{
@@ -92,6 +92,25 @@ export class SearchComponent {
       }
     });
   };
+
+  anyService = (services: any): boolean => {
+    return services && services.some(e => e.show);
+  }
+
+  sideNav = (selectedOption: string): void => {
+    set(this.properties, 'mobileSidenav.mode', selectedOption);
+    switch(this.properties.mobileSidenav.mode) {
+      case 'filter': {
+        set(this.properties, 'mobileSidenav.text', 'Filter Results By:');
+      }break;
+      case 'sort': {
+        set(this.properties, 'mobileSidenav.text', 'Sort Results By:');
+      }break;
+      case 'map': {
+        set(this.properties, 'mobileSidenav.text', 'Map View of Deals');
+      }break;
+    }
+  }
 
   open(content) {
     this.modalService.open(content).result.then((result) => {
