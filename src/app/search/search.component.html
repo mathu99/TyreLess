@@ -594,10 +594,10 @@
                         <div class="card m-2 box-shadow" *ngFor="let result of properties.filteredResults">
                                 <div class="card-body results-table p-1">
                                     <div class="row m-0">
-                                        <div class="col-9 p-0">
+                                        <div class="col-9 border-right p-0">
                                             <div class="row m-0">
                                                 <div class="col-4 p-0 text-center" style="padding-right:0pt; padding-left:2pt">
-                                                    <div class="text-center"><h6 class="font-weight-bold h6-sm m-0 p-1">{{result.partner}}</h6></div>
+                                                    <div class="text-center"><h6 class="font-weight-bold h6-sm m-0 p-0" style="margin-top:5pt !important">{{result.partner}}</h6></div>
                                                     <img class="plr-5 result-img mtb-5" src="../../assets/{{result.partner}}.jpg" />
                                                     <div class="text-left p-0">
                                                         <div class="row m-0 p-0" style="padding-left:5pt">
@@ -616,7 +616,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-8 p-1 border-right">
+                                                <div class="col-8 p-1">
                                                     <div class="row m-0">
                                                         <div class="col-5 results-col text-center">
                                                             <img *ngIf="!result.runFlat" class="result-tyre" src="../../assets/Tyres/{{result.brand}}_{{result.tyreModel}}_{{result.tyreWidth}}_{{result.tyreProfile}}_R{{result.wheelSize}}.jpg"
@@ -641,44 +641,30 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- <div class="col-4 text-center border-dashed">
-                                                    <div class="row" style="margin-bottom:5pt">
-                                                        <div class="col-12">
-                                                            <div class="strong included-text rounded">Included</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row" *ngFor="let service of result.partnerDetails.services">
-                                                        <div class="col-12 results-col" *ngIf="service.show">
-                                                            {{service.name}}
-                                                        </div>
-                                                    </div>
-                
-                                                </div> -->
+                                            </div>
+                                            <div class="m-0 text-center includes-mobile" *ngIf="anyService(result.partnerDetails.services)">
+                                                <hr class="short-hr">
+                                                <span class="font-italic font-weight-bold" style="color:red">Included:</span>
+                                                <br>
+                                                <span *ngFor="let service of result.partnerDetails.services; let isLast=last"><span class="" *ngIf="service.show">{{service.name}}{{isLast ? '' : ', '}}</span></span>
                                             </div>
                                         </div>
                                         <div class="col-3 results-col text-center">
+                                            <h6 class="h6-sm font-weight-bold" style="margin-top:5pt;margin-bottom: 10pt;">{{result.totalPrice | currency:'R'}}</h6>
                                             <a href="javascript:void(0)" class="black-link p-3" (click)="viewBreakdown(result)">
                                                 View Deal
                                             </a>
                                             <br>
                                             <br>
                                             <div class="text-center">
-                                                <div class="checkbox checkbox-success checkbox-green select-box rounded" [ngClass]="{selectedBox : result.contactMe}">
+                                                <div class="checkbox checkbox-success checkbox-green mobile-select select-box rounded" [ngClass]="{selectedBox : result.contactMe}">
                                                     <input id="select_{{result.index}}" type="checkbox" [checked]="result.contactMe" (change)="checkSelect(result)">
                                                     <label for="select_{{result.index}}">
                                                         SELECT
                                                     </label>
                                                 </div>
                                             </div>
-                                            <br>
-                                            <h6 class="h6-sm">
-                                                <b>{{result.totalPrice | currency:'R'}}</b>
-                                            </h6>
                                         </div>
-                                    </div>
-                                    <div class="m-0 text-center includes-mobile rounded" *ngIf="anyService(result.partnerDetails.services)">
-                                        <b>Includes:</b>
-                                        <span *ngFor="let service of result.partnerDetails.services"><span class="" *ngIf="service.show">{{service.name}},&nbsp;</span></span>
                                     </div>
                                 </div>
                             </div>
