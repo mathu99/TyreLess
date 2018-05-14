@@ -45,6 +45,7 @@ export class HomeComponent {
     defaultTitle: 'Unselected',
     defaultLabel: 'Brand',
   };
+  sub: any;
 
   setNavBarVisibility = ($event:any) => {
     set(this.properties, 'navBarVisible', !$event.value);
@@ -127,6 +128,38 @@ export class HomeComponent {
   };
 
   ngOnInit() {
+    this.sub = this.route
+      .queryParams
+      .subscribe(params => {
+        if (params.hasOwnProperty("selected")) {
+          this.data = JSON.parse(JSON.stringify(params)); /* Copy object */
+          if (this.data.brand.length === 1) {
+            this.data.brand= JSON.parse("[" + this.data.brand + "]");
+          }
+          assign(this.data.brand, this.data.brand.map(e => parseInt(e)));
+          this.data.wheelAlignmentChecked = this.data.wheelAlignmentChecked == "true";
+          this.data.wheelBalancingChecked = this.data.wheelBalancingChecked == "true";
+          this.http.get('environments/config.development.json').subscribe(res => {
+            assign(this.properties, res.json().properties)
+            let highLevel = get(this.properties,'locations',[]).filter(e => e.name == get(this.data, 'location'))[0];
+            if (get(this.data, 'subLocations', []).length == 0){  /* High-level only selection */
+              highLevel.checked = true;
+              highLevel.sub_locations.map(e => e.checked = true);
+            }else {
+              highLevel.sub_locations.map(e => e.checked = get(this.data, 'subLocations', []).indexOf(e.name) > -1);
+            }
+            set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
+            this.properties.brands = this.properties.brands.map((e, i) => {
+              return <IMultiSelectOption> {
+                id: i,
+                name: e.name,
+              }
+            });
+          });
+        } else {
+          
+        }
+      });
     this.dropdownSettingsMobile.buttonClasses += ' dd-search-text';
     this.route.queryParams.subscribe(params => {
         if (params.contactUs === 'true') {
@@ -154,7 +187,8 @@ export class HomeComponent {
           name: e.name,
         }
       });
-        this.data = {
+      if (!this.data) {
+          this.data = {
           width: '---',//this.properties.tyreWidths[0],
           profile: '--',//this.properties.tyreProfiles[0],
           size: '--',//this.properties.wheelSizes[0],
@@ -166,6 +200,7 @@ export class HomeComponent {
           wheelAlignmentChecked: true,
           wheelBalancingChecked: true,
         };
+      }
     });
   }
 
