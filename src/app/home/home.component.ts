@@ -18,7 +18,7 @@ import {
 
 export class HomeComponent {
   @ViewChild('locationModal') private locationModal;
-  properties = null;
+  properties = <any>{};
   data = null;
   collapsed = true;
   locationModalCollapsed = true;
