@@ -250,6 +250,7 @@
                 <div class="light-grey-bg">
                     <br>
                     <br>
+                    <br>
                     <h2 class="text-center font-weight-bold txt-shadow">TyreLess<span class="txt-green-sm">.co.za</span></h2>
                     <p class="text-center m-0">Search - Select - Save</p>
                     <br>
@@ -400,6 +401,7 @@
                         </div>
                     </div>
                     <br>
+                    <br>
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-8">
@@ -407,6 +409,7 @@
                                 class="btn btn-success w-100" type="button" [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">SEARCH</button>
                         </div>
                     </div>
+                    <br>
                     <br>
                     <br>
                 </div>
@@ -431,7 +434,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body custom-lite custom">
+                <div class="modal-body custom-lite custom" style="line-height: 1.5 !important">
                     <div class="card" *ngFor="let location of properties.locations">
                         <div class="card-header card-header-light">
                             <div class="row">

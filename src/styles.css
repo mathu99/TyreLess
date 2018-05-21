@@ -250,6 +250,7 @@ h5{
   padding:1px;
 }
 .dd-left{
+  font-weight: bold;
   padding-left:5pt;
   font-size:8pt;
   vertical-align: middle;
@@ -364,7 +365,8 @@ h5{
 
 #searchButtonMobile{
   font-weight: bold;
-  padding: 8pt;
+  padding: 6pt;
+  font-size: 16pt;
   box-shadow:3px 3px 4px rgba(0,0,0,0.3);
   text-shadow:2px 2px 3px rgba(0,0,0,0.3);
 }

@@ -40,7 +40,7 @@ export class HomeComponent {
   // Text configuration
   brandTexts: IMultiSelectTexts = {
     checkAll: 'Select all',
-    uncheckAll: 'Deselect all',
+    uncheckAll: 'Clear all',
     allSelected: 'All Brands',
     defaultTitle: 'Unselected',
     defaultLabel: 'Brand',
