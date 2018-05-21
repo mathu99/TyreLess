@@ -513,7 +513,7 @@
                             </div>
                         </div>
                 </div>
-                <div class="mobile-sort" *ngIf="properties.mobileSidenav.mode=='sort'">
+                <div class="mobile-sort" *ngIf="properties.mobileSidenav.mode=='sort'" style="line-height:1.5 !important">
                     <div class="p-3">
                         <div class="radio radio-success">
                             <input id="typeLowToHigh" type="radio" [checked]="data.selectedFilter == 'Price: Low to High'" (click)="sort('Price: Low to High')">
@@ -535,7 +535,7 @@
                     </div>
                 </div>
             </mat-sidenav>
-            <div class="mobile-sidenav-content">
+            <div class="mobile-sidenav-content" style="line-height:1.5 !important">
                 <div class="fixed-mobile-container">
                         <div class="filter-section p-1">
                                 <table class="m-0 text-center w-100">
@@ -720,7 +720,7 @@
     </div>
         
 <footer class="footer sticky-footer-mobile show-on-mobile" [hidden]="!properties.showContactMe">
-    <button class="btn btn-success shadow-btn h-100 w-100 custom contact-me-btn" style="border-radius: .25rem .25rem 0rem 0rem;" (click)="openContactMeForm()" type="button">CONTACT ME ></button>
+    <button class="btn btn-success shadow-btn h-100 w-100 custom contact-me-btn" (click)="openContactMeForm()" type="button">CONTACT ME ></button>
 </footer>
 
 <footer class="footer sticky-footer m-2 p-2 hide-from-mobile" [hidden]="!properties.showContactMe">

@@ -347,6 +347,8 @@ h5{
   position: fixed;
   bottom: 0;
   z-index: 1;
+  padding: 5pt;
+  background: rgba(255,255,255,.5);
 }
 
 .shadow-btn{
@@ -1192,6 +1194,14 @@ li::before {
     font-size:9pt;
   }
 
+  .mobile-filter{
+    line-height: 1.5 !important;
+  }
+
+a:focus, input:focus {
+  outline:none !important;
+}
+
   @media (min-width: 1200px) {
     .container {
         max-width: 960px;
@@ -1228,7 +1238,7 @@ li::before {
 
   @media (max-width:768px) {
     .result-logo{
-      max-width: 50px;
+      max-width: 45px;
     }
 
     .padder::before, .padder-after::after{
@@ -1278,8 +1288,8 @@ li::before {
     }
 
     .result-img {
-      max-height: 22px;
-      max-width: 70px;
+      max-height: 18px;
+      max-width: 65px;
     }
 
     .mtb-5{
