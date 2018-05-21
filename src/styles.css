@@ -625,7 +625,7 @@ body{
   margin: 1px;
   margin-left: 0;
   background-color: white;
-  border: 1px solid rgba(0,0,0,.125);
+  border: 1px solid rgba(0,0,0,.075);
 }
 
 .extras-col>.checkbox{
@@ -650,11 +650,11 @@ body{
   font-family: "VarelaRound", "BryantMediumRegular", sans-serif !important;
 }
 .border-right{
-  border-right: 1px solid rgba(0,0,0,.125)
+  border-right: 1px solid rgba(0,0,0,.075)
 }
 .border-dashed{
   border-right-style: dashed;
-    border-right-color: rgba(0,0,0,.225);
+    border-right-color: rgba(0,0,0,.075);
     border-right-width: 1px;
 }
 .included-text{
@@ -1227,6 +1227,10 @@ li::before {
   }
 
   @media (max-width:768px) {
+    .result-logo{
+      max-width: 50px;
+    }
+
     .padder::before, .padder-after::after{
       background: rgb(242,242,242);
     }
@@ -1274,8 +1278,8 @@ li::before {
     }
 
     .result-img {
-      max-height: 25px;
-      max-width: 80px;
+      max-height: 22px;
+      max-width: 70px;
     }
 
     .mtb-5{
