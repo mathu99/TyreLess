@@ -22,6 +22,7 @@ export class SearchComponent {
   @ViewChild('content') private content;
   @ViewChild('searchLocationModal') private locationModal;
   @ViewChild('contactFormModal') private contactFormModal;
+  @ViewChild('mobileContactModal') private mobileContactModal;
   
   constructor(
     private route: ActivatedRoute,
@@ -82,6 +83,10 @@ export class SearchComponent {
   toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
   }
+
+  openContactMeForm = (): void => {
+    this.open(this.mobileContactModal);
+  };
 
   submitContactForm = (): void => {
     this.open(this.contactFormModal);

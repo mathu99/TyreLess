@@ -711,7 +711,7 @@
     </div>
         
 <footer class="footer sticky-footer-mobile show-on-mobile" [hidden]="!properties.showContactMe">
-        <button class="btn btn-success shadow-btn h-100 w-100 custom contact-me-btn" type="button">CONTACT ME ></button>
+    <button class="btn btn-success shadow-btn h-100 w-100 custom contact-me-btn" style="border-radius: .25rem .25rem 0rem 0rem;" (click)="openContactMeForm()" type="button">CONTACT ME ></button>
 </footer>
 
 <footer class="footer sticky-footer m-2 p-2 hide-from-mobile" [hidden]="!properties.showContactMe">
@@ -831,3 +831,40 @@
                 <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
             </div>
     </ng-template>
+
+<ng-template #mobileContactModal let-mc="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title custom">Contact Details</h4>
+        <button type="button" class="close" aria-label="Close" data-dismiss="modal" #btnClose (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body custom-lite text-center">
+        Please enter your details and our Partners will contatct you regarding your selected deals<br><br>
+        <div class="row m-0">
+            <div class="col-12 p-1">
+                <input id="searchContactNameMobile" name="searchContactName" type="text" class="form-control" placeholder="Name" [(ngModel)]="data.getContacted.name"
+                required />
+            </div>
+        </div>
+        <div class="row m-0">
+            <div class="col-12 p-1">
+                <input id="searchMobileNumberMobile" name="searchMobileNumber" type="text" class="form-control" pattern="[0-9]*" minlength="10" maxlength="10" placeholder="Mobile Number" [(ngModel)]="data.getContacted.mobile"
+                required />
+            </div>
+        </div>
+        <div class="row m-0">
+            <div class="col-12 p-1">
+                <input id="searchEmail" name="searchEmailMobile" type="text" class="form-control" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="Email Address" [email]="true" [(ngModel)]="data.getContacted.email"
+                required />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row m-0">
+            <div class="col-12 p-1">
+                <button class="btn btn-success shadow-btn h-100 w-100 custom contact-me-btn" id="contactMeBtnMobile" type="button" [disabled]="!searchResultsContact.form.valid" (click)="mc();submitContactForm()">CONTACT ME ></button>
+            </div>
+        </div>
+    </div>
+</ng-template>

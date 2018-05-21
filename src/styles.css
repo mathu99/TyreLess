@@ -1329,7 +1329,7 @@ section.information{
     #ourOfferingImg, .hide-from-mobile{
       display: none !important;
     }
-    .show-on-mobile{
+    .show-on-mobile, .modal-content{
       line-height: 1.2;
       font-size: 10pt;
     }
