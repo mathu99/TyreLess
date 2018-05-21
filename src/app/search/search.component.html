@@ -594,58 +594,47 @@
                         <div class="card m-2 box-shadow" *ngFor="let result of properties.filteredResults">
                                 <div class="card-body results-table p-1">
                                     <div class="row m-0">
+                                        <div class="col-6 p-1 border-right">
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <img class="result-img" style="margin-right:5pt" src="../../assets/{{result.partner}}.jpg" />
+                                                    </td>
+                                                    <td class="font-weight-bold text-center">
+                                                        {{result.partner}}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-6 p-1">
+                                            <a href="https://www.google.com/maps/search/{{result.partner}} {{result.branch.location}}" target="_blank"><img ngbTooltip="View on Google Maps" class="pin-icon" src="../../assets/Pin.png" alt="Location"/></a>{{result.branch.name}}<br>
+                                            <span style="margin-left:10pt">{{result.location.suburb}}</span>
+                                        </div>
+                                    </div>
+                                    <hr class="m-0">
+                                    <div class="row m-0">
                                         <div class="col-9 border-right p-0">
                                             <div class="row m-0">
-                                                <div class="col-4 p-0 text-center" style="padding-right:0pt; padding-left:2pt">
-                                                    <div class="text-center"><h6 class="font-weight-bold h6-sm m-0 p-0" style="margin-top:5pt !important">{{result.partner}}</h6></div>
-                                                    <img class="plr-5 result-img mtb-5" src="../../assets/{{result.partner}}.jpg" />
-                                                    <div class="text-left p-0">
-                                                        <div class="row m-0 p-0" style="padding-left:5pt">
-                                                            <div class="col-2 p-0 text-right">
-                                                                <a href="https://www.google.com/maps/search/{{result.partner}} {{result.branch.location}}" target="_blank"><img ngbTooltip="View on Google Maps" class="pin-icon" src="../../assets/Pin.png" alt="Location"/></a>
-                                                            </div>
-                                                            <div class="col-10 p-0">
-                                                                {{result.branch.name}}
-                                                            </div>
-                                                        </div>
-                                                        <div class="row m-0 p-0" style="padding-left:5pt">
-                                                            <div class="col-2 p-0"></div>
-                                                            <div class="col-10 p-0">
-                                                                {{result.location.suburb}}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-8 p-1">
+                                                <div class="col-12 p-1">
                                                     <div class="row m-0">
-                                                        <div class="col-5 results-col text-center">
+                                                        <div class="col-4 results-col text-center">
                                                             <img *ngIf="!result.runFlat" class="result-tyre" src="../../assets/Tyres/{{result.brand}}_{{result.tyreModel}}_{{result.tyreWidth}}_{{result.tyreProfile}}_R{{result.wheelSize}}.jpg"
                                                             />
                                                             <img *ngIf="result.runFlat" class="result-tyre" src="../../assets/Tyres/{{result.brand}}_{{result.tyreModel}}_{{result.tyreWidth}}_{{result.tyreProfile}}_R{{result.wheelSize}}_Runflat.jpg"
                                                             />
                                                         </div>
-                                                        <div class="col-7 results-text results-col">
+                                                        <div class="col-8 results-text results-col">
                                                             {{result.brand}}
                                                             <br> {{result.tyreModel}}
                                                             <br>
                                                             <span *ngIf="result.runFlat">Run Flat</span>
-                                                            <div class="row" style="position: absolute; bottom:0; right:30pt">
-                                                                <div class="col-12 results-col">
-                                                                    <br>
-                                                                    <br>
-                                                                    <br>
-                                                                    <img class="result-logo" src="../../assets/Tyre Manufacturer/{{result.brand}}.png" />
-                                                                </div>
-                                                            </div>
-                
+                                                            <img class="result-logo" style="position:absolute;bottom:5pt" src="../../assets/Tyre Manufacturer/{{result.brand}}.png" />
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="m-0 text-center includes-mobile" *ngIf="anyService(result.partnerDetails.services)">
-                                                <hr class="short-hr">
-                                                <span class="font-italic font-weight-bold" style="color:red">Included:</span>
-                                                <br>
+                                            <div class="m-0 text-left includes-mobile" *ngIf="anyService(result.partnerDetails.services)">
+                                                <span class="font-italic font-weight-bold" style="color:red">Included:</span>&nbsp;
                                                 <span *ngFor="let service of result.partnerDetails.services; let isLast=last"><span class="" *ngIf="service.show">{{service.name}}{{isLast ? '' : ', '}}</span></span>
                                             </div>
                                         </div>
