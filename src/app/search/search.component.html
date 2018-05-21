@@ -208,10 +208,10 @@
                                             <mat-slider [min]="properties.priceFilter.min" [max]="properties.priceFilter.max" (input)="priceChange($event)" [(ngModel)]="properties.priceFilter.current"></mat-slider>
                                             <div class="row">
                                                 <div class="col-6 text-left">
-                                                    <b>Min:</b> {{properties.priceFilter.min | currency:'R'}}
+                                                    <b>Min:</b><br>{{properties.priceFilter.min | currency:'R'}}
                                                 </div>
                                                 <div class="col-6 text-right">
-                                                    <b>Max:</b> {{properties.priceFilter.current | currency:'R'}}
+                                                    <b>Max:</b><br>{{properties.priceFilter.current | currency:'R'}}
                                                 </div>
                                             </div>
                                         </div>
@@ -335,7 +335,7 @@
                                                         <br> {{result.tyreModel}}
                                                         <br>
                                                         <span *ngIf="result.runFlat">Run Flat</span>
-                                                        <div class="row" style="position: absolute; bottom:0; right:30pt">
+                                                        <div class="row" style="position: absolute; bottom:0; padding-left: 10pt;">
                                                             <div class="col-12 results-col">
                                                                 <br>
                                                                 <br>
@@ -364,10 +364,14 @@
                                         </div>
                                     </div>
                                     <div class="col-2 results-col text-center">
-                                        <br>
-                                        <a href="javascript:void(0)" class="black-link" (click)="viewBreakdown(result)">
-                                            View Deal
-                                        </a>
+                                        <h6>
+                                            <b>{{result.totalPrice | currency:'R'}}</b>
+                                        </h6>
+                                        <div style="padding-top:5pt; padding-bottom:5pt;" >
+                                            <a href="javascript:void(0)" class="black-link" (click)="viewBreakdown(result)">
+                                                View Deal
+                                            </a>
+                                        </div>
                                         <div class="text-center p-2" style="padding-left: 12pt !important;padding-right: 12pt !important;" >
                                             <div class="checkbox checkbox-success checkbox-green select-box rounded" [ngClass]="{selectedBox : result.contactMe}">
                                                 <input id="select_{{result.index}}" type="checkbox" [checked]="result.contactMe" (change)="checkSelect(result)">
@@ -376,9 +380,6 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <h6>
-                                            <b>{{result.totalPrice | currency:'R'}}</b>
-                                        </h6>
                                     </div>
                                 </div>
                             </div>
@@ -535,162 +536,170 @@
                 </div>
             </mat-sidenav>
             <div class="mobile-sidenav-content">
-        <div class="filter-section p-1">
-                    <table class="m-0 text-center w-100">
-                            <tr>
-                                <td class="w-125 green-border">
-                                    <img src="../..{{data.whiteSrc}}" class="vehicle-icon-sm" />
-                                </td>
-                                <td class="w-25 green-border">
-                                    {{data.width}}/{{data.profile}}/R{{data.size}}
-                                </td>
-                                <td class="w-125 green-border">
-                                    x{{data.quantity}}
-                                </td>
-                                <td class="w-25 green-border">
-                                    {{properties.label}}
-                                </td>
-                                <td class="w-25">
-                                    {{data.location.name}}
-                                </td>
-                            </tr>
-                        </table>
-                        <div class="row m-0 text-center" style="margin-top:5pt !important">
-                            <div class="p-1" [ngClass]="{
-                                'w-33' : data.wheelAlignmentChecked && data.wheelBalancingChecked, 
-                                'w-50' : data.wheelAlignmentChecked
-                            }" *ngIf="data.wheelAlignmentChecked">Wheel Alignment</div>
-                            <div class="p-1" [ngClass]="{
-                                'w-33' : data.wheelAlignmentChecked && data.wheelBalancingChecked, 
-                                'w-50' : data.wheelBalancingChecked
-                            }" *ngIf="data.wheelBalancingChecked">Wheel Balancing</div>
-                            <div [ngClass]="{
-                                'w-100': !data.wheelAlignmentChecked && !data.wheelBalancingChecked, 
-                                'w-33' : data.wheelAlignmentChecked && data.wheelBalancingChecked, 
-                                'w-50' : data.wheelBalancingChecked || data.wheelAlignmentChecked
-                            }">
-                                <button class="btn btn-success plr-8 w-75 fs-9" type="button" style="max-width: 100pt !important" [routerLink]="['/']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"><i class="fa fa-pencil"></i> Modify</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="header-section-mobile">
-                        <div class="row text-center">
-                            <div class="col-1"></div>
-                            <div class="col-10">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <button class="btn btn-secondary plr-8 w-100 fs-9" type="button" (click)="sideNav('filter'); drawer.toggle()"><i class="fa fa-filter text-success"></i> Filter</button>
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn btn-secondary plr-8 w-100 fs-9" type="button" (click)="sideNav('sort'); drawer.toggle()"><i class="fa fa-sort text-success"></i> Sort</button>
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn btn-secondary plr-8 w-100 fs-9" type="button" (click)="sideNav('map'); drawer.toggle()"><i class="fa fa-map-marker text-success"></i> Map</button>
+                <div class="fixed-mobile-container">
+                        <div class="filter-section p-1">
+                                <table class="m-0 text-center w-100">
+                                        <tr>
+                                            <td class="w-125 green-border">
+                                                <img src="../..{{data.whiteSrc}}" class="vehicle-icon-sm" />
+                                            </td>
+                                            <td class="w-25 green-border">
+                                                {{data.width}}/{{data.profile}}/R{{data.size}}
+                                            </td>
+                                            <td class="w-125 green-border">
+                                                x{{data.quantity}}
+                                            </td>
+                                            <td class="w-25 green-border">
+                                                {{properties.label}}
+                                            </td>
+                                            <td class="w-25">
+                                                {{data.location.name}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="row m-0 text-center" style="margin-top:5pt !important">
+                                        <div class="p-1" [ngClass]="{
+                                            'w-33' : data.wheelAlignmentChecked && data.wheelBalancingChecked, 
+                                            'w-50' : data.wheelAlignmentChecked
+                                        }" *ngIf="data.wheelAlignmentChecked">Wheel Alignment</div>
+                                        <div class="p-1" [ngClass]="{
+                                            'w-33' : data.wheelAlignmentChecked && data.wheelBalancingChecked, 
+                                            'w-50' : data.wheelBalancingChecked
+                                        }" *ngIf="data.wheelBalancingChecked">Wheel Balancing</div>
+                                        <div [ngClass]="{
+                                            'w-100': !data.wheelAlignmentChecked && !data.wheelBalancingChecked, 
+                                            'w-33' : data.wheelAlignmentChecked && data.wheelBalancingChecked, 
+                                            'w-50' : data.wheelBalancingChecked || data.wheelAlignmentChecked
+                                        }">
+                                            <button class="btn btn-success plr-8 w-75 fs-9" type="button" style="max-width: 100pt !important" [routerLink]="['/']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"><i class="fa fa-pencil"></i> Modify</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                        <div class="card m-2 box-shadow" *ngFor="let result of properties.filteredResults">
-                                <div class="card-body results-table p-1">
-                                    <div class="row m-0">
-                                        <div class="col-6 p-1 border-right">
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        <img class="result-img" style="margin-right:5pt" src="../../assets/{{result.partner}}.jpg" />
-                                                    </td>
-                                                    <td class="font-weight-bold text-center">
-                                                        {{result.partner}}
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="col-6 p-1">
-                                            <a href="https://www.google.com/maps/search/{{result.partner}} {{result.branch.location}}" target="_blank"><img ngbTooltip="View on Google Maps" class="pin-icon" src="../../assets/Pin.png" alt="Location"/></a>{{result.branch.name}}<br>
-                                            <span style="margin-left:10pt">{{result.location.suburb}}</span>
+                                <div class="header-section-mobile">
+                                    <div class="row text-center">
+                                        <div class="col-1"></div>
+                                        <div class="col-10">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <button class="btn btn-secondary plr-8 w-100 fs-9" type="button" (click)="sideNav('filter'); drawer.toggle()"><i class="fa fa-filter text-success"></i> Filter</button>
+                                                </div>
+                                                <div class="col-4">
+                                                    <button class="btn btn-secondary plr-8 w-100 fs-9" type="button" (click)="sideNav('sort'); drawer.toggle()"><i class="fa fa-sort text-success"></i> Sort</button>
+                                                </div>
+                                                <div class="col-4">
+                                                    <button class="btn btn-secondary plr-8 w-100 fs-9" type="button" (click)="sideNav('map'); drawer.toggle()"><i class="fa fa-map-marker text-success"></i> Map</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <hr class="m-0">
-                                    <div class="row m-0">
-                                        <div class="col-9 border-right p-0">
-                                            <div class="row m-0">
-                                                <div class="col-12 p-1">
-                                                    <div class="row m-0">
-                                                        <div class="col-4 results-col text-center">
-                                                            <img *ngIf="!result.runFlat" class="result-tyre" src="../../assets/Tyres/{{result.brand}}_{{result.tyreModel}}_{{result.tyreWidth}}_{{result.tyreProfile}}_R{{result.wheelSize}}.jpg"
-                                                            />
-                                                            <img *ngIf="result.runFlat" class="result-tyre" src="../../assets/Tyres/{{result.brand}}_{{result.tyreModel}}_{{result.tyreWidth}}_{{result.tyreProfile}}_R{{result.wheelSize}}_Runflat.jpg"
-                                                            />
-                                                        </div>
-                                                        <div class="col-8 results-text results-col">
-                                                            {{result.brand}}
-                                                            <br> {{result.tyreModel}}
-                                                            <br>
-                                                            <span *ngIf="result.runFlat">Run Flat</span>
-                                                            <img class="result-logo" style="position:absolute;bottom:5pt" src="../../assets/Tyre Manufacturer/{{result.brand}}.png" />
+                                </div>
+                </div>
+        
+                    <div class="results-container">
+                            <div class="card m-2 box-shadow" *ngFor="let result of properties.filteredResults">
+                                    <div class="card-body results-table p-1">
+                                        <div class="row m-0">
+                                            <div class="col-6 p-1 border-right">
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <img class="result-img" style="margin-right:5pt" src="../../assets/{{result.partner}}.jpg" />
+                                                        </td>
+                                                        <td class="font-weight-bold text-center">
+                                                            {{result.partner}}
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="col-6 p-1">
+                                                <a href="https://www.google.com/maps/search/{{result.partner}} {{result.branch.location}}" target="_blank"><img ngbTooltip="View on Google Maps" class="pin-icon" src="../../assets/Pin.png" alt="Location"/></a>{{result.branch.name}}<br>
+                                                <span style="margin-left:10pt">{{result.location.suburb}}</span>
+                                            </div>
+                                        </div>
+                                        <hr class="m-0">
+                                        <div class="row m-0">
+                                            <div class="col-9 border-right p-0">
+                                                <div class="row m-0">
+                                                    <div class="col-12 p-1">
+                                                        <div class="row m-0">
+                                                            <div class="col-4 results-col text-center">
+                                                                <img *ngIf="!result.runFlat" class="result-tyre" src="../../assets/Tyres/{{result.brand}}_{{result.tyreModel}}_{{result.tyreWidth}}_{{result.tyreProfile}}_R{{result.wheelSize}}.jpg"
+                                                                />
+                                                                <img *ngIf="result.runFlat" class="result-tyre" src="../../assets/Tyres/{{result.brand}}_{{result.tyreModel}}_{{result.tyreWidth}}_{{result.tyreProfile}}_R{{result.wheelSize}}_Runflat.jpg"
+                                                                />
+                                                            </div>
+                                                            <div class="col-8 results-text results-col">
+                                                                {{result.brand}}
+                                                                <br> {{result.tyreModel}}
+                                                                <br>
+                                                                <span *ngIf="result.runFlat">Run Flat</span>
+                                                                <img class="result-logo" style="position:absolute;bottom:5pt" src="../../assets/Tyre Manufacturer/{{result.brand}}.png" />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="m-0 text-left includes-mobile" *ngIf="anyService(result.partnerDetails.services)">
+                                                    <span class="font-italic font-weight-bold" style="color:red">Included:</span>&nbsp;
+                                                    <span *ngFor="let service of result.partnerDetails.services; let isLast=last"><span class="" *ngIf="service.show">{{service.name}}{{isLast ? '' : ', '}}</span></span>
+                                                </div>
                                             </div>
-                                            <div class="m-0 text-left includes-mobile" *ngIf="anyService(result.partnerDetails.services)">
-                                                <span class="font-italic font-weight-bold" style="color:red">Included:</span>&nbsp;
-                                                <span *ngFor="let service of result.partnerDetails.services; let isLast=last"><span class="" *ngIf="service.show">{{service.name}}{{isLast ? '' : ', '}}</span></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-3 results-col text-center">
-                                            <h6 class="h6-sm font-weight-bold" style="margin-top:5pt;margin-bottom: 10pt;">{{result.totalPrice | currency:'R'}}</h6>
-                                            <a href="javascript:void(0)" class="black-link p-3" (click)="viewBreakdown(result)">
-                                                View Deal
-                                            </a>
-                                            <br>
-                                            <br>
-                                            <div class="text-center">
-                                                <div class="checkbox checkbox-success checkbox-green mobile-select select-box rounded" [ngClass]="{selectedBox : result.contactMe}">
-                                                    <input id="select_mobile_{{result.index}}" type="checkbox" [checked]="result.contactMe" (change)="checkSelect(result)">
-                                                    <label for="select_mobile_{{result.index}}">
-                                                        SELECT
-                                                    </label>
+                                            <div class="col-3 results-col text-center">
+                                                <h6 class="h6-sm font-weight-bold" style="margin-top:5pt;margin-bottom: 10pt;">{{result.totalPrice | currency:'R'}}</h6>
+                                                <a href="javascript:void(0)" class="black-link p-3" (click)="viewBreakdown(result)">
+                                                    View Deal
+                                                </a>
+                                                <br>
+                                                <br>
+                                                <div class="text-center">
+                                                    <div class="checkbox checkbox-success checkbox-green mobile-select select-box rounded" [ngClass]="{selectedBox : result.contactMe}">
+                                                        <input id="select_mobile_{{result.index}}" type="checkbox" [checked]="result.contactMe" (change)="checkSelect(result)">
+                                                        <label for="select_mobile_{{result.index}}">
+                                                            SELECT
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card m-1 text-center box-shadow" *ngIf="properties.results && properties.results.length > 0 && properties.filteredResults.length == 0 ">
-                                <div class="card-body">
-                                    <br>
-                                    <img src="../../assets/no_results.png" class="search-icon" />
-                                    <br>
-                                    <br>
-                                    <h5>No Results Found</h5>
-                                    <h6>Please refine your search</h6>
-                                </div>
-                            </div>
-                            <div class="row" *ngIf="!properties.results || properties.results.length == 0">
-                                    <div class="col-12">
-                                        <div [hidden]="properties.loading" class="text-center">
-                                            <br>
-                                            <br>
-                                            <img src="../../assets/no_results.png" class="search-icon" />
-                                            <br>
-                                            <br>
-                                            <h5>No Results Found</h5>
-                                            <h6>Please refine your search</h6>
-                                        </div>
-                                        <div [hidden]="!properties.loading" class="text-center">
-                                            <br>
-                                            <br>
-                                            <img src="../../assets/loading.gif" class="search-icon" />
-                                            <br>
-                                            <br>
-                                            <h5>Searching</h5>
-                                            <h6>Please wait...</h6>
-                                            <br>
-                                            <br>
-                                        </div>
+                                <div class="card m-1 text-center box-shadow" *ngIf="properties.results && properties.results.length > 0 && properties.filteredResults.length == 0 ">
+                                    <div class="card-body">
+                                        <br>
+                                        <img src="../../assets/no_results.png" class="search-icon" />
+                                        <br>
+                                        <br>
+                                        <h5>No Results Found</h5>
+                                        <h6>Please refine your search</h6>
                                     </div>
                                 </div>
+                                <div class="row" *ngIf="!properties.results || properties.results.length == 0">
+                                        <div class="col-12">
+                                            <div [hidden]="properties.loading" class="text-center">
+                                                <br>
+                                                <br>
+                                                <img src="../../assets/no_results.png" class="search-icon" />
+                                                <br>
+                                                <br>
+                                                <h5>No Results Found</h5>
+                                                <h6>Please refine your search</h6>
+                                            </div>
+                                            <div [hidden]="!properties.loading" class="text-center">
+                                                <br>
+                                                <br>
+                                                <img src="../../assets/loading.gif" class="search-icon" />
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <h5>Searching</h5>
+                                                <h6>Please wait...</h6>
+                                                <br>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                    </div>
+                        
                                 <div class="show-on-mobile text-center m-4">
                                         <div class="row m-1 font-weight-bold">
                                           <div class="col-6 text-left">

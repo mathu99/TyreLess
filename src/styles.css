@@ -502,12 +502,17 @@ a:hover{
   margin:0 auto;
   margin-top:70px;
 }
-
+.results-and-filters{
+  padding-top: 130px;
+}
 .header-section-40{
   margin:0 auto;
   margin-top:40px;
   background-color:rgb(220,220,220);
   padding-bottom: 5pt;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
 }
 
 .header-section-mobile{
@@ -552,9 +557,20 @@ a:hover{
   font-size:10pt;
 }
 
+.fixed-mobile-container{
+  margin-top: -78pt;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+}
+
+.results-container{
+  margin-top: 130pt;
+}
+
 .filter-section{
   color:white;
-  margin-top:56pt;
+  
   font-size:9pt;
   background-color:rgb(89,89,89);
 }
@@ -693,6 +709,7 @@ body{
   }
 
 .navbar{
+    padding: .3rem 0.8rem;
     margin-bottom:0;
     border:none;
   }
