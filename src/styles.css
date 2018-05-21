@@ -846,7 +846,7 @@ li::before {
   }
 
   .card-transparent{
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.90);
   }
 
   .search-select-save{
@@ -1242,7 +1242,7 @@ li::before {
       font-size:12pt;
     }
     .txt-shadow{
-      text-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+      text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
     }
     .checkbox label::after {
       margin-left: -21px;

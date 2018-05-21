@@ -350,8 +350,8 @@
                                             <div class="col-4 text-center border-dashed">
                                                 <div class="row" style="margin-bottom:5pt">
                                                     <div class="col-12">
-                                                        <!-- <img class="included-img" src="../../assets/included.png"> -->
-                                                        <div class="strong included-text rounded">Included</div>
+                                                        <span class="font-italic font-weight-bold" style="color:red">Included:</span>
+                                                        <!-- <div class="strong included-text rounded">Included</div> -->
                                                     </div>
                                                 </div>
                                                 <div class="row" *ngFor="let service of result.partnerDetails.services">
@@ -720,7 +720,7 @@
             <div class="col-1"></div>
             <div class="col-10">
                 <div class="text-center m-2">
-                    <h6>Please enter your details and our Partners will contatct you regarding your selected deals</h6>
+                    <h6>Please enter your details and our Partners will contact you</h6>
                 </div>
                 <form name="searchResultsContact" #searchResultsContact="ngForm">
                     <div class="row">
@@ -840,7 +840,7 @@
         </button>
     </div>
     <div class="modal-body custom-lite text-center">
-        Please enter your details and our Partners will contatct you regarding your selected deals<br><br>
+        Please enter your details and our Partners will contact you<br><br>
         <div class="row m-0">
             <div class="col-12 p-1">
                 <input id="searchContactNameMobile" name="searchContactName" type="text" class="form-control" placeholder="Name" [(ngModel)]="data.getContacted.name"

@@ -53,8 +53,8 @@ export class SearchComponent {
   // Settings configuration
   dropdownSettings: IMultiSelectSettings = {
     enableSearch: false,
-    showCheckAll: false,
-    showUncheckAll: false,
+    showCheckAll: true,
+    showUncheckAll: true,
     checkedStyle: 'fontawesome',
     buttonClasses: 'btn btn-secondary dd-inner p-0',
     dynamicTitleMaxItems: 1,
@@ -65,8 +65,9 @@ export class SearchComponent {
 
   // Text configuration
   brandTexts: IMultiSelectTexts = {
-    checkAll: 'All Tyre Brands',
-    allSelected: 'All',
+    checkAll: 'Select all',
+    uncheckAll: 'Clear all',
+    allSelected: 'All Brands',
     defaultTitle: 'Unselected',
     defaultLabel: 'Brand',
   };
