@@ -183,7 +183,7 @@
                                 <div class="col-4 text-center">
                                     <br>
                                     <button id="searchButton" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
-                                        class="btn btn-success w-100" type="button" [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">SEARCH</button>
+                                        class="btn btn-success w-100" type="button" [disabled]="data.width == '---' || data.profile == '--' || data.size == '--' || !data.brand || data.brand.length==0 || data.location.name == '-' || data.location.name == 'Unselected'">SEARCH</button>
                                     <br>
                                     <br>
                                 </div>
@@ -407,7 +407,7 @@
                         <div class="col-2"></div>
                         <div class="col-8">
                             <button id="searchButtonMobile" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
-                                class="btn btn-success w-100" type="button" [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">SEARCH</button>
+                                class="btn btn-success w-100" type="button" [disabled]="data.width == '---' || data.profile == '--' || data.size == '--' || !data.brand || data.brand.length==0 || data.location.name == '-' || data.location.name == 'Unselected'">SEARCH</button>
                         </div>
                     </div>
                     <br>

@@ -121,7 +121,7 @@
                         </div>
                         <div class="col-2 dd-col">
                             <button class="btn btn-success shadow-btn w-100 h-100 p-0" type="button" [routerLink]="['/search']" [queryParams]="{ selected: data.selected, width: data.width, profile: data.profile, size: data.size, quantity: data.quantity, brand: data.brand, location: data.location.highLevel, subLocations: data.location.lowLevel, wheelAlignmentChecked: data.wheelAlignmentChecked, wheelBalancingChecked: data.wheelBalancingChecked, selectedFilter: data.selectedFilter }"
-                                [disabled]="!data.brand || data.brand.length==0 || data.location.name == 'Unselected'">Modify Search</button>
+                            [disabled]="data.width == '---' || data.profile == '--' || data.size == '--' || !data.brand || data.brand.length==0 || data.location.name == '-' || data.location.name == 'Unselected'">Modify Search</button>
                         </div>
                     </div>
                     <div class="row text-center">
@@ -872,7 +872,7 @@
     <div class="modal-footer">
         <div class="row m-0">
             <div class="col-12 p-1">
-                <button class="btn btn-success shadow-btn h-100 w-100 custom contact-me-btn" id="contactMeBtnMobile" type="button" [disabled]="!searchResultsContact.form.valid" (click)="mc();submitContactForm()">CONTACT ME ></button>
+                <button class="btn btn-success shadow-btn h-100 w-100 custom contact-me-btn" id="contactMeBtnMobile" type="button" [disabled]="!searchResultsContact.form.valid" (click)="mc();submitContactForm()">SEND</button>
             </div>
         </div>
     </div>
