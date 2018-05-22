@@ -1157,6 +1157,10 @@ li::before {
     background-color:rgb(213,63,41) !important;
   }
 
+  .contact-instagram{
+    background-color:rgb(108,39,179) !important;
+  }
+
   .ng-valid[required], .ng-valid.required  {
     border-left: 5px solid rgb(107,172,70); /* green */
   }
