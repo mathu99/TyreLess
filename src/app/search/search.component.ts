@@ -213,19 +213,20 @@ export class SearchComponent {
       breakdown.push({
         'line1': 'Wheel Alignment',
         'line2': '',
-        'quantity': 'N/A',
+        'quantity': '1',
         'totalCost': get(result, 'partnerDetails.wheelAlignmentPrice', '0'),
       });
       productTotal = productTotal + parseFloat(get(result, 'partnerDetails.wheelAlignmentPrice', '0'));
     }
     if (result.wheelBalancingChecked) {
+      let wheelBalancingPrice = parseFloat(get(result, 'partnerDetails.wheelBalancingPrice', '0')) * parseFloat(result.quantitySelected);
       breakdown.push({
         'line1': 'Wheel Balancing',
         'line2': '',
-        'quantity': 'N/A',
-        'totalCost': get(result, 'partnerDetails.wheelBalancingPrice', '0'),
+        'quantity': result.quantitySelected,
+        'totalCost': wheelBalancingPrice,
       });
-      productTotal = productTotal + parseFloat(get(result, 'partnerDetails.wheelBalancingPrice', '0'));
+      productTotal = productTotal + wheelBalancingPrice;
     }
     breakdown.push({
       'line1': 'Total',

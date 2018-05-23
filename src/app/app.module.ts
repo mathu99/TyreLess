@@ -16,7 +16,7 @@ import { ContactUsComponent } from './contact/contactUs.component';
 import { HomeComponent } from './home/home.component';
 import { HowItWorksComponent } from './howItWorks/howItWorks.component';
 import { PartnersComponent } from './partners/partners.component';
-import { PrivacyPolicyComponent } from './privacyPolicy/priacyPolicy.component';
+import { PrivacyPolicyComponent } from './privacyPolicy/privacyPolicy.component';
 import { OurOfferingComponent } from './ourOffering/ourOffering.component';
 import { SearchComponent } from './search/search.component';
 import { TermsOfUseComponent } from './termsOfUse/termsOfUse.component';
