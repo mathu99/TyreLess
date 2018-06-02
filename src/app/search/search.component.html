@@ -539,13 +539,13 @@
                                             <td class="w-25 green-border">
                                                 {{data.width}}/{{data.profile}}/R{{data.size}}
                                             </td>
-                                            <td class="w-125 green-border">
+                                            <td class="w-075 green-border">
                                                 x{{data.quantity}}
                                             </td>
                                             <td class="w-25 green-border"  style="font-size:8pt">
                                                 {{properties.label}}
                                             </td>
-                                            <td class="w-25">
+                                            <td class="w-30">
                                                 {{data.location.name}}
                                             </td>
                                         </tr>
@@ -591,14 +591,14 @@
                     <div class="results-container">
                             <div class="card m-2 box-shadow" *ngFor="let result of properties.filteredResults">
                                     <div class="card-body results-table p-1">
-                                        <div class="row m-0" style="margin-bottom:1pt !important">
+                                        <div class="row m-0" style="margin-bottom:1pt !important; line-height: 1.2">
                                             <div class="col-6 p-1 border-right">
-                                                <table>
+                                                <table style="height:100%">
                                                     <tr>
                                                         <td>
                                                             <img class="result-img" style="margin-right:5pt" src="../../assets/{{result.partner}}.jpg" />
                                                         </td>
-                                                        <td class="font-weight-bold text-center" style="font-size:10pt">
+                                                        <td class="font-weight-bold text-center" style="font-size:10pt;">
                                                             {{result.partner}}
                                                         </td>
                                                     </tr>
