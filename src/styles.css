@@ -250,9 +250,8 @@ h5{
   padding:1px;
 }
 .dd-left{
-  font-weight: bold;
   padding-left:5pt;
-  font-size:8pt;
+  font-size:9pt;
   vertical-align: middle;
 }
 .dd-right{
@@ -1308,6 +1307,7 @@ a:focus, input:focus {
     }
 
     .dd-left{
+      font-size:8pt;
       padding:0pt;
       line-height:18px;
     }

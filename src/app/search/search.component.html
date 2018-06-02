@@ -368,11 +368,9 @@
                                             </a>
                                         </div>
                                         <div class="text-center p-2" style="padding-left: 12pt !important;padding-right: 12pt !important;" >
-                                            <div class="checkbox checkbox-success checkbox-green select-box rounded" [ngClass]="{selectedBox : result.contactMe}">
-                                                <input id="select_{{result.index}}" type="checkbox" [checked]="result.contactMe" (change)="checkSelect(result)">
-                                                <label for="select_{{result.index}}">
-                                                    SELECT
-                                                </label>
+                                            <div class="checkbox checkbox-success checkbox-green select-box rounded" [ngClass]="{selectedBox : result.contactMe}" (click)="checkSelect(result)">
+                                                <span *ngIf="result.contactMe">SELECTED</span>
+                                                <span *ngIf="!result.contactMe">SELECT</span>
                                             </div>
                                         </div>
                                     </div>
@@ -646,11 +644,9 @@
                                                 <br>
                                                 <br>
                                                 <div class="text-center">
-                                                    <div class="checkbox checkbox-success checkbox-green mobile-select select-box rounded" [ngClass]="{selectedBox : result.contactMe}">
-                                                        <input id="select_mobile_{{result.index}}" type="checkbox" [checked]="result.contactMe" (change)="checkSelect(result)">
-                                                        <label for="select_mobile_{{result.index}}">
-                                                            SELECT
-                                                        </label>
+                                                    <div class="checkbox checkbox-success checkbox-green mobile-select select-box rounded" [ngClass]="{selectedBox : result.contactMe}" (click)="checkSelect(result)">
+                                                        <span *ngIf="result.contactMe">SELECTED</span>
+                                                        <span *ngIf="!result.contactMe">SELECT</span>
                                                     </div>
                                                 </div>
                                             </div>
