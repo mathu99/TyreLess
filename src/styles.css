@@ -430,6 +430,7 @@ h5{
 .shift-left{
   position: relative; 
   left:-5pt; 
+  top:-1pt;
   z-index: 101;
 }
 
@@ -1249,7 +1250,9 @@ a:focus, input:focus {
   }
 
   @media (max-width:768px) {
-
+    .light-grey-bg {
+      background: rgb(232,232,232);
+    }
     .select-box{
       border-width:1px;
     }
@@ -1262,7 +1265,7 @@ a:focus, input:focus {
     }
 
     .padder::before, .padder-after::after{
-      background: rgb(242,242,242);
+      background: rgb(232,232,232);
     }
 
     .results-table{
