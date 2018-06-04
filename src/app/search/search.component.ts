@@ -471,6 +471,8 @@ export class SearchComponent {
           s = { 'name': name, 'show': false };
         }
         return s;
+      }).sort((a, b)=>{
+        return a['show'] == true && b['show'] == false;
       });
       return e;
     }).map(e => { /* Work out total */
