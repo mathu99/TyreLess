@@ -1250,7 +1250,7 @@ a:focus, input:focus {
 
   @media (max-width:768px) {
     .light-grey-bg {
-      background: rgb(220,220,220);
+      background: rgb(232,232,232);
     }
     .select-box{
       border-width:1px;
@@ -1264,7 +1264,7 @@ a:focus, input:focus {
     }
 
     .padder::before, .padder-after::after{
-      background: rgb(220,220,220);
+      background: rgb(232,232,232);
     }
 
     .results-table{
