@@ -348,6 +348,7 @@ export class SearchComponent {
       let brand = get(this.properties, 'models', []).filter(m => m.brand === e.brand)[0];
       return brand.models.filter(m => m.modelName == e.tyreModel)[0].checked;
     });
+    
     this.checkSelect(null);
   }
 
@@ -385,7 +386,7 @@ export class SearchComponent {
               id: models.filter(r => r.brand === e.brand)[0].models.length,
               modelName: e.tyreModel,
               checked: true,
-              visible: true,
+              visible: this.properties.filteredResults.filter(r => r.tyreModel == e.tyreModel).length > 0,
             });
           }
         }
