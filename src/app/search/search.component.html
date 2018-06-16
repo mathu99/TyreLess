@@ -530,7 +530,7 @@
             </mat-sidenav>
             <div class="mobile-sidenav-content" style="line-height:1.5 !important">
                 <div class="fixed-mobile-container">
-                        <div class="filter-section p-1">
+                        <div class="filter-section p-1 ipadder">
                                 <table class="m-0 text-center w-100">
                                         <tr>
                                             <td class="w-125 green-border">
@@ -568,7 +568,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="header-section-mobile">
+                                <div class="header-section-mobile ipadder">
                                     <div class="row text-center">
                                         <div class="col-1"></div>
                                         <div class="col-10">
@@ -588,7 +588,7 @@
                                 </div>
                 </div>
         
-                    <div class="results-container">
+                    <div class="results-container ipadder">
                             <div class="card m-2 box-shadow" *ngFor="let result of properties.filteredResults">
                                     <div class="card-body results-table p-1">
                                         <div class="row m-0" style="margin-bottom:1pt !important; line-height: 1.2">
@@ -710,7 +710,7 @@
         </mat-sidenav-container>   
     </div>
         
-<footer class="footer sticky-footer-mobile show-on-mobile" [hidden]="!properties.showContactMe">
+<footer class="footer sticky-footer-mobile show-on-mobile ipadder" [hidden]="!properties.showContactMe">
     <button class="btn btn-success shadow-btn h-100 w-100 custom contact-me-btn" (click)="openContactMeForm()" type="button">CONTACT ME ></button>
 </footer>
 

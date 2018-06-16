@@ -1248,7 +1248,7 @@ a:focus, input:focus {
     }
   }
 
-  @media (max-width:768px) {
+  @media (max-width:769px) {
     .light-grey-bg {
       background: rgb(232,232,232);
     }
@@ -1400,8 +1400,15 @@ section.information{
       text-align:left;
     }
   }
+
+  @media (width:768px) {
+    .ipadder{
+      padding-left:80pt !important;
+      padding-right:80pt !important;
+    }
+  }
   
-  @media (min-width:768px) {
+  @media (min-width:769px) {
     .show-on-mobile{
       display: none;
     }
