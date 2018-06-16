@@ -1220,13 +1220,13 @@ a:focus, input:focus {
     }
   }
 
-  @media (min-width:992px) {
+  /*@media (min-width:992px) {
     .hero .get-it{
       text-align:right;
       width: 100%;
       margin-top:10pt;
     }
-  }
+  }*/
 
   @media (min-width: 576px) {
     .jumbotron {
@@ -1234,21 +1234,21 @@ a:focus, input:focus {
     }
   }
   
-  @media (max-width:992px) {
+  /*@media (max-width:992px) {
     .hero .get-it{
       margin-top:50px;
         width: 100%;
       text-align:center;
     }
-  }
+  }*/
   
-  @media (max-width:992px) {
+  /*@media (max-width:992px) {
     .hero .phone-preview{
       text-align:center;
     }
-  }
+  }*/
 
-  @media (max-width:769px) {
+  @media (max-width:992px) {
     .light-grey-bg {
       background: rgb(232,232,232);
     }
@@ -1401,14 +1401,21 @@ section.information{
     }
   }
 
-  @media (width:768px) {
+  /* @media (width:768px) {
     .ipadder{
-      padding-left:80pt !important;
-      padding-right:80pt !important;
+      padding-left:15% !important;
+      padding-right:15% !important;
+    }
+  } */
+
+  @media only screen and (min-width: 768px) and (max-width: 992px) {
+    .ipadder{
+      padding-left:20% !important;
+      padding-right:20% !important;
     }
   }
   
-  @media (min-width:769px) {
+  @media (min-width:992px) {
     .show-on-mobile{
       display: none;
     }
