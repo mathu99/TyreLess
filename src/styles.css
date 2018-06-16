@@ -1248,7 +1248,7 @@ a:focus, input:focus {
     }
   }*/
 
-  @media (max-width:992px) {
+  @media (max-width:1025px) {
     .light-grey-bg {
       background: rgb(232,232,232);
     }
@@ -1401,21 +1401,22 @@ section.information{
     }
   }
 
-  /* @media (width:768px) {
-    .ipadder{
-      padding-left:15% !important;
-      padding-right:15% !important;
-    }
-  } */
-
-  @media only screen and (min-width: 768px) and (max-width: 992px) {
+  
+  @media only screen and (min-width: 769px) and (max-width: 1025px) {
     .ipadder{
       padding-left:20% !important;
       padding-right:20% !important;
     }
   }
+
+   @media (width:768px) {
+    .ipadder{
+      padding-left:15% !important;
+      padding-right:15% !important;
+    }
+  } 
   
-  @media (min-width:992px) {
+  @media (min-width:1025px) {
     .show-on-mobile{
       display: none;
     }
