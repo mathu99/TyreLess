@@ -1220,13 +1220,13 @@ a:focus, input:focus {
     }
   }
 
-  /*@media (min-width:992px) {
+@media (min-width:992px) {
     .hero .get-it{
       text-align:right;
       width: 100%;
       margin-top:10pt;
     }
-  }*/
+  }
 
   @media (min-width: 576px) {
     .jumbotron {
