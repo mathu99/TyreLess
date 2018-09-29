@@ -1410,33 +1410,57 @@ section.information{
 
   
   @media only screen and (min-width: 769px) and (max-width: 1025px) {
-    .ipadder{
-      padding-left:20% !important;
-      padding-right:20% !important;
+    .search-select-save-txt {
+      font-size: 14pt;
+    }
+    h2{
+      font-size:42pt;
+    }
+    .txt-green-sm{
+      font-size:32pt;
+    }
+    .light-grey-bg{
       background: url(/assets/BG.jpg);
       background-repeat: no-repeat;
       background-size: 100% 100%;
     }
+    .ipadder{
+      padding-left:20% !important;
+      padding-right:20% !important;
+    }
     .ipad-backer{
       border-radius: 3px;
       padding:3pt;
+      padding-left: 8pt;
+      padding-right: 8pt;
       background-color: rgb(232,232,232);
     }
   }
 
    @media (width:768px) {
-    .ipadder{
-      padding-left:15% !important;
-      padding-right:15% !important;
+    .search-select-save-txt {
+      font-size: 14pt;
+    }
+     h2{
+       font-size:42pt;
+     }
+     .txt-green-sm{
+       font-size:32pt;
+     }
+    .light-grey-bg{
       background: url(/assets/BG.jpg);
       background-repeat: no-repeat;
       background-size: 100% 100%;
     }
+    .ipadder{
+      padding-left:15% !important;
+      padding-right:15% !important;
+    }
     .ipad-backer{
       border-radius: 3px;
       padding:3pt;
-      padding-left: 6pt;
-      padding-right: 6pt;
+      padding-left: 8pt;
+      padding-right: 8pt;
       background-color: rgb(232,232,232);
     }
   } 
