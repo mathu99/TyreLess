@@ -802,7 +802,14 @@ li::before {
     background: -ms-linear-gradient(top, rgba(255,255,255,0.85) 0%,rgba(255,255,255,0.85) 100%), url("/assets/checkered-flag.jpg") repeat 0 0;
     background: linear-gradient(to bottom, rgba(255,255,255,0.85) 0%,rgba(255,255,255,0.85) 100%), url("/assets/checkered-flag.jpg") repeat 0 0;
     background-size:100%; */
-    background: rgb(242,242,242);
+    background: url("/assets/BG.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    /* background: rgb(242,242,242); */
+  }
+
+  html {
+    height: 100%
   }
 
   .gray-container{
@@ -931,7 +938,7 @@ li::before {
 }
 
   .hero .get-it h1, .hero .get-it p{
-    text-shadow:2px 2px 2px rgba(0,0,0,0.6);
+    /* text-shadow:2px 2px 2px rgba(0,0,0,0.6); */
   }
   
   .hero .get-it .btn{
@@ -1406,6 +1413,14 @@ section.information{
     .ipadder{
       padding-left:20% !important;
       padding-right:20% !important;
+      background: url(/assets/BG.jpg);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+    .ipad-backer{
+      border-radius: 3px;
+      padding:3pt;
+      background-color: rgb(232,232,232);
     }
   }
 
@@ -1413,6 +1428,16 @@ section.information{
     .ipadder{
       padding-left:15% !important;
       padding-right:15% !important;
+      background: url(/assets/BG.jpg);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+    .ipad-backer{
+      border-radius: 3px;
+      padding:3pt;
+      padding-left: 6pt;
+      padding-right: 6pt;
+      background-color: rgb(232,232,232);
     }
   } 
   
