@@ -120,7 +120,7 @@ label{
 .selectedBox{
   background-color:rgb(107,172,70) !important; 
   color:white !important;
-}
+  }
 
 .selectedBox label::before{
   border: 2px solid white !important;
@@ -1220,6 +1220,7 @@ li::before {
 
   .mobile-filter{
     line-height: 1.5 !important;
+    margin-bottom: 40pt;
   }
 
 a:focus, input:focus {
@@ -1421,6 +1422,9 @@ section.information{
     h2{
       font-size:42pt;
     }
+    h4 {
+        font-size: 1.5rem !important;
+    }
     .txt-green-sm{
       font-size:32pt;
     }
@@ -1449,6 +1453,9 @@ section.information{
      h2{
        font-size:42pt;
      }
+     h4 {
+        font-size: 1.5rem !important;
+    }
      .txt-green-sm{
        font-size:32pt;
      }
