@@ -1,10 +1,10 @@
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-import express from 'express';
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const express = require('express');
 
 /* Models */
-import Tyre from './models/tyre';
+const Tyre = require('./models/tyre');
 
 var config = require('./config/database');
 const router = express.Router();
