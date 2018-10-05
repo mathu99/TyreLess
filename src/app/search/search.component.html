@@ -303,7 +303,7 @@
                                         <div class="row">
                                             <div class="col-3 text-center" style="padding-right:0pt; padding-left:2pt">
                                                 <div class="text-center"><h6 class="font-weight-bold h6-sm">{{result.partner}}</h6></div>
-                                                <img class="p-1 result-img" src="../../assets/{{result.partner}}.jpg" />
+                                                <img class="p-1 result-img" src="../../assets/{{result.partnerDetails.logo}}" />
                                                 <div class="text-left p-1">
                                                     <div class="row m-0 p-0" style="padding-left:5pt">
                                                         <div class="col-2 p-0">
@@ -596,7 +596,7 @@
                                                 <table style="height:100%">
                                                     <tr>
                                                         <td>
-                                                            <img class="result-img" style="margin-right:5pt" src="../../assets/{{result.partner}}.jpg" />
+                                                            <img class="result-img" style="margin-right:5pt" src="../../assets/{{result.partnerDetails.logo}}" />
                                                         </td>
                                                         <td class="font-weight-bold text-center" style="font-size:10pt;">
                                                             {{result.partner}}
@@ -605,7 +605,7 @@
                                                 </table>
                                             </div>
                                             <div class="col-6 p-1">
-                                                <a href="https://www.google.com/maps/search/{{result.partner}} {{result.branch.location}}" target="_blank"><img ngbTooltip="View on Google Maps" class="pin-icon" src="../../assets/Pin.png" alt="Location"/></a>{{result.branch.name}}<br>
+                                                <a href="https://www.google.com/maps/search/{{result.partner}} {{result.location.coords}}" target="_blank"><img ngbTooltip="View on Google Maps" class="pin-icon" src="../../assets/Pin.png" alt="Location"/></a>{{result.branch.name}}<br>
                                                 <span style="margin-left:10pt">{{result.location.suburb}}</span>
                                             </div>
                                         </div>

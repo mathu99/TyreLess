@@ -276,8 +276,8 @@ export class SearchComponent {
           });
           this.data.selectedSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].imageSrc;
           this.data.whiteSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].whiteSrc;
+          this.search();
         });
-        this.search();
       });
   }
 
@@ -286,12 +286,14 @@ export class SearchComponent {
     set(this, 'properties.models', undefined);
     set(this.properties, 'loading', true);
     set(this.properties, 'results', null);
-    setTimeout(() => {
-      set(this.properties, 'loading', false);
-      set(this.properties, 'results', this.performSearch());
-      set(this.properties, 'filteredResults', (this.properties.results));  /* Copy of full results */
-      this.applyFilters();
-    }, 1000);
+    this.performSearch();
+    // setTimeout(() => {
+    //   set(this.properties, 'loading', false);
+    //   set(this.properties, 'results', this.performSearch());
+    //   console.log(this.properties.results);
+    //   set(this.properties, 'filteredResults', (this.properties.results));  /* Copy of full results */
+    //   this.applyFilters();
+    // }, 1000);
   };
 
   sort = (filterName) => {  /* Apply sort filters */
@@ -451,56 +453,125 @@ export class SearchComponent {
   }
 
   performSearch = () => {
-    return get(this, 'searchableContent.records', []).filter((e, i) => {
-      let matches = e.vehicleType == get(this.data, 'selected')
-        && e.wheelSize == get(this.data, 'size')
-      // &&  e.tyreProfile == get(this.data, 'tyreProfile')
-      // &&  e.tyreWidth == get(this.data, 'tyreWidth')
-      &&  e.location.province == get(this.data, 'location.highLevel');  /* Province filter */
-      if (get(this.data, 'location.lowLevel', []).length > 0) { /* Suburb filter */
-        matches = matches && get(this.data, 'location.lowLevel', []).indexOf(e.location.suburb) > -1;
-      }
-      if (get(this.data, 'brand') != 'All') {
-        let brandIndex = get(this.properties, 'brands').filter(b => b.name === e.brand)[0].id;
-        matches = matches && get(this.data, 'brand').indexOf(brandIndex) > -1;
-      }
-      return matches;
-    }).map(e => { /* Add partner details */
-      e.partnerDetails = JSON.parse(JSON.stringify(get(this.partners, 'records', []).filter(p => p.name === e.partner)[0]));
-      e.partnerDetails.services = e.partnerDetails.services.map(s => {
-        let name = s;
-        if (this.data.wheelAlignmentChecked && name === "Wheel Alignment") {
-          s = { 'name': name, 'show': true };
-        } else if (this.data.wheelBalancingChecked && name === "Wheel Balancing") {
-          s = { 'name': name, 'show': true };
-        } else if (s !== "Wheel Alignment" && name !== "Wheel Balancing") {
-          s = { 'name': name, 'show': true };
-        } else {
-          s = { 'name': name, 'show': false };
+    let url = `/api/tyreSearch?vehicleType=${get(this.data, 'selected')}&width=${get(this.data, 'width')}&profile=${get(this.data, 'profile')}&size=${get(this.data, 'size')}&province=${get(this.data, 'location.highLevel')}`
+    url += this.data.brand.map(b => '&brand=' + this.properties.brands.filter(i => i.id === b)[0].name).join('');
+    this.http.get(url).subscribe(res => {
+      let tyres = res.json();
+      this.properties.results = tyres.map(tyre => {
+        return {
+          brand: get(tyre, 'tyreRef.brand'),
+          branch: {
+            location: get(tyre, 'partnerRef.branchPin'),
+            name: get(tyre, 'partnerRef.branchName'), 
+          },
+          location: {
+            province: get(tyre, 'partnerRef.province'),
+            suburb: get(tyre, 'partnerRef.suburb'),
+          },
+          partner: get(tyre, 'partnerRef.retailerName'),
+          partnerDetails: {
+            email: get(tyre, 'partnerRef.salesEmail'),
+            name: get(tyre, 'partnerRef.retailerName'),
+            logo: get(tyre, 'partnerRef.logo'),
+            wheelAlignmentPrice: '100.00',  /* TODO: add this */
+            wheelBalancingPrice: '100.00', /* TODO: add this */
+            services: (get(tyre, 'liveInclusion') || []).map(s => {
+                let name = s;
+                if (this.data.wheelAlignmentChecked && name === "Wheel Alignment") {
+                  s = { 'name': name, 'show': true };
+                } else if (this.data.wheelBalancingChecked && name === "Wheel Balancing") {
+                  s = { 'name': name, 'show': true };
+                } else if (s !== "Wheel Alignment" && name !== "Wheel Balancing") {
+                  s = { 'name': name, 'show': true };
+                } else {
+                  s = { 'name': name, 'show': false };
+                }
+                return s;
+              }).sort((a, b)=>{
+                return a['show'] == true && b['show'] == false;
+              })
+          },
+          price: get(tyre, 'livePrice'),
+          runFlat: get(tyre, 'tyreRef.runFlat', '') === 'Run Flat',
+          tyreModel: get(tyre, 'tyreRef.tyreModel'),
+          tyreProfile: get(tyre, 'tyreRef.profile'),
+          tyreWidth: get(tyre, 'tyreRef.width'),
+          wheelSize: get(tyre, 'tyreRef.size'),
         }
-        return s;
-      }).sort((a, b)=>{
-        return a['show'] == true && b['show'] == false;
-      });
-      return e;
-    }).map(e => { /* Work out total */
-      e.contactMe = false;
-      e.quantitySelected = '' + get(this.data, 'quantity');
-      e.wheelAlignmentChecked = get(this.data, 'wheelAlignmentChecked');
-      e.wheelBalancingChecked = get(this.data, 'wheelBalancingChecked');
-      e.totalPrice = '' + parseFloat(e.price) * parseFloat(get(this.data, 'quantity'));
-      if (get(this.data, 'wheelAlignmentChecked') === true) {
-        e.totalPrice = (parseFloat(e.totalPrice) + parseFloat(get(e, 'partnerDetails.wheelAlignmentPrice', '0'))).toString();
-      }
-      if (get(this.data, 'wheelBalancingChecked') === true) {
-        e.totalPrice = (parseFloat(e.totalPrice) + parseFloat(get(e, 'partnerDetails.wheelBalancingPrice', '0'))).toString();
-      }
-      e.extrasScore = e.partnerDetails.services.filter(s => s.show).length || 0; /* Add additional weight to ranking based on services provided by partner */
-      return e;
-    }).map((e, i) => {
-      e.index = i;
-      return e;
+      }).map(e => { /* Work out total */
+          e.contactMe = false;
+          e.quantitySelected = '' + get(this.data, 'quantity');
+          e.wheelAlignmentChecked = get(this.data, 'wheelAlignmentChecked');
+          e.wheelBalancingChecked = get(this.data, 'wheelBalancingChecked');
+          e.totalPrice = '' + parseFloat(e.price) * parseFloat(get(this.data, 'quantity'));
+          if (get(this.data, 'wheelAlignmentChecked') === true) {
+            e.totalPrice = (parseFloat(e.totalPrice) + parseFloat(get(e, 'partnerDetails.wheelAlignmentPrice', '0'))).toString();
+          }
+          if (get(this.data, 'wheelBalancingChecked') === true) {
+            e.totalPrice = (parseFloat(e.totalPrice) + parseFloat(get(e, 'partnerDetails.wheelBalancingPrice', '0'))).toString();
+          }
+          e.extrasScore = e.partnerDetails.services.filter(s => s.show).length || 0; /* Add additional weight to ranking based on services provided by partner */
+          return e;
+        }).map((e, i) => {
+          e.index = i;
+          return e;
+        });
+      set(this.properties, 'filteredResults', (this.properties.results));
+      this.applyFilters();
+      set(this.properties, 'loading', false);
+    }, err => {
+      /* TODO: Handle error */
     });
+    // return get(this, 'searchableContent.records', []).filter((e, i) => {
+    //   let matches = e.vehicleType == get(this.data, 'selected')
+    //     && e.wheelSize == get(this.data, 'size')
+    //   &&  e.tyreProfile == get(this.data, 'tyreProfile')
+    //   &&  e.tyreWidth == get(this.data, 'tyreWidth')
+    //   &&  e.location.province == get(this.data, 'location.highLevel');  /* Province filter */
+    //   if (get(this.data, 'location.lowLevel', []).length > 0) { /* Suburb filter */
+    //     matches = matches && get(this.data, 'location.lowLevel', []).indexOf(e.location.suburb) > -1;
+    //   }
+    //   if (get(this.data, 'brand') != 'All') {
+    //     let brandIndex = get(this.properties, 'brands').filter(b => b.name === e.brand)[0].id;
+    //     matches = matches && get(this.data, 'brand').indexOf(brandIndex) > -1;
+    //   }
+    //   return matches;
+    // }).map(e => { /* Add partner details */
+    //   e.partnerDetails = JSON.parse(JSON.stringify(get(this.partners, 'records', []).filter(p => p.name === e.partner)[0]));
+    //   e.partnerDetails.services = e.partnerDetails.services.map(s => {
+    //     let name = s;
+    //     if (this.data.wheelAlignmentChecked && name === "Wheel Alignment") {
+    //       s = { 'name': name, 'show': true };
+    //     } else if (this.data.wheelBalancingChecked && name === "Wheel Balancing") {
+    //       s = { 'name': name, 'show': true };
+    //     } else if (s !== "Wheel Alignment" && name !== "Wheel Balancing") {
+    //       s = { 'name': name, 'show': true };
+    //     } else {
+    //       s = { 'name': name, 'show': false };
+    //     }
+    //     return s;
+    //   }).sort((a, b)=>{
+    //     return a['show'] == true && b['show'] == false;
+    //   });
+    //   return e;
+    // }).map(e => { /* Work out total */
+    //   e.contactMe = false;
+    //   e.quantitySelected = '' + get(this.data, 'quantity');
+    //   e.wheelAlignmentChecked = get(this.data, 'wheelAlignmentChecked');
+    //   e.wheelBalancingChecked = get(this.data, 'wheelBalancingChecked');
+    //   e.totalPrice = '' + parseFloat(e.price) * parseFloat(get(this.data, 'quantity'));
+    //   if (get(this.data, 'wheelAlignmentChecked') === true) {
+    //     e.totalPrice = (parseFloat(e.totalPrice) + parseFloat(get(e, 'partnerDetails.wheelAlignmentPrice', '0'))).toString();
+    //   }
+    //   if (get(this.data, 'wheelBalancingChecked') === true) {
+    //     e.totalPrice = (parseFloat(e.totalPrice) + parseFloat(get(e, 'partnerDetails.wheelBalancingPrice', '0'))).toString();
+    //   }
+    //   e.extrasScore = e.partnerDetails.services.filter(s => s.show).length || 0; /* Add additional weight to ranking based on services provided by partner */
+    //   return e;
+    // }).map((e, i) => {
+    //   e.index = i;
+    //   return e;
+    // });
   };
 
   checkSelect = (result) => {
