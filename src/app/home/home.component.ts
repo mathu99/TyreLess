@@ -181,14 +181,11 @@ export class HomeComponent {
 
   constructor(private route: ActivatedRoute, private router: Router, private scrollToService: ScrollToService, private http: Http, private modalService: NgbModal) {
     this.http.get('/api/tyreConfig').subscribe(res => {
-      this.properties.tyreWidths = res.json().map(e => e.width);
-      this.properties.tyreProfiles = res.json().map(e => e.profile);
-      this.properties.wheelSizes = res.json().map(e => e.size);
-      this.properties.tyreWidths = this.uniq(this.properties.tyreWidths).sort((a,b)=>{return +a - +b});
-      this.properties.tyreProfiles = this.uniq(this.properties.tyreProfiles).sort((a,b)=>{return +a - +b});
-      this.properties.wheelSizes = this.uniq(this.properties.wheelSizes).sort((a,b)=>{return +a - +b});
+      this.properties.tyreWidths = res.json().tyreWidths;
+      this.properties.tyreProfiles = res.json().tyreProfiles;
+      this.properties.wheelSizes = res.json().wheelSizes;
     }, err => {
-
+      /* Handle error */
     });
 
     this.http.get('environments/config.development.json').subscribe(res => {
@@ -215,10 +212,6 @@ export class HomeComponent {
         };
       }
     });
-  }
-
-  uniq = (a) => {
-      return Array.from(new Set(a));
   }
 
   update = (property, value) => {

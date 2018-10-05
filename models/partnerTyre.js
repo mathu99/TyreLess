@@ -10,6 +10,10 @@ var PartnerTyreSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User',
     },
+    partnerRef: {
+        type: Schema.Types.ObjectId,
+        ref: 'Partner',
+    },
     tyreRef: {
         type: Schema.Types.ObjectId,
         ref: 'Tyre',

@@ -5,6 +5,8 @@ const express = require('express');
 
 /* Models */
 const Tyre = require('./models/tyre');
+const PartnerTyre = require('./models/partnerTyre');
+const Partnter = require('./models/partner');
 
 var config = require('./config/database');
 const router = express.Router();
@@ -27,11 +29,50 @@ app.set('port', port);
 const server = http.createServer(app);
 server.listen(port, () => console.log('Running'));
 
+const uniq = (a) => {
+    return Array.from(new Set(a));
+}
+
 /* API */
-app.get('/api/tyreConfig', (req, res, next) => {
+app.get('/api/tyreConfig', (req, res, next) => {    /* Get all unique width / profile / size */
     Tyre.find({}, 'width profile size', (err, tyreSizes) => {
         if (err) return next(err);
-        else if (tyreSizes) res.send(tyreSizes)
+        else if (tyreSizes)  {
+            let obj = { /* Construct filtered response */
+                tyreWidths: uniq(tyreSizes.map(e => e.width)).sort((a,b)=>{return +a - +b}),
+                tyreProfiles: uniq(tyreSizes.map(e => e.profile)).sort((a,b)=>{return +a - +b}),
+                wheelSizes: uniq(tyreSizes.map(e => e.size)).sort((a,b)=>{return +a - +b}),
+            }
+            res.send(obj);
+        }
+    });
+});
+
+app.get('/api/tyreSearch', (req, res, next) => {
+    let query = {
+        vehicleType: (req.query.vehicleType) ? req.query.vehicleType : 'Car',
+        width: req.query.width,
+        profile: req.query.profile,
+        size: req.query.size,
+    }
+    if (req.query.brand) {
+        query.brand = req.query.brand;
+    }
+
+    Tyre.find(query, '_id').exec((err, tyres) => {
+        if (err) return next(err);
+        else if (tyres)  {
+            let ids = tyres.map(tyre => tyre._id);
+            let partnerTyreReturn = 'livePrice liveInclusion',  /* Fields to return */
+                partnerReturn = 'branchName branchPin customerCode logo province retailerName salesEmail status suburb',
+                tyreReturn = 'brand profile size speedRating tyreModel vehicleType width runFlat';   
+            PartnerTyre.find({ tyreRef: {$in: ids}, status: ['Live', 'Pending'], livePrice: { $ne: '0.00' } }, partnerTyreReturn)
+                        .populate('partnerRef', partnerReturn)
+                        .populate('tyreRef', tyreReturn).exec((err, docs) => {
+                            if (err) return next(err);
+                            res.send(docs)
+                        });
+        } 
     });
 });
 

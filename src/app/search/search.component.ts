@@ -249,6 +249,13 @@ export class SearchComponent {
           this.data.selectedSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].imageSrc;
           this.data.whiteSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].whiteSrc;
         }
+        this.http.get('/api/tyreConfig').subscribe(res => {
+          this.properties.tyreWidths = res.json().tyreWidths;
+          this.properties.tyreProfiles = res.json().tyreProfiles;
+          this.properties.wheelSizes = res.json().wheelSizes;
+        }, err => {
+          /* Handle error */
+        });
         this.http.get('environments/config.development.json').subscribe(res => {
           assign(this.properties, res.json().properties)
           let highLevel = get(this.properties,'locations',[]).filter(e => e.name == get(this.data, 'location'))[0];
