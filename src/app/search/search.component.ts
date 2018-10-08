@@ -5,6 +5,7 @@ import { Http } from '@angular/http';
 import { get, set, assign } from 'lodash';
 import { EmailValidator } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Buffer } from 'buffer';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import {
@@ -460,6 +461,7 @@ export class SearchComponent {
       this.properties.results = tyres.map(tyre => {
         return {
           brand: get(tyre, 'tyreRef.brand'),
+          image: 'data:' + get(tyre, 'tyreRef.tyreImage.contentType', '') + ';base64,' + new Buffer(get(tyre, 'tyreRef.tyreImage.data', '')).toString('base64'),
           branch: {
             location: get(tyre, 'partnerRef.branchPin'),
             name: get(tyre, 'partnerRef.branchName'), 

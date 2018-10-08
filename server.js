@@ -77,7 +77,7 @@ app.get('/api/tyreSearch', (req, res, next) => {
                         tyreIds = tyres.map(tyre => tyre._id);
                     let partnerTyreReturn = 'livePrice liveInclusion',  /* Fields to return */
                         partnerReturn = 'branchName branchPin customerCode logo province retailerName salesEmail suburb',
-                        tyreReturn = 'brand profile size speedRating tyreModel vehicleType width runFlat';
+                        tyreReturn = 'brand profile size speedRating tyreModel vehicleType width runFlat tyreImage';
                     PartnerTyre.find({ tyreRef: { $in: tyreIds }, partnerRef: { $in: partnerIds }, status: ['Live', 'Pending'], livePrice: { $ne: '0.00' } }, partnerTyreReturn)
                         .populate('partnerRef', partnerReturn)
                         .populate('tyreRef', tyreReturn).exec((err, docs) => {
