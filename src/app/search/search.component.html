@@ -114,7 +114,7 @@
                                     <div class="dd-left p-0">
                                         Location
                                     </div>
-                                    <span class="dd-col dd-search-text">{{ data.location.name }}</span>
+                                    <span *ngIf="data.location" class="dd-col dd-search-text">{{ data.location.name }}</span>
                                     <i class="dd-caret fa fa-angle-down"></i>
                                 </button>
                             </div>

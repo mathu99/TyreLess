@@ -23,6 +23,7 @@ import { TermsOfUseComponent } from './termsOfUse/termsOfUse.component';
 import { TyreCareComponent } from './tyreCare/tyreCare.component';
 
 import 'intersection-observer';
+import 'hammerjs';
 
 @NgModule({
   imports: [

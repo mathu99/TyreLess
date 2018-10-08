@@ -1,4 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
 import { Http } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
@@ -15,6 +17,7 @@ import {
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
+
 
 export class HomeComponent {
   @ViewChild('locationModal') private locationModal;
@@ -149,12 +152,7 @@ export class HomeComponent {
             //   highLevel.sub_locations.map(e => e.checked = get(this.data, 'subLocations', []).indexOf(e.name) > -1);
             // }
             // set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
-            this.properties.brands = this.properties.brands.map((e, i) => {
-              return <IMultiSelectOption> {
-                id: i,
-                name: e.name,
-              }
-            });
+            
           });
         } else {
           
@@ -177,47 +175,46 @@ export class HomeComponent {
       });
     }
 
-
-
   constructor(private route: ActivatedRoute, private router: Router, private scrollToService: ScrollToService, private http: Http, private modalService: NgbModal) {
-    this.http.get('/api/tyreConfig').subscribe(res => { /* Dynamically populate tyre width / profile /size */
-      this.properties.tyreWidths = res.json().tyreWidths;
-      this.properties.tyreProfiles = res.json().tyreProfiles;
-      this.properties.wheelSizes = res.json().wheelSizes;
-    }, err => {
-      /* Handle error */
-    });
-
-    this.http.get('/api/locationConfig').subscribe(res => {
-      this.properties.locations = res.json();
-      this.data.location = this.getLocationFromObject(this.properties.locations);
-    }, err => {
-      /* Handle error */
-    });
-
-    this.http.get('environments/config.development.json').subscribe(res => {
-      this.properties = res.json().properties;
-      // this.topLevelCheck(this.properties.locations[2]); /* Check all of Gauteng for demo purposes */
-      this.properties.brands = this.properties.brands.map((e, i) => {
+    Observable.forkJoin(
+      this.http.get('environments/config.development.json'),
+      this.http.get('/api/tyreConfig'), 
+      this.http.get('/api/locationConfig'),
+      this.http.get('/api/brandConfig'),
+      ).subscribe(results => { 
+      let arr: any = results;
+      /* Other Config */
+      this.properties = results[0].json().properties;
+      /* Tyre Config */
+      this.properties.tyreWidths = results[1].json().tyreWidths;
+      this.properties.tyreProfiles = results[1].json().tyreProfiles;
+      this.properties.wheelSizes = results[1].json().wheelSizes;
+      /* Location Config */
+      this.properties.locations = results[2].json();
+      /* Brand Config */
+      this.properties.brands = results[3].json().map((e, i) => {
         return <IMultiSelectOption> {
           id: i,
           name: e.name,
         }
       });
+
       if (!this.data) {
-          this.data = {
-          width: '---',//this.properties.tyreWidths[0],
-          profile: '--',//this.properties.tyreProfiles[0],
-          size: '--',//this.properties.wheelSizes[0],
-          quantity: this.properties.quantities[0],
-          brand: this.properties.brands.map(e => e.id),
-          // location: this.getLocationFromObject(this.properties.locations),
-          selected: this.properties.vehicleTypes[0].name,
-          selectedFilter: this.properties.filters[0],
-          wheelAlignmentChecked: true,
-          wheelBalancingChecked: true,
-        };
-      }
+        this.data = {
+        width: '---',
+        profile: '--',
+        size: '--',
+        brand: this.properties.brands.map(e => e.id),
+        location: this.getLocationFromObject(this.properties.locations),
+        quantity: this.properties.quantities[0],
+        selected: this.properties.vehicleTypes[0].name,
+        selectedFilter: this.properties.filters[0],
+        wheelAlignmentChecked: true,
+        wheelBalancingChecked: true,
+      };
+    }
+    }, err => {
+      /* Handle error */
     });
   }
 

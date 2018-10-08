@@ -6,6 +6,7 @@ const express = require('express');
 /* Models */
 const Tyre = require('./models/tyre');
 const PartnerTyre = require('./models/partnerTyre');
+const PartnerService = require('./models/partnerService');
 const Partner = require('./models/partner');
 
 var config = require('./config/database');
@@ -53,7 +54,7 @@ app.get('/api/locationConfig', (req, res, next) => {    /* Get all unique width 
                     provinces.push({
                         name: partner.province,
                         checked: false,
-                        collapsed: partner.province !== 'Gauteng',  /* Temp: default Gauteng open! */
+                        collapsed: true, 
                         sub_locations: [{
                             name: partner.suburb,
                             checked: false
@@ -80,6 +81,18 @@ app.get('/api/tyreConfig', (req, res, next) => {    /* Get all unique width / pr
                 wheelSizes: uniq(tyreSizes.map(e => e.size)).sort((a, b) => { return +a - +b }),
             }
             res.send(obj);
+        }
+    });
+});
+
+app.get('/api/brandConfig', (req, res, next) => {    /* Get all unique width / profile / size */
+    Tyre.find({}, 'brand').exec((err, brands) => {
+        if (err) return next(err);
+        else if (brands) {
+            let uniqBrand = uniq(brands.map(e => e.brand));
+            res.send(uniqBrand.sort((a, b) => a.localeCompare(b)).map(e => { 
+                return { 'name': e, 'email': e + '.co.za'}
+            }));
         }
     });
 });

@@ -28,7 +28,7 @@
             "3",
             "4"
         ],
-        "brands": [
+        "brands1": [
             {
                 "name": "Bridgestone",
                 "email": "bridgestone.co.za"
@@ -54,7 +54,7 @@
                 "email": "yokohama.co.za"
             }
         ],
-        "locations": [
+        "locations1": [
             {
                 "name": "Eastern Cape",
                 "checked": false,
@@ -204,7 +204,7 @@
             "Price: High to Low"
         ]
     },
-    "products": {
+    "products1": {
         "records": [
             {
                 "vehicleType": "Car",

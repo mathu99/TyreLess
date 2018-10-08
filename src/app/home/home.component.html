@@ -1,7 +1,7 @@
-<div class="home-component">
+<div class="home-component" *ngIf="data && data.location">
         <div class="jumbotron hero custom hide-from-mobile" id="homePage">
                 <div class="container">
-                    <div class="row" *ngIf="data">
+                    <div class="row">
                         <div class="get-it">
                             <a href="" style="color:black !important"><h1 class="text-center">TyreLess<span class="txt-green">.co.za</span></h1></a>
                             <h4 class="text-center">Search - Select - Save</h4>
@@ -145,7 +145,7 @@
                                                             <div class="dd-left p-0">
                                                                 Location
                                                             </div>
-                                                            <span class="dd-col dd-search-text" [ngClass]="{unselected : data.location.name == 'Province/Suburb'}">{{ data.location.name }}</span>
+                                                            <span *ngIf="data.location" class="dd-col dd-search-text" [ngClass]="{unselected : data.location.name == 'Province/Suburb'}">{{ data.location.name }}</span>
                                                             <i class="dd-caret fa fa-angle-down"></i>
                                                         </button>
                                                     </div>
@@ -240,7 +240,7 @@
                 </div>
             </section>
             <div class="show-on-mobile">
-                <div class="light-grey-bg ipadder" *ngIf="data">
+                <div class="light-grey-bg ipadder">
                     <br>
                     <br>
                     <br>

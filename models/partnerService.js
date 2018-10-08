@@ -6,6 +6,10 @@ var PartnerServiceSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'User',
   },
+  partnerRef: {
+    type: Schema.Types.ObjectId,
+    ref: 'Partner',
+  },
   wheelAlignmentPrice: {
     type: String,
     required: true
