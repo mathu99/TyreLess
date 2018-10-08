@@ -34,6 +34,42 @@ const uniq = (a) => {
 }
 
 /* API */
+app.get('/api/locationConfig', (req, res, next) => {    /* Get all unique width / profile / size */
+    Partner.find({}, 'suburb province', (err, partner) => {
+        if (err) return next(err);
+        else if (partner) {
+            let provinces = [];
+            partner.forEach(partner => {
+                let province = provinces.filter(e => e.name === partner.province);
+                if (province && province.length > 0) {  /* Province exists */
+                    let suburb = province[0].sub_locations.filter(e => e.name === partner.suburb);
+                    if (!suburb || suburb.length === 0) {
+                        province[0].sub_locations.push({
+                            name: partner.suburb,
+                            checked: false
+                        });
+                    }
+                } else {
+                    provinces.push({
+                        name: partner.province,
+                        checked: false,
+                        collapsed: partner.province !== 'Gauteng',  /* Temp: default Gauteng open! */
+                        sub_locations: [{
+                            name: partner.suburb,
+                            checked: false
+                        }]
+                    });
+                }
+            });
+            provinces.forEach(province => { /* Alphabetical sorting on name */
+                province.sub_locations.sort((a, b) => a.name.localeCompare(b.name));
+            });
+            provinces.sort((a, b) => a.name.localeCompare(b.name));
+            res.send(provinces);
+        }
+    });
+});
+
 app.get('/api/tyreConfig', (req, res, next) => {    /* Get all unique width / profile / size */
     Tyre.find({}, 'width profile size', (err, tyreSizes) => {
         if (err) return next(err);

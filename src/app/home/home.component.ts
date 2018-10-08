@@ -141,14 +141,14 @@ export class HomeComponent {
           this.data.wheelBalancingChecked = this.data.wheelBalancingChecked == "true";
           this.http.get('environments/config.development.json').subscribe(res => {
             assign(this.properties, res.json().properties)
-            let highLevel = get(this.properties,'locations',[]).filter(e => e.name == get(this.data, 'location'))[0];
-            if (get(this.data, 'subLocations', []).length == 0){  /* High-level only selection */
-              highLevel.checked = true;
-              highLevel.sub_locations.map(e => e.checked = true);
-            }else {
-              highLevel.sub_locations.map(e => e.checked = get(this.data, 'subLocations', []).indexOf(e.name) > -1);
-            }
-            set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
+            // let highLevel = get(this.properties,'locations',[]).filter(e => e.name == get(this.data, 'location'))[0];
+            // if (get(this.data, 'subLocations', []).length == 0){  /* High-level only selection */
+            //   highLevel.checked = true;
+            //   highLevel.sub_locations.map(e => e.checked = true);
+            // }else {
+            //   highLevel.sub_locations.map(e => e.checked = get(this.data, 'subLocations', []).indexOf(e.name) > -1);
+            // }
+            // set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
             this.properties.brands = this.properties.brands.map((e, i) => {
               return <IMultiSelectOption> {
                 id: i,
@@ -180,10 +180,17 @@ export class HomeComponent {
 
 
   constructor(private route: ActivatedRoute, private router: Router, private scrollToService: ScrollToService, private http: Http, private modalService: NgbModal) {
-    this.http.get('/api/tyreConfig').subscribe(res => {
+    this.http.get('/api/tyreConfig').subscribe(res => { /* Dynamically populate tyre width / profile /size */
       this.properties.tyreWidths = res.json().tyreWidths;
       this.properties.tyreProfiles = res.json().tyreProfiles;
       this.properties.wheelSizes = res.json().wheelSizes;
+    }, err => {
+      /* Handle error */
+    });
+
+    this.http.get('/api/locationConfig').subscribe(res => {
+      this.properties.locations = res.json();
+      this.data.location = this.getLocationFromObject(this.properties.locations);
     }, err => {
       /* Handle error */
     });
@@ -204,7 +211,7 @@ export class HomeComponent {
           size: '--',//this.properties.wheelSizes[0],
           quantity: this.properties.quantities[0],
           brand: this.properties.brands.map(e => e.id),
-          location: this.getLocationFromObject(this.properties.locations),
+          // location: this.getLocationFromObject(this.properties.locations),
           selected: this.properties.vehicleTypes[0].name,
           selectedFilter: this.properties.filters[0],
           wheelAlignmentChecked: true,

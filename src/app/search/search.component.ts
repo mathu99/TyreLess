@@ -257,8 +257,9 @@ export class SearchComponent {
         }, err => {
           /* Handle error */
         });
-        this.http.get('environments/config.development.json').subscribe(res => {
-          assign(this.properties, res.json().properties)
+
+        this.http.get('/api/locationConfig').subscribe(res => {
+          this.properties.locations = res.json();
           let highLevel = get(this.properties,'locations',[]).filter(e => e.name == get(this.data, 'location'))[0];
           if (get(this.data, 'subLocations', []).length == 0){  /* High-level only selection */
             highLevel.checked = true;
@@ -267,7 +268,21 @@ export class SearchComponent {
             highLevel.sub_locations.map(e => e.checked = get(this.data, 'subLocations', []).indexOf(e.name) > -1);
           }
           set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
-          assign(this.searchableContent, res.json().products);
+        }, err => {
+          /* Handle error */
+        });
+
+        this.http.get('environments/config.development.json').subscribe(res => {
+          assign(this.properties, res.json().properties)
+          // let highLevel = get(this.properties,'locations',[]).filter(e => e.name == get(this.data, 'location'))[0];
+          // if (get(this.data, 'subLocations', []).length == 0){  /* High-level only selection */
+          //   highLevel.checked = true;
+          //   highLevel.sub_locations.map(e => e.checked = true);
+          // }else {
+          //   highLevel.sub_locations.map(e => e.checked = get(this.data, 'subLocations', []).indexOf(e.name) > -1);
+          // }
+          // set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
+          // assign(this.searchableContent, res.json().products);
           assign(this.partners, res.json().partners);
           this.properties.brands = this.properties.brands.map((e, i) => {
             return <IMultiSelectOption> {
