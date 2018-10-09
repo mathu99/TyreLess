@@ -142,20 +142,6 @@ export class HomeComponent {
           assign(this.data.brand, this.data.brand.map(e => parseInt(e)));
           this.data.wheelAlignmentChecked = this.data.wheelAlignmentChecked == "true";
           this.data.wheelBalancingChecked = this.data.wheelBalancingChecked == "true";
-          this.http.get('environments/config.development.json').subscribe(res => {
-            assign(this.properties, res.json().properties)
-            // let highLevel = get(this.properties,'locations',[]).filter(e => e.name == get(this.data, 'location'))[0];
-            // if (get(this.data, 'subLocations', []).length == 0){  /* High-level only selection */
-            //   highLevel.checked = true;
-            //   highLevel.sub_locations.map(e => e.checked = true);
-            // }else {
-            //   highLevel.sub_locations.map(e => e.checked = get(this.data, 'subLocations', []).indexOf(e.name) > -1);
-            // }
-            // set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
-            
-          });
-        } else {
-          
         }
       });
     this.dropdownSettingsMobile.buttonClasses += ' dd-search-text';
@@ -200,19 +186,28 @@ export class HomeComponent {
       });
 
       if (!this.data) {
-        this.data = {
-        width: '---',
-        profile: '--',
-        size: '--',
-        brand: this.properties.brands.map(e => e.id),
-        location: this.getLocationFromObject(this.properties.locations),
-        quantity: this.properties.quantities[0],
-        selected: this.properties.vehicleTypes[0].name,
-        selectedFilter: this.properties.filters[0],
-        wheelAlignmentChecked: true,
-        wheelBalancingChecked: true,
-      };
-    }
+          this.data = {
+          width: '---',
+          profile: '--',
+          size: '--',
+          brand: this.properties.brands.map(e => e.id),
+          location: this.getLocationFromObject(this.properties.locations),
+          quantity: this.properties.quantities[0],
+          selected: this.properties.vehicleTypes[0].name,
+          selectedFilter: this.properties.filters[0],
+          wheelAlignmentChecked: true,
+          wheelBalancingChecked: true,
+        };
+      } else {  /* Mobile: coming in with values already */
+        let highLevel = get(this.properties,'locations',[]).filter(e => e.name == get(this.data, 'location'))[0];
+        if (get(this.data, 'subLocations', []).length == 0){  /* High-level only selection */
+          highLevel.checked = true;
+          highLevel.sub_locations.map(e => e.checked = true);
+        }else {
+          highLevel.sub_locations.map(e => e.checked = get(this.data, 'subLocations', []).indexOf(e.name) > -1);
+        }
+        set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
+      }
     }, err => {
       /* Handle error */
     });
