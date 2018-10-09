@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
 import { Http } from '@angular/http';
 import { get, set, assign } from 'lodash';
 import { EmailValidator } from '@angular/forms';
@@ -31,6 +33,7 @@ export class SearchComponent {
   collapsed = true;
   sub = null;
   properties = <any>{
+    loading: true,
     showContactMe: false,
     priceFilter: {
       show: true,
@@ -246,54 +249,43 @@ export class SearchComponent {
         assign(this.data.brand, this.data.brand.map(e => parseInt(e)));
         this.data.wheelAlignmentChecked = this.data.wheelAlignmentChecked == "true";
         this.data.wheelBalancingChecked = this.data.wheelBalancingChecked == "true";
-        if (get(this.properties, 'vehicleTypes') != undefined) {
-          this.data.selectedSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].imageSrc;
-          this.data.whiteSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].whiteSrc;
-        }
-        this.http.get('/api/tyreConfig').subscribe(res => {
-          this.properties.tyreWidths = res.json().tyreWidths;
-          this.properties.tyreProfiles = res.json().tyreProfiles;
-          this.properties.wheelSizes = res.json().wheelSizes;
-        }, err => {
-          /* Handle error */
-        });
 
-        this.http.get('/api/locationConfig').subscribe(res => {
-          this.properties.locations = res.json();
-          let highLevel = get(this.properties,'locations',[]).filter(e => e.name == get(this.data, 'location'))[0];
-          if (get(this.data, 'subLocations', []).length == 0){  /* High-level only selection */
-            highLevel.checked = true;
-            highLevel.sub_locations.map(e => e.checked = true);
-          }else {
-            highLevel.sub_locations.map(e => e.checked = get(this.data, 'subLocations', []).indexOf(e.name) > -1);
-          }
-          set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
-        }, err => {
-          /* Handle error */
-        });
-
-        this.http.get('environments/config.development.json').subscribe(res => {
-          assign(this.properties, res.json().properties)
-          // let highLevel = get(this.properties,'locations',[]).filter(e => e.name == get(this.data, 'location'))[0];
-          // if (get(this.data, 'subLocations', []).length == 0){  /* High-level only selection */
-          //   highLevel.checked = true;
-          //   highLevel.sub_locations.map(e => e.checked = true);
-          // }else {
-          //   highLevel.sub_locations.map(e => e.checked = get(this.data, 'subLocations', []).indexOf(e.name) > -1);
-          // }
-          // set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
-          // assign(this.searchableContent, res.json().products);
-          assign(this.partners, res.json().partners);
-          this.properties.brands = this.properties.brands.map((e, i) => {
-            return <IMultiSelectOption> {
-              id: i,
-              name: e.name,
+        Observable.forkJoin(
+          this.http.get('environments/config.development.json'),
+          this.http.get('/api/tyreConfig'), 
+          this.http.get('/api/locationConfig'),
+          this.http.get('/api/brandConfig'),
+          ).subscribe(results => { 
+            let arr: any = results;
+            /* Other Config */
+            assign(this.properties, results[0].json().properties);
+            this.data.selectedSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].imageSrc;
+            this.data.whiteSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].whiteSrc;
+            /* Tyre Config */
+            this.properties.tyreWidths = results[1].json().tyreWidths;
+            this.properties.tyreProfiles = results[1].json().tyreProfiles;
+            this.properties.wheelSizes = results[1].json().wheelSizes;
+            /* Location Config */
+            this.properties.locations = results[2].json();
+            let highLevel = get(this.properties,'locations',[]).filter(e => e.name == get(this.data, 'location'))[0];
+            if (get(this.data, 'subLocations', []).length == 0){  /* High-level only selection */
+              highLevel.checked = true;
+              highLevel.sub_locations.map(e => e.checked = true);
+            }else {
+              highLevel.sub_locations.map(e => e.checked = get(this.data, 'subLocations', []).indexOf(e.name) > -1);
             }
+            set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
+            /* Brand Config */
+            this.properties.brands = results[3].json().map((e, i) => {
+              return <IMultiSelectOption> {
+                id: i,
+                name: e.name,
+              }
+            });
+            this.search();
+          }, err => {
+            /* Handle error */
           });
-          this.data.selectedSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].imageSrc;
-          this.data.whiteSrc = this.properties['vehicleTypes'].filter(e => e.name === this.data['selected'])[0].whiteSrc;
-          this.search();
-        });
       });
   }
 
@@ -303,13 +295,6 @@ export class SearchComponent {
     set(this.properties, 'loading', true);
     set(this.properties, 'results', null);
     this.performSearch();
-    // setTimeout(() => {
-    //   set(this.properties, 'loading', false);
-    //   set(this.properties, 'results', this.performSearch());
-    //   console.log(this.properties.results);
-    //   set(this.properties, 'filteredResults', (this.properties.results));  /* Copy of full results */
-    //   this.applyFilters();
-    // }, 1000);
   };
 
   sort = (filterName) => {  /* Apply sort filters */
@@ -471,6 +456,11 @@ export class SearchComponent {
   performSearch = () => {
     let url = `/api/tyreSearch?vehicleType=${get(this.data, 'selected')}&width=${get(this.data, 'width')}&profile=${get(this.data, 'profile')}&size=${get(this.data, 'size')}&province=${get(this.data, 'location.highLevel')}`
     url += this.data.brand.map(b => '&brand=' + this.properties.brands.filter(i => i.id === b)[0].name).join('');
+    if (get(this.data, 'location.lowLevel', []).length > 0) { /* Filter on suburb */
+      get(this.data, 'location.lowLevel').forEach(suburb => {
+        url += `&suburb=${suburb}`;
+      });
+    }
     this.http.get(url).subscribe(res => {
       let tyres = res.json();
       this.properties.results = tyres.map(tyre => {
