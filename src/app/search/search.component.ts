@@ -23,6 +23,7 @@ import {
 })
 export class SearchComponent {
   @ViewChild('content') private content;
+  @ViewChild('searchBrandModal') private brandModal;
   @ViewChild('searchLocationModal') private locationModal;
   @ViewChild('contactFormModal') private contactFormModal;
   @ViewChild('mobileContactModal') private mobileContactModal;
@@ -130,11 +131,15 @@ export class SearchComponent {
     });
   }
 
-  openLocationModal = ():void => {
+  openLocationModal = (): void => {
     get(this.properties,'locations',[]).forEach(e => {
       e.collapsed = !e.sub_locations.some(s => s.checked == true);
     });
     this.open(this.locationModal);
+  }
+
+  openBrandModal = (): void => {
+    this.open(this.brandModal);
   }
 
   getLocationFromObject = (locations):any => {
@@ -165,6 +170,19 @@ export class SearchComponent {
     }
       return locationObj;
     }
+  }
+
+  getBrandDescription = (brands): any => {
+    let brandCount = brands.filter(brand => brand.checked).length;
+    return  brandCount === 0 ? 'None Selected' :
+            brandCount === brands.length ? 'All Brands' :
+            brandCount === 1 ? brands.filter(brand => brand.checked)[0].name : `${brandCount} Brands`;
+  }
+
+  checkBrand = (brand): void => {
+    brand.checked = !brand.checked;
+    this.data.brandDescription = this.getBrandDescription(this.properties.brands);
+    this.data.brand = this.properties.brands.filter(e => e.checked).map(e => e.name);
   }
 
   topLevelCheck = (location):void => { /* Checking a top-level location (province) - this checks/unchecks all suburbs */
@@ -246,7 +264,6 @@ export class SearchComponent {
       .queryParams
       .subscribe(params => {
         assign(this.data, JSON.parse(JSON.stringify(params))); /* Copy object */
-        assign(this.data.brand, this.data.brand.map(e => parseInt(e)));
         this.data.wheelAlignmentChecked = this.data.wheelAlignmentChecked == "true";
         this.data.wheelBalancingChecked = this.data.wheelBalancingChecked == "true";
 
@@ -277,12 +294,14 @@ export class SearchComponent {
             set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
             /* Brand Config */
             this.properties.brands = results[3].json().map((e, i) => {
-              return <IMultiSelectOption> {
+              return {
                 id: i,
                 name: e.name,
+                checked: get(this.data, 'brand').filter(b => b === e.name).length > 0,
               }
             });
-            this.search();
+            set(this.data, 'brandDescription', this.getBrandDescription(this.properties.brands));
+            this.search();  
           }, err => {
             /* Handle error */
           });
@@ -455,7 +474,7 @@ export class SearchComponent {
 
   performSearch = () => {
     let url = `/api/tyreSearch?vehicleType=${get(this.data, 'selected')}&width=${get(this.data, 'width')}&profile=${get(this.data, 'profile')}&size=${get(this.data, 'size')}&province=${get(this.data, 'location.highLevel')}`
-    url += this.data.brand.map(b => '&brand=' + this.properties.brands.filter(i => i.id === b)[0].name).join('');
+    url += this.data.brand.map(b => '&brand=' + b).join('');
     if (get(this.data, 'location.lowLevel', []).length > 0) { /* Filter on suburb */
       get(this.data, 'location.lowLevel').forEach(suburb => {
         url += `&suburb=${suburb}`;

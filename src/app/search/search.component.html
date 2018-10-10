@@ -105,7 +105,16 @@
                             </div>
                         </div>
                         <div class="col-2 dd-col">
-                            <ss-multiselect-dropdown [options]="properties.brands" [texts]="brandTexts" [settings]="dropdownSettings" [(ngModel)]="data.brand" (ngModelChange)="changeDropdown($event)"></ss-multiselect-dropdown>
+                            <div class="btn-group w-100 h-100">
+                                <button class="w-100 btn btn-secondary dropdown-toggle dd-t-custom m-0 p-0" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" (click)="openBrandModal()">
+                                    <div class="dd-left p-0">
+                                        Brand
+                                    </div>
+                                    <span *ngIf="data.brandDescription" class="dd-col dd-search-text">{{ data.brandDescription }}</span>
+                                    <i class="dd-caret fa fa-angle-down"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="col-2 dd-col">
                             <div class="btn-group w-100 h-100">
@@ -540,7 +549,7 @@
                                                 x{{data.quantity}}
                                             </td>
                                             <td class="w-25 green-border"  style="font-size:8pt">
-                                                {{properties.label}}
+                                                {{ data.brandDescription }}
                                             </td>
                                             <td class="w-30">
                                                 {{data.location.name}}
@@ -771,6 +780,33 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+</ng-template>
+
+<ng-template #searchBrandModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title custom">Brand</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body custom-lite custom" style="line-height: 1.5 !important">
+        <div class="card">
+            <div class="card-body">
+                <div class="checkbox checkbox-success w-50 float-left" *ngFor="let brand of properties.brands">
+                    <input id="{{brand.name}}" type="checkbox" [checked]="brand.checked" (change)="checkBrand(brand)">
+                    <label for="{{brand.name}}">
+                        {{brand.name}}
+                    </label>
+                </div>
+                <div class="text-center" [hidden]="properties.brands.length > 0">
+                    None Currently
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Done</button>
     </div>
 </ng-template>
 
