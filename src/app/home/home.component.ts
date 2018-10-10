@@ -6,12 +6,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
 import { assign, get, set } from 'lodash';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {
-  MultiselectDropdownModule,
-  IMultiSelectSettings,
-  IMultiSelectTexts,
-  IMultiSelectOption
-} from '../dropdown/';
 
 @Component({
   selector: 'app-home',
@@ -26,29 +20,6 @@ export class HomeComponent {
   data = null;
   collapsed = true;
   locationModalCollapsed = true;
-
-  // Settings configuration
-  dropdownSettings: IMultiSelectSettings = {
-    enableSearch: false,
-    showCheckAll: true,
-    showUncheckAll: true,
-    checkedStyle: 'fontawesome',
-    buttonClasses: 'btn btn-secondary w-100 dd-right p-0',
-    dynamicTitleMaxItems: 1,
-    displayAllSelectedText: true,
-    containerClasses: 'dd-container',
-    labelOnTop: true,
-  };
-  dropdownSettingsMobile = JSON.parse(JSON.stringify(this.dropdownSettings));
-
-  // Text configuration
-  brandTexts: IMultiSelectTexts = {
-    checkAll: 'Select all',
-    uncheckAll: 'Clear all',
-    allSelected: 'All Brands',
-    defaultTitle: 'Unselected',
-    defaultLabel: 'Brand',
-  };
   sub: any;
 
   setNavBarVisibility = ($event:any) => {
@@ -154,15 +125,10 @@ export class HomeComponent {
       .subscribe(params => {
         if (params.hasOwnProperty("selected")) {
           this.data = JSON.parse(JSON.stringify(params)); /* Copy object */
-          // if (this.data.brand.length === 1) {
-          //   this.data.brand= JSON.parse("[" + this.data.brand + "]");
-          // }
-          // assign(this.data.brand, this.data.brand.map(e => parseInt(e)));
           this.data.wheelAlignmentChecked = this.data.wheelAlignmentChecked == "true";
           this.data.wheelBalancingChecked = this.data.wheelBalancingChecked == "true";
         }
       });
-    this.dropdownSettingsMobile.buttonClasses += ' dd-search-text';
     this.route.queryParams.subscribe(params => {
         if (params.contactUs === 'true') {
           const config: ScrollToConfigOptions = {

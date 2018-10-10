@@ -10,12 +10,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Buffer } from 'buffer';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
-import {
-  MultiselectDropdownModule,
-  IMultiSelectSettings,
-  IMultiSelectTexts,
-  IMultiSelectOption
-} from '../dropdown';
 
 @Component({
   selector: 'app-search',
@@ -54,28 +48,6 @@ export class SearchComponent {
   searchableContent = <any>{};
   partners = <any>{};
   showFiller = true;
-
-  // Settings configuration
-  dropdownSettings: IMultiSelectSettings = {
-    enableSearch: false,
-    showCheckAll: true,
-    showUncheckAll: true,
-    checkedStyle: 'fontawesome',
-    buttonClasses: 'btn btn-secondary dd-inner p-0',
-    dynamicTitleMaxItems: 1,
-    displayAllSelectedText: true,
-    containerClasses: 'dd-container',
-    labelOnTop: true,
-  };
-
-  // Text configuration
-  brandTexts: IMultiSelectTexts = {
-    checkAll: 'Select all',
-    uncheckAll: 'Clear all',
-    allSelected: 'All Brands',
-    defaultTitle: 'Unselected',
-    defaultLabel: 'Brand',
-  };
 
   changeDropdown = ($event): void => {
     this.properties.label = ($event.length === this.properties.brands.length) ? 'All Brands' : ($event.length === 1)  ? this.properties.brands[$event[0]].name : 'Multiple Brands';

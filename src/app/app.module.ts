@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MatSliderModule, MatSidenavModule } from '@angular/material';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MultiselectDropdownModule } from './dropdown/dropdown.module';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { InViewportModule } from 'ng-in-viewport';
 
@@ -35,7 +34,6 @@ import 'hammerjs';
     MatSliderModule,
     MatSidenavModule,
     MatProgressSpinnerModule,
-    MultiselectDropdownModule,
     RouterModule.forRoot(routes),
     InViewportModule.forRoot(),
     NgbModule.forRoot(),
