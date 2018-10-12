@@ -10,6 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Buffer } from 'buffer';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
+import { template, rowEntry } from './html-template';
 
 @Component({
   selector: 'app-search',
@@ -68,12 +69,37 @@ export class SearchComponent {
 
   submitContactForm = (): void => {
     this.open(this.contactFormModal);
-    this.data.getContacted = <any>{};
+    /* Send email to partner */
     this.properties.filteredResults.forEach(e => {
       if (e.contactMe === true) {
+        let tyreDetails =  `${e.quantitySelected}x ${e.brand} ${e.tyreModel} ${e.tyreWidth}/${e.tyreProfile}/${e.wheelSize}`;
+        tyreDetails += (e.runFlat) ? ' (Run Flat)' : '';
+        let temp = template;
+        temp = temp.replace('[client_name]', get(this.data, 'getContacted.name')).replace('[client_email]', get(this.data, 'getContacted.email')).replace('[client_mobile]', get(this.data, 'getContacted.mobile'));
+        temp = temp.replace('[tyre_model]', tyreDetails).replace('[tyre_price]', (new CurrencyPipe('en-US')).transform(e.price, 'R', true)).replace('[total]', (new CurrencyPipe('en-US')).transform(e.totalPrice, 'R', true)); //e.totalPrice
+        
+        let rows = '';
+        if (e.wheelAlignmentChecked) {
+          rows += rowEntry.replace('[left_col]', '1x Wheel Alignment').replace('[right_col]', (new CurrencyPipe('en-US')).transform(e.partnerDetails.wheelAlignmentPrice, 'R', true));
+        }
+        if (e.wheelBalancingChecked) {
+          rows += rowEntry.replace('[left_col]', e.quantitySelected + 'x ' + 'Wheel Balancing').replace('[right_col]', (new CurrencyPipe('en-US')).transform(e.partnerDetails.wheelBalancingPrice, 'R', true));
+        }
+        temp = temp.replace('[rows]', rows);
+
+        let req = {
+          title: `TyreLess | New Lead | ${tyreDetails}`,
+          html: temp,
+        }
+        this.http.post('/api/contactMe?recipient=' + e.partnerDetails.email, req).subscribe(resp => {
+          
+        }, err => {
+          /* Handle Error */
+        });
         this.checkSelect(e);
       }
     });
+    this.data.getContacted = <any>{};
   };
 
   anyService = (services: any): boolean => {

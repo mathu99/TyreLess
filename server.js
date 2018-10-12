@@ -2,6 +2,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const express = require('express');
+const email = require('emailjs');
 
 /* Models */
 const Tyre = require('./models/tyre');
@@ -29,6 +30,13 @@ app.set('port', port);
 
 const server = http.createServer(app);
 server.listen(port, () => console.log('Running'));
+
+const mailServer = email.server.connect({
+    user:	"mathu99@gmail.com", 
+    password:"Jambo.16", 
+    host:	"smtp.gmail.com", 
+    ssl: true,
+ });
 
 const uniq = (a) => {
     return Array.from(new Set(a));
@@ -142,6 +150,23 @@ app.get('/api/tyreSearch', (req, res, next) => {
             });
         }
     });
+});
+
+app.post('/api/contactMe', (req, res, next) => {    /* Contact Me - Email to partner */
+    mailServer.send({
+        from: 'TyreLess <info@tyreless.co.za>',
+        to: req.query.recipient,
+        // cc: 'rajeev.singh@facile.co.za',
+        bcc: 'leads@facile.co.za',
+        subject: req.body.title,
+        attachment: 
+        [
+            { data: req.body.html, alternative: true },
+        ]
+      }, (err, message) => {
+        if (err) return next(err);
+        else return res.sendStatus(200);
+      });
 });
 
 /* Static Files */
