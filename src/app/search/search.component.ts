@@ -88,7 +88,7 @@ export class SearchComponent {
         temp = temp.replace('[rows]', rows);
 
         let req = {
-          title: `TyreLess | New Lead | ${tyreDetails}`,
+          title: `TyreLess.co.za | New Lead | ${tyreDetails}`,
           html: temp,
         }
         this.http.post('/api/contactMe?recipient=' + e.partnerDetails.email, req).subscribe(resp => {
