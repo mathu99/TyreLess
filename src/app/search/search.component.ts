@@ -74,21 +74,23 @@ export class SearchComponent {
       if (e.contactMe === true) {
         let tyreDetails =  `${e.quantitySelected}x ${e.brand} ${e.tyreModel} ${e.tyreWidth}/${e.tyreProfile}/${e.wheelSize}`;
         tyreDetails += (e.runFlat) ? ' (Run Flat)' : '';
-        let temp = template;
+        let temp = template,
+            total = (parseFloat(e.price) * parseFloat(e.quantitySelected));
         temp = temp.replace('[client_name]', get(this.data, 'getContacted.name')).replace('[client_email]', get(this.data, 'getContacted.email')).replace('[client_mobile]', get(this.data, 'getContacted.mobile'));
-        temp = temp.replace('[tyre_model]', tyreDetails).replace('[tyre_price]', (new CurrencyPipe('en-US')).transform(e.price, 'R', true)).replace('[total]', (new CurrencyPipe('en-US')).transform(e.totalPrice, 'R', true)); //e.totalPrice
+        temp = temp.replace('[tyre_model]', tyreDetails).replace('[tyre_price]', (new CurrencyPipe('en-US')).transform(total, 'R', true)).replace('[total]', (new CurrencyPipe('en-US')).transform(e.totalPrice, 'R', true));
         
         let rows = '';
         if (e.wheelAlignmentChecked) {
           rows += rowEntry.replace('[left_col]', '1x Wheel Alignment').replace('[right_col]', (new CurrencyPipe('en-US')).transform(e.partnerDetails.wheelAlignmentPrice, 'R', true));
         }
         if (e.wheelBalancingChecked) {
-          rows += rowEntry.replace('[left_col]', e.quantitySelected + 'x ' + 'Wheel Balancing').replace('[right_col]', (new CurrencyPipe('en-US')).transform(e.partnerDetails.wheelBalancingPrice, 'R', true));
+          let wheelBalancingTotal = (parseFloat(e.partnerDetails.wheelBalancingPrice) * parseFloat(e.quantitySelected));
+          rows += rowEntry.replace('[left_col]', e.quantitySelected + 'x ' + 'Wheel Balancing').replace('[right_col]', (new CurrencyPipe('en-US')).transform(wheelBalancingTotal, 'R', true));
         }
         temp = temp.replace('[rows]', rows);
 
         let req = {
-          title: `TyreLess.co.za | New Lead | ${tyreDetails}`,
+          title: `New Lead | ${tyreDetails}`,
           html: temp,
         }
         this.http.post('/api/contactMe?recipient=' + e.partnerDetails.email, req).subscribe(resp => {
@@ -497,8 +499,8 @@ export class SearchComponent {
             email: get(tyre, 'partnerRef.salesEmail'),
             name: get(tyre, 'partnerRef.retailerName'),
             logo: get(tyre, 'partnerRef.logo'),
-            wheelAlignmentPrice: '100.00',  /* TODO: add this */
-            wheelBalancingPrice: '100.00', /* TODO: add this */
+            wheelAlignmentPrice: get(tyre, 'services.liveWheelAlignmentPrice'),
+            wheelBalancingPrice: get(tyre, 'services.liveWheelBalancingPrice'),
             services: (get(tyre, 'liveInclusion') || []).map(s => {
                 let name = s;
                 if (this.data.wheelAlignmentChecked && name === "Wheel Alignment") {
@@ -532,7 +534,7 @@ export class SearchComponent {
             e.totalPrice = (parseFloat(e.totalPrice) + parseFloat(get(e, 'partnerDetails.wheelAlignmentPrice', '0'))).toString();
           }
           if (get(this.data, 'wheelBalancingChecked') === true) {
-            e.totalPrice = (parseFloat(e.totalPrice) + parseFloat(get(e, 'partnerDetails.wheelBalancingPrice', '0'))).toString();
+            e.totalPrice = (parseFloat(e.totalPrice) + (e.quantitySelected * parseFloat(get(e, 'partnerDetails.wheelBalancingPrice', '0')))).toString();
           }
           e.extrasScore = e.partnerDetails.services.filter(s => s.show).length || 0; /* Add additional weight to ranking based on services provided by partner */
           return e;

@@ -34,7 +34,7 @@ server.listen(port, () => console.log('Running'));
 
 var transporter = nodemailer.createTransport(smtpTransport({
     tls: {
-        rejectUnauthorized:false
+        rejectUnauthorized: false
     },
     service: 'facile',
     host: 'mail.facile.co.za',
@@ -142,16 +142,26 @@ app.get('/api/tyreSearch', (req, res, next) => {
                         partnerTyreReturn = 'livePrice liveInclusion',  /* Fields to return */
                         partnerReturn = 'branchName branchPin customerCode logo province retailerName salesEmail suburb',
                         tyreReturn = 'brand profile size speedRating tyreModel vehicleType width runFlat tyreImage';
-                    PartnerService.find({ partnerRef: { $in: partnerIds }}, partnerServiceReturn).exec((err, docs) => {
+                    PartnerService.find({ partnerRef: { $in: partnerIds }}, partnerServiceReturn).populate('partnerRef').exec((err, docs) => {
                         if (err) return next(err);
-                        console.log(docs)
+                        else if (docs) {
+                            PartnerTyre.find({ tyreRef: { $in: tyreIds }, partnerRef: { $in: partnerIds }, status: ['Live', 'Pending'], livePrice: { $ne: '0.00' } }, partnerTyreReturn)
+                            .populate('partnerRef', partnerReturn)
+                            .populate('tyreRef', tyreReturn).exec((err, partnerTyres) => {
+                                if (err) return next(err);
+                                else if (partnerTyres) {
+                                    let arr = [];
+                                    partnerTyres.forEach(e => {
+                                        let o = JSON.parse(JSON.stringify(e));
+                                        o.services = docs.filter(d => d.partnerRef._id 
+                                            == o.partnerRef._id)[0];
+                                        arr.push(o);
+                                    });
+                                    res.send(arr);
+                                }
+                            });
+                        }
                     });
-                    PartnerTyre.find({ tyreRef: { $in: tyreIds }, partnerRef: { $in: partnerIds }, status: ['Live', 'Pending'], livePrice: { $ne: '0.00' } }, partnerTyreReturn)
-                        .populate('partnerRef', partnerReturn)
-                        .populate('tyreRef', tyreReturn).exec((err, docs) => {
-                            if (err) return next(err);
-                            res.send(docs)
-                        });
                 }
             });
         }
