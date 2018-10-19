@@ -483,7 +483,7 @@ export class SearchComponent {
     this.http.get(url).subscribe(res => {
       let tyres = res.json();
       this.properties.results = tyres.map(tyre => {
-        return {
+        let object = {
           brand: get(tyre, 'tyreRef.brand'),
           image: 'data:' + get(tyre, 'tyreRef.tyreImage.contentType', '') + ';base64,' + new Buffer(get(tyre, 'tyreRef.tyreImage.data', '')).toString('base64'),
           branch: {
@@ -522,8 +522,15 @@ export class SearchComponent {
           tyreModel: get(tyre, 'tyreRef.tyreModel'),
           tyreProfile: get(tyre, 'tyreRef.profile'),
           tyreWidth: get(tyre, 'tyreRef.width'),
-          wheelSize: get(tyre, 'tyreRef.size'),
+          wheelSize: get(tyre, 'tyreRef.size')
         }
+        if (this.data.wheelAlignmentChecked) {
+          object.partnerDetails.services.push({'name': 'Wheel Alignment', 'show': true });
+        }
+        if (this.data.wheelBalancingChecked) {
+          object.partnerDetails.services.push({'name': 'Wheel Balancing', 'show': true });
+        }
+        return object;
       }).map(e => { /* Work out total */
           e.contactMe = false;
           e.quantitySelected = '' + get(this.data, 'quantity');

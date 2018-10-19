@@ -153,8 +153,7 @@ app.get('/api/tyreSearch', (req, res, next) => {
                                     let arr = [];
                                     partnerTyres.forEach(e => {
                                         let o = JSON.parse(JSON.stringify(e));
-                                        o.services = docs.filter(d => d.partnerRef._id 
-                                            == o.partnerRef._id)[0];
+                                        o.services = docs.filter(d => d.partnerRef._id == o.partnerRef._id)[0];
                                         arr.push(o);
                                     });
                                     res.send(arr);

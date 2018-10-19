@@ -352,15 +352,19 @@
                                                 <div class="row" style="margin-bottom:5pt">
                                                     <div class="col-12">
                                                         <span class="font-italic font-weight-bold" style="color:red">Included:</span>
-                                                        <!-- <div class="strong included-text rounded">Included</div> -->
                                                     </div>
                                                 </div>
                                                 <div class="row" *ngFor="let service of result.partnerDetails.services">
                                                     <div class="col-12 results-col" *ngIf="service.show">
+                                                        <span class="font-weight-bold" style="color:red" *ngIf="service.name != 'Wheel Alignment' && service.name != 'Wheel Balancing'">FREE</span>
                                                         {{service.name}}
                                                     </div>
                                                 </div>
-            
+                                                <div class="row" *ngIf="!result.partnerDetails.services || result.partnerDetails.services.length == 0">
+                                                    <div class="col-12 results-col">
+                                                        None
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -640,7 +644,7 @@
                                                 </div>
                                                 <div class="m-0 text-left includes-mobile" *ngIf="anyService(result.partnerDetails.services)">
                                                     <span class="font-italic font-weight-bold" style="color:red">Included:</span>&nbsp;
-                                                    <span *ngFor="let service of result.partnerDetails.services; let isLast=last"><span class="" *ngIf="service.show">{{service.name}}{{isLast ? '' : ', '}}</span></span>
+                                                    <span *ngFor="let service of result.partnerDetails.services; let isLast=last"><span class="font-weight-bold" style="color:red" *ngIf="service.name != 'Wheel Alignment' && service.name != 'Wheel Balancing'">FREE </span><span class="" *ngIf="service.show">{{service.name}}{{isLast ? '' : ', '}}</span></span>
                                                 </div>
                                             </div>
                                             <div class="col-3 results-col text-center">
