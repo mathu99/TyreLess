@@ -11,6 +11,7 @@ import { Buffer } from 'buffer';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { template, rowEntry } from './html-template';
+import { dealTemplate, dealEntry } from './customer-template';
 
 @Component({
   selector: 'app-search',
@@ -69,6 +70,39 @@ export class SearchComponent {
 
   submitContactForm = (): void => {
     this.open(this.contactFormModal);
+    /* Send email to customer */
+    let dealBody = '', count = 0;
+    this.properties.filteredResults.forEach(e => {
+      if (e.contactMe === true) {
+        ++count;
+        let temp = dealEntry,
+            total = (parseFloat(e.price) * parseFloat(e.quantitySelected));
+        let tyreDetails =  `${e.quantitySelected}x ${e.brand} ${e.tyreModel} ${e.tyreWidth}/${e.tyreProfile}/${e.wheelSize}`;
+        temp = temp.replace('[dealer_name]', get(e, 'partner') + ' (' + get(e, 'branch.name') + ')');
+        temp = temp.replace('[tyre_model]', tyreDetails).replace('[tyre_price]', (new CurrencyPipe('en-US')).transform(total, 'R', true)).replace('[total]', (new CurrencyPipe('en-US')).transform(e.totalPrice, 'R', true));
+        let rows = '';
+        if (e.wheelAlignmentChecked) {
+          rows += rowEntry.replace('[left_col]', '1x Wheel Alignment').replace('[right_col]', (new CurrencyPipe('en-US')).transform(e.partnerDetails.wheelAlignmentPrice, 'R', true));
+        }
+        if (e.wheelBalancingChecked) {
+          let wheelBalancingTotal = (parseFloat(e.partnerDetails.wheelBalancingPrice) * parseFloat(e.quantitySelected));
+          rows += rowEntry.replace('[left_col]', e.quantitySelected + 'x ' + 'Wheel Balancing').replace('[right_col]', (new CurrencyPipe('en-US')).transform(wheelBalancingTotal, 'R', true));
+        }
+        temp = temp.replace('[rows]', rows);
+        dealBody += temp;
+      }
+    });
+    let dealHtml = dealTemplate.replace('[deals]', dealBody);
+    let req = {
+      title: `Your Tyreless.co.za Deal` + (count > 1) ? 's' : '',
+      html: dealHtml,
+    }
+    this.http.post('/api/contactMe?recipient=' + get(this.data, 'getContacted.email'), req).subscribe(resp => {
+      
+    }, err => {
+      /* Handle Error */
+    });
+
     /* Send email to partner */
     this.properties.filteredResults.forEach(e => {
       if (e.contactMe === true) {
