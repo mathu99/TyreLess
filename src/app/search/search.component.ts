@@ -94,7 +94,7 @@ export class SearchComponent {
     });
     let dealHtml = dealTemplate.replace('[deals]', dealBody);
     let req = {
-      title: `Your Tyreless.co.za Deal` + (count > 1) ? 's' : '',
+      title: `Your Tyreless.co.za Deals`,
       html: dealHtml,
     }
     this.http.post('/api/contactMe?recipient=' + get(this.data, 'getContacted.email'), req).subscribe(resp => {
