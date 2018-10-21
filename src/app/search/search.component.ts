@@ -88,13 +88,18 @@ export class SearchComponent {
           let wheelBalancingTotal = (parseFloat(e.partnerDetails.wheelBalancingPrice) * parseFloat(e.quantitySelected));
           rows += rowEntry.replace('[left_col]', e.quantitySelected + 'x ' + 'Wheel Balancing').replace('[right_col]', (new CurrencyPipe('en-US')).transform(wheelBalancingTotal, 'R', true));
         }
+        get(e, 'partnerDetails.services').forEach(service => {
+          if (service.show && service.name != 'Wheel Alignment' && service.name != 'Wheel Balancing') {
+            rows += rowEntry.replace('[left_col]', `1x ${service.name}`).replace('[right_col]', 'R0.00');
+          }
+        });
         temp = temp.replace('[rows]', rows);
         dealBody += temp;
       }
     });
     let dealHtml = dealTemplate.replace('[deals]', dealBody);
     let req = {
-      title: `Your Tyreless.co.za Deals`,
+      title: `Your TyreLess.co.za Deals`,
       html: dealHtml,
     }
     this.http.post('/api/contactMe?recipient=' + get(this.data, 'getContacted.email'), req).subscribe(resp => {
@@ -121,6 +126,11 @@ export class SearchComponent {
           let wheelBalancingTotal = (parseFloat(e.partnerDetails.wheelBalancingPrice) * parseFloat(e.quantitySelected));
           rows += rowEntry.replace('[left_col]', e.quantitySelected + 'x ' + 'Wheel Balancing').replace('[right_col]', (new CurrencyPipe('en-US')).transform(wheelBalancingTotal, 'R', true));
         }
+        get(e, 'partnerDetails.services').forEach(service => {
+          if (service.show && service.name != 'Wheel Alignment' && service.name != 'Wheel Balancing') {
+            rows += rowEntry.replace('[left_col]', `1x ${service.name}`).replace('[right_col]', 'R0.00');
+          }
+        });
         temp = temp.replace('[rows]', rows);
 
         let req = {
