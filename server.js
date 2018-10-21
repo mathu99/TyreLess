@@ -10,6 +10,7 @@ const Tyre = require('./models/tyre');
 const PartnerTyre = require('./models/partnerTyre');
 const PartnerService = require('./models/partnerService');
 const Partner = require('./models/partner');
+const Lead = require('./models/lead');
 
 var config = require('./config/database');
 const router = express.Router();
@@ -168,7 +169,6 @@ app.get('/api/tyreSearch', (req, res, next) => {
 });
 
 app.post('/api/contactMe', (req, res, next) => {    /* Contact Me - Email to partner */
-    console.log('Send email to '+ req.query.recipient);
     let mailOptions = {
         from: 'TyreLess.co.za <deals@facile.co.za>',
         to: req.query.recipient,
@@ -183,6 +183,23 @@ app.post('/api/contactMe', (req, res, next) => {    /* Contact Me - Email to par
           return res.sendStatus(200);
         }
       });  
+});
+
+app.post('/api/lead', (req, res, next) => {    /* Store lead information */
+    var lead = new Lead({
+        partnerRef: req.body.partnerRef,
+        customerEmail: req.body.customerEmail,
+        customerMobile: req.body.customerMobile,
+        customerName: req.body.customerName,
+        description: req.body.description,
+    });
+    // save the user
+    lead.save((err) => {
+        if (err) {
+            return res.json({ success: false, msg: err.message });
+        }
+        res.json({ success: true, msg: 'Successful created new lead.' });
+    });
 });
 
 /* Static Files */

@@ -68,12 +68,26 @@ export class SearchComponent {
     this.open(this.mobileContactModal);
   };
 
+  createLead = (tyre): void => {
+    let lead = {
+      partnerRef: get(tyre, 'partnerDetails._id'),
+      customerEmail: get(this.data, 'getContacted.email'),
+      customerMobile: get(this.data, 'getContacted.mobile'),
+      customerName: get(this.data, 'getContacted.name'),
+      description: `${tyre.quantitySelected}x ${tyre.brand} ${tyre.tyreModel} ${tyre.tyreWidth}/${tyre.tyreProfile}/${tyre.wheelSize}`,
+    };
+    this.http.post('/api/lead', lead).subscribe(resp => {}, err => {
+      /* TODO: Handle Error */
+    });
+  }
+
   submitContactForm = (): void => {
     this.open(this.contactFormModal);
     /* Send email to customer */
     let dealBody = '', count = 0;
     this.properties.filteredResults.forEach(e => {
       if (e.contactMe === true) {
+        this.createLead(e);
         ++count;
         let temp = dealEntry,
             total = (parseFloat(e.price) * parseFloat(e.quantitySelected));
@@ -540,6 +554,7 @@ export class SearchComponent {
           },
           partner: get(tyre, 'partnerRef.retailerName'),
           partnerDetails: {
+            _id: get(tyre, 'partnerRef._id'),
             email: get(tyre, 'partnerRef.salesEmail'),
             name: get(tyre, 'partnerRef.retailerName'),
             logo: get(tyre, 'partnerRef.logo'),
