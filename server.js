@@ -193,7 +193,6 @@ app.post('/api/lead', (req, res, next) => {    /* Store lead information */
         customerName: req.body.customerName,
         description: req.body.description,
     });
-    // save the user
     lead.save((err) => {
         if (err) {
             return res.json({ success: false, msg: err.message });
