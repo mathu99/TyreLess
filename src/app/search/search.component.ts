@@ -7,6 +7,7 @@ import { Http } from '@angular/http';
 import { get, set, assign } from 'lodash';
 import { EmailValidator } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { Buffer } from 'buffer';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
@@ -26,7 +27,7 @@ export class SearchComponent {
   
   constructor(
     private route: ActivatedRoute,
-    private router: Router, private http: Http, private modalService: NgbModal) { this.http = http }
+    private router: Router, private http: Http, private toastr: ToastrService, private modalService: NgbModal) { this.http = http }
   collapsed = true;
   sub = null;
   properties = <any>{
@@ -667,6 +668,11 @@ export class SearchComponent {
   };
 
   checkSelect = (result) => {
+    let selectedCount = get(this.properties, 'filteredResults', []).filter(e => e.contactMe).length;
+    if (selectedCount === 3 && !result.contactMe) {  /* 3 already selected  */
+      this.toastr.warning('You can only select 3 deals at a time', 'Sorry');
+      return;
+    } 
     if (result) {
       result.contactMe = !result.contactMe;
     }

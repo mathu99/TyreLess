@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 import { MatSliderModule, MatSidenavModule } from '@angular/material';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { ToastrModule } from 'ngx-toastr';
 import { InViewportModule } from 'ng-in-viewport';
 
 import { routes } from './app.routes';
@@ -38,6 +39,10 @@ import 'hammerjs';
     InViewportModule.forRoot(),
     NgbModule.forRoot(),
     ScrollToModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-left',
+      preventDuplicates: true,
+    }),
   ],
   declarations: [
     AppComponent,
