@@ -796,12 +796,22 @@
     </div>
     <div class="modal-body custom-lite custom" style="line-height: 1.5 !important">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body pb-2">
                 <div class="checkbox checkbox-success w-50 float-left" *ngFor="let brand of properties.brands">
                     <input id="{{brand.name}}" type="checkbox" [checked]="brand.checked" (change)="checkBrand(brand)">
                     <label for="{{brand.name}}">
                         {{brand.name}}
                     </label>
+                </div>
+                <br>
+                <div class="w-100 float-left">
+                    <hr class="m-2">
+                    <div class="w-50 float-left">
+                        <span class="hyper" (click)="brandSelect('check')"><i class="fa fa-check"></i> Select All</span>
+                    </div>
+                    <div class="w-50 float-left">
+                        <span class="hyper" (click)="brandSelect('uncheck')"><i class="fa fa-times"></i> Deselect All</span>
+                    </div>
                 </div>
                 <div class="text-center" [hidden]="properties.brands.length > 0">
                     None Currently

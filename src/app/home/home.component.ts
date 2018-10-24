@@ -76,6 +76,15 @@ export class HomeComponent {
     }
   }
 
+  brandSelect = (check:string) => {
+    this.properties.brands = this.properties.brands.map(brand => {
+      brand.checked = (check === 'check');
+      return brand;
+    });
+    this.data.brandDescription = this.getBrandDescription(this.properties.brands);
+    this.data.brand = this.properties.brands.filter(e => e.checked).map(e => e.name);
+  }
+
   getBrandDescription = (brands): any => {
     let brandCount = brands.filter(brand => brand.checked).length;
     return  brandCount === 0 ? 'None Selected' :

@@ -248,6 +248,15 @@ h5{
   cursor: pointer;
 }
 
+.hyper{
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.hyper:hover{
+  text-decoration: underline;
+}
+
 .dd-col{
   /* min-height: 35pt; */
   padding:1px;
