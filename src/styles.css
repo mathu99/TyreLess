@@ -1129,9 +1129,11 @@ li::before {
   }
 
   .black-link {
+    text-decoration: none;
     color:rgb(83, 83, 83) !important;
   }
   .black-link:hover {
+    text-decoration: underline;
     color:black !important;
   }
 
