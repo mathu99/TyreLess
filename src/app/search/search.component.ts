@@ -78,7 +78,11 @@ export class SearchComponent {
       description: `${tyre.quantitySelected}x ${tyre.brand} ${tyre.tyreModel} ${tyre.tyreWidth}/${tyre.tyreProfile}/${tyre.wheelSize}`,
     };
     this.http.post('/api/lead', lead).subscribe(resp => {}, err => {
-      /* TODO: Handle Error */
+      let error = {
+        technical: this.extractError(err),
+        business: 'There was an issue adding lead to DB',
+      }
+      this.http.post('/api/error', error).subscribe(resp => {}, err => {});
     });
   }
 
@@ -120,7 +124,12 @@ export class SearchComponent {
     this.http.post('/api/contactMe?recipient=' + get(this.data, 'getContacted.email'), req).subscribe(resp => {
       
     }, err => {
-      /* Handle Error */
+      let error = {
+        technical: this.extractError(err),
+        business: 'We encountered an error while trying to send deal confirmation - please try again',
+      }
+      this.toastr.error(error.business, 'Whoops!');
+      this.http.post('/api/error', error).subscribe(resp => {}, err => {});
     });
 
     /* Send email to partner */
@@ -155,7 +164,12 @@ export class SearchComponent {
         this.http.post('/api/contactMe?recipient=' + e.partnerDetails.email, req).subscribe(resp => {
           
         }, err => {
-          /* Handle Error */
+          let error = {
+            technical: this.extractError(err),
+            business: 'We encountered an error while trying to send your deal to our partners - please try again',
+          }
+          this.toastr.error(error.business, 'Whoops!');
+          this.http.post('/api/error', error).subscribe(resp => {}, err => {});
         });
         this.checkSelect(e);
       }
@@ -371,7 +385,12 @@ export class SearchComponent {
             set(this.data, 'brandDescription', this.getBrandDescription(this.properties.brands));
             this.search();  
           }, err => {
-            /* Handle error */
+            let error = {
+              technical: this.extractError(err),
+              business: 'We encountered an error while trying to retrieve search results - please try again',
+            }
+            this.toastr.error(error.business, 'Whoops!');
+            this.http.post('/api/error', error).subscribe(resp => {}, err => {});
           });
       });
   }
@@ -619,10 +638,21 @@ export class SearchComponent {
           return e;
         });
       set(this.properties, 'filteredResults', (this.properties.results));
+      if (get(this.properties, 'filteredResults', []).every(e => e.runFlat)) {  /* If only Run-Flat results came back - show those */
+        this.data.tyreType = 'runFlat';
+      }
+      if (get(this.properties, 'filteredResults', []).every(e => !e.runFlat)) {  /* If only Run-Flat results came back - show those */
+        this.data.tyreType = 'regular';
+      }
       this.applyFilters();
       set(this.properties, 'loading', false);
     }, err => {
-      /* TODO: Handle error */
+      let error = {
+        technical: this.extractError(err),
+        business: 'We encountered an error while trying to retrieve search results - please try again',
+      }
+      this.toastr.error(error.business, 'Whoops!');
+      this.http.post('/api/error', error).subscribe(resp => {}, err => {});
     });
     // return get(this, 'searchableContent.records', []).filter((e, i) => {
     //   let matches = e.vehicleType == get(this.data, 'selected')
@@ -687,6 +717,18 @@ export class SearchComponent {
     }
     set(this.properties, 'showContactMe', get(this.properties, 'filteredResults', []).some(e => e.contactMe));
   };
+
+  extractError = (err: any):string => {
+    let errorMessage = '';
+    if (err.error && err.error.msg) {
+      errorMessage += err.error.msg;
+    } else if (err.message) {
+      errorMessage += err.message;
+    } else {
+      errorMessage = 'Unknown error';
+    }
+    return errorMessage;
+  }
 
   toggleRetailer = (retailer) => {
     retailer.checked = !retailer.checked;

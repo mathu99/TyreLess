@@ -11,6 +11,7 @@ const PartnerTyre = require('./models/partnerTyre');
 const PartnerService = require('./models/partnerService');
 const Partner = require('./models/partner');
 const Lead = require('./models/lead');
+const Error = require('./models/error');
 
 var config = require('./config/database');
 const router = express.Router();
@@ -198,6 +199,19 @@ app.post('/api/lead', (req, res, next) => {    /* Store lead information */
             return res.json({ success: false, msg: err.message });
         }
         res.json({ success: true, msg: 'Successful created new lead.' });
+    });
+});
+
+app.post('/api/error', (req, res, next) => {    /* Store error information */
+    var error = new Error({
+        technical: req.body.technical,
+        business: req.body.business,
+    });
+    error.save((err) => {
+        if (err) {
+            return res.json({ success: false, msg: err.message });
+        }
+        res.json({ success: true, msg: 'Successful added error.' });
     });
 });
 
