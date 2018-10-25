@@ -46,6 +46,24 @@ export class HomeComponent {
     });
   }
 
+  performSearch = ():void => {
+    (<any>window).ga('send', 'event', {
+      eventCategory: 'Home Page',
+      eventLabel: 'Search',
+      eventAction: 'Search',
+      eventValue: 10
+    });
+  }
+
+  viewAllPartners = ():void => {
+    (<any>window).ga('send', 'event', {
+      eventCategory: 'Home Page',
+      eventLabel: 'View all our partners',
+      eventAction: 'View all our partners',
+      eventValue: 10
+    });
+  }
+
   getLocationFromObject = (locations):any => {
     let locationObj = {
       name: '-',

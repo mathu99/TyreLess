@@ -106,13 +106,13 @@
                     <br>
                     <br>
                     <div class="social-icons text-center">
-                        <a href="http://www.instagram.com" target="_blank" class="contact-instagram" ngbTooltip="Connect on Instagram">
+                        <a (click)="navigateToExternalLink('Instagram')" href="http://www.instagram.com" target="_blank" class="contact-instagram" ngbTooltip="Connect on Instagram">
                             <i class="fa fa-instagram"></i>
                         </a>
-                        <a href="http://www.facebook.com" target="_blank" class="contact-facebook" ngbTooltip="Connect on Facebook">
+                        <a (click)="navigateToExternalLink('Facebook')" href="http://www.facebook.com" target="_blank" class="contact-facebook" ngbTooltip="Connect on Facebook">
                             <i class="fa fa-facebook"></i>
                         </a>
-                        <a href="http://www.linkedin.com" target="_blank" class="contact-linkedin" ngbTooltip="Connect on LinkedIn">
+                        <a (click)="navigateToExternalLink('LinkedIn')" href="https://www.linkedin.com/company/tyreless/" target="_blank" class="contact-linkedin" ngbTooltip="Connect on LinkedIn">
                             <i class="fa fa-linkedin"></i>
                         </a>
                     </div>

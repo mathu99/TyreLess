@@ -23,6 +23,15 @@ export class ContactUsComponent {
     this.collapsed = !this.collapsed;
   }
 
+  navigateToExternalLink = (link: string): void => {
+    (<any>window).ga('send', 'event', {
+      eventCategory: 'Follow Us',
+      eventLabel: `Navigate to ${link}`,
+      eventAction: `Navigate to ${link}`,
+      eventValue: 10,
+    });
+  }
+
   submitContact = (): void => {
     this.data = {
       name: '',
@@ -30,6 +39,12 @@ export class ContactUsComponent {
       subject: '',
       message: '',
     };
+    (<any>window).ga('send', 'event', {
+      eventCategory: 'Contact Us',
+      eventLabel: 'Submit Form',
+      eventAction: 'Submit Form',
+      eventValue: 10,
+    });
     this.open(this.content);
   };
 
