@@ -239,13 +239,13 @@
                                     </div>
                                     <div class="card-body results-table filter-body p-2 result-padding">
                                         <div class="w-50 radio radio-success float-left">
-                                            <input id="typeRegular" type="radio" [checked]="data.tyreType == 'regular'" (click)="update('tyreType', 'regular'); applyFilters('type')">
+                                            <input id="typeRegular" type="radio" [checked]="data.tyreType == 'regular'" (click)="update('tyreType', 'regular'); applyFilters(false, 'type')">
                                             <label for="typeRegular">
                                                 Regular
                                             </label>
                                         </div>
                                         <div class="w-50 radio radio-success float-left">
-                                            <input id="typeRunFlat" type="radio" [checked]="data.tyreType =='runFlat'" (click)="update('tyreType', 'runFlat'); applyFilters('type')">
+                                            <input id="typeRunFlat" type="radio" [checked]="data.tyreType =='runFlat'" (click)="update('tyreType', 'runFlat'); applyFilters(false, 'type')">
                                             <label for="typeRunFlat">
                                                 Run Flat
                                             </label>
@@ -451,13 +451,13 @@
                                 </div>
                                 <div class="card-body results-table filter-body p-2 result-padding">
                                     <div class="w-50 radio radio-success float-left">
-                                        <input id="typeRegular" type="radio" [checked]="data.tyreType == 'regular'" (click)="update('tyreType', 'regular'); applyFilters('type')">
+                                        <input id="typeRegular" type="radio" [checked]="data.tyreType == 'regular'" (click)="update('tyreType', 'regular'); applyFilters(false, 'type')">
                                         <label for="typeRegular">
                                             Regular
                                         </label>
                                     </div>
                                     <div class="w-50 radio radio-success float-left">
-                                        <input id="typeRunFlat" type="radio" [checked]="data.tyreType =='runFlat'" (click)="update('tyreType', 'runFlat'); applyFilters('type')">
+                                        <input id="typeRunFlat" type="radio" [checked]="data.tyreType =='runFlat'" (click)="update('tyreType', 'runFlat'); applyFilters(false, 'type')">
                                         <label for="typeRunFlat">
                                             Run Flat
                                         </label>

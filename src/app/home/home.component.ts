@@ -51,7 +51,6 @@ export class HomeComponent {
       eventCategory: 'Home Page',
       eventLabel: 'Search',
       eventAction: 'Search',
-      eventValue: 10
     });
   }
 
@@ -60,7 +59,6 @@ export class HomeComponent {
       eventCategory: 'Home Page',
       eventLabel: 'View all our partners',
       eventAction: 'View all our partners',
-      eventValue: 10
     });
   }
 

@@ -58,7 +58,7 @@ export class SearchComponent {
 
   priceChange = ($event): void => {
     set(this, 'properties.priceFilter.current', $event.value);
-    this.applyFilters('price');
+    this.applyFilters(false, 'price');
   }
 
   toggleCollapsed(): void {
@@ -87,6 +87,12 @@ export class SearchComponent {
   }
 
   submitContactForm = (): void => {
+    (<any>window).ga('ec:setAction','checkout', {'step': 3});
+    (<any>window).ga('send', 'event', {
+      eventCategory: 'Search Results',
+      eventLabel: 'Submit to Partner',
+      eventAction: 'Submit to Partner'
+    });
     this.open(this.contactFormModal);
     /* Send email to customer */
     let dealBody = '', count = 0;
@@ -431,10 +437,10 @@ export class SearchComponent {
     set(this.data, 'selectedFilter', 'Price: Low to High');
     set(this, 'properties.retailers', undefined);
     set(this, 'properties.models', undefined);
-    this.applyFilters();
+    this.applyFilters(false);
   }
 
-  applyFilters = (calledFrom?: string) => {  /* Apply side filters */
+  applyFilters = (postToAnalytics: boolean, calledFrom?: string) => {  /* Apply side filters */
 
     this.properties.filteredResults = get(this.properties, 'results', []).filter((e, i) => {
       let matchesFilter = ((this.data.tyreType == 'regular' && !e.runFlat) || (this.data.tyreType == 'runFlat' && e.runFlat));  /* Tyre type filter */
@@ -464,6 +470,35 @@ export class SearchComponent {
       let brand = get(this.properties, 'models', []).filter(m => m.brand === e.brand)[0];
       return brand.models.filter(m => m.modelName == e.tyreModel)[0].checked;
     });
+
+    if (postToAnalytics === true) {
+      let i = 1;
+      get(this.properties, 'filteredResults', []).forEach(result => {
+        let runFlat = (result.runFlat) ? 'Run Flat' : 'Regular';
+        result.position = i++;
+        (<any>window).ga('ec:addImpression', { 
+          'id': `${result.branch.customerCode}-${result.brand}-${result.tyreModel}-${result.tyreWidth}/${result.tyreProfile}/${result.wheelSize}`,
+          'name': `${result.brand} ${result.tyreModel} ${result.tyreWidth}/${result.tyreProfile}/${result.wheelSize}`,
+          'category': result.branch.customerCode,
+          'variant': runFlat,
+          'brand': result.brand,
+          'list': 'Search Results',
+          'position': result.position,  
+          'dimension1': `${result.partner} - ${result.location.suburb}, ${result.location.province}`
+        });
+      });
+      (<any>window).ga('ec:setAction','checkout', {
+        'step': 1,
+        'option': get(this.properties, 'filteredResults', []).length + ' results returned',
+      });
+      (<any>window).ga('send', 'event', {
+        eventCategory: 'Search Results',
+        eventLabel: 'Display Results',
+        eventAction: 'Display Results',
+        eventValue: get(this.properties, 'filteredResults', []).length,
+      });
+      
+    }
     
     this.checkSelect(null);
   }
@@ -574,6 +609,7 @@ export class SearchComponent {
           brand: get(tyre, 'tyreRef.brand'),
           image: 'data:' + get(tyre, 'tyreRef.tyreImage.contentType', '') + ';base64,' + new Buffer(get(tyre, 'tyreRef.tyreImage.data', '')).toString('base64'),
           branch: {
+            customerCode: get(tyre, 'partnerRef.customerCode'),
             location: get(tyre, 'partnerRef.branchPin'),
             name: get(tyre, 'partnerRef.branchName'), 
           },
@@ -644,7 +680,7 @@ export class SearchComponent {
       if (get(this.properties, 'filteredResults', []).every(e => !e.runFlat)) {  /* If only Run-Flat results came back - show those */
         this.data.tyreType = 'regular';
       }
-      this.applyFilters();
+      this.applyFilters(true);
       set(this.properties, 'loading', false);
     }, err => {
       let error = {
@@ -714,6 +750,32 @@ export class SearchComponent {
     } 
     if (result) {
       result.contactMe = !result.contactMe;
+      if (result.contactMe) {
+        let runFlat = (result.runFlat) ? 'Run Flat' : 'Regular';
+        (<any>window).ga('ec:addProduct', { 
+          'id': `${result.branch.customerCode}-${result.brand}-${result.tyreModel}-${result.tyreWidth}/${result.tyreProfile}/${result.wheelSize}`,
+          'name': `${result.brand} ${result.tyreModel} ${result.tyreWidth}/${result.tyreProfile}/${result.wheelSize}`,
+          'category': result.branch.customerCode,
+          'variant': runFlat,
+          'brand': result.brand,
+          'list': 'Search Results',
+          'position': result.position,  
+          'dimension1': `${result.partner} - ${result.location.suburb}, ${result.location.province}`
+        });
+      }
+      let label = (result.contactMe) ? 'Select Tyre' : 'De-select Tyre';
+      if (label === 'Select Tyre') {
+        (<any>window).ga('ec:setAction','checkout', {'step': 2});
+        //(<any>window).ga('send', 'event', 'UX', 'click', 'add to cart');
+        (<any>window).ga('ec:setAction', 'add');
+      } else {
+        (<any>window).ga('ec:setAction', 'remove');
+      }
+      (<any>window).ga('send', 'event', {
+        eventCategory: 'Search Results',
+        eventLabel: label,
+        eventAction: label,
+      });
     }
     set(this.properties, 'showContactMe', get(this.properties, 'filteredResults', []).some(e => e.contactMe));
   };
@@ -732,12 +794,12 @@ export class SearchComponent {
 
   toggleRetailer = (retailer) => {
     retailer.checked = !retailer.checked;
-    this.applyFilters('retailer');
+    this.applyFilters(false, 'retailer');
   };
 
   togglelModel = (model) => {
     model.checked = !model.checked;
-    this.applyFilters('model');
+    this.applyFilters(false, 'model');
   };
 
   update = (property, value) => {

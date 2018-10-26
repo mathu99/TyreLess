@@ -28,7 +28,6 @@ export class ContactUsComponent {
       eventCategory: 'Follow Us',
       eventLabel: `Navigate to ${link}`,
       eventAction: `Navigate to ${link}`,
-      eventValue: 10,
     });
   }
 
@@ -43,7 +42,6 @@ export class ContactUsComponent {
       eventCategory: 'Contact Us',
       eventLabel: 'Submit Form',
       eventAction: 'Submit Form',
-      eventValue: 10,
     });
     this.open(this.content);
   };
