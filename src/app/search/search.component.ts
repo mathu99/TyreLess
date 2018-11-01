@@ -164,7 +164,7 @@ export class SearchComponent {
         temp = temp.replace('[rows]', rows);
 
         let req = {
-          title: `New Lead | ${tyreDetails}`,
+          title: `New Lead | ${get(this.data, 'getContacted.name')} | ${tyreDetails}`,
           html: temp,
         }
         this.http.post('/api/contactMe?recipient=' + e.partnerDetails.email, req).subscribe(resp => {
