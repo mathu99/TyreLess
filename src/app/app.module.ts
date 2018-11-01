@@ -5,7 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MatSliderModule, MatSidenavModule } from '@angular/material';
+import { MatSliderModule, MatSidenavModule, MatTooltipModule } from '@angular/material';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { ToastrModule } from 'ngx-toastr';
@@ -32,9 +32,10 @@ import 'hammerjs';
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+    MatProgressSpinnerModule,
     MatSliderModule,
     MatSidenavModule,
-    MatProgressSpinnerModule,
+    MatTooltipModule,
     RouterModule.forRoot(routes),
     InViewportModule.forRoot(),
     NgbModule.forRoot(),

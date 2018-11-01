@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Buffer } from 'buffer';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
+import { TooltipPosition } from '@angular/material';
 import { template, rowEntry } from './html-template';
 import { dealTemplate, dealEntry } from './customer-template';
 
@@ -646,7 +647,7 @@ export class SearchComponent {
           tyreModel: get(tyre, 'tyreRef.tyreModel'),
           tyreProfile: get(tyre, 'tyreRef.profile'),
           tyreWidth: get(tyre, 'tyreRef.width'),
-          wheelSize: get(tyre, 'tyreRef.size')
+          wheelSize: get(tyre, 'tyreRef.size'),
         }
         if (this.data.wheelAlignmentChecked) {
           object.partnerDetails.services.push({'name': 'Wheel Alignment', 'show': true });
@@ -742,10 +743,15 @@ export class SearchComponent {
     // });
   };
 
-  checkSelect = (result) => {
+
+
+  checkSelect = (result, tooltip?) => {
     let selectedCount = get(this.properties, 'filteredResults', []).filter(e => e.contactMe).length;
     if (selectedCount === 3 && !result.contactMe) {  /* 3 already selected  */
-      this.toastr.warning('You can only select 3 deals at a time', 'Sorry');
+      tooltip.show()
+      setTimeout(() => {
+        tooltip.hide();
+      }, 3000)
       return;
     } 
     if (result) {
