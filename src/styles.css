@@ -1144,6 +1144,10 @@ li::before {
     line-height: 28pt;
   }
 
+.my-tooltip {
+    font-size: 10pt !important;
+}
+
   .text-success{
     color:rgb(107,172,70) !important;
   }

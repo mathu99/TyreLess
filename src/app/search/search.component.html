@@ -377,7 +377,7 @@
                                                 View Deal
                                             </a>
                                         </div>
-                                        <span [matTooltipDisabled]="result.tooltipDisabled" #tooltip="matTooltip" matTooltipPosition="right" matTooltip="Sorry - you can only select 3 deals at a time"></span>
+                                        <span [matTooltipDisabled]="result.tooltipDisabled" matTooltipClass="my-tooltip" #tooltip="matTooltip" matTooltipPosition="right" matTooltip="Sorry - you can only select 3 deals at a time"></span>
                                         <div class="text-center p-2" style="padding-left: 12pt !important;padding-right: 12pt !important;" >
                                             <div class="checkbox checkbox-success checkbox-green select-box rounded" [ngClass]="{selectedBox : result.contactMe}" (click)="checkSelect(result, tooltip)">
                                                 <span *ngIf="result.contactMe">SELECTED</span>
@@ -655,7 +655,7 @@
                                                 </a>
                                                 <br>
                                                 <br>
-                                                <span [matTooltipDisabled]="result.tooltipDisabled" #tooltip="matTooltip" matTooltipPosition="right" matTooltip="Sorry - you can only select 3 deals at a time"></span>
+                                                <span [matTooltipDisabled]="result.tooltipDisabled" matTooltipPosition="my-tooltip" #tooltip="matTooltip" matTooltipPosition="right" matTooltip="Sorry - you can only select 3 deals at a time"></span>
                                                 <div class="text-center">
                                                     <div class="checkbox checkbox-success checkbox-green mobile-select select-box rounded" [ngClass]="{selectedBox : result.contactMe}" (click)="checkSelect(result, tooltip)">
                                                         <span *ngIf="result.contactMe">SELECTED</span>

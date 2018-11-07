@@ -154,20 +154,6 @@ export class HomeComponent {
           this.data.wheelBalancingChecked = this.data.wheelBalancingChecked == "true";
         }
       });
-    this.route.queryParams.subscribe(params => {
-        if (params.contactUs === 'true') {
-          const config: ScrollToConfigOptions = {
-            offset: 750,            
-            target: 'contactUs',
-          };
-          this.scrollToService.scrollTo(config);
-        } else {
-          const config: ScrollToConfigOptions = {
-            target: 'homePage',
-          };
-          this.scrollToService.scrollTo(config);
-        }
-      });
     }
 
   constructor(private route: ActivatedRoute, private router: Router, private scrollToService: ScrollToService, private http: Http, private modalService: NgbModal) {
@@ -224,6 +210,23 @@ export class HomeComponent {
         set(this.data, 'location', this.getLocationFromObject(this.properties.locations));
         set(this.data, 'brandDescription', this.getBrandDescription(this.properties.brands));
       }
+      setTimeout(() => {
+        this.route.queryParams.subscribe(params => {
+          if (params.contactUs === 'true') {
+            const config: ScrollToConfigOptions = {
+              offset: 750,            
+              target: 'contactUs',
+            };
+            this.scrollToService.scrollTo(config);
+          } else {
+            const config: ScrollToConfigOptions = {
+              target: 'homePage',
+            };
+            this.scrollToService.scrollTo(config);
+          }
+        });
+      }, 500);
+      
     }, err => {
       /* Handle error */
     });

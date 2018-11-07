@@ -104,6 +104,7 @@ export class SearchComponent {
         let temp = dealEntry,
             total = (parseFloat(e.price) * parseFloat(e.quantitySelected));
         let tyreDetails =  `${e.quantitySelected}x ${e.brand} ${e.tyreModel} ${e.tyreWidth}/${e.tyreProfile}/${e.wheelSize}`;
+        tyreDetails += (e.runFlat) ? ' (Run Flat)' : '';
         temp = temp.replace('[dealer_name]', get(e, 'partner') + ' (' + get(e, 'branch.name') + ')');
         temp = temp.replace('[tyre_model]', tyreDetails).replace('[tyre_price]', (new CurrencyPipe('en-US')).transform(total, 'R', true)).replace('[total]', (new CurrencyPipe('en-US')).transform(e.totalPrice, 'R', true));
         let rows = '';
