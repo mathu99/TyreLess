@@ -160,18 +160,23 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="checkbox-spacer">
-                                        <div class="checkbox checkbox-success float-left">
-                                            <input id="wheelAlignment" type="checkbox" [checked]="data.wheelAlignmentChecked" (change)="data.wheelAlignmentChecked = !data.wheelAlignmentChecked">
-                                            <label for="wheelAlignment">
-                                                Wheel Alignment
-                                            </label>
+                                    <div class="w-100">
+                                        <div class="pull-left m-2 ml-3">
+                                            <a (click)="openSizeGuideModal()"><i class="dd-caret fa fa-info-circle"></i>Find your size?</a>
                                         </div>
-                                        <div class="checkbox checkbox-success float-left" style="padding-left:15pt">
-                                            <input id="wheelBalancing" type="checkbox" [checked]="data.wheelBalancingChecked" (change)="data.wheelBalancingChecked = !data.wheelBalancingChecked">
-                                            <label for="wheelBalancing">
-                                                Wheel Balancing
-                                            </label>
+                                        <div class="pull-right m-2">
+                                            <div class="checkbox checkbox-success float-right mr-1" style="padding-left:15pt">
+                                                <input id="wheelBalancing" type="checkbox" [checked]="data.wheelBalancingChecked" (change)="data.wheelBalancingChecked = !data.wheelBalancingChecked">
+                                                <label for="wheelBalancing">
+                                                    Wheel Balancing
+                                                </label>
+                                            </div>
+                                            <div class="checkbox checkbox-success float-right mr-1">
+                                                <input id="wheelAlignment" type="checkbox" [checked]="data.wheelAlignmentChecked" (change)="data.wheelAlignmentChecked = !data.wheelAlignmentChecked">
+                                                <label for="wheelAlignment">
+                                                    Wheel Alignment
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -516,6 +521,20 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Done</button>
+                </div>
+            </ng-template>
+            <ng-template #sizeGuideModal let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                    <h4 class="modal-title custom">Find Your Size</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="../../assets/Size Guide.png" class="w-100" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" (click)="c('Close click')">Done</button>

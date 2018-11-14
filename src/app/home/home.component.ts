@@ -16,6 +16,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class HomeComponent {
   @ViewChild('locationModal') private locationModal;
   @ViewChild('brandModal') private brandModal;
+  @ViewChild('sizeGuideModal') private sizeGuideModal;
   properties = <any>{};
   data = null;
   collapsed = true;
@@ -32,6 +33,10 @@ export class HomeComponent {
 
   openBrandModal = ():void => {
     this.open(this.brandModal);
+  }
+
+  openSizeGuideModal = ():void => {
+    this.open(this.sizeGuideModal);
   }
 
   toggleCollapsed(): void {
