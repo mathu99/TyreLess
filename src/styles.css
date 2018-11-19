@@ -13,6 +13,7 @@
 }
 
 .grey-bg-results{
+  min-height: 600pt;
   background-color: rgb(245,245,245);
 }
 
